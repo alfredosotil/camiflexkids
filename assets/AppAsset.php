@@ -18,7 +18,6 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/plugins.css',
         'css/components.css',
         'css/default.css',
         'css/site.css',
@@ -27,6 +26,7 @@ class AppAsset extends AssetBundle
         'plugins/font-awesome/css/font-awesome.min.css',
         'plugins/simple-line-icons/simple-line-icons.min.css',
         'plugins/animate/animate.min.css',
+        'plugins/bootstrap/css/bootstrap.min.css',
         'plugins/revo-slider/css/settings.css',
         'plugins/revo-slider/css/layers.css',
         'plugins/revo-slider/css/navigation.css',
@@ -35,9 +35,13 @@ class AppAsset extends AssetBundle
         'plugins/fancybox/jquery.fancybox.css',
         'plugins/slider-for-bootstrap/css/slider.css',
         'plugins/ilightbox/css/ilightbox.css',
+        'plugins/ilightbox/dark-skin/skin.css',
+        'css/plugins.css',
     ];
     public $js = [
+        'plugins/jquery.min.js',
         'plugins/jquery-migrate.min.js',
+        'plugins/bootstrap/js/bootstrap.min.js',
         'plugins/jquery.easing.min.js',
         'plugins/reveal-animate/wow.js',
         'plugins/reveal-animate/reveal-animate.js',
@@ -57,6 +61,8 @@ class AppAsset extends AssetBundle
         'plugins/typed/typed.min.js',
         'plugins/slider-for-bootstrap/js/bootstrap-slider.js',
         'plugins/js-cookie/js.cookie.js',
+        'js/components.js',
+        'js/components-shop.js',
         'js/app.js',
         'plugins/revo-slider/slider-3.js',
         'plugins/isotope/isotope.pkgd.min.js',
@@ -67,12 +73,10 @@ class AppAsset extends AssetBundle
         'plugins/ilightbox/js/ilightbox.packed.js',
         'plugins/isotope/isotope-gallery.js',
         'plugins/isotope/isotope-grid.js',
-        'js/components.js',
-        'js/components-shop.js',
         'js/main.js',
     ];
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-    ];
+//    public $depends = [
+//        'yii\web\YiiAsset',
+//        'yii\bootstrap\BootstrapAsset',
+//    ];
 }

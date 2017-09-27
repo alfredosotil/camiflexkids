@@ -59,7 +59,7 @@ $config = [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-//                '<alias:index|services|products|shop|contact>' => 'site/<alias>',
+                '<alias:index|services|products|shop|contact>' => 'site/<alias>',
             ),
         ],
     ],

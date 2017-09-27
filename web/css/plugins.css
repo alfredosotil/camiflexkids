@@ -5003,7 +5003,7 @@ label.control-label {
     content: ''; }
 
 .tparrows.circle {
-  background-image: url(../../../base/img/content/line-icons/white.png);
+  background-image: url(../img/content/line-icons/grey1.png);
   display: inline-block;
   width: 60px;
   height: 60px;
@@ -5021,10 +5021,10 @@ label.control-label {
     filter: alpha(opacity=100); }
 
 .tp-banner-container.c-arrow-dark .tparrows.circle {
-  background-image: url(../../../base/img/content/line-icons/dark1.png); }
+  background-image: url(../img/content/line-icons/dark1.png); }
 
 .tp-banner-container.c-arrow-darken .tparrows.circle {
-  background-image: url(../../../base/img/content/line-icons/dark3.png); }
+  background-image: url(../img/content/line-icons/dark3.png); }
 
 .tp-loader.spinner2 {
   background-color: #999DA7; }

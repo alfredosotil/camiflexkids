@@ -271,12 +271,12 @@ website:    http://www.themepunch.com
 	line-height: 40px;
 	text-align: center;
 }
-.custom.tparrows.tp-leftarrow:before {
+/*.custom.tparrows.tp-leftarrow:before {
 	content: "\e824";
 }
 .custom.tparrows.tp-rightarrow:before {
 	content: "\e825";
-}
+}*/
 
 
 
