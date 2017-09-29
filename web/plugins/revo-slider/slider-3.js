@@ -40,23 +40,23 @@ $(document).ready(function () {
                     v_offset: 0
                 }
             },
-            bullets: {
-                style: "round",
-                enable: true,
-                hide_onmobile: false,
-                hide_onleave: true,
-                hide_delay: 200,
-                hide_delay_mobile: 1200,
-                hide_under: 0,
-                hide_over: 9999,
-                direction: "horizontal",
-                h_align: "left",
-                v_align: "bottom",
-                space: 5,
-                h_offset: 60,
-                v_offset: 60,
-
-            },
+//            bullets: {
+//                style: "round",
+//                enable: true,
+//                hide_onmobile: false,
+//                hide_onleave: true,
+//                hide_delay: 200,
+//                hide_delay_mobile: 1200,
+//                hide_under: 0,
+//                hide_over: 9999,
+//                direction: "horizontal",
+//                h_align: "left",
+//                v_align: "bottom",
+//                space: 5,
+//                h_offset: 60,
+//                v_offset: 60,
+//
+//            },
         },
 
         spinner: "spinner2",
