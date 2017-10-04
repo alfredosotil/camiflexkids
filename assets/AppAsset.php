@@ -18,11 +18,14 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'css/custom.css',
         'css/components.css',
         'css/default.css',
         'css/site.css',
         'plugins/socicon/socicon.css',
         'plugins/bootstrap-social/bootstrap-social.css',
+        'plugins/select2/css/select2.min.css',
+        'plugins/select2/css/select2-bootstrap.min.css',
         'plugins/font-awesome/css/font-awesome.min.css',
         'plugins/simple-line-icons/simple-line-icons.min.css',
         'plugins/animate/animate.min.css',
@@ -39,10 +42,15 @@ class AppAsset extends AssetBundle
         'css/plugins.css',
     ];
     public $js = [
-        'plugins/jquery.min.js',
+//        'plugins/jquery.min.js',
         'plugins/jquery-migrate.min.js',
         'plugins/bootstrap/js/bootstrap.min.js',
+        'plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js',
         'plugins/jquery.easing.min.js',
+        'plugins/select2/js/select2.full.min.js',
+        'plugins/jquery-validation/js/jquery.validate.min.js',
+        'plugins/jquery-validation/js/additional-methods.min.js',
+        'plugins/zoom-master/jquery.zoom.min.js',
         'plugins/reveal-animate/wow.js',
         'plugins/reveal-animate/reveal-animate.js',
         'plugins/revo-slider/js/jquery.themepunch.tools.min.js',
@@ -73,10 +81,10 @@ class AppAsset extends AssetBundle
         'plugins/ilightbox/js/ilightbox.packed.js',
         'plugins/isotope/isotope-gallery.js',
         'plugins/isotope/isotope-grid.js',
-        'js/main.js',
+        'js/main.js',        
+        'js/form-wizard.js',        
     ];
-//    public $depends = [
-//        'yii\web\YiiAsset',
-//        'yii\bootstrap\BootstrapAsset',
-//    ];
+    public $depends = [
+        'yii\web\YiiAsset',
+    ];
 }

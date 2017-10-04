@@ -1,0 +1,90 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 03-oct-2017, 16:39:02
+    Author     : asotilp
+*/
+
+
+/* -----------------------------------------------------------------------------
+
+    This file should be used to add your own CSS definitions or override
+        the existing ones.
+
+----------------------------------------------------------------------------- */
+
+/* your CSS here */
+
+
+/* -----------------------------------------------------------------------------
+
+    RESPONSIVE DEFINITIONS
+
+----------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------
+    LARGE DEVICES
+            devices with width between 992px and 1199px
+------------------------------------------------------------------------- */
+
+@media ( min-width: 1147px ) {
+    .row-correction {
+        height: 99px;
+    }
+    /* your CSS here */
+
+}
+
+/* -------------------------------------------------------------------------
+    MEDIUM DEVICES
+            devices with width between 768px and 991px
+------------------------------------------------------------------------- */
+
+@media ( min-width: 1147px ) {
+    .row-correction {
+        height: 99px;
+    }
+    /* your CSS here */
+
+
+}
+
+@media ( min-width: 993px ) {
+    .row-correction {
+        height: 99px;
+    }
+    /* your CSS here */
+
+
+}
+
+/* -------------------------------------------------------------------------
+SMALL DEVICES
+        devices with width between 481px and 767px
+------------------------------------------------------------------------- */
+
+@media ( max-width: 992px ) {
+
+    /* your CSS here */
+    .row-correction {
+        height: 57px;
+    }
+
+}
+
+/* -------------------------------------------------------------------------
+EXTRA SMALL DEVICES
+        devices with width up to 480px
+------------------------------------------------------------------------- */
+
+@media ( max-width: 480px ) {
+
+    /* your CSS here */
+/*    .row-correction {
+        height: 57px;
+    }*/
+
+}
