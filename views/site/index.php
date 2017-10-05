@@ -5,126 +5,18 @@ $this->title = 'Camiflex Kids';
 ?>
 <!-- BEGIN: PAGE CONTENT -->
 <!-- BEGIN: LAYOUT/SLIDERS/REVO-SLIDER-3 -->
-<section class="c-layout-revo-slider c-layout-revo-slider-3" dir="ltr">
-    <div class="tp-banner-container tp-fullscreen">
+<section class="c-layout-revo-slider c-layout-revo-slider-4" dir="ltr">
+    <div class="tp-banner-container c-theme">
         <div class="tp-banner rev_slider" data-version="5.0">
             <ul>
-
-                <!--BEGIN: SLIDE #1 -->
-                <li data-transition="fade" data-slotamount="1" data-masterspeed="1000">			
-                    <img class="rev-slidebg" src="<?= Yii::$app->request->baseUrl; ?>/img/content/backgrounds/blank.html" alt=""
-                         />
-
-                    <!--BEGIN: SUB TITLE -->
-                    <div class="tp-caption customin customout"  
-                         data-x="center" 
-                         data-y="bottom"
-                         data-hoffset="[-500, 300, 200, 70]"
-                         data-voffset="30"
-
-                         data-speed="500" 
-                         data-start="1000" 
-                         data-transform_idle="o:1;" 
-                         data-transform_in="rX:0.5;scaleX:0.75;scaleY:0.75;o:0;s:500;e:Back.easeInOut;" 
-                         data-transform_out="rX:0.5;scaleX:0.75;scaleY:0.75;o:0;s:600;e:Back.easeInOut;" 
-                         data-splitin="none" 
-                         data-splitout="none" 
-                         data-elementdelay="0.1" 
-                         data-endelementdelay="0.1" 
-                         data-endspeed="600"
-                         style="z-index: 2;">
-                        <p class="c-main-title-1 c-font-26 c-center c-font-uppercase c-font-bold c-font-white c-theme-bg">
-                            Incredibly Robust<br> 
-                            Ever Expanding Theme<br> 
-                            You can own them both<br>
-
-                        </p>
-                    </div>
-                    <!--END -->
-                    <div class="tp-caption customin customout" 
-                         data-x="right" 
-                         data-y="bottom" 
-                         data-hoffset="0" 
-                         data-voffset="0" 
-                         data-speed="500" 
-                         data-start="500" 
-                         data-basealign="slide"
-                         data-transform_idle="o:1;" 
-                         data-transform_in="rX:0.5;scaleX:0.75;scaleY:0.75;o:0;s:500;e:Back.easeInOut;" 
-                         data-transform_out="rX:0.5;scaleX:0.75;scaleY:0.75;o:0;s:600;e:Back.easeInOut;" 
-                         data-splitin="none" data-splitout="none"
-                         data-elementdelay="0.1" 
-                         data-endelementdelay="0.1"
-                         data-endspeed="600" 
-                         style="z-index: 1;">
-                        <img src="#" alt="" data-lazyload="<?= Yii::$app->request->baseUrl; ?>/img/content/backgrounds/bg-6.jpg" 
-                             data-hh="[868, 768, 960, 720]"
-                             data-ww="[auto, auto, auto, auto]" /> 
-                    </div>
-
-                </li>
-                <!--END -->  
-
-                <!--BEGIN: SLIDE #2 - VIDEO SLIDER -->
-                <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="6000" data-thumb="">
-                    <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
-                    <img src="<?= Yii::$app->request->baseUrl; ?>/img/layout/sliders/revo-slider/base/blank.png" alt="">
-
-                    <div class="rs-background-video-layer fulllscreenvideo tp-videolayer"
-                         data-forcerewind="on" 
-                         data-volume="mute" 
-                         data-videowidth="100%" 
-                         data-videoheight="100%" 
-                         data-videomp4="<?= Yii::$app->request->baseUrl; ?>/media/video/video-3.mp4" 
-                         data-videopreload="preload" 
-                         data-videoloop="loop" 
-                         data-forceCover="1" 
-                         data-aspectratio="16:9" 
-                         data-autoplay="true" 
-                         data-autoplayonlyfirsttime="false"
-                         data-nextslideatend="true">
-                    </div>
-
-                    <div class="tp-caption customin customout"
-                         data-x="center" 
-                         data-y="center"
-                         data-hoffset="0" 
-                         data-voffset="-30"
-
-                         data-speed="500" 
-                         data-start="1000" 
-                         data-transform_idle="o:1;" 
-                         data-transform_in="rX:0.5;scaleX:0.75;scaleY:0.75;o:0;s:500;e:Back.easeInOut;" 
-                         data-transform_out="rX:0.5;scaleX:0.75;scaleY:0.75;o:0;s:600;e:Back.easeInOut;" 
-                         data-splitin="none" 
-                         data-splitout="none" 
-                         data-elementdelay="0.1" 
-                         data-endelementdelay="0.1" 
-                         data-endspeed="600">
-                        <h3 class="c-main-title-2 c-font-55 c-font-bold c-font-center c-font-uppercase c-block-bordered c-font-dark c-block">
-                            Ultra Responsive<br>Modern Design
-                        </h3>
-                    </div>
-
-                    <div class="tp-caption lft"
-                         data-x="center"
-                         data-y="center" 
-                         data-hoffset="0"
-                         data-voffset="130"
-                         data-speed="900" 
-                         data-start="2000" 
-                         data-transform_idle="o:1;" 
-                         data-transform_in="rX:0.5;scaleX:0.75;scaleY:0.75;o:0;s:500;e:Back.easeInOut;" 
-                         data-transform_out="rX:0.5;scaleX:0.75;scaleY:0.75;o:0;s:900;e:Back.easeInOut;" >
-                        <a href="" class="c-action-btn btn btn-lg c-btn-square c-theme-btn c-btn-bold c-btn-uppercase">Purchase</a>
-                    </div>
-                    <!--END-->
-                </li>
-                <!--END -->
+                <!--BEGIN: SLIDE -->
+                <?= $slides ?>
+                <!--END -->                
             </ul>
         </div>
     </div>
-</section><!-- END: LAYOUT/SLIDERS/REVO-SLIDER-3 -->
+</section>
+<!-- END: LAYOUT/SLIDERS/REVO-SLIDER-3 -->
 
 <!-- BEGIN: CONTENT/MISC/SERVICES-1-1 -->
 <div class="c-content-box c-size-md c-bg-grey-1  ">
@@ -218,7 +110,7 @@ $this->title = 'Camiflex Kids';
                     <img class="c-content-isotope-image" src="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/13.jpg"/>
                     <div class="c-content-isotope-overlay c-ilightbox-image-4"
                          href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/13.jpg"
-                         data-options="thumbnail:'./img/content/stock/13.jpg'"
+                         data-options="thumbnail:'<?= Yii::$app->request->baseUrl; ?>/img/content/stock/13.jpg'"
                          data-caption="<h4>The River</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum nibh pharetra ligula rhoncus, nec iaculis nulla semper.</p>"
                          >
                         <div class="c-content-isotope-overlay-icon">
@@ -232,7 +124,7 @@ $this->title = 'Camiflex Kids';
                     <img class="c-content-isotope-image" src="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/81.jpg"/>
                     <div class="c-content-isotope-overlay c-ilightbox-image-4"
                          href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/81.jpg"
-                         data-options="thumbnail:'./img/content/stock/81.jpg'"
+                         data-options="thumbnail:'<?= Yii::$app->request->baseUrl; ?>/img/content/stock/81.jpg'"
                          data-caption="<h4>Speedy City</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum nibh pharetra ligula rhoncus, nec iaculis nulla semper.</p>"
                          >
                         <div class="c-content-isotope-overlay-icon">
@@ -246,7 +138,7 @@ $this->title = 'Camiflex Kids';
                     <img class="c-content-isotope-image" src="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/63.jpg"/>
                     <div class="c-content-isotope-overlay c-ilightbox-image-4"
                          href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/63.jpg"
-                         data-options="thumbnail:'./img/content/stock/63.jpg'"
+                         data-options="thumbnail:'<?= Yii::$app->request->baseUrl; ?>/img/content/stock/63.jpg'"
                          data-caption="<h4>The Workstation</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum nibh pharetra ligula rhoncus, nec iaculis nulla semper.</p>"
                          >
                         <div class="c-content-isotope-overlay-icon">
@@ -260,7 +152,7 @@ $this->title = 'Camiflex Kids';
                     <img class="c-content-isotope-image" src="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/48.jpg"/>
                     <div class="c-content-isotope-overlay c-ilightbox-image-4"
                          href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/48.jpg"
-                         data-options="thumbnail:'./img/content/stock/48.jpg'"
+                         data-options="thumbnail:'<?= Yii::$app->request->baseUrl; ?>/img/content/stock/48.jpg'"
                          data-caption="<h4>Exploring the Ice</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum nibh pharetra ligula rhoncus, nec iaculis nulla semper.</p>"
                          >
                         <div class="c-content-isotope-overlay-icon">
@@ -274,7 +166,7 @@ $this->title = 'Camiflex Kids';
                     <img class="c-content-isotope-image" src="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/33.jpg"/>
                     <div class="c-content-isotope-overlay c-ilightbox-image-4"
                          href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/33.jpg"
-                         data-options="thumbnail:'./img/content/stock/33.jpg'"
+                         data-options="thumbnail:'<?= Yii::$app->request->baseUrl; ?>/img/content/stock/33.jpg'"
                          data-caption="<h4>Music is the way of life</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum nibh pharetra ligula rhoncus, nec iaculis nulla semper.</p>"
                          >
                         <div class="c-content-isotope-overlay-icon">
@@ -288,7 +180,7 @@ $this->title = 'Camiflex Kids';
                     <img class="c-content-isotope-image" src="<?= Yii::$app->request->baseUrl; ?>/img/content/stock5/2.jpg"/>
                     <div class="c-content-isotope-overlay c-ilightbox-image-4"
                          href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock5/2.jpg"
-                         data-options="thumbnail:'./img/content/stock5/2.jpg'"
+                         data-options="thumbnail:'<?= Yii::$app->request->baseUrl; ?>/img/content/stock5/2.jpg'"
                          data-caption="<h4>The Sign</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum nibh pharetra ligula rhoncus, nec iaculis nulla semper.</p>"
                          >
                         <div class="c-content-isotope-overlay-icon">
@@ -302,7 +194,7 @@ $this->title = 'Camiflex Kids';
                     <img class="c-content-isotope-image" src="<?= Yii::$app->request->baseUrl; ?>/img/content/stock5/7.jpg"/>
                     <div class="c-content-isotope-overlay c-ilightbox-image-4"
                          href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock5/7.jpg"
-                         data-options="thumbnail:'./img/content/stock5/7.jpg'"
+                         data-options="thumbnail:'<?= Yii::$app->request->baseUrl; ?>/img/content/stock5/7.jpg'"
                          data-caption="<h4>The Stationary</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum nibh pharetra ligula rhoncus, nec iaculis nulla semper.</p>"
                          >
                         <div class="c-content-isotope-overlay-icon">
@@ -316,7 +208,7 @@ $this->title = 'Camiflex Kids';
                     <img class="c-content-isotope-image" src="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/11.jpg"/>
                     <div class="c-content-isotope-overlay c-ilightbox-image-4"
                          href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/11.jpg"
-                         data-options="thumbnail:'./img/content/stock/11.jpg'"
+                         data-options="thumbnail:'<?= Yii::$app->request->baseUrl; ?>/img/content/stock/11.jpg'"
                          data-caption="<h4>The Poster</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum nibh pharetra ligula rhoncus, nec iaculis nulla semper.</p>"
                          >
                         <div class="c-content-isotope-overlay-icon">
@@ -330,7 +222,7 @@ $this->title = 'Camiflex Kids';
                     <img class="c-content-isotope-image" src="<?= Yii::$app->request->baseUrl; ?>/img/content/stock5/9.jpg"/>
                     <div class="c-content-isotope-overlay c-ilightbox-image-4"
                          href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock5/9.jpg"
-                         data-options="thumbnail:'./img/content/stock5/9.jpg'"
+                         data-options="thumbnail:'<?= Yii::$app->request->baseUrl; ?>/img/content/stock5/9.jpg'"
                          data-caption="<h4>The Brochure</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum nibh pharetra ligula rhoncus, nec iaculis nulla semper.</p>"
                          >
                         <div class="c-content-isotope-overlay-icon">
@@ -389,9 +281,9 @@ $this->title = 'Camiflex Kids';
 <div class="c-content-box c-size-md c-bg-grey-1">
     <div class="container">
         <div class="c-content-title-1">
-            <h3 class="c-center c-font-uppercase c-font-bold">Latest Portfolio</h3>
+            <h3 class="c-center c-font-uppercase c-font-bold">Ultimos Proyectos</h3>
             <div class="c-line-center c-theme-bg"></div>
-            <p class="c-center c-font-uppercase">Showcasing your latest designs, sketches, photographs or videos.</p>
+            <p class="c-center c-font-uppercase">Te mostramos nuestro trabajo.</p>
         </div>			
         <div class="cbp-panel">
             <!-- SEE: components.js:ContentCubeLatestPortfolio -->
@@ -405,7 +297,7 @@ $this->title = 'Camiflex Kids';
                             <div class="c-masonry-border"></div>
                             <div class="cbp-l-caption-alignCenter">
                                 <div class="cbp-l-caption-body">
-                                    <a href="ajax/projects/project1.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
+                                    <a href="<?= Yii::$app->request->baseUrl; ?>/ajax/projects/project1.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
                                     <a href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/08_grey.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase" data-title="Dashboard<br>by Paul Flavius Nechita">zoom</a>
                                 </div>
                             </div>
@@ -421,7 +313,7 @@ $this->title = 'Camiflex Kids';
                             <div class="c-masonry-border"></div>
                             <div class="cbp-l-caption-alignCenter">
                                 <div class="cbp-l-caption-body">
-                                    <a href="ajax/projects/project2.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
+                                    <a href="<?= Yii::$app->request->baseUrl; ?>/ajax/projects/project2.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
                                     <a href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/07_grey.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase" data-title="World Clock Widget<br>by Paul Flavius Nechita">zoom</a>
                                 </div>
                             </div>
@@ -437,7 +329,7 @@ $this->title = 'Camiflex Kids';
                             <div class="c-masonry-border"></div>
                             <div class="cbp-l-caption-alignCenter">
                                 <div class="cbp-l-caption-body">
-                                    <a href="ajax/projects/project3.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
+                                    <a href="<?= Yii::$app->request->baseUrl; ?>/ajax/projects/project3.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
                                     <a href="http://vimeo.com/14912890" class="cbp-lightbox cbp-l-caption-buttonRight btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase" data-title="To-Do Dashboard<br>by Tiberiu Neamu">view video</a>
                                 </div>
                             </div>
@@ -453,7 +345,7 @@ $this->title = 'Camiflex Kids';
                             <div class="c-masonry-border"></div>
                             <div class="cbp-l-caption-alignCenter">
                                 <div class="cbp-l-caption-body">
-                                    <a href="ajax/projects/project4.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
+                                    <a href="<?= Yii::$app->request->baseUrl; ?>/ajax/projects/project4.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
                                     <a href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/014_grey.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase" data-title="WhereTO App<br>by Tiberiu Neamu">zoom</a>
                                 </div>
                             </div>
@@ -469,7 +361,7 @@ $this->title = 'Camiflex Kids';
                             <div class="c-masonry-border"></div>
                             <div class="cbp-l-caption-alignCenter">
                                 <div class="cbp-l-caption-body">
-                                    <a href="ajax/projects/project5.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
+                                    <a href="<?= Yii::$app->request->baseUrl; ?>/ajax/projects/project5.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
                                     <a href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/34_grey.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase" data-title="Events and  More<br>by Tiberiu Neamu">zoom</a>
                                 </div>
                             </div>
@@ -485,7 +377,7 @@ $this->title = 'Camiflex Kids';
                             <div class="c-masonry-border"></div>
                             <div class="cbp-l-caption-alignCenter">
                                 <div class="cbp-l-caption-body">
-                                    <a href="ajax/projects/project6.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
+                                    <a href="<?= Yii::$app->request->baseUrl; ?>/ajax/projects/project6.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
                                     <a href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/53_grey.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase" data-title="Ski * Buddy<br>by Tiberiu Neamu">zoom</a>
                                 </div>
                             </div>
@@ -501,7 +393,7 @@ $this->title = 'Camiflex Kids';
                             <div class="c-masonry-border"></div>
                             <div class="cbp-l-caption-alignCenter">
                                 <div class="cbp-l-caption-body">
-                                    <a href="ajax/projects/project7.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
+                                    <a href="<?= Yii::$app->request->baseUrl; ?>/ajax/projects/project7.html" class="cbp-singlePage cbp-l-caption-buttonLeft btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase">explore</a>
                                     <a href="<?= Yii::$app->request->baseUrl; ?>/img/content/stock/39_grey.jpg" class="cbp-lightbox cbp-l-caption-buttonRight btn c-btn-square c-btn-border-1x c-btn-white c-btn-bold c-btn-uppercase" data-title="Seemple* Music for iPad<br>by Tiberiu Neamu">zoom</a>
                                 </div>
                             </div>

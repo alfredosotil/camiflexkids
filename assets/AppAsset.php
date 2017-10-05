@@ -18,10 +18,6 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/custom.css',
-        'css/components.css',
-        'css/default.css',
-        'css/site.css',
         'plugins/socicon/socicon.css',
         'plugins/bootstrap-social/bootstrap-social.css',
         'plugins/select2/css/select2.min.css',
@@ -40,6 +36,10 @@ class AppAsset extends AssetBundle
         'plugins/ilightbox/css/ilightbox.css',
         'plugins/ilightbox/dark-skin/skin.css',
         'css/plugins.css',
+        'css/custom.css',
+        'css/components.css',
+        'css/default.css',
+        'css/site.css',
     ];
     public $js = [
 //        'plugins/jquery.min.js',
