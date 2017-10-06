@@ -11,7 +11,10 @@ $this->title = 'Productos Camiflex Kids';
 
         <!-- BEGIN: CONTENT/SHOPS/SHOP-2-7 -->
         <div class="c-bs-grid-small-space">
-
+        <div class="c-content-title-1 wow animated fadeIn">
+            <h3 class="c-font-uppercase c-font-bold">Nuestros Productos</h3>
+            <div class="c-line-left"></div>
+        </div>
             <div class="row">
                 <div class="col-md-3 col-sm-6 c-margin-b-20">
                     <div class="c-content-product-2 c-bg-white c-border">

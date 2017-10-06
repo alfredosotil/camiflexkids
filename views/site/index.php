@@ -23,7 +23,7 @@ $this->title = 'Camiflex Kids';
     <div class="container">
         <div class="c-content-feature-2-grid" data-auto-height="true" data-mode="base-height">
             <div class="c-content-title-1">
-                <h3 class="c-font-uppercase c-center c-font-bold">Services We Do</h3>
+                <h3 class="c-font-uppercase c-center c-font-bold">Servicios que brindamos</h3>
                 <div class="c-line-center"></div>
             </div>
             <div class="row">
@@ -94,15 +94,15 @@ $this->title = 'Camiflex Kids';
 <div id="c-isotope-anchor-1" class="c-content-box c-size-md c-bg-img-center" style="background-image: url(<?= Yii::$app->request->baseUrl; ?>/img/content/backgrounds/bg-84.jpg)">
     <div class="container">
         <div class="c-content-title-1">
-            <h3 class="c-center c-font-uppercase c-font-bold c-font-white">Great Works Come Alive</h3>
+            <h3 class="c-center c-font-uppercase c-font-bold c-font-white">Mira Nuestra Galer&iacute;a</h3>
             <div class="c-line-center c-theme-bg"></div>
         </div>
         <div class="c-content-isotope-filter-1 c-center">
-            <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom c-active" data-filter="*">Show all</button>
-            <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-web">Web</button>
-            <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-brand">Brand</button>
-            <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-design">Design</button>
-            <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-photo">Photo</button>
+            <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom c-active" data-filter="*">Mostrar Todo</button>
+            <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-web">Nidos</button>
+            <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-brand">Casas</button>
+            <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-design">Cl&iacute;nicas</button>
+            <!--<button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-photo">Photo</button>-->
         </div>
         <div class="c-content-isotope-gallery c-opt-4">
             <div class="c-content-isotope-item c-isotope-photo">
@@ -234,48 +234,6 @@ $this->title = 'Camiflex Kids';
         </div>
     </div> 
 </div><!-- END: CONTENT/ISOTOPE/GALLERY-4 -->
-
-<!-- BEGIN: CONTENT/FEATURES/FEATURES-12 -->
-<div class="c-content-box c-size-md c-bg-parallax" style="background-image: url(<?= Yii::$app->request->baseUrl; ?>/img/content/backgrounds/bg-75.jpg)">
-    <div class="container">
-        <div class="c-content-feature-8 c-opt-2">
-            <ul class="c-grid">
-                <li>
-                    <div class="c-card c-font-right c-bg-opacity-2">
-                        <h3 class="c-font-40 c-font-bold c-font-uppercase">Great<br/>Customer Care</h3>
-                        <p class="c-font-18">
-                            Lorem ipsum euismod dolor amet consetuer adipiscing elit sed diam nonummy euismod dolore
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="c-card c-bg-opacity-2">
-                        <h3 class="c-font-40 c-font-bold c-font-uppercase">Awesome<br/>Features Pack</h3>
-                        <p class="c-font-18">
-                            Lorem ipsum euismod dolor amet consetuer adipiscing elit sed diam nonummy euismod dolore
-                        </p>
-                    </div>
-                </li>
-            </ul>
-            <ul class="c-grid">
-                <li>
-                    <div class="c-card c-font-right c-bg-opacity-2">
-                        <h3 class="c-font-40 c-font-bold c-font-uppercase">Unlimited<br/>Themed Layouts</h3>
-                        <p class="c-font-18">
-                            Lorem ipsum euismod dolor amet consetuer adipiscing elit sed diam nonummy euismod dolore
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="c-card c-img c-bg-img-center" style="background-image: url(<?= Yii::$app->request->baseUrl; ?>/img/content/stock3/7.jpg)">
-                        <h3 class="c-font-white c-font-25 c-font-right">Some title here..</h3>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- END: CONTENT/FEATURES/FEATURES-12 -->
 
 <!-- BEGIN: CONTENT/PORTFOLIO/LATEST-WORKS-2 -->
 <div class="c-content-box c-size-md c-bg-grey-1">
@@ -412,7 +370,7 @@ $this->title = 'Camiflex Kids';
         <div class="c-content-testimonials-1 c-option-2 wow animated fadeIn" data-slider="owl">
             <!-- Begin: Title 1 component -->
             <div class="c-content-title-1">
-                <h3 class="c-center c-font-uppercase c-font-bold">Our Satisfied Customers</h3>
+                <h3 class="c-center c-font-uppercase c-font-bold">Nuestros Clientes Satisfechos</h3>
                 <div class="c-line-center c-theme-bg"></div>
             </div>
             <!-- End-->

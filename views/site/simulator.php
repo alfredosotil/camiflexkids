@@ -7,7 +7,7 @@ $this->title = 'Simulador Camiflex Kids';
 AngularAsset::register($this);
 ?>
 <div class="row-correction"></div>
-<p ng-cloak>{{test}}</p>
+<!--<p ng-cloak>{{test}}</p>-->
 <div class="container">
     <div class="portlet light " id="form_wizard_1">
         <div class="portlet-title">

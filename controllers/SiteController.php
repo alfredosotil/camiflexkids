@@ -59,7 +59,7 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
 
-        return $this->render('index', ['slides' => $this->getMainSlides()]);
+        return $this->render('index', ['slides' => $this->getIndexMainSlides()]);
 //        echo $slides;
     }
 
@@ -116,7 +116,7 @@ class SiteController extends Controller {
      * @return string
      */
     public function actionAbout() {
-        return $this->render('about');
+        return $this->render('about', ['slides' => $this->getAboutMainSlides()]);
     }
 
     /**
@@ -141,11 +141,20 @@ class SiteController extends Controller {
         return $this->render('productdetail');
     }
 
-    private function getMainSlides() {
+    private function getIndexMainSlides() {
         $slides = json_decode(Yii::$app->params['mainSlider']);
         $htmlSlides = "";
         foreach ($slides as $value) {
             (strcmp($value->file, 'image') === 0) ? $htmlSlides .= $this->renderPartial('slideimage-template', ['data' => $value]) : $htmlSlides .= $this->renderPartial('slidevideo-template', ['data' => $value]);
+        }
+        return $htmlSlides;
+    }
+
+    private function getAboutMainSlides() {
+        $slides = json_decode(Yii::$app->params['latestProjectSlider']);
+        $htmlSlides = "";
+        foreach ($slides as $value) {
+            $htmlSlides .= $this->renderPartial('slideabout-template', ['data' => $value]);
         }
         return $htmlSlides;
     }
