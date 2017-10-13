@@ -48,9 +48,9 @@ AppAsset::register($this);
                             <button class="c-topbar-toggler" type="button">
                                 <i class="fa fa-ellipsis-v"></i>
                             </button>
-                            <button class="c-search-toggler" type="button">
+<!--                            <button class="c-search-toggler" type="button">
                                 <i class="fa fa-search"></i>
-                            </button>
+                            </button>-->
                             <button class="c-cart-toggler" type="button">
                                 <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg">2</span>
                             </button>
@@ -83,9 +83,9 @@ AppAsset::register($this);
                                 <li >
                                     <a href="<?= Url::toRoute("site/contact") ?>" class="c-link">Contacto<span class="c-arrow c-toggler"></span></a>
                                 </li>
-                                <li class="c-search-toggler-wrapper">
+<!--                                <li class="c-search-toggler-wrapper">
                                     <a  href="#" class="c-btn-icon c-search-toggler"><i class="fa fa-search"></i></a>
-                                </li>
+                                </li>-->
 
                                 <li class="c-cart-toggler-wrapper">
                                     <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">2</span></a>

@@ -116,7 +116,10 @@ class SiteController extends Controller {
      * @return string
      */
     public function actionAbout() {
-        return $this->render('about', ['slides' => $this->getAboutMainSlides()]);
+        return $this->render('about', [
+            'slides' => $this->getAboutMainSlides(),
+            'team' => $this->getAboutTeam(),
+            'clients'=> $this->getAboutClients()]);
     }
 
     /**
@@ -157,6 +160,24 @@ class SiteController extends Controller {
             $htmlSlides .= $this->renderPartial('slideabout-template', ['data' => $value]);
         }
         return $htmlSlides;
+    }
+    
+    private function getAboutTeam() {
+        $slides = json_decode(Yii::$app->params['team']);
+        $htmlTeam = "";
+        foreach ($slides as $value) {
+            $htmlTeam .= $this->renderPartial('team-template', ['data' => $value]);
+        }
+        return $htmlTeam;
+    }
+    
+    private function getAboutClients() {
+        $slides = json_decode(Yii::$app->params['clients']);
+        $htmlClients = "";
+        foreach ($slides as $value) {
+            $htmlClients .= $this->renderPartial('clients-template', ['data' => $value]);
+        }
+        return $htmlClients;
     }
 
 }

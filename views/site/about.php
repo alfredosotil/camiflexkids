@@ -36,7 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-</div><!-- END: CONTENT/MISC/LATEST-ITEMS-3 -->
+</div>
+<!-- END: CONTENT/MISC/LATEST-ITEMS-3 -->
 <!-- BEGIN: CONTENT/MISC/SERVICES-1-1 -->
 <div class="c-content-box c-size-md c-bg-grey-1  ">
     <div class="container">
@@ -51,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="c-icon-wrapper">
                             <div class="c-content-line-icon c-theme c-icon-screen-chart"></div>
                         </div>
-                        <h3 class="c-font-uppercase c-title c-font-bold">Web Design</h3>
+                        <h3 class="c-font-uppercase c-title c-font-bold">Venta de Pisos</h3>
                         <p>Lorem ipsum consectetuer dolore elit diam</p>
                     </div>
                 </div>
@@ -60,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="c-icon-wrapper">
                             <div class="c-content-line-icon c-theme c-icon-support"></div>
                         </div>
-                        <h3 class="c-font-uppercase c-title c-font-bold">Mobile Apps</h3>
+                        <h3 class="c-font-uppercase c-title c-font-bold">Instalacion</h3>
                         <p>Lorem ipsum consectetuer dolore elit diam</p>
                     </div>
                 </div>
@@ -69,20 +70,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="c-icon-wrapper">
                             <div class="c-content-line-icon c-theme c-icon-comment"></div>
                         </div>
-                        <h3 class="c-font-uppercase c-title c-font-bold">Marketing</h3>
+                        <h3 class="c-font-uppercase c-title c-font-bold">Despacho a Domicilio</h3>
                         <p>Lorem ipsum consectetuer dolore elit diam</p>
                     </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="c-content-feature-2" data-wow-delay1="2s" data-height="height">
-                        <div class="c-icon-wrapper">
-                            <div class="c-content-line-icon c-theme c-icon-32"></div>
-                        </div>
-                        <h3 class="c-font-uppercase c-title c-font-bold">Events</h3>
-                        <p>Lorem ipsum consectetuer dolore elit diam</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
+                </div>                
+                <div class="col-md-4 col-sm-6 col-md-offset-4">
                     <div class="c-content-v-center c-theme-bg wow bounceInUp" data-wow-delay1="2s" data-height="height">
                         <div class="c-wrapper">
                             <div class="c-body c-padding-20 c-center">  
@@ -95,15 +87,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="c-content-feature-2" data-wow-delay1="2s" data-height="height">
-                        <div class="c-icon-wrapper">
-                            <div class="c-content-line-icon c-theme c-icon-globe"></div>
-                        </div>
-                        <h3 class="c-font-uppercase c-title c-font-bold">Hosting</h3>
-                        <p>Lorem ipsum consectetuer dolore elit diam</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div> 
@@ -111,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- END: CONTENT/MISC/SERVICES-1-1 -->
 
 <!-- BEGIN: CONTENT/SLIDERS/TEAM-2 -->
-<div class="c-content-box c-size-md c-bg-grey-1">
+<div class="c-content-box c-size-md c-bg-grey-1" id="team">
     <div class="container">
         <!-- Begin: Testimonals 1 component -->
         <div class="c-content-person-1-slider" data-slider="owl">
@@ -124,156 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <!-- Begin: Owlcarousel -->
             <div class="owl-carousel owl-theme c-theme c-owl-nav-center wow animated fadeInUp" data-items="3" data-slide-speed="8000" data-rtl="false"> 
-                <div class="c-content-person-1 c-option-2">
-                    <div class="c-caption c-content-overlay">
-                        <div class="c-overlay-wrapper">
-                            <div class="c-overlay-content">
-                                <a href="#"><i class="icon-link"></i></a>
-                                <a href="<?= Yii::$app->request->baseUrl; ?>/img/content/team/team10.jpg" data-lightbox="fancybox" data-fancybox-group="gallery-2">
-                                    <i class="icon-magnifier"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <img src="<?= Yii::$app->request->baseUrl; ?>/img/content/team/team10.jpg" class="img-responsive c-overlay-object" alt="">
-                    </div>
-                    <div class="c-body">
-                        <div class="c-head">
-                            <div class="c-name c-font-uppercase c-font-bold">Randy JANGO</div>
-                            <ul class="c-socials c-theme-ul">
-                                <li><a href="#"><i class="icon-social-twitter"></i></a></li>
-                                <li><a href="#"><i class="icon-social-facebook"></i></a></li>
-                                <li><a href="#"><i class="icon-social-dribbble"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="c-position">
-                            CEO, JANGO Inc.
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, dolor nemo amet elit. 
-                            Nulla nemo consequuntur.
-                        </p>
-                    </div>
-                </div>
-                <div class="c-content-person-1 c-option-2">
-                    <div class="c-caption c-content-overlay">
-                        <div class="c-overlay-wrapper">
-                            <div class="c-overlay-content">
-                                <a href="#"><i class="icon-link"></i></a>
-                                <a href="<?= Yii::$app->request->baseUrl; ?>/img/content/team/team9.jpg" data-lightbox="fancybox" data-fancybox-group="gallery-2">
-                                    <i class="icon-magnifier"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <img src="<?= Yii::$app->request->baseUrl; ?>/img/content/team/team9.jpg" class="img-responsive c-overlay-object" alt="">
-                    </div>
-                    <div class="c-body">
-                        <div class="c-head">
-                            <div class="c-name c-font-uppercase c-font-bold">Mary Jane</div>
-                            <ul class="c-socials c-theme-ul">
-                                <li><a href="#"><i class="icon-social-twitter"></i></a></li>
-                                <li><a href="#"><i class="icon-social-facebook"></i></a></li>
-                                <li><a href="#"><i class="icon-social-dribbble"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="c-position">
-                            CFO, JANGO Inc.
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, dolor nemo amet elit. 
-                            Nulla nemo consequuntur.
-                        </p>
-                    </div>
-                </div>
-                <div class="c-content-person-1 c-option-2">
-                    <div class="c-caption c-content-overlay">
-                        <div class="c-overlay-wrapper">
-                            <div class="c-overlay-content">
-                                <a href="#"><i class="icon-link"></i></a>
-                                <a href="<?= Yii::$app->request->baseUrl; ?>/img/content/team/team7.jpg" data-lightbox="fancybox" data-fancybox-group="gallery-2">
-                                    <i class="icon-magnifier"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <img src="<?= Yii::$app->request->baseUrl; ?>/img/content/team/team7.jpg" class="img-responsive c-overlay-object" alt="">
-                    </div>
-                    <div class="c-body">
-                        <div class="c-head">
-                            <div class="c-name c-font-uppercase c-font-bold">Beard Mcbeardson</div>
-                            <ul class="c-socials c-theme-ul">
-                                <li><a href="#"><i class="icon-social-twitter"></i></a></li>
-                                <li><a href="#"><i class="icon-social-facebook"></i></a></li>
-                                <li><a href="#"><i class="icon-social-dribbble"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="c-position">
-                            CTO, JANGO Inc.
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, dolor nemo amet elit. 
-                            Nulla nemo consequuntur.
-                        </p>
-                    </div>
-                </div>
-                <div class="c-content-person-1 c-option-2">
-                    <div class="c-caption c-content-overlay">
-                        <div class="c-overlay-wrapper">
-                            <div class="c-overlay-content">
-                                <a href="#"><i class="icon-link"></i></a>
-                                <a href="<?= Yii::$app->request->baseUrl; ?>/img/content/team/team11.jpg" data-lightbox="fancybox" data-fancybox-group="gallery-2">
-                                    <i class="icon-magnifier"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <img src="<?= Yii::$app->request->baseUrl; ?>/img/content/team/team11.jpg" class="img-responsive c-overlay-object" alt="">
-                    </div>
-                    <div class="c-body">
-                        <div class="c-head">
-                            <div class="c-name c-font-uppercase c-font-bold">Sara Conner</div>
-                            <ul class="c-socials c-theme-ul">
-                                <li><a href="#"><i class="icon-social-twitter"></i></a></li>
-                                <li><a href="#"><i class="icon-social-facebook"></i></a></li>
-                                <li><a href="#"><i class="icon-social-dribbble"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="c-position">
-                            Director, JANGO Inc.
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, dolor nemo amet elit. 
-                            Nulla nemo consequuntur.
-                        </p>
-                    </div>
-                </div>
-                <div class="c-content-person-1 c-option-2">
-                    <div class="c-caption c-content-overlay">
-                        <div class="c-overlay-wrapper">
-                            <div class="c-overlay-content">
-                                <a href="#"><i class="icon-link"></i></a>
-                                <a href="<?= Yii::$app->request->baseUrl; ?>/img/content/team/team12.jpg" data-lightbox="fancybox" data-fancybox-group="gallery-2">
-                                    <i class="icon-magnifier"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <img src="<?= Yii::$app->request->baseUrl; ?>/img/content/team/team12.jpg" class="img-responsive c-overlay-object" alt="">
-                    </div>
-                    <div class="c-body">
-                        <div class="c-head">
-                            <div class="c-name c-font-uppercase c-font-bold">Jim Book</div>
-                            <ul class="c-socials c-theme-ul">
-                                <li><a href="#"><i class="icon-social-twitter"></i></a></li>
-                                <li><a href="#"><i class="icon-social-facebook"></i></a></li>
-                                <li><a href="#"><i class="icon-social-dribbble"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="c-position">
-                            Director, JANGO Inc.
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, dolor nemo amet elit. 
-                            Nulla nemo consequuntur.
-                        </p>
-                    </div>
-                </div>
+                 <?= $team ?>	
             </div>			 
             <!-- End-->
         </div>
@@ -293,39 +127,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- End-->
             <!-- Begin: Owlcarousel -->
             <div class="owl-carousel owl-theme c-theme c-owl-nav-center" data-items="5" data-desktop-items="4" data-desktop-small-items="3" data-tablet-items="3" data-mobile-small-items="1"  data-auto-play="false" data-rtl="false" data-slide-speed="5000" data-auto-play-hover-pause="true"> 
-                <div class="item">
-                    <a href="#"><img src="<?= Yii::$app->request->baseUrl; ?>/img/content/client-logos/logo1.jpg" alt=""/></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="<?= Yii::$app->request->baseUrl; ?>/img/content/client-logos/logo2.jpg" alt=""/></a>
-                </div>	
-                <div class="item">
-                    <a href="#"><img src="<?= Yii::$app->request->baseUrl; ?>/img/content/client-logos/logo3.jpg" alt=""/></a>
-                </div>	
-                <div class="item">
-                    <a href="#"><img src="<?= Yii::$app->request->baseUrl; ?>/img/content/client-logos/logo4.jpg" alt=""/></a>
-                </div>	
-                <div class="item">
-                    <a href="#"><img src="<?= Yii::$app->request->baseUrl; ?>/img/content/client-logos/logo5.jpg" alt=""/></a>
-                </div>	
-                <div class="item">
-                    <a href="#"><img src="<?= Yii::$app->request->baseUrl; ?>/img/content/client-logos/logo6.jpg" alt=""/></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="<?= Yii::$app->request->baseUrl; ?>/img/content/client-logos/logo7.jpg" alt=""/></a>
-                </div>	
-                <div class="item">
-                    <a href="#"><img src="<?= Yii::$app->request->baseUrl; ?>/img/content/client-logos/logo8.jpg" alt=""/></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="<?= Yii::$app->request->baseUrl; ?>/img/content/client-logos/logo9.jpg" alt=""/></a>
-                </div>	
-                <div class="item">
-                    <a href="#"><img src="<?= Yii::$app->request->baseUrl; ?>/img/content/client-logos/logo10.jpg" alt=""/></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="<?= Yii::$app->request->baseUrl; ?>/img/content/client-logos/logo11.jpg" alt=""/></a>
-                </div>			 
+                <?= $clients;?>		 
             </div>
             <!-- End-->
         </div>

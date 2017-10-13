@@ -31,14 +31,14 @@ class AppAsset extends AssetBundle
         'plugins/revo-slider/css/navigation.css',
         'plugins/cubeportfolio/css/cubeportfolio.min.css',
         'plugins/owl-carousel/assets/owl.carousel.css',
-        'plugins/fancybox/jquery.fancybox.css',
         'plugins/slider-for-bootstrap/css/slider.css',
         'plugins/ilightbox/css/ilightbox.css',
         'plugins/ilightbox/dark-skin/skin.css',
-        'css/plugins.css',
+        'plugins/fancybox/jquery.fancybox.css',
         'css/custom.css',
         'css/components.css',
         'css/default.css',
+        'css/plugins.css',
         'css/site.css',
     ];
     public $js = [

@@ -2,10 +2,12 @@
 
 $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');
+$basePath =  dirname(__DIR__);
+$webroot = dirname($basePath);
 
 $config = [
     'id' => 'basic',
-    'basePath' => dirname(__DIR__),
+    'basePath' => $basePath,
     'bootstrap' => ['log', 'assetsAutoCompress'],
     'components' => [
         'assetsAutoCompress' =>
@@ -19,10 +21,10 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
-        ],
+//        'user' => [
+//            'identityClass' => 'app\models\User',
+//            'enableAutoLogin' => true,
+//        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -59,7 +61,7 @@ $config = [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                '<alias:index|services|products|shop|contact>' => 'site/<alias>',
+//                '<alias:index|services|products|shop|contact>' => 'site/<alias>',
             ),
         ],
     ],
@@ -83,4 +85,5 @@ if (YII_ENV_DEV) {
     ];
 }
 
-return $config;
+//return $config;
+return array_merge_recursive($config, require($webroot . '/camiflexkids/vendor/noumo/easyii/config/easyii.php'));

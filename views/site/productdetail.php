@@ -61,7 +61,7 @@ $this->title = 'Detalles del Productos Camiflex Kids';
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3 col-xs-4 c-product-variant">
+<!--                    <div class="col-sm-3 col-xs-4 c-product-variant">
                         <p class="c-product-meta-label c-product-margin-1 c-font-uppercase c-font-bold">Size:</p>
                         <div class="c-product-size">
                             <select>
@@ -71,7 +71,7 @@ $this->title = 'Detalles del Productos Camiflex Kids';
                                 <option value="XL">XL</option>
                             </select>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="col-sm-3 col-xs-4 c-product-variant">
                         <div class="c-product-color"> 
                             <p class="c-product-meta-label c-font-uppercase c-font-bold">Color:</p>
@@ -85,7 +85,7 @@ $this->title = 'Detalles del Productos Camiflex Kids';
                     </div>
                     <div class="col-sm-3 col-xs-4 ">
                         <div class="c-input-group c-spinner">
-                            <p class="c-product-meta-label c-product-margin-2 c-font-uppercase c-font-bold">QTY:</p>
+                            <p class="c-product-meta-label c-product-margin-2 c-font-uppercase c-font-bold">Cant:</p>
                             <input type="text" class="form-control c-item-1" value="1">
                             <div class="c-input-group-btn-vertical">
                                 <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-up"></i></button>
@@ -94,7 +94,7 @@ $this->title = 'Detalles del Productos Camiflex Kids';
                         </div>
                     </div>
                     <div class="col-sm-2 col-sm-offset-1 col-xs-12">
-                        <button class="btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase c-add-cart">Add to Cart</button>
+                        <button class="btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase c-add-cart">Agregar al Carrito</button>
                     </div>
                 </div>
             </div>
@@ -107,10 +107,10 @@ $this->title = 'Detalles del Productos Camiflex Kids';
 		<div class="container">
 			<ul class="nav nav-justified" role="tablist">
 				<li role="presentation" class="active">
-					<a class="c-font-uppercase c-font-bold" href="#tab-1" role="tab" data-toggle="tab">Description</a>
+					<a class="c-font-uppercase c-font-bold" href="#tab-1" role="tab" data-toggle="tab">Descripcion</a>
 				</li>
 				<li role="presentation">
-					<a class="c-font-uppercase c-font-bold" href="#tab-2" role="tab" data-toggle="tab">Additional Information</a>
+					<a class="c-font-uppercase c-font-bold" href="#tab-2" role="tab" data-toggle="tab">Informacion Adicional</a>
 				</li>
 			</ul>
 		</div>

@@ -5409,7 +5409,7 @@ label.control-label {
       padding: 0 10px; } }
 
 .fancybox-overlay {
-  z-index: 10200; }
+  z-index: 7200; }
 
 .fancybox-margin {
   margin: 0; }

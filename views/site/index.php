@@ -32,7 +32,7 @@ $this->title = 'Camiflex Kids';
                         <div class="c-icon-wrapper">
                             <div class="c-content-line-icon c-theme c-icon-screen-chart"></div>
                         </div>
-                        <h3 class="c-font-uppercase c-title c-font-bold">Web Design</h3>
+                        <h3 class="c-font-uppercase c-title c-font-bold">Venta de Pisos</h3>
                         <p>Lorem ipsum consectetuer dolore elit diam</p>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ $this->title = 'Camiflex Kids';
                         <div class="c-icon-wrapper">
                             <div class="c-content-line-icon c-theme c-icon-support"></div>
                         </div>
-                        <h3 class="c-font-uppercase c-title c-font-bold">Mobile Apps</h3>
+                        <h3 class="c-font-uppercase c-title c-font-bold">Instalacion</h3>
                         <p>Lorem ipsum consectetuer dolore elit diam</p>
                     </div>
                 </div>
@@ -50,20 +50,11 @@ $this->title = 'Camiflex Kids';
                         <div class="c-icon-wrapper">
                             <div class="c-content-line-icon c-theme c-icon-comment"></div>
                         </div>
-                        <h3 class="c-font-uppercase c-title c-font-bold">Marketing</h3>
+                        <h3 class="c-font-uppercase c-title c-font-bold">Despacho a Domicilio</h3>
                         <p>Lorem ipsum consectetuer dolore elit diam</p>
                     </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="c-content-feature-2" data-wow-delay1="2s" data-height="height">
-                        <div class="c-icon-wrapper">
-                            <div class="c-content-line-icon c-theme c-icon-32"></div>
-                        </div>
-                        <h3 class="c-font-uppercase c-title c-font-bold">Events</h3>
-                        <p>Lorem ipsum consectetuer dolore elit diam</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
+                </div>                
+                <div class="col-md-4 col-sm-6 col-md-offset-4">
                     <div class="c-content-v-center c-theme-bg wow bounceInUp" data-wow-delay1="2s" data-height="height">
                         <div class="c-wrapper">
                             <div class="c-body c-padding-20 c-center">  
@@ -76,19 +67,11 @@ $this->title = 'Camiflex Kids';
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="c-content-feature-2" data-wow-delay1="2s" data-height="height">
-                        <div class="c-icon-wrapper">
-                            <div class="c-content-line-icon c-theme c-icon-globe"></div>
-                        </div>
-                        <h3 class="c-font-uppercase c-title c-font-bold">Hosting</h3>
-                        <p>Lorem ipsum consectetuer dolore elit diam</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div> 
-</div><!-- END: CONTENT/MISC/SERVICES-1-1 -->
+</div>
+<!-- END: CONTENT/MISC/SERVICES-1-1 -->
 
 <!-- BEGIN: CONTENT/ISOTOPE/GALLERY-4 -->
 <div id="c-isotope-anchor-1" class="c-content-box c-size-md c-bg-img-center" style="background-image: url(<?= Yii::$app->request->baseUrl; ?>/img/content/backgrounds/bg-84.jpg)">
