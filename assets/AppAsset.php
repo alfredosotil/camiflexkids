@@ -17,6 +17,7 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
+    
     public $css = [
         'plugins/socicon/socicon.css',
         'plugins/bootstrap-social/bootstrap-social.css',

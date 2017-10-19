@@ -18,8 +18,8 @@
         "yiisoft/yii2": "~2.0.5",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
-        "skeeks/yii2-assets-auto-compress": "*",
-        "noumo/easyii": "dev-master"
+        "yii2mod/yii2-cms": "*",
+        "skeeks/yii2-assets-auto-compress": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

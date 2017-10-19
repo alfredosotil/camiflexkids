@@ -35,7 +35,7 @@ AppAsset::register($this);
                     <!-- BEGIN: BRAND -->
                     <div class="c-navbar-wrapper clearfix">
                         <div class="c-brand c-pull-left">
-                            <a href="index.html" class="c-logo">
+                            <a href="<?= Url::toRoute("site/index") ?>" class="c-logo">
                                 <img src="<?= Yii::$app->request->baseUrl; ?>/img/logo-transparente.png" alt="CAMIFLEXKIDS" class="c-desktop-logo">
                                 <img src="<?= Yii::$app->request->baseUrl; ?>/img/logo-transparente.png" alt="CAMIFLEXKIDS" class="c-desktop-logo-inverse">
                                 <img src="<?= Yii::$app->request->baseUrl; ?>/img/logo-transparente.png" alt="CAMIFLEXKIDS" class="c-mobile-logo">

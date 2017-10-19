@@ -31,7 +31,7 @@ class SiteController extends Controller {
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post', 'get'],
                 ],
             ],
         ];
@@ -42,6 +42,9 @@ class SiteController extends Controller {
      */
     public function actions() {
         return [
+            'page' => [
+                'class' => 'yii2mod\cms\actions\PageAction',
+            ],
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
@@ -117,9 +120,9 @@ class SiteController extends Controller {
      */
     public function actionAbout() {
         return $this->render('about', [
-            'slides' => $this->getAboutMainSlides(),
-            'team' => $this->getAboutTeam(),
-            'clients'=> $this->getAboutClients()]);
+                    'slides' => $this->getAboutMainSlides(),
+                    'team' => $this->getAboutTeam(),
+                    'clients' => $this->getAboutClients()]);
     }
 
     /**
@@ -161,7 +164,7 @@ class SiteController extends Controller {
         }
         return $htmlSlides;
     }
-    
+
     private function getAboutTeam() {
         $slides = json_decode(Yii::$app->params['team']);
         $htmlTeam = "";
@@ -170,7 +173,7 @@ class SiteController extends Controller {
         }
         return $htmlTeam;
     }
-    
+
     private function getAboutClients() {
         $slides = json_decode(Yii::$app->params['clients']);
         $htmlClients = "";

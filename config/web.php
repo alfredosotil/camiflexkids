@@ -2,17 +2,15 @@
 
 $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');
-$basePath =  dirname(__DIR__);
-$webroot = dirname($basePath);
 
 $config = [
     'id' => 'basic',
-    'basePath' => $basePath,
+    'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'assetsAutoCompress'],
     'components' => [
         'assetsAutoCompress' =>
         [
-            'class'         => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
+            'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -21,10 +19,10 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-//        'user' => [
-//            'identityClass' => 'app\models\User',
-//            'enableAutoLogin' => true,
-//        ],
+        'user' => [
+            'identityClass' => 'app\models\User',
+            'enableAutoLogin' => true,
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -35,15 +33,15 @@ $config = [
             // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
-            'log' => [
-                'traceLevel' => YII_DEBUG ? 3 : 0,
-                'targets' => [
-                    [
-                        'class' => 'yii\log\FileTarget',
-                        'levels' => ['error', 'warning'],
-                    ],
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets' => [
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning'],
                 ],
             ],
+        ],
         'db' => $db,
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
@@ -53,7 +51,7 @@ $config = [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
             'suffix' => '.html',
-            'rules' => array(
+            'rules' => [
 //              http://localhost/path/to/index.php/gii.html
                 'gii' => 'gii',
                 'gii/<controller:\w+>' => 'gii/<controller>',
@@ -62,7 +60,7 @@ $config = [
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 //                '<alias:index|services|products|shop|contact>' => 'site/<alias>',
-            ),
+            ],
         ],
     ],
     'params' => $params,
@@ -73,17 +71,16 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+            // uncomment the following to add your IP if you are not connecting from localhost.
+            'allowedIPs' => ['127.0.0.1', '190.114.250.73', '::1'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+            // uncomment the following to add your IP if you are not connecting from localhost.
+            //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 }
 
-//return $config;
-return array_merge_recursive($config, require($webroot . '/camiflexkids/vendor/noumo/easyii/config/easyii.php'));
+return $config;
