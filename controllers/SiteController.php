@@ -2,36 +2,61 @@
 
 namespace app\controllers;
 
+use app\models\forms\ContactForm;
+use app\models\forms\ResetPasswordForm;
 use Yii;
-use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
+use yii\web\Controller;
+use yii2mod\rbac\filters\AccessControl;
 
-class SiteController extends Controller {
-
+/**
+ * Class SiteController
+ *
+ * @package app\controllers
+ */
+class SiteController extends Controller
+{
     /**
      * @inheritdoc
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'class' => AccessControl::class,
+                'only' => [
+                    'login',
+                    'logout',
+                    'signup',
+                    'request-password-reset',
+                    'password-reset',
+                    'account',
+                ],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
                         'allow' => true,
+                        'actions' => ['login', 'signup', 'request-password-reset', 'password-reset'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['logout', 'account'],
                         'roles' => ['@'],
                     ],
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
+                    'index' => ['get'],
+                    'contact' => ['get', 'post'],
+                    'account' => ['get', 'post'],
+                    'login' => ['get', 'post'],
                     'logout' => ['post'],
+                    'signup' => ['get', 'post'],
+                    'request-password-reset' => ['get', 'post'],
+                    'password-reset' => ['get', 'post'],
+                    'page' => ['get', 'post'],
                 ],
             ],
         ];
@@ -40,7 +65,8 @@ class SiteController extends Controller {
     /**
      * @inheritdoc
      */
-    public function actions() {
+    public function actions()
+    {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -48,6 +74,24 @@ class SiteController extends Controller {
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+            'login' => [
+                'class' => 'yii2mod\user\actions\LoginAction',
+            ],
+            'logout' => [
+                'class' => 'yii2mod\user\actions\LogoutAction',
+            ],
+            'signup' => [
+                'class' => 'yii2mod\user\actions\SignupAction',
+            ],
+            'request-password-reset' => [
+                'class' => 'yii2mod\user\actions\RequestPasswordResetAction',
+            ],
+            'password-reset' => [
+                'class' => 'yii2mod\user\actions\PasswordResetAction',
+            ],
+            'page' => [
+                'class' => 'yii2mod\cms\actions\PageAction',
             ],
         ];
     }
@@ -57,97 +101,52 @@ class SiteController extends Controller {
      *
      * @return string
      */
-    public function actionIndex() {
-
-        return $this->render('index', ['slides' => $this->getMainSlides()]);
-//        echo $slides;
-    }
-
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin() {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-        return $this->render('login', [
-                    'model' => $model,
-        ]);
-    }
-
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout() {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
+    public function actionIndex()
+    {
+        return $this->render('index');
     }
 
     /**
      * Displays contact page.
      *
-     * @return Response|string
+     * @return string|\yii\web\Response
      */
-    public function actionContact() {
+    public function actionContact()
+    {
         $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->contact(Yii::$app->params['adminEmail'])) {
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Thank you for contacting us. We will respond to you as soon as possible.'));
+            } else {
+                Yii::$app->session->setFlash('error', Yii::t('app', 'There was an error sending email.'));
+            }
 
             return $this->refresh();
         }
+
         return $this->render('contact', [
-                    'model' => $model,
+            'model' => $model,
         ]);
     }
 
     /**
-     * Displays about page.
+     * Displays account page.
      *
-     * @return string
+     * @return string|\yii\web\Response
      */
-    public function actionAbout() {
-        return $this->render('about');
-    }
+    public function actionAccount()
+    {
+        $resetPasswordForm = new ResetPasswordForm(Yii::$app->user->identity);
 
-    /**
-     * Displays products page.
-     *
-     * @return string
-     */
-    public function actionProducts() {
-        return $this->render('products');
-    }
+        if ($resetPasswordForm->load(Yii::$app->request->post()) && $resetPasswordForm->resetPassword()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Password has been updated.'));
 
-    /**
-     * Displays simulator page.
-     *
-     * @return string
-     */
-    public function actionSimulator() {
-        return $this->render('simulator');
-    }
-
-    public function actionProductdetail() {
-        return $this->render('productdetail');
-    }
-
-    private function getMainSlides() {
-        $slides = json_decode(Yii::$app->params['mainSlider']);
-        $htmlSlides = "";
-        foreach ($slides as $value) {
-            (strcmp($value->file, 'image') === 0) ? $htmlSlides .= $this->renderPartial('slideimage-template', ['data' => $value]) : $htmlSlides .= $this->renderPartial('slidevideo-template', ['data' => $value]);
+            return $this->refresh();
         }
-        return $htmlSlides;
-    }
 
+        return $this->render('account', [
+            'resetPasswordForm' => $resetPasswordForm,
+        ]);
+    }
 }

@@ -1,8 +1,9 @@
 <?php
 /**
- * @link http://www.yiiframework.com/
+ * @see      http://www.yiiframework.com/
+ *
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license   http://www.yiiframework.com/license/
  */
 
 namespace app\assets;
@@ -11,12 +12,22 @@ use yii\web\AssetBundle;
 
 /**
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
+ *
+ * @since  2.0
  */
 class AppAsset extends AssetBundle
 {
+    /**
+     * @var string
+     */
     public $basePath = '@webroot';
+    /**
+     * @var string
+     */
     public $baseUrl = '@web';
+    /**
+     * @var array
+     */
     public $css = [
         'plugins/socicon/socicon.css',
         'plugins/bootstrap-social/bootstrap-social.css',
@@ -33,14 +44,17 @@ class AppAsset extends AssetBundle
         'plugins/owl-carousel/assets/owl.carousel.css',
         'plugins/fancybox/jquery.fancybox.css',
         'plugins/slider-for-bootstrap/css/slider.css',
-        'plugins/ilightbox/css/ilightbox.css',
-        'plugins/ilightbox/dark-skin/skin.css',
+//        'plugins/ilightbox/css/ilightbox.css',
+//        'plugins/ilightbox/dark-skin/skin.css',
         'css/plugins.css',
         'css/custom.css',
         'css/components.css',
         'css/default.css',
         'css/site.css',
     ];
+    /**
+     * @var array
+     */
     public $js = [
 //        'plugins/jquery.min.js',
         'plugins/jquery-migrate.min.js',
@@ -84,7 +98,11 @@ class AppAsset extends AssetBundle
         'js/main.js',        
         'js/form-wizard.js',        
     ];
+    /**
+     * @var array
+     */
     public $depends = [
         'yii\web\YiiAsset',
+//        'yii\bootstrap\BootstrapAsset',
     ];
 }

@@ -1,43 +1,48 @@
 <?php
 
-$params = require(__DIR__ . '/params.php');
-$db = require(__DIR__ . '/db.php');
-
 $config = [
-    'id' => 'basic-console',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'id' => 'console',
     'controllerNamespace' => 'app\commands',
-    'components' => [
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
-        'log' => [
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
+    'controllerMap' => [
+        'migrate' => [
+            'class' => 'yii\console\controllers\MigrateController',
+            'migrationPath' => [
+                '@vendor/yii2mod/yii2-cms/migrations',
+                '@vendor/yii2mod/yii2-cron-log/migrations',
+                '@vendor/yii2mod/yii2-user/migrations',
+                '@vendor/yii2mod/yii2-comments/migrations',
+                '@vendor/yii2mod/yii2-settings/migrations',
+                '@yii/rbac/migrations',
             ],
         ],
-        'db' => $db,
-    ],
-    'params' => $params,
-    /*
-    'controllerMap' => [
-        'fixture' => [ // Fixture generation command line.
-            'class' => 'yii\faker\FixtureController',
+        'fixture' => [
+            'class' => 'yii\console\controllers\FixtureController',
+            'namespace' => 'app\tests\fixtures',
         ],
     ],
-    */
+    'components' => [
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            'scriptUrl' => 'http://dev.application-base',
+            'baseUrl' => 'http://dev.application-base', // Setup your domain
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+        ],
+        'errorHandler' => [
+            'class' => 'yii2mod\cron\components\ErrorHandler',
+        ],
+        'mutex' => [
+            'class' => 'yii\mutex\FileMutex',
+        ],
+    ],
+    'modules' => [
+        'rbac' => [
+            'class' => 'yii2mod\rbac\ConsoleModule',
+        ],
+        'user' => [
+            'class' => 'yii2mod\user\ConsoleModule',
+        ],
+    ]
 ];
-
-if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
-    ];
-}
 
 return $config;

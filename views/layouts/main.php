@@ -1,32 +1,34 @@
 <?php
-/* @var $this \yii\web\View */
-/* @var $content string */
 
-use yii\helpers\Html;
+use app\assets\AppAsset;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
+use yii\widgets\Menu;
+use yii2mod\notify\BootstrapNotify;
 use yii\helpers\Url;
+
+/* @var $this \yii\web\View */
+/* @var $content string */
 
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>" data-ng-app="camiflexkids-app">
+<html lang="<?php echo Yii::$app->language; ?>">
     <head>
-        <meta charset="<?= Yii::$app->charset ?>">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="<?= Yii::$app->request->baseUrl; ?>/img/favicon.ico">
-        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700&amp;subset=all' rel='stylesheet' type='text/css'>
-        <?= Html::csrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?></title>
+        <?php $this->registerMetaTag(['charset' => Yii::$app->charset]); ?>
+        <?php $this->registerMetaTag(['http-equiv' => 'X-UA-Compatible', 'content' => 'IE=edge']); ?>
+        <?php $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1']); ?>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700&amp;subset=all' rel='stylesheet' type='text/css'>
+        <?php echo Html::csrfMetaTags(); ?>
+        <title><?php echo implode(' | ', array_filter([Html::encode($this->title), Yii::$app->name])); ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="c-layout-header-fixed c-layout-header-mobile-fixed c-layout-header-fixed-non-minimized c-layout-header-fullscreen" data-ng-controller="MainController">
+    <body>
         <?php $this->beginBody() ?>
-
+        <?php echo BootstrapNotify::widget(); ?>
         <!-- BEGIN: LAYOUT/HEADERS/HEADER-1 -->
         <!-- BEGIN: HEADER -->
         <header class="c-layout-header c-layout-header-5 c-layout-header-dark-mobile" data-minimize-offset="80">
@@ -77,10 +79,10 @@ AppAsset::register($this);
                                 <li >
                                     <a href="<?= Url::toRoute("site/products") ?>" class="c-link">Productos<span class="c-arrow c-toggler"></span></a>
                                 </li>
-                                <li >
+                                <li>
                                     <a href="<?= Url::toRoute("site/simulator") ?>" class="c-link">Simulador<span class="c-arrow c-toggler"></span></a>
                                 </li>
-                                <li >
+                                <li>
                                     <a href="<?= Url::toRoute("site/contact") ?>" class="c-link">Contacto<span class="c-arrow c-toggler"></span></a>
                                 </li>
                                 <li class="c-search-toggler-wrapper">
@@ -89,6 +91,9 @@ AppAsset::register($this);
 
                                 <li class="c-cart-toggler-wrapper">
                                     <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">2</span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a>
                                 </li>
                             </ul>
                         </nav>

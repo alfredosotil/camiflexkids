@@ -271,6 +271,7 @@ label.control-label {
     font-weight: 500; }
 
 .c-btn-circle {
+    background-color: white;
   border-radius: 30px !important; }
 
 .c-btn-bold {
