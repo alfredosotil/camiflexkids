@@ -75,9 +75,9 @@ class SiteController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
-            'login' => [
-                'class' => 'yii2mod\user\actions\LoginAction',
-            ],
+//            'login' => [
+//                'class' => 'yii2mod\user\actions\LoginAction',
+//            ],
             'logout' => [
                 'class' => 'yii2mod\user\actions\LogoutAction',
             ],
@@ -95,6 +95,29 @@ class SiteController extends Controller
             ],
         ];
     }
+    
+    public function actionLogin(){
+        if (!Yii::$app->user->isGuest) {
+            return $this->redirectTo(Yii::$app->getHomeUrl());
+        }
+
+        $model = Yii::createObject('yii2mod\user\models\LoginForm');
+        $load = $model->load(Yii::$app->request->post());
+
+//        if (Yii::$app->request->isAjax) {
+//            Yii::$app->response->format = Response::FORMAT_JSON;
+//
+//            return ActiveForm::validate($model);
+//        }
+
+        if ($load && $model->login()) {
+            return $this->redirectTo(Yii::$app->getUser()->getReturnUrl());
+        }
+        
+        return $this->render('login', [
+            'modelloginform' => $model,
+        ]);
+    }
 
     /**
      * Displays homepage.
@@ -103,9 +126,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('index', ['slides' => $this->getIndexMainSlides()]);
     }
 
+    public function actionAbout() {
+        return $this->render('about', [
+                    'slides' => $this->getAboutMainSlides(),
+                    'team' => $this->getAboutTeam(),
+                    'clients' => $this->getAboutClients()]);
+    }
     /**
      * Displays contact page.
      *
@@ -148,5 +177,63 @@ class SiteController extends Controller
         return $this->render('account', [
             'resetPasswordForm' => $resetPasswordForm,
         ]);
+    }
+    
+    /**
+     * Displays products page.
+     *
+     * @return string
+     */
+    public function actionProducts() {
+        return $this->render('products');
+    }
+
+    /**
+     * Displays simulator page.
+     *
+     * @return string
+     */
+    public function actionSimulator() {
+        return $this->render('simulator');
+    }
+
+    public function actionProductdetail() {
+        return $this->render('productdetail');
+    }
+
+    private function getIndexMainSlides() {
+        $slides = json_decode(Yii::$app->params['mainSlider']);
+        $htmlSlides = "";
+        foreach ($slides as $value) {
+            (strcmp($value->file, 'image') === 0) ? $htmlSlides .= $this->renderPartial('slideimage-template', ['data' => $value]) : $htmlSlides .= $this->renderPartial('slidevideo-template', ['data' => $value]);
+        }
+        return $htmlSlides;
+    }
+
+    private function getAboutMainSlides() {
+        $slides = json_decode(Yii::$app->params['latestProjectSlider']);
+        $htmlSlides = "";
+        foreach ($slides as $value) {
+            $htmlSlides .= $this->renderPartial('slideabout-template', ['data' => $value]);
+        }
+        return $htmlSlides;
+    }
+
+    private function getAboutTeam() {
+        $slides = json_decode(Yii::$app->params['team']);
+        $htmlTeam = "";
+        foreach ($slides as $value) {
+            $htmlTeam .= $this->renderPartial('team-template', ['data' => $value]);
+        }
+        return $htmlTeam;
+    }
+
+    private function getAboutClients() {
+        $slides = json_decode(Yii::$app->params['clients']);
+        $htmlClients = "";
+        foreach ($slides as $value) {
+            $htmlClients .= $this->renderPartial('clients-template', ['data' => $value]);
+        }
+        return $htmlClients;
     }
 }
