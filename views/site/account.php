@@ -8,6 +8,7 @@ use yii\widgets\DetailView;
 
 $this->title = Yii::t('app', 'My Account');
 ?>
+<div class="row-correction"></div>
 <div class="container">
     <div class="row">
         <div class="col-md-6">

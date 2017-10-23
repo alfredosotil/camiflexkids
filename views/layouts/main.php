@@ -8,11 +8,16 @@ use yii\widgets\Breadcrumbs;
 use yii\widgets\Menu;
 use yii2mod\notify\BootstrapNotify;
 use yii\helpers\Url;
+use app\widgets\LoginFormWidget;
+use app\widgets\PasswordResetRequestFormWidget;
+use app\widgets\SignupFormWidget;
+use app\widgets\CartViewWidget;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
 AppAsset::register($this);
+$countCartItems = count(Yii::$app->cart->getItems());
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -28,7 +33,22 @@ AppAsset::register($this);
     </head>
     <body class="c-layout-header-fixed c-layout-header-mobile-fixed c-layout-header-fixed-non-minimized c-layout-header-fullscreen" data-ng-controller="MainController">
         <?php $this->beginBody() ?>
-        <?php echo BootstrapNotify::widget(); ?>
+        <?= (Yii::$app->user->isGuest ? LoginFormWidget::widget([]) : ''); ?>
+        <?= (Yii::$app->user->isGuest ? PasswordResetRequestFormWidget::widget([]) : ''); ?>
+        <?= (Yii::$app->user->isGuest ? SignupFormWidget::widget([]) : ''); ?>
+        <?php
+        echo BootstrapNotify::widget([
+            'clientOptions' => [
+                'delay' => 5000,
+                'mouse_over' => 'pause',
+                'showProgressbar' => true,
+                'placement' => [
+                    'from' => 'bottom',
+                    'align' => 'left'
+                ]
+            ]
+        ]);
+        ?>
         <!-- BEGIN: LAYOUT/HEADERS/HEADER-1 -->
         <!-- BEGIN: HEADER -->
         <header class="c-layout-header c-layout-header-5 c-layout-header-dark-mobile" data-minimize-offset="80">
@@ -50,11 +70,11 @@ AppAsset::register($this);
                             <button class="c-topbar-toggler" type="button">
                                 <i class="fa fa-ellipsis-v"></i>
                             </button>
-                            <button class="c-search-toggler" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
+                            <!--                            <button class="c-search-toggler" type="button">
+                                                            <i class="fa fa-search"></i>
+                                                        </button>-->
                             <button class="c-cart-toggler" type="button">
-                                <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg">2</span>
+                                <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg"><?= $countCartItems; ?></span>
                             </button>
                         </div>
                         <!-- END: BRAND -->				
@@ -85,18 +105,33 @@ AppAsset::register($this);
                                 <li>
                                     <a href="<?= Url::toRoute("site/contact") ?>" class="c-link">Contacto<span class="c-arrow c-toggler"></span></a>
                                 </li>
-                                <li class="c-search-toggler-wrapper">
-                                    <a  href="#" class="c-btn-icon c-search-toggler"><i class="fa fa-search"></i></a>
-                                </li>
+                                <!--                                <li class="c-search-toggler-wrapper">
+                                                                    <a  href="#" class="c-btn-icon c-search-toggler"><i class="fa fa-search"></i></a>
+                                                                </li>-->
 
                                 <li class="c-cart-toggler-wrapper">
                                     <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">2</span></a>
                                 </li>
                                 <?php if (Yii::$app->user->isGuest): ?>
                                     <li>
-                                        <a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a>
+                                        <a href="#" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> <?= Yii::t('yii2mod.user', 'Sign In'); ?></a>
                                     </li>
                                 <?php else: ?>
+
+                                    <li>
+                                        <?php
+                                        echo Html::a(Yii::t('yii2mod.user', 'Account'), ['site/account'], [
+                                            'class' => 'c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold',
+                                        ]);
+                                        ?>
+                                        <?php if (Yii::$app->getUser()->can('admin')): ?>
+                                            <?php
+                                            echo Html::a(Yii::t('yii2mod.user', 'Administration'), ['admin/'], [
+                                                'class' => 'c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold',
+                                            ]);
+                                            ?>
+                                        <?php endif; ?>
+                                    </li>
                                     <li>
                                         <?php
                                         echo Html::a(Yii::t('yii2mod.user', 'Logout'), ['site/logout'], [
@@ -104,7 +139,8 @@ AppAsset::register($this);
                                             'data' => [
                                                 'confirm' => Yii::t('yii2mod.user', 'Are you sure you want to sign out?'),
                                                 'method' => 'post',
-                                            ],]);
+                                            ]
+                                        ]);
                                         ?>
                                     </li>
                                 <?php endif; ?>
@@ -114,136 +150,13 @@ AppAsset::register($this);
                         <!-- END: HOR NAV -->		
                     </div>			
                     <!-- BEGIN: LAYOUT/HEADERS/QUICK-CART -->
-                    <!-- BEGIN: CART MENU -->
-                    <div class="c-cart-menu">
-                        <div class="c-cart-menu-title">
-                            <p class="c-cart-menu-float-l c-font-sbold">2 item(s)</p>
-                            <p class="c-cart-menu-float-r c-theme-font c-font-sbold">$79.00</p>
-                        </div>
-                        <ul class="c-cart-menu-items">
-                            <li>
-                                <div class="c-cart-menu-close">
-                                    <a href="#" class="c-theme-link">×</a>
-                                </div>
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/img/content/shop2/24.jpg"/>
-                                <div class="c-cart-menu-content">
-                                    <p>1 x <span class="c-item-price c-theme-font">$30</span></p>
-                                    <a href="shop-product-details-2.html" class="c-item-name c-font-sbold">Winter Coat</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="c-cart-menu-close">
-                                    <a href="#" class="c-theme-link">×</a>
-                                </div>
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/img/content/shop2/12.jpg"/>
-                                <div class="c-cart-menu-content">
-                                    <p>1 x <span class="c-item-price c-theme-font">$30</span></p>
-                                    <a href="shop-product-details.html" class="c-item-name c-font-sbold">Sports Wear</a>
-                                </div>
-                            </li>
-                        </ul> 
-                        <div class="c-cart-menu-footer">
-                            <a href="shop-cart.html" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase">View Cart</a>
-                            <a href="shop-checkout.html" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase">Checkout</a>
-                        </div>
-                    </div>
-                    <!-- END: CART MENU --><!-- END: LAYOUT/HEADERS/QUICK-CART -->
+                    <?= CartViewWidget::widget([]); ?>
+                    <!-- END: LAYOUT/HEADERS/QUICK-CART -->
                 </div>
             </div>
         </header>
         <!-- END: HEADER --><!-- END: LAYOUT/HEADERS/HEADER-1 -->
 
-        <?php if (Yii::$app->user->isGuest): ?>
-            <!-- BEGIN: CONTENT/USER/FORGET-PASSWORD-FORM -->
-            <div class="modal fade c-content-login-form" id="forget-password-form" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content c-square">
-                        <div class="modal-header c-no-border">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <h3 class="c-font-24 c-font-sbold">Password Recovery</h3>
-                            <p>To recover your password please fill in your email address</p>
-                            <form>
-                                <div class="form-group">
-                                    <label for="forget-email" class="hide">Email</label>
-                                    <input type="email" class="form-control input-lg c-square" id="forget-email" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">Submit</button>
-                                    <a href="javascript:;" class="c-btn-forgot" data-toggle="modal" data-target="#login-form" data-dismiss="modal">Back To Login</a>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer c-no-border">                
-                            <span class="c-text-account">Don't Have An Account Yet ?</span>
-                            <a href="javascript:;" data-toggle="modal" data-target="#signup-form" data-dismiss="modal" class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup">Signup!</a>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- END: CONTENT/USER/FORGET-PASSWORD-FORM -->
-            <!-- BEGIN: CONTENT/USER/SIGNUP-FORM -->
-            <div class="modal fade c-content-login-form" id="signup-form" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content c-square">
-                        <div class="modal-header c-no-border">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <h3 class="c-font-24 c-font-sbold">Create An Account</h3>
-                            <p>Please fill in below form to create an account with us</p>
-                            <form>
-                                <div class="form-group">
-                                    <label for="signup-email" class="hide">Email</label>
-                                    <input type="email" class="form-control input-lg c-square" id="signup-email" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="signup-username" class="hide">Username</label>
-                                    <input type="email" class="form-control input-lg c-square" id="signup-username" placeholder="Username">
-                                </div>
-                                <div class="form-group">
-                                    <label for="signup-fullname" class="hide">Fullname</label>
-                                    <input type="email" class="form-control input-lg c-square" id="signup-fullname" placeholder="Fullname">
-                                </div>
-                                <div class="form-group">
-                                    <label for="signup-country" class="hide">Country</label>
-                                    <select class="form-control input-lg c-square" id="signup-country">
-                                        <option value="1">Country</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">Signup</button>
-                                    <a href="javascript:;" class="c-btn-forgot" data-toggle="modal" data-target="#login-form" data-dismiss="modal">Back To Login</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- END: CONTENT/USER/SIGNUP-FORM -->
-            <!-- BEGIN: CONTENT/USER/LOGIN-FORM -->
-            <div class="modal fade c-content-login-form" id="login-form" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content c-square">
-                        <div class="modal-header c-no-border">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <h3 class="c-font-24 c-font-sbold">Good Afternoon!</h3>
-                            <p>Let's make today a great day!</p>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <?= $this->render('@app/views/site/login', ['modelloginform' => Yii::createObject('yii2mod\user\models\LoginForm')]); ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer c-no-border">                
-                            <span class="c-text-account">Don't Have An Account Yet ?</span>
-                            <a href="javascript:;" data-toggle="modal" data-target="#signup-form" data-dismiss="modal" class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup">Signup!</a>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- END: CONTENT/USER/LOGIN-FORM -->
-        <?php endif; ?>
         <!-- BEGIN: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
         <nav class="c-layout-quick-sidebar">
             <div class="c-header">

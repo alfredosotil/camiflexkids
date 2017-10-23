@@ -36,7 +36,7 @@ class AppAsset extends AssetBundle
         'plugins/font-awesome/css/font-awesome.min.css',
         'plugins/simple-line-icons/simple-line-icons.min.css',
         'plugins/animate/animate.min.css',
-        'plugins/bootstrap/css/bootstrap.min.css',
+//        'plugins/bootstrap/css/bootstrap.min.css',
         'plugins/revo-slider/css/settings.css',
         'plugins/revo-slider/css/layers.css',
         'plugins/revo-slider/css/navigation.css',
@@ -57,8 +57,8 @@ class AppAsset extends AssetBundle
      */
     public $js = [
 //        'plugins/jquery.min.js',
+//        'plugins/bootstrap/js/bootstrap.min.js',
         'plugins/jquery-migrate.min.js',
-        'plugins/bootstrap/js/bootstrap.min.js',
         'plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js',
         'plugins/jquery.easing.min.js',
         'plugins/select2/js/select2.full.min.js',
@@ -103,6 +103,7 @@ class AppAsset extends AssetBundle
      */
     public $depends = [
         'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
 //        'yii\bootstrap\BootstrapAsset',
     ];
 }

@@ -31,7 +31,7 @@ $config = [
             'class' => 'yii2mod\settings\components\Settings',
         ],
         'request' => [
-            'cookieValidationKey' => 'fYPq2eLM',
+            'cookieValidationKey' => 'camiflexkids-key',
         ],
         'session' => [
             'class' => 'yii\web\DbSession',
@@ -39,6 +39,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\UserModel',
             'enableAutoLogin' => true,
+            'loginUrl' => ['site/index'],
             'on afterLogin' => function ($event) {
                 $event->identity->updateLastLogin();
             },

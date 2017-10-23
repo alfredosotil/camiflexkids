@@ -8,19 +8,25 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii2mod\rbac\filters\AccessControl;
+use yii2mod\user\models\LoginForm;
+use yii2mod\user\models\PasswordResetRequestForm;
+use yii2mod\user\models\SignupForm;
+use yii2mod\user\traits\EventTrait;
+use yii\helpers\Url;
 
 /**
  * Class SiteController
  *
  * @package app\controllers
  */
-class SiteController extends Controller
-{
+class SiteController extends Controller {
+
+    use EventTrait;
+
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::class,
@@ -44,6 +50,10 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                 ],
+                'denyCallback' => function($rule, $action) {
+                    Yii::$app->getSession()->setFlash('error', Yii::t('yii2mod.user', 'Please, you need to Sing In.'));
+                    return Yii::$app->response->redirect(Yii::$app->getUser()->loginUrl);
+                },
             ],
             'verbs' => [
                 'class' => VerbFilter::class,
@@ -65,8 +75,7 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public function actions()
-    {
+    public function actions() {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -84,9 +93,9 @@ class SiteController extends Controller
             'signup' => [
                 'class' => 'yii2mod\user\actions\SignupAction',
             ],
-            'request-password-reset' => [
-                'class' => 'yii2mod\user\actions\RequestPasswordResetAction',
-            ],
+//            'request-password-reset' => [
+//                'class' => 'yii2mod\user\actions\RequestPasswordResetAction',
+//            ],
             'password-reset' => [
                 'class' => 'yii2mod\user\actions\PasswordResetAction',
             ],
@@ -95,28 +104,63 @@ class SiteController extends Controller
             ],
         ];
     }
-    
-    public function actionLogin(){
-        if (!Yii::$app->user->isGuest) {
-            return $this->redirectTo(Yii::$app->getHomeUrl());
+
+    public function actionLogin() {
+        if (Yii::$app->request->isAjax) {
+            $model = new LoginForm();
+            if ($model->load(Yii::$app->request->post())) {
+                if ($model->login()) {
+                    return $this->goBack();
+                } else {
+                    Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+                    return \yii\widgets\ActiveForm::validate($model);
+                }
+            }
+        } else {
+            throw new HttpException(404, 'Page not found');
         }
+    }
 
-        $model = Yii::createObject('yii2mod\user\models\LoginForm');
-        $load = $model->load(Yii::$app->request->post());
-
-//        if (Yii::$app->request->isAjax) {
-//            Yii::$app->response->format = Response::FORMAT_JSON;
-//
-//            return ActiveForm::validate($model);
-//        }
-
-        if ($load && $model->login()) {
-            return $this->redirectTo(Yii::$app->getUser()->getReturnUrl());
+    public function actionRequestpasswordreset() {
+        if (Yii::$app->request->isAjax) {
+            $model = new PasswordResetRequestForm();
+            $event = $this->getFormEvent($model);
+            $this->trigger('beforeRequest', $event);
+            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                if ($model->sendEmail()) {
+                    $this->trigger('afterRequest', $event);
+                    Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Check your email for further instructions.'));
+                    return $this->redirect(['site/index']);
+//                    return $this->redirectTo(Yii::$app->getHomeUrl());
+                } else {
+                    Yii::$app->getSession()->setFlash('error', Yii::t('yii2mod.user', 'Sorry, we are unable to reset password for email provided.'));
+                    Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+                    return \yii\widgets\ActiveForm::validate($model);
+                }
+            }
+        } else {
+            throw new HttpException(404, 'Page not found');
         }
-        
-        return $this->render('login', [
-            'modelloginform' => $model,
-        ]);
+    }
+
+    public function actionSignup() {
+        if (Yii::$app->request->isAjax) {
+            $model = new SignupForm();
+            $event = $this->getFormEvent($model);
+            $this->trigger('beforeSignup', $event);
+            if ($model->load(Yii::$app->request->post()) && ($user = $model->signup()) !== null) {
+                $this->trigger('afterSignup', $event);
+                Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'User Created Successfully.'));
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->redirect(['site/index']);
+                }
+            } else {
+                Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+                return \yii\widgets\ActiveForm::validate($model);
+            }
+        } else {
+            throw new HttpException(404, 'Page not found');
+        }
     }
 
     /**
@@ -124,8 +168,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         return $this->render('index', ['slides' => $this->getIndexMainSlides()]);
     }
 
@@ -135,13 +178,13 @@ class SiteController extends Controller
                     'team' => $this->getAboutTeam(),
                     'clients' => $this->getAboutClients()]);
     }
+
     /**
      * Displays contact page.
      *
      * @return string|\yii\web\Response
      */
-    public function actionContact()
-    {
+    public function actionContact() {
         $model = new ContactForm();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -155,7 +198,7 @@ class SiteController extends Controller
         }
 
         return $this->render('contact', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -164,8 +207,7 @@ class SiteController extends Controller
      *
      * @return string|\yii\web\Response
      */
-    public function actionAccount()
-    {
+    public function actionAccount() {
         $resetPasswordForm = new ResetPasswordForm(Yii::$app->user->identity);
 
         if ($resetPasswordForm->load(Yii::$app->request->post()) && $resetPasswordForm->resetPassword()) {
@@ -175,10 +217,10 @@ class SiteController extends Controller
         }
 
         return $this->render('account', [
-            'resetPasswordForm' => $resetPasswordForm,
+                    'resetPasswordForm' => $resetPasswordForm,
         ]);
     }
-    
+
     /**
      * Displays products page.
      *
@@ -236,4 +278,5 @@ class SiteController extends Controller
         }
         return $htmlClients;
     }
+
 }
