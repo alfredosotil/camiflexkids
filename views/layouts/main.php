@@ -110,7 +110,7 @@ $countCartItems = count(Yii::$app->cart->getItems());
                                                                 </li>-->
 
                                 <li class="c-cart-toggler-wrapper">
-                                    <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">2</span></a>
+                                    <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg"><?= count(Yii::$app->cart->getItems()); ?></span></a>
                                 </li>
                                 <?php if (Yii::$app->user->isGuest): ?>
                                     <li>
