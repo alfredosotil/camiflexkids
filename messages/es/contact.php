@@ -18,12 +18,17 @@
  */
 return [
     'Body' => 'Cuerpo del Mensaje',
+    'Code' => '',
     'Contact' => 'Contacto',
-    'Contacts' => '',
+    'Contacts' => '@@@@',
     'Email' => '',
     'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.' => '',
     'Name' => 'Nombre',
     'Subject' => 'Titulo de mensaje',
     'Submit' => 'Enviar',
     'Verification Code' => 'Codigo de Verificacion',
+    'Your Email' => '',
+    'Your Message' => '',
+    'Your Subject' => '',
+    'Your name' => '',
 ];

@@ -4,7 +4,7 @@ $config = [
     'id' => 'console',
     'controllerNamespace' => 'app\commands',
     'controllerMap' => [
-        'migrate' => [
+        'migrate-base' => [
             'class' => 'yii\console\controllers\MigrateController',
             'migrationPath' => [
                 '@vendor/yii2mod/yii2-cms/migrations',
@@ -13,6 +13,7 @@ $config = [
                 '@vendor/yii2mod/yii2-comments/migrations',
                 '@vendor/yii2mod/yii2-settings/migrations',
                 '@yii/rbac/migrations',
+                '@yii/migrations',
             ],
         ],
         'fixture' => [

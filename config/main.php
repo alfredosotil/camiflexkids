@@ -25,6 +25,9 @@ $config = [
         'comment' => [
             'class' => 'yii2mod\comments\Module',
         ],
+        'gridview' => [
+            'class' => '\kartik\grid\Module'
+        ]
     ],
     'components' => [
         'settings' => [

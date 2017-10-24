@@ -10,11 +10,9 @@ use yii\base\Model;
  */
 class CartModel extends Model
 {
-    public $name;
-    public $email;
-    public $subject;
-    public $body;
-    public $verifyCode;
+    public $items;
+    public $total;
+    public $products;
 
     /**
      * @return array the validation rules
@@ -22,12 +20,12 @@ class CartModel extends Model
     public function rules()
     {
         return [
-            // name, email, subject and body are required
-            [['name', 'email', 'subject', 'body'], 'required'],
-            // email has to be a valid email address
-            ['email', 'email'],
-            // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+//            // name, email, subject and body are required
+//            [['name', 'email', 'subject', 'body'], 'required'],
+//            // email has to be a valid email address
+//            ['email', 'email'],
+//            // verifyCode needs to be entered correctly
+//            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -37,11 +35,9 @@ class CartModel extends Model
     public function attributeLabels()
     {
         return [
-            'name' => Yii::t('contact', 'Name'),
-            'email' => Yii::t('contact', 'Email'),
-            'subject' => Yii::t('contact', 'Subject'),
-            'body' => Yii::t('contact', 'Body'),
-            'verifyCode' => Yii::t('contact', 'Verification Code'),
+            'items' => Yii::t('yii2mod.cart', 'Item(s)'),
+            'total' => Yii::t('yii2mod.cart', 'Total'),
+            'products' => Yii::t('yii2mod.cart', 'Product(s)'),
         ];
     }
 

@@ -52,6 +52,19 @@ AdminAsset::register($this);
                     ],
                 ],
                 [
+                    'label' => '<i class="glyphicon glyphicons-package"></i> Products',
+                    'items' => [
+                        [
+                            'label' => '<i class="glyphicon glyphicon-th-list"></i> Product List',
+                            'url' => ['/product/index'],
+                        ],
+                        [
+                            'label' => '<i class="glyphicon glyphicon-plus"></i> Create Product',
+                            'url' => ['/product/create'],
+                        ],
+                    ],
+                ],
+                [
                     'label' => '<i class="glyphicon glyphicon-file"></i> CMS',
                     'url' => ['/admin/cms/index'],
                 ],

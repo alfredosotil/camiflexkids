@@ -208,6 +208,7 @@ class SiteController extends Controller {
      * @return string|\yii\web\Response
      */
     public function actionAccount() {
+        $this->layout = '@app/modules/admin/views/layouts/column2';
         $resetPasswordForm = new ResetPasswordForm(Yii::$app->user->identity);
 
         if ($resetPasswordForm->load(Yii::$app->request->post()) && $resetPasswordForm->resetPassword()) {

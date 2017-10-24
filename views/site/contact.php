@@ -14,8 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 MapAsset::register($this);
 ?>
 <div class="row-correction"></div>
-
-
 <div class="container">
     <!-- BEGIN: CONTENT/CONTACT/CONTACT-1 -->
     <div class="c-content-box c-size-md c-bg-img-top c-no-padding c-pos-relative">
