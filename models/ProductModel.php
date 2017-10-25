@@ -3,7 +3,6 @@
 namespace app\models;
 
 use Yii;
-use zxbodya\yii2\galleryManager\GalleryBehavior;
 /**
  * This is the model class for table "product".
  *
@@ -57,8 +56,9 @@ class ProductModel extends \yii\db\ActiveRecord implements \yii2mod\cart\models\
         return [
             \yii\behaviors\TimestampBehavior::class,
             'galleryBehavior' => [
-                'class' => GalleryBehavior::className(),
+                'class' => \zxbodya\yii2\galleryManager\GalleryBehavior::className(),
                 'type' => 'product',
+                'tableName' => 'gallery_image',
                 'extension' => 'jpg',
                 'directory' => Yii::getAlias('@webroot') . '/img/content/product/gallery',
                 'url' => Yii::getAlias('@web') . '/img/content/product/gallery',

@@ -12,10 +12,6 @@ class m171023_180739_create_product_table extends Migration
      */
     public function up()
     {
-        if ($this->db->driverName === 'mysql') {
-            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
-        }
-        
         $this->createTable('{{%Product}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull()->unique(),
