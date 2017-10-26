@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\forms\ContactForm;
 use app\models\forms\ResetPasswordForm;
+use app\models\Subscribers;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -237,7 +238,36 @@ class SiteController extends Controller {
      * @return string
      */
     public function actionSimulator() {
-        return $this->render('simulator');
+        if (Yii::$app->request->isAjax) {
+            $model = new Subscribers();
+            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                $step1 = true;
+                $step2 = false;
+                $step3 = false;
+                return $this->render('simulator', [
+                            'step1' => $step1,
+                            'step2' => $step2,
+                            'step3' => $step3
+                ]);
+            }
+        } else {
+            $step1 = false;
+            $step2 = false;
+            $step3 = false;
+            return $this->render('simulator', [
+                        'step1' => $step1,
+                        'step2' => $step2,
+                        'step3' => $step3
+            ]);
+        }
+//        $step1 = false;
+//        $step2 = false;
+//        $step3 = false;
+//        return $this->render('simulator', [
+//                    'step1' => $step1,
+//                    'step2' => $step2,
+//                    'step3' => $step3
+//        ]);
     }
 
     public function actionProductdetail() {
