@@ -9,7 +9,7 @@ AngularAsset::register($this);
 <div class="row-correction"></div>
 <!--<p ng-cloak>{{test}}</p>-->
 <div class="container">
-    <?php yii\widgets\Pjax::begin() ?>
+    <?php // yii\widgets\Pjax::begin() ?>
     <?=
     \drsdre\wizardwidget\WizardWidget::widget([
         'id' => 'stepwizard',
@@ -23,7 +23,7 @@ AngularAsset::register($this);
                         'title' => 'Continuar  <i class="fa fa-angle-right"></i>',
                         'options' => [
                             'class' => 'btn btn-outline green button-next',
-                            'disabled' => !$step1
+                            'disabled' => true
                         ],
                     ],
                 ],
@@ -43,7 +43,7 @@ AngularAsset::register($this);
                         'title' => 'Continuar  <i class="fa fa-angle-right"></i>',
                         'options' => [
                             'class' => 'btn btn-outline green button-next',
-                            'disabled' => !$step2
+                            'disabled' => true
                         ],
                     ],
                 ],
@@ -64,7 +64,7 @@ AngularAsset::register($this);
                         'title' => 'Guardar  <i class="fa fa-angle-right"></i>',
                         'options' => [
                             'class' => 'btn btn-outline green button-next',
-                            'disabled' => !$step3
+                            'disabled' => true
                         ],
                     ],
                 ],
@@ -74,7 +74,7 @@ AngularAsset::register($this);
         'start_step' => 1, // Optional, start with a specific step
     ]);
     ?>       
-    <?php yii\widgets\Pjax::end() ?>
+    <?php // yii\widgets\Pjax::end() ?>
 </div>
 <div class="container">
     <div class="portlet light " id="form_wizard_1">

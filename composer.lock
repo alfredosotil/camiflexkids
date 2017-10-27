@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "147d60516c9f6756df46e3aa7dd9cb35",
+    "content-hash": "eb4b86506ce0b06d9fc45d2ff46c2692",
     "packages": [
         {
             "name": "2amigos/yii2-arrayquery-component",
@@ -703,6 +703,51 @@
                 "yii2"
             ],
             "time": "2015-09-24T12:48:59+00:00"
+        },
+        {
+            "name": "demogorgorn/yii2-ajax-submit-button",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/demogorgorn/yii2-ajax-submit-button.git",
+                "reference": "e37725bb0c11b22a07f45381dd0ace2d2eb39c4a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/demogorgorn/yii2-ajax-submit-button/zipball/e37725bb0c11b22a07f45381dd0ace2d2eb39c4a",
+                "reference": "e37725bb0c11b22a07f45381dd0ace2d2eb39c4a",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "demogorgorn\\ajax\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oleg Martemjanov",
+                    "email": "demogorgorn@gmail.com",
+                    "homepage": "http://foreign.by"
+                }
+            ],
+            "description": "AjaxSubmitButton renders an ajax button which is very similar to ajaxSubmitButton from Yii1.",
+            "homepage": "https://github.com/demogorgorn/yii2-ajax-submit-button",
+            "keywords": [
+                "ajax",
+                "button",
+                "extension",
+                "submit",
+                "widget"
+            ],
+            "time": "2017-01-28T20:43:37+00:00"
         },
         {
             "name": "drsdre/yii2-wizardwidget",

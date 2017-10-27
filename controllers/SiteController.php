@@ -238,36 +238,36 @@ class SiteController extends Controller {
      * @return string
      */
     public function actionSimulator() {
-        if (Yii::$app->request->isAjax) {
-            $model = new Subscribers();
-            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-                $step1 = true;
-                $step2 = false;
-                $step3 = false;
-                return $this->render('simulator', [
-                            'step1' => $step1,
-                            'step2' => $step2,
-                            'step3' => $step3
-                ]);
+        if (Yii::$app->request->isPost) {
+            if (Yii::$app->request->isAjax) {
+                $model = new Subscribers();
+//                return $this->asJson(['successAjax' => true]);
+                if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                    return $this->asJson(['successAjax' => true, 'hasError' => false, 'errors' => $model->errors]);
+////                Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+////                return \yii\widgets\ActiveForm::validate($model);
+                }else{
+                    return $this->asJson(['successAjax' => true, 'hasError' => true, 'errors' => $model->errors]);
+                }
+////                return \yii\widgets\ActiveForm::validate($model);
             }
-        } else {
-            $step1 = false;
-            $step2 = false;
-            $step3 = false;
-            return $this->render('simulator', [
-                        'step1' => $step1,
-                        'step2' => $step2,
-                        'step3' => $step3
-            ]);
         }
-//        $step1 = false;
-//        $step2 = false;
-//        $step3 = false;
-//        return $this->render('simulator', [
-//                    'step1' => $step1,
-//                    'step2' => $step2,
-//                    'step3' => $step3
-//        ]);
+//        if (Yii::$app->request->isPost) {
+////            $model = new Subscribers();
+////            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+//////                Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+//////                return \yii\widgets\ActiveForm::validate($model);
+////            }else{
+////                
+////            }
+////            if (Yii::$app->request->isAjax) {
+////            Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+////            return ['status' => 'ok'];
+////////                return \yii\widgets\ActiveForm::validate($model);
+////        }
+//        }
+        return $this->render('simulator', [
+        ]);
     }
 
     public function actionProductdetail() {

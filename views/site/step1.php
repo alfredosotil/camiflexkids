@@ -17,22 +17,57 @@ use yii\bootstrap\ActiveForm;
             </h1><br>
             <?php
             $form = ActiveForm::begin([
-                        'enableAjaxValidation' => true,
-                        'method' => 'post',
-                        'action' => 'simulator',
-                        'layout' => 'horizontal'
+                        'id' => 'subscriber-form-simulator',
+                        'enableAjaxValidation' => false,
+                        'enableClientValidation' => true,
+//                        'method' => 'post',
+//                        'action' => '',
+                        'layout' => 'horizontal',
+                        'options' => ['onsubmit' => 'return false;']
+//                        'validateOnSubmit' => false,
             ]);
-            ?>
+            ?>  
 
             <?php echo $form->field($model, 'email')->textInput(['maxlength' => 255]) ?>
 
             <?php echo $form->field($model, 'phone')->textInput(['maxlength' => 255]) ?>
 
+            <?php ActiveForm::end(); ?>
             <div class="form-group">
-                <?php echo Html::submitButton(Yii::t('app', 'Validar  <i class="fa fa-angle-right"></i>'), ['class' => 'btn btn-block btn-outline green button-next']) ?>
+                <?php
+                \demogorgorn\ajax\AjaxSubmitButton::begin([
+                    'encodeLabel' => false,
+                    'tagName' => 'a',
+                    'label' => 'Validar  <i class="fa fa-angle-right"></i>',
+                    'ajaxOptions' => [
+                        'type' => 'POST',
+                        'url' => 'simulator',
+                        'beforeSend' => new \yii\web\JsExpression('
+                            function(xhr){
+                            }
+                    '),
+                        'success' => new \yii\web\JsExpression('
+                            function(data){
+                                console.log(data);
+                                setTimeout(function(){
+                                    $("#subscriber-form-simulator").data("yiiActiveForm").submitting = true;
+                                    $("#subscriber-form-simulator").yiiActiveForm("validate");
+                                    if(!data.hasError){
+                                        $("#stepwizard_step1_next").removeAttr("disabled");
+                                    }
+                                }, 300);                                
+                                return false;
+                            }
+                    '),
+                    ],
+                    'options' => ['class' => 'btn btn-block btn-outline green button-next'],
+                ]);
+                \demogorgorn\ajax\AjaxSubmitButton::end();
+                ?>
+                <?php // echo Html::submitButton(Yii::t('app', 'Validar  <i class="fa fa-angle-right"></i>'), ['class' => 'btn btn-block btn-outline green button-next'])  ?>
             </div>
 
-            <?php ActiveForm::end(); ?>
+
         </div>
     </div>
 </div>

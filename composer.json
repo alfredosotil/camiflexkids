@@ -48,7 +48,8 @@
         "yii2mod/yii2-gii-extended": "*",
         "johnitvn/yii2-ajaxcrud": "*",
         "zxbodya/yii2-gallery-manager": "*@dev",
-        "drsdre/yii2-wizardwidget": "*"
+        "drsdre/yii2-wizardwidget": "*",
+        "demogorgorn/yii2-ajax-submit-button": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
