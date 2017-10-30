@@ -15,7 +15,7 @@ $config = [
         'assetsAutoCompress' =>
         [
             'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
-            'enabled' => false
+            'enabled' => true
         ],
 //        'assetsAutoCompress' =>
 //        [

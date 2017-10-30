@@ -12,11 +12,20 @@ angular.module('camiflexkids-app.controllers', [])
                 $scope.length = '3';
                 $scope.width = '3';
                 $scope.totalMats = 9;
+                $scope.color = 'black';
                 $scope.$watch('[width,length]', makeMap, true);
                 $scope.readwidth = function ($event) {
 //                    $scope.totalMats = $scope.floorwidth * $scope.floorheight;
-                    console.log($event.currentTarget.offsetWidth);
+//                    console.log($event.currentTarget.offsetWidth);
+                    $($event.currentTarget).css('background-color', $scope.color);
+                    console.log($scope.color);
                 };
+//                $scope.style = function ($event) {
+//                    console.log($event);
+//                    return {
+////                        'height': ($event.currentTarget.offsetWidth) + 'px',
+//                    }
+//                };
                 function makeMap() {
                     var cols = $scope.width,
                             rows = $scope.length;
@@ -24,8 +33,6 @@ angular.module('camiflexkids-app.controllers', [])
                     $scope.cells = matrix(rows, cols, 'cell');
                     $scope.totalMats = $scope.width * $scope.length;
                 }
-
-
                 function matrix(rows, cols, defaultValue) {
                     var arr = [[]];
                     // Creates all lines:
@@ -41,6 +48,5 @@ angular.module('camiflexkids-app.controllers', [])
                     }
                     return arr;
                 }
-
             }]);
 
