@@ -7,9 +7,8 @@ $this->title = 'Simulador';
 AngularAsset::register($this);
 ?>
 <div class="row-correction"></div>
-<!--<p ng-cloak>{{test}}</p>-->
+<p ng-cloak>{{test}}</p>
 <div class="container">
-    <?php // yii\widgets\Pjax::begin() ?>
     <?=
     \drsdre\wizardwidget\WizardWidget::widget([
         'id' => 'stepwizard',
@@ -23,7 +22,7 @@ AngularAsset::register($this);
                         'title' => 'Continuar  <i class="fa fa-angle-right"></i>',
                         'options' => [
                             'class' => 'btn btn-outline green button-next',
-                            'disabled' => true
+//                            'disabled' => true
                         ],
                     ],
                 ],
@@ -31,7 +30,7 @@ AngularAsset::register($this);
             2 => [
                 'title' => 'Escoge el Metraje m2',
                 'icon' => 'glyphicon glyphicon-th',
-                'content' => '<span class="caption-subject font-red bold uppercase"> Escoge el Metraje m2</span>',
+                'content' => $this->render('step2', ['model' => []]),
                 'buttons' => [
                     'prev' => [
                         'title' => '<i class="fa fa-angle-left"></i>  Volver',
@@ -43,7 +42,7 @@ AngularAsset::register($this);
                         'title' => 'Continuar  <i class="fa fa-angle-right"></i>',
                         'options' => [
                             'class' => 'btn btn-outline green button-next',
-                            'disabled' => true
+//                            'disabled' => true
                         ],
                     ],
                 ],
@@ -64,7 +63,7 @@ AngularAsset::register($this);
                         'title' => 'Guardar  <i class="fa fa-angle-right"></i>',
                         'options' => [
                             'class' => 'btn btn-outline green button-next',
-                            'disabled' => true
+//                            'disabled' => true
                         ],
                     ],
                 ],
@@ -74,9 +73,8 @@ AngularAsset::register($this);
         'start_step' => 1, // Optional, start with a specific step
     ]);
     ?>       
-    <?php // yii\widgets\Pjax::end() ?>
 </div>
-<div class="container">
+<!--<div class="container">
     <div class="portlet light " id="form_wizard_1">
         <div class="portlet-title">
             <div class="caption">
@@ -631,5 +629,5 @@ AngularAsset::register($this);
             </form>
         </div>
     </div>
-</div>
+</div>-->
 

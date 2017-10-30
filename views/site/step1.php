@@ -42,6 +42,9 @@ use yii\bootstrap\ActiveForm;
                     'ajaxOptions' => [
                         'type' => 'POST',
                         'url' => 'simulator',
+                        'data' => new \yii\web\JsExpression('
+                            $("#subscriber-form-simulator").serialize()
+                    '),
                         'beforeSend' => new \yii\web\JsExpression('
                             function(xhr){
                             }
@@ -49,13 +52,11 @@ use yii\bootstrap\ActiveForm;
                         'success' => new \yii\web\JsExpression('
                             function(data){
                                 console.log(data);
-                                setTimeout(function(){
                                     $("#subscriber-form-simulator").data("yiiActiveForm").submitting = true;
                                     $("#subscriber-form-simulator").yiiActiveForm("validate");
                                     if(!data.hasError){
-                                        $("#stepwizard_step1_next").removeAttr("disabled");
+                                        $("#stepwizard_step1_next").click();
                                     }
-                                }, 300);                                
                                 return false;
                             }
                     '),

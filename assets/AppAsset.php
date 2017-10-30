@@ -59,7 +59,6 @@ class AppAsset extends AssetBundle
 //        'plugins/jquery.min.js',
 //        'plugins/bootstrap/js/bootstrap.min.js',
         'plugins/jquery-migrate.min.js',
-        'plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js',
         'plugins/jquery.easing.min.js',
         'plugins/select2/js/select2.full.min.js',
         'plugins/jquery-validation/js/jquery.validate.min.js',
@@ -96,7 +95,6 @@ class AppAsset extends AssetBundle
         'plugins/isotope/isotope-gallery.js',
         'plugins/isotope/isotope-grid.js',
         'js/main.js',        
-        'js/form-wizard.js',        
     ];
     /**
      * @var array

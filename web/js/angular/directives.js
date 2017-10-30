@@ -9,9 +9,20 @@
 
 
 angular.module('camiflexkids-app.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
-    };
-  }]);
+        directive('appVersion', ['version', function (version) {
+                return function (scope, elm, attrs) {
+                    elm.text(version);
+                };
+            }])
+        .directive('setHeight', function ($window) {
+            restrict: 'AE',
+            return{
+                link: function (scope, element, attrs) {
+                    console.log('altura' + element[0].offsetWidth);
+                    element.css('height', element[0].offsetWidth + 'px');
+                    //element.height($window.innerHeight/3);
+                }
+            }
+        })
+        ;
 

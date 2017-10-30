@@ -6,7 +6,41 @@
 'use strict';
 
 angular.module('camiflexkids-app.controllers', [])
-        .controller('MainController', ['$scope', function($scope){
+        .controller('MainController', ['$scope', function ($scope) {
                 $scope.test = 'alfredod';
-        }]);
+                $scope.cells = [[]];
+                $scope.length = '3';
+                $scope.width = '3';
+                $scope.totalMats = 9;
+                $scope.$watch('[width,length]', makeMap, true);
+                $scope.readwidth = function ($event) {
+//                    $scope.totalMats = $scope.floorwidth * $scope.floorheight;
+                    console.log($event.currentTarget.offsetWidth);
+                };
+                function makeMap() {
+                    var cols = $scope.width,
+                            rows = $scope.length;
+                    console.log('makeMap');
+                    $scope.cells = matrix(rows, cols, 'cell');
+                    $scope.totalMats = $scope.width * $scope.length;
+                }
+
+
+                function matrix(rows, cols, defaultValue) {
+                    var arr = [[]];
+                    // Creates all lines:
+                    for (var i = 0; i < rows; i++) {
+                        // Creates an empty line
+                        arr[i] = [];
+                        // Adds cols to the empty line:
+                        arr[i] = new Array(cols);
+                        for (var j = 0; j < cols; j++) {
+                            // Initializes:
+                            arr[i][j] = defaultValue;
+                        }
+                    }
+                    return arr;
+                }
+
+            }]);
 

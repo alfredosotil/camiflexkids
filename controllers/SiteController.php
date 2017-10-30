@@ -241,31 +241,15 @@ class SiteController extends Controller {
         if (Yii::$app->request->isPost) {
             if (Yii::$app->request->isAjax) {
                 $model = new Subscribers();
-//                return $this->asJson(['successAjax' => true]);
+//                return $this->asJson(['post' => Yii::$app->request->post()]);
                 if ($model->load(Yii::$app->request->post()) && $model->validate()) {
                     return $this->asJson(['successAjax' => true, 'hasError' => false, 'errors' => $model->errors]);
-////                Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
-////                return \yii\widgets\ActiveForm::validate($model);
-                }else{
+                } else {
                     return $this->asJson(['successAjax' => true, 'hasError' => true, 'errors' => $model->errors]);
                 }
 ////                return \yii\widgets\ActiveForm::validate($model);
             }
         }
-//        if (Yii::$app->request->isPost) {
-////            $model = new Subscribers();
-////            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-//////                Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
-//////                return \yii\widgets\ActiveForm::validate($model);
-////            }else{
-////                
-////            }
-////            if (Yii::$app->request->isAjax) {
-////            Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
-////            return ['status' => 'ok'];
-////////                return \yii\widgets\ActiveForm::validate($model);
-////        }
-//        }
         return $this->render('simulator', [
         ]);
     }
