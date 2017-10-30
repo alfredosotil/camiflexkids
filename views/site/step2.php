@@ -60,7 +60,8 @@ use yii\bootstrap\ActiveForm;
                         ]
                     ]);
                     ?>
-                </div><div class="form-group">
+                </div>
+                <div class="form-group">
                     <h1><span class="label label-success" ng-cloak>{{totalMats| number}} Mats</span></h1>
                 </div>
             </div>

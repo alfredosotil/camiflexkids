@@ -12,7 +12,7 @@ angular.module('camiflexkids-app.controllers', [])
                 $scope.length = '3';
                 $scope.width = '3';
                 $scope.totalMats = 9;
-                $scope.color = 'black';
+                $scope.color;
                 $scope.$watch('[width,length]', makeMap, true);
                 $scope.readwidth = function ($event) {
 //                    $scope.totalMats = $scope.floorwidth * $scope.floorheight;
