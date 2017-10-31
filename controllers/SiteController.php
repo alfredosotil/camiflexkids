@@ -238,6 +238,7 @@ class SiteController extends Controller {
      * @return string
      */
     public function actionSimulator() {
+        Yii::$app->assetsAutoCompress->jsFileCompile = false; //se desactiva compresion js tema tecnico con angular
         if (Yii::$app->request->isPost) {
             if (Yii::$app->request->isAjax) {
                 $model = new Subscribers();

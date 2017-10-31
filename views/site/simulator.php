@@ -7,6 +7,7 @@ $this->title = 'Simulador';
 AngularAsset::register($this);
 ?>
 <div class="row-correction"></div>
+
 <div class="container">
     <?=
     \drsdre\wizardwidget\WizardWidget::widget([
@@ -21,7 +22,6 @@ AngularAsset::register($this);
                         'title' => 'Continuar  <i class="fa fa-angle-right"></i>',
                         'options' => [
                             'class' => 'btn btn-outline green button-next',
-//                            'disabled' => true
                         ],
                     ],
                 ],
@@ -29,7 +29,7 @@ AngularAsset::register($this);
             2 => [
                 'title' => 'Escoge el Metraje m2',
                 'icon' => 'glyphicon glyphicon-th',
-                'content' => $this->render('step2', ['model' => []]),
+                'content' => $this->render('step2'),
                 'buttons' => [
                     'prev' => [
                         'title' => '<i class="fa fa-angle-left"></i>  Volver',
@@ -41,16 +41,14 @@ AngularAsset::register($this);
                         'title' => 'Continuar  <i class="fa fa-angle-right"></i>',
                         'options' => [
                             'class' => 'btn btn-outline green button-next',
-//                            'disabled' => true
                         ],
                     ],
                 ],
-//                'skippable' => true,
             ],
             3 => [
                 'title' => 'Ver Detalle del Simulador',
                 'icon' => 'glyphicon glyphicon-list',
-                'content' => '<span class="caption-subject font-red bold uppercase"> Detalle del Simulador</span>',
+                'content' => $this->render('step3'),
                 'buttons' => [
                     'prev' => [
                         'title' => '<i class="fa fa-angle-left"></i>  Volver',
@@ -59,18 +57,16 @@ AngularAsset::register($this);
                         ],
                     ],
                     'save' => [
-                        'title' => 'Guardar  <i class="fa fa-angle-right"></i>',
+                        'title' => 'Continuar  <i class="fa fa-angle-right"></i>',
                         'options' => [
                             'class' => 'btn btn-outline green button-next',
-//                            'disabled' => true
                         ],
                     ],
                 ],
             ],
         ],
-        'complete_content' => "You are done!", // Optional final screen
+        'complete_content' => "You are done myboy!", // Optional final screen
         'start_step' => 1, // Optional, start with a specific step
     ]);
     ?>       
 </div>
-

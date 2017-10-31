@@ -36,7 +36,7 @@ angular.module('camiflexkids-app.directives', []).
             };
         })
         .directive("getStyleSquare", function ($window, $timeout) {
-            return{
+            return {
                 restrict: 'A',
                 link: function (scope, element) {
                     scope.getWidth = function () {
@@ -56,22 +56,8 @@ angular.module('camiflexkids-app.directives', []).
                             scope.$apply();
                         }, 1, false);
                     });
-//                    console.log()
-//                    console.log($(element).width());
-//                    element[0].style.height = $(element).width() + "px";
-//                    element[0].style.border = "5px dotted #090";
                 }
-            }
+            };
         })
-//        .directive('wh', function () {
-//            return function (scope, element, attrs) {
-//                var width = element[0].offsetWidth;
-//                element.css({
-//                    'width': width + 'px',
-//                    'height': width + 'px',
-//                    'border-radius': '5px',
-//                });
-//            };
-//        })
         ;
 

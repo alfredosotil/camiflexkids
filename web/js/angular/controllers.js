@@ -9,29 +9,74 @@ angular.module('camiflexkids-app.controllers', [])
         .controller('MainController', ['$scope', function ($scope) {
                 $scope.test = 'alfredod';
                 $scope.cells = [[]];
+                $scope.details = [];
                 $scope.length = '3';
                 $scope.width = '3';
                 $scope.totalMats = 9;
-                $scope.color;
-                $scope.$watch('[width,length]', makeMap, true);
-                $scope.readwidth = function ($event) {
+                $scope.color = 'black';
+                $scope.$watch('[width,length,color]', makeMap, true);
+                $scope.setColor = function ($event) {
 //                    $scope.totalMats = $scope.floorwidth * $scope.floorheight;
 //                    console.log($event.currentTarget.offsetWidth);
                     $($event.currentTarget).css('background-color', $scope.color);
-                    console.log($scope.color);
+                    updateDetails();
+//                    console.log($scope.color);
+//                    console.log(getColorMats());
                 };
+                function updateDetails() {
+                    $scope.details = [];
+                    var colorMats = getColorMats();
+                    colorMats.forEach(function (item, index) {
+                        var cont = $('.mat').filter(function () {
+                            var colors = [item.hexc, item.rgb];
+                            return $.inArray($(this).css('background-color'), colors) !== -1;
+                        }).length;
+                        $scope.details.push({
+                            color: item.hexc,
+                            quantity: cont
+                        })
+                    });
+                    console.log($scope.details);
+                }
 //                $scope.style = function ($event) {
 //                    console.log($event);
 //                    return {
 ////                        'height': ($event.currentTarget.offsetWidth) + 'px',
 //                    }
 //                };
+                function getColorMats() {
+                    var colors = [];
+                    $('.mat').each(function (index, value) {
+                        var color_rgb = $(this).css("background-color");
+                        var color_hexc = hexc(color_rgb);
+                        var existe = colors.some(function (item) {
+                            return item.hexc.includes(color_hexc);
+                        });
+                        if (!existe) {
+                            colors.push({rgb: color_rgb, hexc: color_hexc});
+                        }
+                    });
+                    return colors;
+                }
+                function hexc(colorval) {
+                    var parts = colorval.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                    delete(parts[0]);
+                    for (var i = 1; i <= 3; ++i) {
+                        parts[i] = parseInt(parts[i]).toString(16);
+                        if (parts[i].length == 1)
+                            parts[i] = '0' + parts[i];
+                    }
+                    var color = '#' + parts.join('');
+
+                    return color;
+                }
                 function makeMap() {
                     var cols = $scope.width,
                             rows = $scope.length;
                     console.log('makeMap');
                     $scope.cells = matrix(rows, cols, 'cell');
                     $scope.totalMats = $scope.width * $scope.length;
+                    updateDetails();
                 }
                 function matrix(rows, cols, defaultValue) {
                     var arr = [[]];

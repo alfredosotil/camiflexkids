@@ -15,15 +15,15 @@ $config = [
         'assetsAutoCompress' =>
         [
             'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
-            'enabled' => true
+            'enabled' => !YII_DEBUG
         ],
 //        'assetsAutoCompress' =>
 //        [
 //            'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
 //            'enabled' => true,
 //            'readFileTimeout' => 3, //Time in seconds for reading each asset file
-//            'jsCompress' => false, //Enable minification js in html code
-//            'jsCompressFlaggedComments' => false, //Cut comments during processing js
+//            'jsCompress' => true, //Enable minification js in html code
+//            'jsCompressFlaggedComments' => true, //Cut comments during processing js
 //            'cssCompress' => true, //Enable minification css in html code
 //            'cssFileCompile' => true, //Turning association css files
 //            'cssFileRemouteCompile' => false, //Trying to get css files to which the specified path as the remote file, skchat him to her.
@@ -32,7 +32,7 @@ $config = [
 //            'cssFileBottomLoadOnJs' => false, //Transfer css file down the page and uploading them using js
 //            'jsFileCompile' => false, //Turning association js files
 //            'jsFileRemouteCompile' => false, //Trying to get a js files to which the specified path as the remote file, skchat him to her.
-//            'jsFileCompress' => false, //Enable compression and processing js before saving a file
+//            'jsFileCompress' => true, //Enable compression and processing js before saving a file
 //            'jsFileCompressFlaggedComments' => false, //Cut comments during processing js
 //            'htmlCompress' => true, //Enable compression html
 //            'noIncludeJsFilesOnPjax' => true, //Do not connect the js files when all pjax requests

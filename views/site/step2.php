@@ -73,7 +73,7 @@ use yii\bootstrap\ActiveForm;
                 <table style="width:100%" border="1">
                     <tbody>
                         <tr ng-repeat="row in cells track by $index">
-                            <td ng-repeat="cell in row track by $index" ng-click="readwidth($event)" get-style-square>
+                            <td class="mat" ng-repeat="cell in row track by $index" ng-click="setColor($event)" style="background-color: white" get-style-square>
                                 &nbsp;
                             </td>
                         </tr>

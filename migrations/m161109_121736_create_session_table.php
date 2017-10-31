@@ -5,10 +5,9 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `session`.
  */
-class m161109_121736_create_session_table extends Migration
-{
-    public function up()
-    {
+class m161109_121736_create_session_table extends Migration {
+
+    public function up() {
         switch ($this->db->driverName) {
             case 'mysql':
             case 'mariadb':
@@ -28,8 +27,8 @@ class m161109_121736_create_session_table extends Migration
         ]);
     }
 
-    public function down()
-    {
+    public function down() {
         $this->dropTable('{{%session}}');
     }
+
 }
