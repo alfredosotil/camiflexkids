@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ProductModel */
+/* @var $model app\models\Product */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -38,8 +38,10 @@ use yii\widgets\ActiveForm;
 
     <?php echo $form->field($model, 'active')->textInput() ?>
 
+    <?php echo $form->field($model, 'color')->textInput(['maxlength' => 255]) ?>
+
     <?php echo $form->field($model, 'short_desc')->textInput(['maxlength' => 100]) ?>
-    
+
     <div class="form-group">
         <?php
         if ($model->isNewRecord) {

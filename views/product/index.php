@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'sku',
             'price',
             'weight',
+            // 'color',
             // 'cart_desc',
             // 'short_desc',
             // 'long_desc',

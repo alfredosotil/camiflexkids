@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+
 /**
  * This is the model class for table "product".
  *
@@ -11,6 +12,7 @@ use Yii;
  * @property string $sku
  * @property double $price
  * @property double $weight
+ * @property string $color
  * @property string $cart_desc
  * @property string $short_desc
  * @property string $long_desc
@@ -22,36 +24,40 @@ use Yii;
  * @property double $stock
  * @property integer $active
  *
+ * @property Detailcart[] $detailcarts
  * @property Category $category
+ * @property Productoption[] $productoptions
  */
-class ProductModel extends \yii\db\ActiveRecord implements \yii2mod\cart\models\CartItemInterface {
-
+class Product extends \yii\db\ActiveRecord
+{
     /**
      * @inheritdoc
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return 'product';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             [['name', 'sku', 'price', 'cart_desc', 'long_desc', 'thumb', 'image', 'category_id', 'created_at', 'updated_at', 'stock'], 'required'],
             [['price', 'weight', 'stock'], 'number'],
             [['category_id', 'created_at', 'updated_at', 'active'], 'integer'],
-            [['name', 'sku'], 'string', 'max' => 255],
+            [['name', 'sku', 'color'], 'string', 'max' => 255],
             [['cart_desc'], 'string', 'max' => 32],
             [['short_desc'], 'string', 'max' => 100],
             [['long_desc'], 'string', 'max' => 250],
             [['thumb', 'image'], 'string', 'max' => 60],
             [['name'], 'unique'],
             [['sku'], 'unique'],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => CategoryModel::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
-
+    
     public function behaviors() {
         return [
             \yii\behaviors\TimestampBehavior::class,
@@ -88,43 +94,49 @@ class ProductModel extends \yii\db\ActiveRecord implements \yii2mod\cart\models\
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
-            'id' => Yii::t('product', 'ID'),
-            'name' => Yii::t('product', 'Name'),
-            'sku' => Yii::t('product', 'Sku'),
-            'price' => Yii::t('product', 'Price'),
-            'weight' => Yii::t('product', 'Weight'),
-            'cart_desc' => Yii::t('product', 'Cart Desc'),
-            'short_desc' => Yii::t('product', 'Short Desc'),
-            'long_desc' => Yii::t('product', 'Long Desc'),
-            'thumb' => Yii::t('product', 'Thumb'),
-            'image' => Yii::t('product', 'Image'),
-            'category_id' => Yii::t('product', 'Category ID'),
-            'created_at' => Yii::t('product', 'Created At'),
-            'updated_at' => Yii::t('product', 'Updated At'),
-            'stock' => Yii::t('product', 'Stock'),
-            'active' => Yii::t('product', 'Active'),
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'sku' => Yii::t('app', 'Sku'),
+            'price' => Yii::t('app', 'Price'),
+            'weight' => Yii::t('app', 'Weight'),
+            'color' => Yii::t('app', 'Color'),
+            'cart_desc' => Yii::t('app', 'Cart Desc'),
+            'short_desc' => Yii::t('app', 'Short Desc'),
+            'long_desc' => Yii::t('app', 'Long Desc'),
+            'thumb' => Yii::t('app', 'Thumb'),
+            'image' => Yii::t('app', 'Image'),
+            'category_id' => Yii::t('app', 'Category ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'stock' => Yii::t('app', 'Stock'),
+            'active' => Yii::t('app', 'Active'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCategory() {
-        return $this->hasOne(CategoryModel::className(), ['id' => 'category_id']);
+    public function getDetailcarts()
+    {
+        return $this->hasMany(Detailcart::className(), ['product_id' => 'id']);
     }
 
-    public function getPrice() {
-        return $this->price;
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
 
-    public function getLabel() {
-        return $this->name;
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProductoptions()
+    {
+        return $this->hasMany(Productoption::className(), ['product_id' => 'id']);
     }
-
-    public function getUniqueId() {
-        return $this->id;
-    }
-
 }

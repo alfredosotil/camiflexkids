@@ -3,17 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\ProductModel;
+use app\models\Product;
 use app\models\ProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ProductController implements the CRUD actions for ProductModel model.
+ * ProductController implements the CRUD actions for Product model.
  */
 class ProductController extends Controller
-{    
+{
     public $layout = '@app/modules/admin/views/layouts/column2';
     
    /**
@@ -41,14 +41,14 @@ class ProductController extends Controller
                 'class' => \zxbodya\yii2\galleryManager\GalleryManagerAction::className(),
                 // mappings between type names and model classes (should be the same as in behaviour)
                 'types' => [
-                    'product' => ProductModel::className()
+                    'product' => Product::className()
                 ]
             ],
         ];
     }
-
+    
     /**
-     * Lists all ProductModel models.
+     * Lists all Product models.
      * @return mixed
      */
     public function actionIndex()
@@ -63,13 +63,13 @@ class ProductController extends Controller
     }
 
     /**
-     * Creates a new ProductModel model.
+     * Creates a new Product model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ProductModel();
+        $model = new Product();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Product has been created.');
@@ -83,7 +83,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Updates an existing ProductModel model.
+     * Updates an existing Product model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -104,7 +104,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Deletes an existing ProductModel model.
+     * Deletes an existing Product model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -117,15 +117,15 @@ class ProductController extends Controller
     }
 
     /**
-     * Finds the ProductModel model based on its primary key value.
+     * Finds the Product model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ProductModel the loaded model
+     * @return Product the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ProductModel::findOne($id)) !== null) {
+        if (($model = Product::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

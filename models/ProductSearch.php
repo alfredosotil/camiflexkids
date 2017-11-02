@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\ProductModel;
+use app\models\Product;
 
 /**
- * ProductSearch represents the model behind the search form about `app\models\ProductModel`.
+ * ProductSearch represents the model behind the search form about `app\models\Product`.
  */
-class ProductSearch extends ProductModel
+class ProductSearch extends Product
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class ProductSearch extends ProductModel
     {
         return [
             [['id', 'category_id', 'created_at', 'updated_at', 'active'], 'integer'],
-            [['name', 'sku', 'price', 'weight', 'cart_desc', 'short_desc', 'long_desc', 'thumb', 'image'], 'safe'],
+            [['name', 'sku', 'price', 'weight', 'color', 'cart_desc', 'short_desc', 'long_desc', 'thumb', 'image'], 'safe'],
             [['stock'], 'number'],
         ];
     }
@@ -39,7 +39,7 @@ class ProductSearch extends ProductModel
      */
     public function search($params)
     {
-        $query = ProductModel::find();
+        $query = Product::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -62,6 +62,7 @@ class ProductSearch extends ProductModel
             ->andFilterWhere(['like', 'sku', $this->sku])
             ->andFilterWhere(['like', 'price', $this->price])
             ->andFilterWhere(['like', 'weight', $this->weight])
+            ->andFilterWhere(['like', 'color', $this->color])
             ->andFilterWhere(['like', 'cart_desc', $this->cart_desc])
             ->andFilterWhere(['like', 'short_desc', $this->short_desc])
             ->andFilterWhere(['like', 'long_desc', $this->long_desc])

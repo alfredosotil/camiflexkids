@@ -5,22 +5,23 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "category".
+ * This is the model class for table "optiongroup".
  *
  * @property integer $id
  * @property string $name
  * @property integer $active
  *
- * @property Product[] $products
+ * @property Option[] $options
+ * @property Productoption[] $productoptions
  */
-class CategoryModel extends \yii\db\ActiveRecord
+class Optiongroup extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'category';
+        return 'optiongroup';
     }
 
     /**
@@ -42,17 +43,25 @@ class CategoryModel extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('product', 'ID'),
-            'name' => Yii::t('product', 'Name'),
-            'active' => Yii::t('product', 'Active'),
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'active' => Yii::t('app', 'Active'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProducts()
+    public function getOptions()
     {
-        return $this->hasMany(Product::className(), ['category_id' => 'id']);
+        return $this->hasMany(Option::className(), ['optiongroup_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProductoptions()
+    {
+        return $this->hasMany(Productoption::className(), ['optiongroup_id' => 'id']);
     }
 }

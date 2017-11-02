@@ -25,6 +25,8 @@ use yii\widgets\ActiveForm;
 
     <?php echo $form->field($model, 'weight') ?>
 
+    <?php // echo $form->field($model, 'color') ?>
+
     <?php // echo $form->field($model, 'cart_desc') ?>
 
     <?php // echo $form->field($model, 'short_desc') ?>
