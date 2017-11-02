@@ -270,15 +270,16 @@ class SiteController extends Controller {
 
     private function getAboutMainSlides() {
         $model = \app\models\Slider::findOne(['name' => 'about-slider']);
-        $slides = [];
-        foreach ($model->getBehavior('galleryBehavior')->getImages() as $image) {
-            $slides[] = $image->getUrl('original');
-        }
-//        $slides = json_decode(Yii::$app->params['latestProjectSlider']);
         $htmlSlides = "";
-        foreach ($slides as $value) {
-            $htmlSlides .= $this->renderPartial('slideabout-template', ['data' => $value]);
+        if (isset($model)) {
+            $slides = [];
+            foreach ($model->getBehavior('galleryBehavior')->getImages() as $image) {
+                $slides[] = $image->getUrl('original');
+            }
+            foreach ($slides as $value) {
+                $htmlSlides .= $this->renderPartial('slideabout-template', ['data' => $value]);
 //            $htmlSlides .= $this->renderPartial('slideabout-template', ['data' => '/'.$value->urlFile]);
+            }
         }
         return $htmlSlides;
     }
