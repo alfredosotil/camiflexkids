@@ -15,21 +15,19 @@ use Yii;
  * @property integer $updated_at
  * @property integer $active
  */
-class Slider extends \yii\db\ActiveRecord
-{
+class Slider extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'slider';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name', 'long_desc'], 'required'],
             [['created_at', 'updated_at', 'active'], 'integer'],
@@ -39,8 +37,8 @@ class Slider extends \yii\db\ActiveRecord
             [['name'], 'unique'],
         ];
     }
-    
-     public function behaviors() {
+
+    public function behaviors() {
         return [
             \yii\behaviors\TimestampBehavior::class,
             'galleryBehavior' => [
@@ -76,8 +74,7 @@ class Slider extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => Yii::t('product', 'ID'),
             'name' => Yii::t('product', 'Name'),
@@ -88,4 +85,5 @@ class Slider extends \yii\db\ActiveRecord
             'active' => Yii::t('product', 'Active'),
         ];
     }
+
 }

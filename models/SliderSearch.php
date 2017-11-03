@@ -10,13 +10,12 @@ use app\models\Slider;
 /**
  * SliderSearch represents the model behind the search form about `app\models\Slider`.
  */
-class SliderSearch extends Slider
-{
+class SliderSearch extends Slider {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id', 'created_at', 'updated_at', 'active'], 'integer'],
             [['name', 'short_desc', 'long_desc'], 'safe'],
@@ -26,8 +25,7 @@ class SliderSearch extends Slider
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -36,8 +34,7 @@ class SliderSearch extends Slider
      * Creates data provider instance with search query applied
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Slider::find();
 
         $dataProvider = new ActiveDataProvider([
@@ -56,9 +53,10 @@ class SliderSearch extends Slider
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'short_desc', $this->short_desc])
-            ->andFilterWhere(['like', 'long_desc', $this->long_desc]);
+                ->andFilterWhere(['like', 'short_desc', $this->short_desc])
+                ->andFilterWhere(['like', 'long_desc', $this->long_desc]);
 
         return $dataProvider;
     }
+
 }

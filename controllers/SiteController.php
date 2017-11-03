@@ -255,7 +255,8 @@ class SiteController extends Controller {
         ]);
     }
 
-    public function actionProductdetail() {
+    public function actionProductdetail($id) {
+        
         return $this->render('productdetail');
     }
 

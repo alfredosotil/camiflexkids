@@ -150,7 +150,12 @@ $countCartItems = count(Yii::$app->cart->getItems());
                         <!-- END: HOR NAV -->		
                     </div>			
                     <!-- BEGIN: LAYOUT/HEADERS/QUICK-CART -->
-                    <?= CartViewWidget::widget([]); ?>
+                    <?php echo var_dump(in_array(Yii::$app->controller->action->id, ['detailcart', 'checkout']));?>
+                    <?php
+                    if (in_array(!Yii::$app->controller->action->id, ['detailcart', 'checkout'])) {
+                        echo CartViewWidget::widget([]);
+                    }
+                    ?>
                     <!-- END: LAYOUT/HEADERS/QUICK-CART -->
                 </div>
             </div>

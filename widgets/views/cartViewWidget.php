@@ -13,6 +13,17 @@ use yii\bootstrap\ActiveForm;
 //$this->title = Yii::t('yii2mod.user', 'Login');
 //$this->params['breadcrumbs'][] = $this->title;
 $items = Yii::$app->cart->getItems();
+//Yii::$app->cart->clear();
+
+//$product = app\models\Product::findOne(1);
+//$detail = new \app\models\Detailorder();
+//$detail->name = 'test detail';
+//$detail->qty = 3;
+//$detail->price_per_unit = $product->price;
+//$detail->price = $detail->price_per_unit * $detail->qty;
+//$detail->vat = $detail->price + $detail->tax;
+//$detail->product_id = $product->id;
+//Yii::$app->cart->add($detail);
 ?>
 
 <!-- BEGIN: CART MENU -->
@@ -29,8 +40,9 @@ $items = Yii::$app->cart->getItems();
                 </div>
                 <img src="<?= Yii::$app->request->baseUrl; ?>/img/content/shop2/24.jpg"/>
                 <div class="c-cart-menu-content">
-                    <p>1 x <span class="c-item-price c-theme-font">$30</span></p>
-                    <a href="shop-product-details-2.html" class="c-item-name c-font-sbold">Winter Coat</a>
+                    <p><?= $value->qty ?> x <span class="c-item-price c-theme-font"><?= $value->price_per_unit ?></span></p>
+                    <p>Total detalle <?= $value->price ?></p>
+                    <a href="<?= \yii\helpers\Url::toRoute(['site/productdetail', 'id' => $value->product->id]) ?>" class="c-item-name c-font-sbold">Winter Coat</a>
                 </div>
             </li>
         <?php endforeach; ?>

@@ -9,7 +9,6 @@ use yii2mod\user\models\UserModel as BaseUserModel;
  *
  * @package app\models
  */
-class UserModel extends BaseUserModel
-{
+class UserModel extends BaseUserModel {
     // custom logic
 }

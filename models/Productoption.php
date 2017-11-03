@@ -19,21 +19,19 @@ use Yii;
  * @property Optiongroup $optiongroup
  * @property Product $product
  */
-class Productoption extends \yii\db\ActiveRecord
-{
+class Productoption extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'productoption';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name', 'product_id', 'option_id', 'optiongroup_id'], 'required'],
             [['priceincrement', 'product_id', 'option_id', 'optiongroup_id', 'active'], 'integer'],
@@ -48,8 +46,7 @@ class Productoption extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
@@ -64,24 +61,22 @@ class Productoption extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOption()
-    {
+    public function getOption() {
         return $this->hasOne(Option::className(), ['id' => 'option_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOptiongroup()
-    {
+    public function getOptiongroup() {
         return $this->hasOne(Optiongroup::className(), ['id' => 'optiongroup_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProduct()
-    {
+    public function getProduct() {
         return $this->hasOne(Product::className(), ['id' => 'product_id']);
     }
+
 }

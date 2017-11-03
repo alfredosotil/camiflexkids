@@ -14,21 +14,19 @@ use Yii;
  * @property Option[] $options
  * @property Productoption[] $productoptions
  */
-class Optiongroup extends \yii\db\ActiveRecord
-{
+class Optiongroup extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'optiongroup';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name'], 'required'],
             [['active'], 'integer'],
@@ -40,8 +38,7 @@ class Optiongroup extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
@@ -52,16 +49,15 @@ class Optiongroup extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOptions()
-    {
+    public function getOptions() {
         return $this->hasMany(Option::className(), ['optiongroup_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProductoptions()
-    {
+    public function getProductoptions() {
         return $this->hasMany(Productoption::className(), ['optiongroup_id' => 'id']);
     }
+
 }

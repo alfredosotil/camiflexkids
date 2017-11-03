@@ -10,13 +10,12 @@ use app\models\Subscribers;
 /**
  * SubscribersSearch represents the model behind the search form about `app\models\Subscribers`.
  */
-class SubscribersSearch extends Subscribers
-{
+class SubscribersSearch extends Subscribers {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id', 'created_at', 'updated_at', 'active'], 'integer'],
             [['email', 'phone'], 'safe'],
@@ -26,8 +25,7 @@ class SubscribersSearch extends Subscribers
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -36,8 +34,7 @@ class SubscribersSearch extends Subscribers
      * Creates data provider instance with search query applied
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Subscribers::find();
 
         $dataProvider = new ActiveDataProvider([
@@ -56,8 +53,9 @@ class SubscribersSearch extends Subscribers
         ]);
 
         $query->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'phone', $this->phone]);
+                ->andFilterWhere(['like', 'phone', $this->phone]);
 
         return $dataProvider;
     }
+
 }
