@@ -38,7 +38,7 @@ $items = Yii::$app->cart->getItems();
                 <div class="c-cart-menu-close">
                     <a href="#" class="c-theme-link">×</a>
                 </div>
-                <img src="<?= Yii::$app->request->baseUrl; ?>/img/content/shop2/24.jpg"/>
+                <div style="background-color: <?= $value->product->color ?>"></div>
                 <div class="c-cart-menu-content">
                     <p><?= $value->qty ?> x <span class="c-item-price c-theme-font"><?= $value->price_per_unit ?></span></p>
                     <p>Total detalle <?= $value->price ?></p>

@@ -231,6 +231,10 @@ class SiteController extends Controller {
     public function actionProducts() {
         return $this->render('products');
     }
+    
+    public function actionAddtocart($id){
+        
+    }
 
     /**
      * Displays simulator page.

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Product */
@@ -18,29 +19,35 @@ use yii\widgets\ActiveForm;
 
     <?php echo $form->field($model, 'price')->textInput() ?>
 
-    <?php echo $form->field($model, 'cart_desc')->textInput(['maxlength' => 32]) ?>
 
-    <?php echo $form->field($model, 'long_desc')->textInput(['maxlength' => 250]) ?>
+    <!--?php echo $form->field($model, 'thumb')->textInput(['maxlength' => 60]) ?-->
 
-    <?php echo $form->field($model, 'thumb')->textInput(['maxlength' => 60]) ?>
+    <!--?php echo $form->field($model, 'image')->textInput(['maxlength' => 60]) ?-->
 
-    <?php echo $form->field($model, 'image')->textInput(['maxlength' => 60]) ?>
+    <!--?php echo $form->field($model, 'category_id')->textInput() ?-->
+    <?php echo $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(app\models\Category::find()->all(), 'id', 'name')) ?>
 
-    <?php echo $form->field($model, 'category_id')->textInput() ?>
+    <!--?php echo $form->field($model, 'created_at')->textInput() ?-->
 
-    <?php echo $form->field($model, 'created_at')->textInput() ?>
-
-    <?php echo $form->field($model, 'updated_at')->textInput() ?>
+    <!--?php echo $form->field($model, 'updated_at')->textInput() ?-->
 
     <?php echo $form->field($model, 'stock')->textInput() ?>
 
     <?php echo $form->field($model, 'weight')->textInput() ?>
 
-    <?php echo $form->field($model, 'active')->textInput() ?>
+    <?php
+    echo $form->field($model, 'color')->widget(kartik\color\ColorInput::classname(), [
+        'options' => ['placeholder' => 'Select color ...'],
+    ]);
+    ?>
 
-    <?php echo $form->field($model, 'color')->textInput(['maxlength' => 255]) ?>
+    <?php echo $form->field($model, 'cart_desc')->textInput(['maxlength' => 32]) ?>
 
     <?php echo $form->field($model, 'short_desc')->textInput(['maxlength' => 100]) ?>
+
+    <?php echo $form->field($model, 'long_desc')->textInput(['maxlength' => 250]) ?>
+
+    <?php echo $form->field($model, 'active')->checkbox() ?>
 
     <div class="form-group">
         <?php

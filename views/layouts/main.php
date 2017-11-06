@@ -17,7 +17,6 @@ use app\widgets\CartViewWidget;
 /* @var $content string */
 
 AppAsset::register($this);
-$countCartItems = count(Yii::$app->cart->getItems());
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -74,7 +73,7 @@ $countCartItems = count(Yii::$app->cart->getItems());
                                                             <i class="fa fa-search"></i>
                                                         </button>-->
                             <button class="c-cart-toggler" type="button">
-                                <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg"><?= $countCartItems; ?></span>
+                                <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg"><?= count(Yii::$app->cart->getItems()); ?></span>
                             </button>
                         </div>
                         <!-- END: BRAND -->				
@@ -150,9 +149,8 @@ $countCartItems = count(Yii::$app->cart->getItems());
                         <!-- END: HOR NAV -->		
                     </div>			
                     <!-- BEGIN: LAYOUT/HEADERS/QUICK-CART -->
-                    <?php echo var_dump(in_array(Yii::$app->controller->action->id, ['detailcart', 'checkout']));?>
                     <?php
-                    if (in_array(!Yii::$app->controller->action->id, ['detailcart', 'checkout'])) {
+                    if (!in_array(Yii::$app->controller->action->id, ['detailcart', 'checkout'])) {
                         echo CartViewWidget::widget([]);
                     }
                     ?>

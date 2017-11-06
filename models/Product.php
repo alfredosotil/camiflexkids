@@ -134,4 +134,8 @@ class Product extends \yii\db\ActiveRecord {
         return $this->hasMany(Productoption::className(), ['product_id' => 'id']);
     }
 
+    public function getFirstimage($size = 'medium') {
+        return (count($this->getBehavior('galleryBehavior')->getImages()) > 0) ? $this->getBehavior('galleryBehavior')->getImages()[0]->getUrl($size) : '';
+    }
+
 }
