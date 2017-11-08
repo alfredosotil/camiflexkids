@@ -22,7 +22,7 @@ $this->title = 'Productos Camiflex Kids';
                     <div class="col-md-4 col-sm-12 c-margin-b-20">
                         <div class="c-content-product-2 c-bg-white c-border">
                             <div class="c-content-overlay">
-                                <div class="c-label c-bg-red c-font-uppercase c-font-white c-font-13 c-font-bold"><?= ($value->stock > 0) ? 'En Stock' : 'No Disponible' ?></div>
+                                <?= ($value->stock > 0) ? '<div class="c-label label-success c-font-uppercase c-font-white c-font-13 c-font-bold">En Stock</div>' : '<div class="c-label label-danger c-font-uppercase c-font-white c-font-13 c-font-bold">No Disponible</div>' ?>
                                 <div class="c-overlay-wrapper">
                                     <div class="c-overlay-content">
                                         <a href="<?= Url::toRoute(['site/productdetail', 'id' => $value->id]) ?>" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Ver Detalle</a>

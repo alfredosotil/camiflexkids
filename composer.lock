@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e0a7f75631e02e21226c8bb8fe0b365",
+    "content-hash": "f678d2d0d1251df2f3882d8a026b7b9e",
     "packages": [
         {
             "name": "2amigos/yii2-arrayquery-component",
@@ -1744,6 +1744,56 @@
                 "yii2"
             ],
             "time": "2016-01-14T11:15:49+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-widget-touchspin",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-touchspin.git",
+                "reference": "afc56f68d87c65c9659b76ac82ae4ae8160634c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-touchspin/zipball/afc56f68d87c65c9659b76ac82ae4ae8160634c6",
+                "reference": "afc56f68d87c65c9659b76ac82ae4ae8160634c6",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\touchspin\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A Yii2 wrapper widget for the Bootstrap Switch plugin to use checkboxes & radios as toggle touchspines (sub repo split from yii2-widgets)",
+            "homepage": "https://github.com/kartik-v/yii2-widget-touchspin",
+            "keywords": [
+                "bootstrap",
+                "extension",
+                "form",
+                "input",
+                "jquery",
+                "plugin",
+                "spinner",
+                "touch",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-01-10T17:10:39+00:00"
         },
         {
             "name": "league/climate",

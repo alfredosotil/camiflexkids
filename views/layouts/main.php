@@ -38,7 +38,7 @@ AppAsset::register($this);
         <?php
         echo BootstrapNotify::widget([
             'clientOptions' => [
-                'delay' => 5000,
+                'delay' => 3000,
                 'mouse_over' => 'pause',
                 'showProgressbar' => true,
                 'placement' => [
@@ -119,17 +119,17 @@ AppAsset::register($this);
 
                                     <li>
                                         <?php
-                                        echo Html::a(Yii::t('yii2mod.user', 'Account'), ['site/account'], [
-                                            'class' => 'c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold',
-                                        ]);
+                                        echo Html::tag('h5', Html::tag('span', Html::a(Yii::t('yii2mod.user', 'Account'), ['site/account'], [
+                                                            'class' => 'c-btn-border-opacity-04 btn-no-focus c-btn-header c-btn-border-1x c-btn-white  c-btn-uppercase c-btn-sbold',
+                                                        ]), ['class' => 'label label-info']));
                                         ?>
-                                        <?php if (Yii::$app->getUser()->can('admin')): ?>
-                                            <?php
-                                            echo Html::a(Yii::t('yii2mod.user', 'Administration'), ['admin/'], [
-                                                'class' => 'c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold',
-                                            ]);
-                                            ?>
-                                        <?php endif; ?>
+                                        <?php
+                                        if (Yii::$app->getUser()->can('admin')) {
+                                            echo Html::tag('h5', Html::tag('span', Html::a(Yii::t('yii2mod.user', 'Administration'), ['admin/'], [
+                                                                'class' => 'c-btn-border-opacity-04 btn-no-focus c-btn-header c-btn-border-1x c-btn-white  c-btn-uppercase c-btn-sbold',
+                                                            ]), ['class' => 'label label-info']));
+                                        }
+                                        ?>
                                     </li>
                                     <li>
                                         <?php

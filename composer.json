@@ -50,7 +50,8 @@
         "zxbodya/yii2-gallery-manager": "*@dev",
         "drsdre/yii2-wizardwidget": "*",
         "demogorgorn/yii2-ajax-submit-button": "*",
-        "kartik-v/yii2-widget-colorinput": "*"
+        "kartik-v/yii2-widget-colorinput": "*",
+        "kartik-v/yii2-widget-touchspin": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

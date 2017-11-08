@@ -231,9 +231,25 @@ class SiteController extends Controller {
     public function actionProducts() {
         return $this->render('products');
     }
-    
-    public function actionAddtocart($id){
-        
+
+    public function actionAddtocart() {
+        $model = \app\models\Product::findOne(Yii::$app->request->post('product_id'));
+//        return $this->redirect(['site/index']);
+//        return $this->goBack();
+        if (isset($model)) {
+            $detail = new \app\models\Detailorder();
+            $detail->name = $model->name;
+            $detail->qty = intval(Yii::$app->request->post('qty'));
+            $detail->price_per_unit = $model->price;
+            $detail->price = $detail->price_per_unit * $detail->qty;
+            $detail->vat = $detail->price + $detail->tax;
+            $detail->product_id = $model->id;
+            Yii::$app->cart->add($detail, false);
+            Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'The product was added to cart.'));
+            return $this->redirect(Url::to(['productdetail', 'id' => $model->id]));
+        } else {
+            throw new \yii\web\HttpException(404, 'Page not found');
+        }
     }
 
     /**
@@ -260,8 +276,12 @@ class SiteController extends Controller {
     }
 
     public function actionProductdetail($id) {
-        
-        return $this->render('productdetail');
+        $model = \app\models\Product::findOne($id);
+        if (isset($model)) {
+            return $this->render('productdetail', ['model' => $model]);
+        } else {
+            throw new \yii\web\HttpException(404, 'Page not found');
+        }
     }
 
     private function getIndexMainSlides() {

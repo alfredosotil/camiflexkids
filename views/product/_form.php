@@ -20,9 +20,9 @@ use yii\helpers\ArrayHelper;
     <?php echo $form->field($model, 'price')->textInput() ?>
 
 
-    <!--?php echo $form->field($model, 'thumb')->textInput(['maxlength' => 60]) ?-->
+    <?php echo $form->field($model, 'thumb')->textInput(['maxlength' => 60]) ?>
 
-    <!--?php echo $form->field($model, 'image')->textInput(['maxlength' => 60]) ?-->
+    <?php echo $form->field($model, 'image')->textInput(['maxlength' => 60]) ?>
 
     <!--?php echo $form->field($model, 'category_id')->textInput() ?-->
     <?php echo $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(app\models\Category::find()->all(), 'id', 'name')) ?>
