@@ -39,7 +39,7 @@ class Detailorder extends \yii\db\ActiveRecord implements \yii2mod\cart\models\C
     public function rules()
     {
         return [
-            [['name', 'price_per_unit', 'price', 'tax', 'vat', 'product_id', 'created_at', 'updated_at'], 'required'],
+            [['name', 'price_per_unit', 'price', 'tax', 'vat', 'product_id'], 'required'],
             [['price_per_unit', 'price', 'tax', 'vat'], 'number'],
             [['qty', 'order_id', 'product_id', 'created_at', 'updated_at', 'active'], 'integer'],
             [['name'], 'string', 'max' => 255],

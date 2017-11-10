@@ -42,7 +42,7 @@ $items = Yii::$app->cart->getItems();
                 <div class="c-cart-menu-content">
                     <p><?= $value->qty ?> x <span class="c-item-price c-theme-font"><?= $value->price_per_unit ?></span></p>
                     <p>Total detalle <?= $value->price ?></p>
-                    <a href="<?= \yii\helpers\Url::toRoute(['site/productdetail', 'id' => $value->product->id]) ?>" class="c-item-name c-font-sbold">Winter Coat</a>
+                    <a href="<?= \yii\helpers\Url::toRoute(['site/productdetail', 'id' => $value->product->id]) ?>" class="c-item-name c-font-sbold"><?= $value->name ?></a>
                 </div>
             </li>
         <?php endforeach; ?>

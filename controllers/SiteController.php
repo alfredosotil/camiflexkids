@@ -242,10 +242,16 @@ class SiteController extends Controller {
             $detail->qty = intval(Yii::$app->request->post('qty'));
             $detail->price_per_unit = $model->price;
             $detail->price = $detail->price_per_unit * $detail->qty;
+            $detail->tax = 0;
             $detail->vat = $detail->price + $detail->tax;
             $detail->product_id = $model->id;
-            Yii::$app->cart->add($detail, false);
-            Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'The product was added to cart.'));
+            if ($detail->save()) {
+                Yii::$app->cart->add($detail);
+                Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'The product was added to cart.'));
+            } else {
+                Yii::$app->getSession()->setFlash('error', Yii::t('yii2mod.user', 'The product was not added to cart.'));
+//                echo var_dump($detail->errors);
+            }
             return $this->redirect(Url::to(['productdetail', 'id' => $model->id]));
         } else {
             throw new \yii\web\HttpException(404, 'Page not found');
