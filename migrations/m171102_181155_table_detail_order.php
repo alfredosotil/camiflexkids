@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m171102_181155_table_detail_cart extends Migration {
+class m171102_181155_table_detail_order extends Migration {
 
     public function safeUp() {
         

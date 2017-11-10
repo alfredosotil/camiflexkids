@@ -35,19 +35,7 @@ AppAsset::register($this);
         <?= (Yii::$app->user->isGuest ? LoginFormWidget::widget([]) : ''); ?>
         <?= (Yii::$app->user->isGuest ? PasswordResetRequestFormWidget::widget([]) : ''); ?>
         <?= (Yii::$app->user->isGuest ? SignupFormWidget::widget([]) : ''); ?>
-        <?php
-        echo BootstrapNotify::widget([
-            'clientOptions' => [
-                'delay' => 3000,
-                'mouse_over' => 'pause',
-                'showProgressbar' => true,
-                'placement' => [
-                    'from' => 'bottom',
-                    'align' => 'left'
-                ]
-            ]
-        ]);
-        ?>
+        <?= app\widgets\ViewAlertWidget::widget([]); ?>
         <!-- BEGIN: LAYOUT/HEADERS/HEADER-1 -->
         <!-- BEGIN: HEADER -->
         <header class="c-layout-header c-layout-header-5 c-layout-header-dark-mobile" data-minimize-offset="80">

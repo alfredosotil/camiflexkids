@@ -51,7 +51,8 @@
         "drsdre/yii2-wizardwidget": "*",
         "demogorgorn/yii2-ajax-submit-button": "*",
         "kartik-v/yii2-widget-colorinput": "*",
-        "kartik-v/yii2-widget-touchspin": "*"
+        "kartik-v/yii2-widget-touchspin": "*",
+        "yii2mod/yii2-sweet-alert": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

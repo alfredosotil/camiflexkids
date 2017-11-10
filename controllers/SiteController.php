@@ -170,6 +170,7 @@ class SiteController extends Controller {
      * @return string
      */
     public function actionIndex() {
+        Yii::$app->session->setFlash('success', 'Excelente | esto es una prueba | Continuar');
         return $this->render('index', ['slides' => $this->getIndexMainSlides()]);
     }
 
@@ -245,13 +246,16 @@ class SiteController extends Controller {
             $detail->tax = 0;
             $detail->vat = $detail->price + $detail->tax;
             $detail->product_id = $model->id;
-            if ($detail->save()) {
-                Yii::$app->cart->add($detail);
-                Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'The product was added to cart.'));
-            } else {
-                Yii::$app->getSession()->setFlash('error', Yii::t('yii2mod.user', 'The product was not added to cart.'));
-//                echo var_dump($detail->errors);
-            }
+            $detail->detailorderuniqueid = strtotime('now');
+            Yii::$app->cart->add($detail);
+            Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Excelente | The product was added to cart.'));
+//            if ($detail->save()) {
+//                Yii::$app->cart->add($detail);
+//                Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'The product was added to cart.'));
+//            } else {
+//                Yii::$app->getSession()->setFlash('error', Yii::t('yii2mod.user', 'The product was not added to cart.'));
+////                echo var_dump($detail->errors);
+//            }
             return $this->redirect(Url::to(['productdetail', 'id' => $model->id]));
         } else {
             throw new \yii\web\HttpException(404, 'Page not found');

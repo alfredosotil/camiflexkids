@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "detailorder".
  *
  * @property integer $id
+ * @property integer $detailorderuniqueid
  * @property string $name
  * @property double $price_per_unit
  * @property double $price
@@ -23,31 +24,29 @@ use Yii;
  * @property Order $order
  * @property Product $product
  */
-class Detailorder extends \yii\db\ActiveRecord implements \yii2mod\cart\models\CartItemInterface
-{
+class Detailorder extends \yii\db\ActiveRecord implements \yii2mod\cart\models\CartItemInterface {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'detailorder';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name', 'price_per_unit', 'price', 'tax', 'vat', 'product_id'], 'required'],
             [['price_per_unit', 'price', 'tax', 'vat'], 'number'],
-            [['qty', 'order_id', 'product_id', 'created_at', 'updated_at', 'active'], 'integer'],
+            [['detailorderuniqueid', 'qty', 'order_id', 'product_id', 'created_at', 'updated_at', 'active'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['order_id'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_id' => 'id']],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
         ];
     }
-    
+
     public function behaviors() {
         return [
             \yii\behaviors\TimestampBehavior::class,
@@ -57,10 +56,10 @@ class Detailorder extends \yii\db\ActiveRecord implements \yii2mod\cart\models\C
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => Yii::t('app', 'ID'),
+            'detailorderuniqueid' => Yii::t('app', 'Detail Order Unique Id'),
             'name' => Yii::t('app', 'Name'),
             'price_per_unit' => Yii::t('app', 'Price Per Unit'),
             'price' => Yii::t('app', 'Price'),
@@ -78,32 +77,27 @@ class Detailorder extends \yii\db\ActiveRecord implements \yii2mod\cart\models\C
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOrder()
-    {
+    public function getOrder() {
         return $this->hasOne(Order::className(), ['id' => 'order_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProduct()
-    {
+    public function getProduct() {
         return $this->hasOne(Product::className(), ['id' => 'product_id']);
     }
-    
-    public function getPrice()
-    {
+
+    public function getPrice() {
         return $this->price;
     }
 
-    public function getLabel()
-    {
+    public function getLabel() {
         return $this->name;
     }
 
-    public function getUniqueId()
-    {
-        return $this->id;
+    public function getUniqueId() {
+        return $this->detailorderuniqueid;
     }
 
 }
