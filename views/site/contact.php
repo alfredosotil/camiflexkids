@@ -1,75 +1,19 @@
 <?php
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ContactForm */
 
-use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
+use yii\helpers\Html;
 use app\assets\MapAsset;
 
-$this->title = 'Contacto Camiflex Kids';
+/* @var $this yii\web\View */
+/* @var $form yii\bootstrap\ActiveForm */
+/* @var $model app\models\forms\ContactForm */
+
+$this->title = Yii::t('contact', 'Contact');
+$this->params['breadcrumbs'][] = $this->title;
 MapAsset::register($this);
 ?>
 <div class="row-correction"></div>
-<!--<div class="container">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-<?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
-
-                <div class="alert alert-success">
-                    Thank you for contacting us. We will respond to you as soon as possible.
-                </div>
-
-                <p>
-                    Note that if you turn on the Yii debugger, you should be able
-                    to view the mail message on the mail panel of the debugger.
-    <?php if (Yii::$app->mailer->useFileTransport): ?>
-                                Because the application is in development mode, the email is not sent but saved as
-                                a file under <code><?= Yii::getAlias(Yii::$app->mailer->fileTransportPath) ?></code>.
-                                Please configure the <code>useFileTransport</code> property of the <code>mail</code>
-                                application component to be false to enable email sending.
-    <?php endif; ?>
-                </p>
-
-<?php else: ?>
-
-                <p>
-                    If you have business inquiries or other questions, please fill out the following form to contact us.
-                    Thank you.
-                </p>
-
-                <div class="row">
-                    <div class="col-lg-5">
-
-    <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-
-    <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
-
-    <?= $form->field($model, 'email') ?>
-
-    <?= $form->field($model, 'subject') ?>
-
-    <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
-
-    <?=
-    $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-    ])
-    ?>
-
-                        <div class="form-group">
-    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
-                        </div>
-
-    <?php ActiveForm::end(); ?>
-
-                    </div>
-                </div>
-
-<?php endif; ?>
-</div>-->
-
 <div class="container">
     <!-- BEGIN: CONTENT/CONTACT/CONTACT-1 -->
     <div class="c-content-box c-size-md c-bg-img-top c-no-padding c-pos-relative">
@@ -118,26 +62,27 @@ MapAsset::register($this);
                 <div class="col-md-12">
                     <div class="c-contact">
                         <div class="c-content-title-1">
-                            <h3  class="c-font-uppercase c-font-bold">Keep in touch</h3>
+                            <h3  class="c-font-uppercase c-font-bold"><?php echo Html::encode($this->title) ?></h3>
                             <div class="c-line-left"></div>
-                            <p class="c-font-lowercase">Our helpline is always open to receive any inquiry or feedback.
-                                Please feel free to drop us an email from the form below and we will get back to you as soon as we can.</p>
+                            <p class="c-font-lowercase">
+                                <?php echo Yii::t('contact', 'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.'); ?>
+                            </p>
                         </div>
-                        <form action="#">
-                            <div class="form-group">
-                                <input type="text" placeholder="Your Name" class="form-control c-square c-theme input-lg">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="Your Email" class="form-control c-square c-theme input-lg">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="Contact Phone" class="form-control c-square c-theme input-lg">
-                            </div>
-                            <div class="form-group">
-                                <textarea rows="8" name="message" placeholder="Write comment here ..." class="form-control c-theme c-square input-lg"></textarea>
-                            </div>
-                            <button type="submit" class="btn c-theme-btn c-btn-uppercase btn-lg c-btn-bold c-btn-square">Submit</button> 
-                        </form>
+                        <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+                        <?php echo $form->field($model, 'name', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Your name'), 'class' => 'form-control c-square c-theme input-lg']]); ?>
+                        <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Your Email'), 'class' => 'form-control c-square c-theme input-lg']]); ?>
+                        <?php echo $form->field($model, 'subject', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Your Subject'), 'class' => 'form-control c-square c-theme input-lg']]); ?>
+                        <?php echo $form->field($model, 'body', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Your Message'), 'class' => 'form-control c-square c-theme input-lg']])->textArea(['rows' => 6]); ?>
+                        <?php
+                        echo $form->field($model, 'verifyCode')->widget(Captcha::class, [
+                            'options' => ['placeholder' => Yii::t('contact', 'Code'), 'class' => 'form-control c-square c-theme input-lg']
+//                            'template' => '<div class="form"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+                        ]);
+                        ?>
+                        <div class="form-group">
+                            <?php echo Html::submitButton(Yii::t('contact', 'Submit'), ['class' => 'btn c-theme-btn c-btn-uppercase btn-lg c-btn-bold c-btn-square', 'name' => 'contact-button']); ?>
+                        </div>
+                        <?php ActiveForm::end(); ?>
                     </div>
                 </div>
             </div>

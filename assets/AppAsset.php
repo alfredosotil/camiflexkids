@@ -1,8 +1,9 @@
 <?php
 /**
- * @link http://www.yiiframework.com/
+ * @see      http://www.yiiframework.com/
+ *
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license   http://www.yiiframework.com/license/
  */
 
 namespace app\assets;
@@ -11,13 +12,22 @@ use yii\web\AssetBundle;
 
 /**
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
+ *
+ * @since  2.0
  */
 class AppAsset extends AssetBundle
 {
+    /**
+     * @var string
+     */
     public $basePath = '@webroot';
+    /**
+     * @var string
+     */
     public $baseUrl = '@web';
-    
+    /**
+     * @var array
+     */
     public $css = [
         'plugins/socicon/socicon.css',
         'plugins/bootstrap-social/bootstrap-social.css',
@@ -26,27 +36,29 @@ class AppAsset extends AssetBundle
         'plugins/font-awesome/css/font-awesome.min.css',
         'plugins/simple-line-icons/simple-line-icons.min.css',
         'plugins/animate/animate.min.css',
-        'plugins/bootstrap/css/bootstrap.min.css',
+//        'plugins/bootstrap/css/bootstrap.min.css',
         'plugins/revo-slider/css/settings.css',
         'plugins/revo-slider/css/layers.css',
         'plugins/revo-slider/css/navigation.css',
         'plugins/cubeportfolio/css/cubeportfolio.min.css',
         'plugins/owl-carousel/assets/owl.carousel.css',
+        'plugins/fancybox/jquery.fancybox.css',
         'plugins/slider-for-bootstrap/css/slider.css',
         'plugins/ilightbox/css/ilightbox.css',
         'plugins/ilightbox/dark-skin/skin.css',
-        'plugins/fancybox/jquery.fancybox.css',
+        'css/plugins.css',
         'css/custom.css',
         'css/components.css',
         'css/default.css',
-        'css/plugins.css',
         'css/site.css',
     ];
+    /**
+     * @var array
+     */
     public $js = [
 //        'plugins/jquery.min.js',
+//        'plugins/bootstrap/js/bootstrap.min.js',
         'plugins/jquery-migrate.min.js',
-        'plugins/bootstrap/js/bootstrap.min.js',
-        'plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js',
         'plugins/jquery.easing.min.js',
         'plugins/select2/js/select2.full.min.js',
         'plugins/jquery-validation/js/jquery.validate.min.js',
@@ -83,9 +95,14 @@ class AppAsset extends AssetBundle
         'plugins/isotope/isotope-gallery.js',
         'plugins/isotope/isotope-grid.js',
         'js/main.js',        
-        'js/form-wizard.js',        
     ];
+    /**
+     * @var array
+     */
     public $depends = [
         'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
+        'yii2mod\alert\AlertAsset',
+//        'yii\bootstrap\BootstrapAsset',
     ];
 }

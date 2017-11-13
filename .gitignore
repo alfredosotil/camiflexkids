@@ -1,3 +1,8 @@
+# yii console commands
+#/yii
+#/yii_test
+#/yii_test.bat
+
 # phpstorm project files
 .idea
 
@@ -15,6 +20,10 @@ Thumbs.db
 # composer vendor dir
 /vendor
 
+# runtime dirs
+runtime/debug
+runtime/logs
+
 # composer itself is not needed
 composer.phar
 
@@ -28,3 +37,7 @@ phpunit.phar
 
 tests/_output/*
 tests/_support/_generated
+
+/.env
+/docker-compose.override.yml
+/.php_cs.cache

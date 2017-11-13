@@ -1,7 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-
-$this->title = 'Camiflex Kids';
+$this->title = 'Inicio';
 ?>
 <!-- BEGIN: PAGE CONTENT -->
 <!-- BEGIN: LAYOUT/SLIDERS/REVO-SLIDER-3 -->
@@ -409,6 +408,3 @@ $this->title = 'Camiflex Kids';
 </div>
 <!-- END: CONTENT/TESTIMONIALS/TESTIMONIALS-2 -->
 <!-- END: PAGE CONTENT -->
-
-
-

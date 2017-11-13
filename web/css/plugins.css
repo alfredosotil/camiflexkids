@@ -271,6 +271,7 @@ label.control-label {
     font-weight: 500; }
 
 .c-btn-circle {
+    background-color: white;
   border-radius: 30px !important; }
 
 .c-btn-bold {
@@ -5409,7 +5410,7 @@ label.control-label {
       padding: 0 10px; } }
 
 .fancybox-overlay {
-  z-index: 7200; }
+  z-index: 10200; }
 
 .fancybox-margin {
   margin: 0; }

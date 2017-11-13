@@ -89,6 +89,11 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+.footer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float:right;
 
 /* align the logout "link" (button in form) of the navbar */
 .nav li > form > button.logout {
@@ -103,6 +108,29 @@ a.desc:after {
         width: 100%;
         padding: 10px 15px;
     }
+.footer ul li a {
+    text-decoration: none;
+    color: #333;
+}
+.footer ul li a:hover {
+    color: #505050;
+}
+.bs-callout+.bs-callout {
+    margin-top: -5px;
+}
+.bs-callout-info {
+    border-left-color: #5bc0de;
+}
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+/* align the logout "link" (button in form) of the navbar */
+.nav > li > form {
+    padding: 8px;
 }
 
 .nav > li > form > button.logout:focus,
