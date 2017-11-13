@@ -34,7 +34,7 @@ class AngularAsset extends AssetBundle {
         'yii\web\YiiAsset',
     ];
     public $jsOptions = [
-        'position' => View::POS_HEAD,
+//        'position' => View::POS_HEAD,
     ];
 
 }

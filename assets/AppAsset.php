@@ -103,6 +103,5 @@ class AppAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapPluginAsset',
         'yii2mod\alert\AlertAsset',
-//        'yii\bootstrap\BootstrapAsset',
     ];
 }

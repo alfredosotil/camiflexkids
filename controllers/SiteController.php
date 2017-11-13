@@ -248,7 +248,7 @@ class SiteController extends Controller {
             $detail->product_id = $model->id;
             $detail->detailorderuniqueid = strtotime('now');
             Yii::$app->cart->add($detail);
-            Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Excelente | The product was added to cart.'));
+            Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Excelente | The product was added to cart. | Continuar'));
 //            if ($detail->save()) {
 //                Yii::$app->cart->add($detail);
 //                Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'The product was added to cart.'));
