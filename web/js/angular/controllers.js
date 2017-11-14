@@ -6,7 +6,7 @@
 'use strict';
 
 angular.module('camiflexkids-app.controllers', [])
-        .controller('MainController', ['$scope', function ($scope) {
+        .controller('MainController', ['$scope', '$http', function ($scope, $http) {
                 $scope.test = 'alfredod';
                 $scope.cells = [[]];
                 $scope.details = [];
@@ -22,6 +22,28 @@ angular.module('camiflexkids-app.controllers', [])
                     updateDetails();
 //                    console.log($scope.color);
 //                    console.log(getColorMats());
+                };
+                $scope.addtocart = function () {
+                    $http.post("addarraytocart", {}).then(function successCallback(response) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+//                        $scope.data = response.data;
+                        if (response.successAjax === true){
+                            swal({
+                                title: 'Good job!',
+                                text: 'You clicked the button!',
+                                type: 'success',
+                                confirmButtonText: 'Continuar',
+                                allowOutsideClick: true,
+                            });
+                        }
+                    }, function errorCallback(response) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        $scope.error = response.statusText;
+                    });
+
+
                 };
                 function updateDetails() {
                     $scope.details = [];
@@ -67,7 +89,6 @@ angular.module('camiflexkids-app.controllers', [])
                             parts[i] = '0' + parts[i];
                     }
                     var color = '#' + parts.join('');
-
                     return color;
                 }
                 function makeMap() {

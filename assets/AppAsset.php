@@ -105,4 +105,13 @@ class AppAsset extends AssetBundle
         'yii2mod\alert\AlertAsset',
 //        'yii\bootstrap\BootstrapAsset',
     ];
+    
+    public static function custom_echo($x, $length) {
+        if (strlen($x) <= $length) {
+            echo $x;
+        } else {
+            $y = substr($x, 0, $length) . '...';
+            echo $y;
+        }
+    }
 }

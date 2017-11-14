@@ -21,7 +21,7 @@ AngularAsset::register($this);
                     'next' => [
                         'title' => 'Continuar  <i class="fa fa-angle-right"></i>',
                         'options' => [
-                            'class' => 'btn btn-outline green button-next',
+                            'class' => 'btn btn-outline green button-next ',
                         ],
                     ],
                 ],
@@ -65,7 +65,7 @@ AngularAsset::register($this);
                 ],
             ],
         ],
-        'complete_content' => "You are done myboy!", // Optional final screen
+        'complete_content' => $this->render('step4'), // Optional final screen
         'start_step' => 1, // Optional, start with a specific step
     ]);
     ?>       

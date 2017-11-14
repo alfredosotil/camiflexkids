@@ -284,6 +284,15 @@ class SiteController extends Controller {
         return $this->render('simulator', [
         ]);
     }
+    
+    public function actionAddarraytocart(){
+        if (Yii::$app->request->isPost) {
+            if (Yii::$app->request->isAjax) {
+                    return $this->asJson(['successAjax' => true]);
+////                return \yii\widgets\ActiveForm::validate($model);
+            }
+        }
+    }
 
     public function actionProductdetail($id) {
         $model = \app\models\Product::findOne($id);

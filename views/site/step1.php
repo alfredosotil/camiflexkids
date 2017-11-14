@@ -33,23 +33,26 @@ use yii\bootstrap\ActiveForm;
             <?php echo $form->field($model, 'phone')->textInput(['maxlength' => 255]) ?>
 
             <?php ActiveForm::end(); ?>
-            <div class="form-group">
-                <?php
-                \demogorgorn\ajax\AjaxSubmitButton::begin([
-                    'encodeLabel' => false,
-                    'tagName' => 'a',
-                    'label' => 'Validar  <i class="fa fa-angle-right"></i>',
-                    'ajaxOptions' => [
-                        'type' => 'POST',
-                        'url' => 'simulator',
-                        'data' => new \yii\web\JsExpression('
+        </div>
+    </div>
+    <div class="row">
+        <div class="list-inline">
+            <?php
+            \demogorgorn\ajax\AjaxSubmitButton::begin([
+                'encodeLabel' => false,
+                'tagName' => 'a',
+                'label' => 'Validar  <i class="fa fa-angle-right"></i>',
+                'ajaxOptions' => [
+                    'type' => 'POST',
+                    'url' => 'simulator',
+                    'data' => new \yii\web\JsExpression('
                             $("#subscriber-form-simulator").serialize()
                     '),
-                        'beforeSend' => new \yii\web\JsExpression('
+                    'beforeSend' => new \yii\web\JsExpression('
                             function(xhr){
                             }
                     '),
-                        'success' => new \yii\web\JsExpression('
+                    'success' => new \yii\web\JsExpression('
                             function(data){
                                 console.log(data);
                                     $("#subscriber-form-simulator").data("yiiActiveForm").submitting = true;
@@ -60,15 +63,12 @@ use yii\bootstrap\ActiveForm;
                                 return false;
                             }
                     '),
-                    ],
-                    'options' => ['class' => 'btn btn-block btn-outline green button-next'],
-                ]);
-                \demogorgorn\ajax\AjaxSubmitButton::end();
-                ?>
-                <?php // echo Html::submitButton(Yii::t('app', 'Validar  <i class="fa fa-angle-right"></i>'), ['class' => 'btn btn-block btn-outline green button-next'])  ?>
-            </div>
-
-
+                ],
+                'options' => ['class' => 'btn btn-block btn-outline green button-next'],
+            ]);
+            \demogorgorn\ajax\AjaxSubmitButton::end();
+            ?>
+            <?php // echo Html::submitButton(Yii::t('app', 'Validar  <i class="fa fa-angle-right"></i>'), ['class' => 'btn btn-block btn-outline green button-next'])  ?>
         </div>
     </div>
 </div>

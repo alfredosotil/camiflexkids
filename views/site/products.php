@@ -31,7 +31,7 @@ $this->title = 'Productos Camiflex Kids';
                                 <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: url(<?= $value->getFirstimage() ?>);"></div>
                             </div>
                             <div class="c-info">
-                                <p class="c-title c-font-16 c-font-slim"><?= $value->short_desc ?></p>
+                                <p class="c-title c-font-16 c-font-slim"><?= \app\assets\AppAsset::custom_echo($value->short_desc, 45) ?></p>
                                 <p class="c-price c-font-14 c-font-slim"><?= $value->price ?> S/.
                                     <span class="c-font-14 c-font-line-through c-font-red"><?= $value->price * 0.2 + $value->price ?> S/.</span>
                                 </p>
