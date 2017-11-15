@@ -52,7 +52,7 @@ class SiteController extends Controller {
                     ],
                 ],
                 'denyCallback' => function($rule, $action) {
-                    Yii::$app->getSession()->setFlash('error', Yii::t('yii2mod.user', 'Please, you need to Sing In.'));
+                    Yii::$app->getSession()->setFlash('error', Yii::t('yii2mod.user', 'Error | Please, you need to Sing In. | Continuar'));
                     return Yii::$app->response->redirect(Yii::$app->getUser()->loginUrl);
                 },
             ],
@@ -111,6 +111,7 @@ class SiteController extends Controller {
             $model = new LoginForm();
             if ($model->load(Yii::$app->request->post())) {
                 if ($model->login()) {
+                    Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Bienvenido |  | Continuar'));
                     return $this->goBack();
                 } else {
                     Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
@@ -130,11 +131,11 @@ class SiteController extends Controller {
             if ($model->load(Yii::$app->request->post()) && $model->validate()) {
                 if ($model->sendEmail()) {
                     $this->trigger('afterRequest', $event);
-                    Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Check your email for further instructions.'));
+                    Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Excelente | Check your email for further instructions. | Continuar'));
                     return $this->redirect(['site/index']);
 //                    return $this->redirectTo(Yii::$app->getHomeUrl());
                 } else {
-                    Yii::$app->getSession()->setFlash('error', Yii::t('yii2mod.user', 'Sorry, we are unable to reset password for email provided.'));
+                    Yii::$app->getSession()->setFlash('error', Yii::t('yii2mod.user', 'Error | Sorry, we are unable to reset password for email provided. | Continuar'));
                     Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
                     return \yii\widgets\ActiveForm::validate($model);
                 }
@@ -151,7 +152,7 @@ class SiteController extends Controller {
             $this->trigger('beforeSignup', $event);
             if ($model->load(Yii::$app->request->post()) && ($user = $model->signup()) !== null) {
                 $this->trigger('afterSignup', $event);
-                Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'User Created Successfully.'));
+                Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Excelente | Usuario creado Exitosamente! | Continuar'));
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->redirect(['site/index']);
                 }
@@ -170,7 +171,7 @@ class SiteController extends Controller {
      * @return string
      */
     public function actionIndex() {
-        Yii::$app->session->setFlash('success', 'Excelente | esto es una prueba | Continuar');
+//        Yii::$app->session->setFlash('success', 'Excelente | esto es una prueba | Continuar');
         return $this->render('index', ['slides' => $this->getIndexMainSlides()]);
     }
 
@@ -191,9 +192,9 @@ class SiteController extends Controller {
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->contact(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', Yii::t('app', 'Thank you for contacting us. We will respond to you as soon as possible.'));
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Excelente | Thank you for contacting us. We will respond to you as soon as possible. | Continuar'));
             } else {
-                Yii::$app->session->setFlash('error', Yii::t('app', 'There was an error sending email.'));
+                Yii::$app->session->setFlash('error', Yii::t('app', 'Error | There was an error sending email. | Continuar'));
             }
 
             return $this->refresh();
@@ -214,7 +215,7 @@ class SiteController extends Controller {
         $resetPasswordForm = new ResetPasswordForm(Yii::$app->user->identity);
 
         if ($resetPasswordForm->load(Yii::$app->request->post()) && $resetPasswordForm->resetPassword()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Password has been updated.'));
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Excelente | Password has been updated. | Continuar'));
 
             return $this->refresh();
         }
@@ -269,27 +270,36 @@ class SiteController extends Controller {
      */
     public function actionSimulator() {
         Yii::$app->assetsAutoCompress->jsFileCompile = false; //se desactiva compresion js tema tecnico con angular
+        return $this->render('simulator', [
+        ]);
+    }
+
+    public function actionSubscriber() {
         if (Yii::$app->request->isPost) {
             if (Yii::$app->request->isAjax) {
                 $model = new Subscribers();
 //                return $this->asJson(['post' => Yii::$app->request->post()]);
                 if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-                    return $this->asJson(['successAjax' => true, 'hasError' => false, 'errors' => $model->errors]);
+//                    if ($model->save()) {
+                        return $this->asJson(['successAjax' => true, 'hasError' => false, 'errors' => $model->errors]);
+//                    }
                 } else {
                     return $this->asJson(['successAjax' => true, 'hasError' => true, 'errors' => $model->errors]);
                 }
 ////                return \yii\widgets\ActiveForm::validate($model);
             }
         }
-        return $this->render('simulator', [
-        ]);
     }
-    
-    public function actionAddarraytocart(){
+
+    public function actionAddarraytocart() {
         if (Yii::$app->request->isPost) {
             if (Yii::$app->request->isAjax) {
-                    return $this->asJson(['successAjax' => true]);
-////                return \yii\widgets\ActiveForm::validate($model);
+                $data = json_decode(Yii::$app->request->getRawBody());
+                foreach ($data->details as $value) {
+                    $model = \app\models\Product::findOne(['color' => $value->color]);
+                }
+
+                return $this->asJson(['successAjax' => true, 'count' => count($data->details)]);
             }
         }
     }

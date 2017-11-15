@@ -35,7 +35,7 @@ $config = [
             'class' => 'yii2mod\settings\components\Settings',
         ],
         'request' => [
-            'cookieValidationKey' => 'camiflexkids-key',
+            'cookieValidationKey' => 'cvrlhBEZZ2i0T7hpCmAFLMBMkKiMK4uE',
         ],
         'session' => [
             'class' => 'yii\web\DbSession',
@@ -79,5 +79,29 @@ $config = [
         ],
     ],
 ];
+
+if (!YII_ENV_TEST) {
+    // configuration adjustments for 'dev' environment
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = [
+        'class' => 'yii\debug\Module',
+            // uncomment the following to add your IP if you are not connecting from localhost.
+            //'allowedIPs' => ['127.0.0.1', '::1'],
+    ];
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+        // uncomment the following to add your IP if you are not connecting from localhost.
+        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'generators' => [
+            'enumerable' => [
+                'class' => 'yii2mod\gii\enum\Generator',
+            ],
+            'crud' => [
+                'class' => 'yii2mod\gii\crud\Generator',
+            ],
+        ],
+    ];
+}
 
 return $config;

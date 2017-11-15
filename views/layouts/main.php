@@ -12,6 +12,7 @@ use app\widgets\LoginFormWidget;
 use app\widgets\PasswordResetRequestFormWidget;
 use app\widgets\SignupFormWidget;
 use app\widgets\CartViewWidget;
+use yii\bootstrap\ActiveForm;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -300,14 +301,7 @@ AppAsset::register($this);
                                     <div class="c-line-left hide"></div>
                                 </div>
                                 <div class="c-line-left hide"></div>
-                                <form action="#">
-                                    <div class="input-group input-group-lg c-square">
-                                        <input type="text" class="form-control c-square c-font-grey-3 c-border-grey c-theme" placeholder="Your Email Here"/>
-                                        <span class="input-group-btn">
-                                            <button class="btn c-theme-btn c-theme-border c-btn-square c-btn-uppercase c-font-16" type="button">Subscribe</button>
-                                        </span>
-                                    </div>
-                                </form>
+                                <?= app\widgets\SubscribesFormWidget::widget([]); ?>
                             </div>
                         </div>
                     </div>

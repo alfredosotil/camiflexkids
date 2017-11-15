@@ -12,4 +12,10 @@ angular.module('camiflexkids-app', [
     'camiflexkids-app.directives',
     'camiflexkids-app.controllers',
 ])
-//        .config([]);
+        .config(httpproviderconfig);
+
+httpproviderconfig.$inject = ['$httpProvider'];
+function httpproviderconfig($httpProvider) {
+    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name="csrf-token"]').attr('content');
+}

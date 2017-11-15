@@ -13,7 +13,7 @@ angular.module('camiflexkids-app.controllers', [])
                 $scope.length = '3';
                 $scope.width = '3';
                 $scope.totalMats = 9;
-                $scope.color = 'black';
+                $scope.color = '';
                 $scope.$watch('[width,length,color]', makeMap, true);
                 $scope.setColor = function ($event) {
 //                    $scope.totalMats = $scope.floorwidth * $scope.floorheight;
@@ -24,11 +24,15 @@ angular.module('camiflexkids-app.controllers', [])
 //                    console.log(getColorMats());
                 };
                 $scope.addtocart = function () {
-                    $http.post("addarraytocart", {}).then(function successCallback(response) {
+//                    var param = '_csrf';
+//                    var token = yii.getCsrfToken();
+//                    console.log({_csrf: token});
+                    $http.post("addarraytocart", {'details': $scope.details}).then(function successCallback(response) {
                         // this callback will be called asynchronously
                         // when the response is available
 //                        $scope.data = response.data;
-                        if (response.successAjax === true){
+                        console.log(response.data);
+                        if (response.data.successAjax) {
                             swal({
                                 title: 'Good job!',
                                 text: 'You clicked the button!',
@@ -40,7 +44,7 @@ angular.module('camiflexkids-app.controllers', [])
                     }, function errorCallback(response) {
                         // called asynchronously if an error occurs
                         // or server returns response with an error status.
-                        $scope.error = response.statusText;
+                        console.log(response.statusText);
                     });
 
 
@@ -74,7 +78,7 @@ angular.module('camiflexkids-app.controllers', [])
                         var existe = colors.some(function (item) {
                             return item.hexc.includes(color_hexc);
                         });
-                        if (!existe) {
+                        if (!existe && !(color_hexc.localeCompare('#ffffff') === 0)) {
                             colors.push({rgb: color_rgb, hexc: color_hexc});
                         }
                     });
@@ -113,6 +117,13 @@ angular.module('camiflexkids-app.controllers', [])
                         }
                     }
                     return arr;
+                }
+                Array.prototype.sum = function (prop) {
+                    var total = 0
+                    for (var i = 0, _len = this.length; i < _len; i++) {
+                        total += this[i][prop]
+                    }
+                    return total
                 }
             }]);
 

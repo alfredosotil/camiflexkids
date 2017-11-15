@@ -4,9 +4,7 @@
  */
 return yii\helpers\ArrayHelper::merge(
     require __DIR__ . '/main.php',
-    require __DIR__ . '/main-local.php',
     require __DIR__ . '/common.php',
-    require __DIR__ . '/common-local.php',
     [
         'id' => 'basic-tests',
         'components' => [
@@ -21,8 +19,8 @@ return yii\helpers\ArrayHelper::merge(
                 'showScriptName' => true,
             ],
             'request' => [
-                'cookieValidationKey' => 'test',
-                'enableCsrfValidation' => false,
+//                'cookieValidationKey' => 'test',
+//                'enableCsrfValidation' => false,
                 // but if you absolutely need it set cookie domain to localhost
                 /*
                 'csrfCookie' => [

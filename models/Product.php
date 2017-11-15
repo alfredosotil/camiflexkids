@@ -42,7 +42,7 @@ class Product extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['name', 'sku', 'price', 'cart_desc', 'long_desc', 'category_id', 'stock'], 'required'],
+            [['name', 'sku', 'price', 'cart_desc', 'color','long_desc', 'category_id', 'stock'], 'required'],
             [['price', 'weight', 'stock'], 'number'],
             [['category_id', 'created_at', 'updated_at', 'active'], 'integer'],
             [['name', 'sku', 'color'], 'string', 'max' => 255],
@@ -50,6 +50,7 @@ class Product extends \yii\db\ActiveRecord {
             [['short_desc'], 'string', 'max' => 100],
             [['long_desc'], 'string', 'max' => 250],
             [['thumb', 'image'], 'string', 'max' => 60],
+            [['color'], 'unique'],
             [['name'], 'unique'],
             [['sku'], 'unique'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],

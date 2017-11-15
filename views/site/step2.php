@@ -7,6 +7,17 @@ use yii\bootstrap\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Subscribers */
 /* @var $form yii\widgets\ActiveForm */
+$productColors = \app\models\Product::find()->select('color')->distinct()->all();
+$selectedColor = isset($productColors[0]->color) ? $productColors[0]->color : '';
+$groups = array_chunk($productColors, 3);
+$colors = [];
+foreach ($groups as $group) {
+    $temp = [];
+    foreach ($group as $value) {
+        $temp[] = $value->color;
+    }
+    $colors[] = $temp;
+}
 ?>
 
 <div class="subscribers-form container">
@@ -32,9 +43,9 @@ use yii\bootstrap\ActiveForm;
                     <?=
                     kartik\color\ColorInput::widget([
                         'name' => 'color_palette',
-//                    'value' => '',
+//                        'value' => $colors[0][0],
                         'showDefaultPalette' => false,
-                        'options' => ['class' => 'form-control', 'placeholder' => 'Escoge tu color ...', 'ng-model' => 'color'],
+                        'options' => ['class' => 'form-control', 'placeholder' => 'Escoge tu color ...', 'ng-model' => 'color', 'ng-init' => "color = '$selectedColor'"],
                         'width' => '40px',
                         'readonly' => true,
                         'pluginOptions' => [
@@ -46,17 +57,7 @@ use yii\bootstrap\ActiveForm;
                             'showAlpha' => false,
                             'allowEmpty' => false,
                             'preferredFormat' => 'name',
-                            'palette' => [
-                                [
-                                    "white", "black", "grey", "silver", "gold", "brown",
-                                ],
-                                [
-                                    "red", "orange", "yellow", "indigo", "maroon", "pink"
-                                ],
-                                [
-                                    "blue", "green", "violet", "cyan", "magenta", "purple",
-                                ],
-                            ]
+                            'palette' => $colors
                         ]
                     ]);
                     ?>

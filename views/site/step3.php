@@ -44,7 +44,7 @@ use yii\bootstrap\ActiveForm;
                                     <strong>total mats</strong>
                                 </td>
                                 <td>
-                                    <strong>{{totalMats}}</strong>
+                                    <strong>{{details.sum('quantity')}}</strong>
                                 </td>
                             </tr>
                         </tbody>

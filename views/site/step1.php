@@ -44,7 +44,7 @@ use yii\bootstrap\ActiveForm;
                 'label' => 'Validar  <i class="fa fa-angle-right"></i>',
                 'ajaxOptions' => [
                     'type' => 'POST',
-                    'url' => 'simulator',
+                    'url' => 'subscriber',
                     'data' => new \yii\web\JsExpression('
                             $("#subscriber-form-simulator").serialize()
                     '),
@@ -68,7 +68,6 @@ use yii\bootstrap\ActiveForm;
             ]);
             \demogorgorn\ajax\AjaxSubmitButton::end();
             ?>
-            <?php // echo Html::submitButton(Yii::t('app', 'Validar  <i class="fa fa-angle-right"></i>'), ['class' => 'btn btn-block btn-outline green button-next'])  ?>
         </div>
     </div>
 </div>

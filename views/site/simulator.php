@@ -68,5 +68,5 @@ AngularAsset::register($this);
         'complete_content' => $this->render('step4'), // Optional final screen
         'start_step' => 1, // Optional, start with a specific step
     ]);
-    ?>       
+    ?>      
 </div>
