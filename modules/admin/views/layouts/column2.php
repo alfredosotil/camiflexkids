@@ -42,7 +42,7 @@ AdminAsset::register($this);
             <?php
             NavBar::begin([
                 'brandLabel' => 'Admin Panel',
-                'brandUrl' => '/admin',
+                'brandUrl' => yii\helpers\Url::toRoute(['/admin']),
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
