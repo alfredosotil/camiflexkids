@@ -94,26 +94,21 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- END: CONTENT/MISC/SERVICES-1-1 -->
 
 <!-- BEGIN: CONTENT/SLIDERS/TEAM-2 -->
-<div class="c-content-box c-size-md c-bg-grey-1" id="team">
+<!--<div class="c-content-box c-size-md c-bg-grey-1" id="team">
     <div class="container">
-        <!-- Begin: Testimonals 1 component -->
         <div class="c-content-person-1-slider" data-slider="owl">
-            <!-- Begin: Title 1 component -->
             <div class="c-content-title-1 wow animated fadeIn">
                 <h3 class="c-center c-font-uppercase c-font-bold">Conoce Nuestro Equipo</h3>
                 <div class="c-line-center c-theme-bg"></div>
             </div>
-            <!-- End-->
 
-            <!-- Begin: Owlcarousel -->
             <div class="owl-carousel owl-theme c-theme c-owl-nav-center wow animated fadeInUp" data-items="3" data-slide-speed="8000" data-rtl="false"> 
                  <?= $team ?>	
             </div>			 
-            <!-- End-->
         </div>
-        <!-- End-->
     </div>
-</div><!-- END: CONTENT/SLIDERS/TEAM-2 -->
+</div>-->
+<!-- END: CONTENT/SLIDERS/TEAM-2 -->
 <!-- BEGIN: CONTENT/SLIDERS/CLIENT-LOGOS-1 -->
 <div class="c-content-box c-size-md c-bg-white">
     <div class="container">
@@ -152,7 +147,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="item">
                     <div class="c-testimonial">
                         <p>
-                            “JANGO is an international, privately held company that specializes in the start-up, promotion and operation of multiple online marketplaces”
+                            “Camiflexkids is an international, privately held company that specializes in the start-up, promotion and operation of multiple online marketplaces”
                         </p>
                         <h3>
                             <span class="c-name c-theme">John Snow</span>, CEO, Mockingbird
@@ -162,7 +157,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="item">
                     <div class="c-testimonial">
                         <p>
-                            “After co-founding the company in 2006 the group launched JANGO, the first digital marketplace which focused on rich multimedia web content”
+                            “After co-founding the company in 2006 the group launched Camiflexkids, the first digital marketplace which focused on rich multimedia web content”
                         </p>
                         <h3>
                             <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
@@ -172,7 +167,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="item">
                     <div class="c-testimonial">
                         <p>
-                            “It was the smoothest implementation process I have ever been through with JANGO’s process and schedule.”
+                            “It was the smoothest implementation process I have ever been through with Camiflexkids’s process and schedule.”
                         </p>
                         <h3>
                             <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
@@ -182,7 +177,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="item">
                     <div class="c-testimonial">
                         <p>
-                            “A system change is always stressful and JANGO did a great job of staying positive, helpful, and patient with us.”
+                            “A system change is always stressful and Camiflexkids did a great job of staying positive, helpful, and patient with us.”
                         </p>
                         <h3>
                             <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris

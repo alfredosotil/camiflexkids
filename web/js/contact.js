@@ -6,18 +6,19 @@ var PageContact = function() {
 
 		var mapbg = new GMaps({
 			div: '#gmapbg',
-			lat: 3.118823,
-			lng: 101.676084,
+			lat: -12.113555,
+			lng: -77.012000,
+                        zoom: 16,
 			scrollwheel: false,
 		});
 
 
 		mapbg.addMarker({
-			lat: 3.118823,
-			lng: 101.676084,
-			title: 'Your Location',
+			lat: -12.113555,
+			lng: -77.012000,
+			title: 'Oficina Central',
 			infoWindow: {
-				content: '<h3>Jango Inc.</h3><p>25, Lorem Lis Street, Orange C, California, US</p>'
+				content: '<h3>CamiflexKids.</h3><p>Surquillo, Lima - Peru</p>'
 			}
 		});
 	}

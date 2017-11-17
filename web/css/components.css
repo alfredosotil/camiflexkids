@@ -3908,6 +3908,11 @@ h1 {
     height: 80px;
     float: left;
     margin-right: 20px; }
+.c-layout-header .c-cart-menu .c-cart-menu-items > li .mat-color {
+    width: 80px;
+    height: 80px;
+    float: left;
+    margin-right: 20px; }
 .c-layout-header .c-cart-menu .c-cart-menu-items > li > .c-cart-menu-content {
     padding-left: 100px; }
 .c-layout-header .c-cart-menu .c-cart-menu-items > li > .c-cart-menu-content .c-item-name,

@@ -218,7 +218,7 @@ $this->title = 'Inicio';
 </div><!-- END: CONTENT/ISOTOPE/GALLERY-4 -->
 
 <!-- BEGIN: CONTENT/PORTFOLIO/LATEST-WORKS-2 -->
-<div class="c-content-box c-size-md c-bg-grey-1">
+<!--<div class="c-content-box c-size-md c-bg-grey-1">
     <div class="container">
         <div class="c-content-title-1">
             <h3 class="c-center c-font-uppercase c-font-bold">Ultimos Proyectos</h3>
@@ -226,7 +226,6 @@ $this->title = 'Inicio';
             <p class="c-center c-font-uppercase">Te mostramos nuestro trabajo.</p>
         </div>			
         <div class="cbp-panel">
-            <!-- SEE: components.js:ContentCubeLatestPortfolio -->
             <div class="c-content-latest-works cbp cbp-l-grid-masonry-projects">
                 <div class="cbp-item graphic wow animate fadeInLeft">
                     <div class="cbp-caption">
@@ -343,7 +342,8 @@ $this->title = 'Inicio';
             </div>
         </div>
     </div> 
-</div><!-- END: CONTENT/PORTFOLIO/LATEST-WORKS-2 -->
+</div>-->
+<!-- END: CONTENT/PORTFOLIO/LATEST-WORKS-2 -->
 
 <!-- BEGIN: CONTENT/TESTIMONIALS/TESTIMONIALS-2 -->
 <div class="c-content-box c-size-lg c-bg-white">
@@ -363,7 +363,7 @@ $this->title = 'Inicio';
                 <div class="item">
                     <div class="c-testimonial">
                         <p>
-                            “JANGO is an international, privately held company that specializes in the start-up, promotion and operation of multiple online marketplaces”
+                            “Camiflexkids is an international, privately held company that specializes in the start-up, promotion and operation of multiple online marketplaces”
                         </p>
                         <h3>
                             <span class="c-name c-theme">John Snow</span>, CEO, Mockingbird
@@ -373,7 +373,7 @@ $this->title = 'Inicio';
                 <div class="item">
                     <div class="c-testimonial">
                         <p>
-                            “After co-founding the company in 2006 the group launched JANGO, the first digital marketplace which focused on rich multimedia web content”
+                            “After co-founding the company in 2006 the group launched Camiflexkids, the first digital marketplace which focused on rich multimedia web content”
                         </p>
                         <h3>
                             <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
@@ -383,7 +383,7 @@ $this->title = 'Inicio';
                 <div class="item">
                     <div class="c-testimonial">
                         <p>
-                            “It was the smoothest implementation process I have ever been through with JANGO’s process and schedule.”
+                            “It was the smoothest implementation process I have ever been through with Camiflexkids’s process and schedule.”
                         </p>
                         <h3>
                             <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
@@ -393,7 +393,7 @@ $this->title = 'Inicio';
                 <div class="item">
                     <div class="c-testimonial">
                         <p>
-                            “A system change is always stressful and JANGO did a great job of staying positive, helpful, and patient with us.”
+                            “A system change is always stressful and Camiflexkids did a great job of staying positive, helpful, and patient with us.”
                         </p>
                         <h3>
                             <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris

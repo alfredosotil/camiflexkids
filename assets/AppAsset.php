@@ -47,8 +47,8 @@ class AppAsset extends AssetBundle
         'plugins/ilightbox/css/ilightbox.css',
         'plugins/ilightbox/dark-skin/skin.css',
         'css/plugins.css',
-        'css/custom.css',
         'css/components.css',
+        'css/custom.css',
         'css/default.css',
         'css/site.css',
     ];

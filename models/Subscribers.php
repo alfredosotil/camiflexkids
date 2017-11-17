@@ -16,6 +16,16 @@ use Yii;
  */
 class Subscribers extends \yii\db\ActiveRecord {
 
+    const SCENARIO_SIMULATOR = 'simulator';
+    const SCENARIO_MAIN = 'main';
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios[self::SCENARIO_SIMULATOR] = ['email', 'phone'];
+        $scenarios[self::SCENARIO_MAIN] = ['email'];
+        return $scenarios;
+    }
     /**
      * @inheritdoc
      */
@@ -32,7 +42,7 @@ class Subscribers extends \yii\db\ActiveRecord {
             [['email'], 'email'],
             [['created_at', 'updated_at', 'active'], 'integer'],
             [['email', 'phone'], 'string', 'max' => 255],
-            [['email'], 'unique'],
+            [['email'], 'unique' , 'on' => self::SCENARIO_MAIN],
         ];
     }
 

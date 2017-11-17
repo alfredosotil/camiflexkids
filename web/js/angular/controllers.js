@@ -27,6 +27,7 @@ angular.module('camiflexkids-app.controllers', [])
 //                    var param = '_csrf';
 //                    var token = yii.getCsrfToken();
 //                    console.log({_csrf: token});
+                    console.log($('meta[name="csrf-token"]').attr('content'));
                     $http.post("addarraytocart", {'details': $scope.details}).then(function successCallback(response) {
                         // this callback will be called asynchronously
                         // when the response is available

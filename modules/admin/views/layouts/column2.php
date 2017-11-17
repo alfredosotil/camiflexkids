@@ -60,7 +60,7 @@ AdminAsset::register($this);
                             ],
                             [
                                 'label' => '<i class="glyphicon glyphicon-th-list"></i> Subscriber List',
-                                'url' => ['/subscriber/index'],
+                                'url' => ['/subscribers/index'],
                             ],
                             [
                                 'label' => '<i class="glyphicon glyphicon-plus"></i> Create User',
@@ -68,7 +68,7 @@ AdminAsset::register($this);
                             ],
                             [
                                 'label' => '<i class="glyphicon glyphicon-plus"></i> Subscriber User',
-                                'url' => ['/ subscriber/create'],
+                                'url' => ['/subscribers/create'],
                             ],
                         ],
                     ],

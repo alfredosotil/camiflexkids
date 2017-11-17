@@ -79,13 +79,13 @@ AppAsset::register($this);
                         <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
                             <ul class="nav navbar-nav c-theme-nav"> 
                                 <li class="c-active">
-                                    <a href="<?= Url::toRoute("site/index") ?>" class="c-link">Inicio<span class="c-arrow c-toggler"></span></a>
+                                    <a href="<?= Url::toRoute("/site/index") ?>" class="c-link">Inicio<span class="c-arrow c-toggler"></span></a>
                                 </li>
                                 <li class="c-menu-type-classic">
-                                    <a href="<?= Url::toRoute("site/about") ?>" class="c-link">Nosotros<span class="c-arrow c-toggler"></span></a>
+                                    <a href="<?= Url::toRoute("/site/about") ?>" class="c-link">Nosotros<span class="c-arrow c-toggler"></span></a>
                                 </li>
                                 <li >
-                                    <a href="<?= Url::toRoute("site/products") ?>" class="c-link">Productos<span class="c-arrow c-toggler"></span></a>
+                                    <a href="<?= Url::toRoute("/site/products") ?>" class="c-link">Productos<span class="c-arrow c-toggler"></span></a>
                                 </li>
                                 <li>
                                     <a href="<?= Url::toRoute("site/simulator") ?>" class="c-link">Simulador<span class="c-arrow c-toggler"></span></a>
@@ -150,7 +150,7 @@ AppAsset::register($this);
         <!-- END: HEADER --><!-- END: LAYOUT/HEADERS/HEADER-1 -->
 
         <!-- BEGIN: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
-        <nav class="c-layout-quick-sidebar">
+<!--        <nav class="c-layout-quick-sidebar">
             <div class="c-header">
                 <button type="button" class="c-link c-close">
                     <i class="icon-login"></i>		
@@ -258,7 +258,8 @@ AppAsset::register($this);
                     </div>
                 </div>
             </div>
-        </nav><!-- END: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
+        </nav>-->
+        <!-- END: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
         <div class="c-layout-page">
             <?= $content ?>
         </div>

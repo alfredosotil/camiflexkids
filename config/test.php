@@ -9,24 +9,8 @@ return yii\helpers\ArrayHelper::merge(
         'id' => 'basic-tests',
         'components' => [
             'db' => require __DIR__ . '/test_db.php',
-            'mailer' => [
-                'useFileTransport' => true,
-            ],
-            'assetManager' => [
-                'basePath' => __DIR__ . '/../web/assets',
-            ],
             'urlManager' => [
                 'showScriptName' => true,
-            ],
-            'request' => [
-//                'cookieValidationKey' => 'test',
-//                'enableCsrfValidation' => false,
-                // but if you absolutely need it set cookie domain to localhost
-                /*
-                'csrfCookie' => [
-                    'domain' => 'localhost',
-                ],
-                */
             ],
         ],
     ]

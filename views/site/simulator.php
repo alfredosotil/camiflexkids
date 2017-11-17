@@ -21,7 +21,7 @@ AngularAsset::register($this);
                     'next' => [
                         'title' => 'Continuar  <i class="fa fa-angle-right"></i>',
                         'options' => [
-                            'class' => 'btn btn-outline green button-next ',
+                            'class' => 'btn btn-outline green button-next hidden',
                         ],
                     ],
                 ],

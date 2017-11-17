@@ -7,15 +7,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'assetsAutoCompress'],
-    'components' => [
-        'assetsAutoCompress' =>
-        [
-            'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
-        ],
-        'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'fdrXvyE-bSJ2wOrag1u2lSdLSRVALM2L',
-        ],
+    'components' => [        
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -65,22 +57,5 @@ $config = [
     ],
     'params' => $params,
 ];
-
-if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
-    $config['bootstrap'][] = 'debug';
-    $config['modules']['debug'] = [
-        'class' => 'yii\debug\Module',
-            // uncomment the following to add your IP if you are not connecting from localhost.
-            'allowedIPs' => ['127.0.0.1', '190.114.250.73', '::1'],
-    ];
-
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
-            // uncomment the following to add your IP if you are not connecting from localhost.
-            //'allowedIPs' => ['127.0.0.1', '::1'],
-    ];
-}
 
 return $config;

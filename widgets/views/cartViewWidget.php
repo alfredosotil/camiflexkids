@@ -14,7 +14,6 @@ use yii\bootstrap\ActiveForm;
 //$this->params['breadcrumbs'][] = $this->title;
 $items = Yii::$app->cart->getItems();
 //Yii::$app->cart->clear();
-
 //$product = app\models\Product::findOne(1);
 //$detail = new \app\models\Detailorder();
 //$detail->name = 'test detail';
@@ -30,15 +29,15 @@ $items = Yii::$app->cart->getItems();
 <div class="c-cart-menu">
     <div class="c-cart-menu-title">
         <p class="c-cart-menu-float-l c-font-sbold"><?= count(Yii::$app->cart->getItems()) . Yii::t('yii2mod.user', ' item(s)'); ?> </p>
-        <p class="c-cart-menu-float-r c-theme-font c-font-sbold"><?= Yii::$app->cart->getAttributeTotal('vat') . Yii::t('yii2mod.user', ' $'); ?></p>
+        <p class="c-cart-menu-float-r c-theme-font c-font-sbold"><?= Yii::t('yii2mod.user', ' S/.') . Yii::$app->cart->getAttributeTotal('vat') ?></p>
     </div>
     <ul class="c-cart-menu-items">
         <?php foreach ($items as $value): ?>
             <li>
-                <div class="c-cart-menu-close">
-                    <a href="#" class="c-theme-link">×</a>
-                </div>
-                <div style="background-color: <?= $value->product->color ?>"></div>
+                <!--                <div class="c-cart-menu-close">
+                                    <a href="#" class="c-theme-link">×</a>
+                                </div>-->
+                <div class="mat-color" style="background-color: <?= $value->product->color ?>"></div>
                 <div class="c-cart-menu-content">
                     <p><?= $value->qty ?> x <span class="c-item-price c-theme-font"><?= $value->price_per_unit ?></span></p>
                     <p>Total detalle <?= $value->price ?></p>

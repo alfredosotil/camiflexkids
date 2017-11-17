@@ -10,10 +10,15 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'assetsAutoCompress'],
     'components' => [
-        'assetsAutoCompress' =>
+        'assetsAutoCompress' => (YII_ENV === 'dev')  ?
         [
-            'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
-            'enabled' => !YII_DEBUG
+    'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
+    'webroot' => '/home/qlnvdczv/public_html',
+    'enabled' => true
+        ] :
+        [
+    'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
+    'enabled' => false
         ],
 //        'assetsAutoCompress' =>
 //        [
@@ -59,13 +64,7 @@ $config = [
                 ],
             ],
         ],
-        'db' => [
-            'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=qlnvdczv_camiflexkids',
-            'username' => 'qlnvdczv_root',
-            'password' => 'kK547dY1az',
-            'charset' => 'utf8',
-        ],
+        'db' => require(__DIR__ . '/db.php'),
 //        'db' => [
 //            'class' => 'yii\db\Connection',
 //            'dsn' => 'mysql:host=localhost;dbname=camiflexkids',
@@ -87,5 +86,30 @@ $config = [
     ],
     'params' => $params,
 ];
+
+
+if (YII_DEBUG) {
+    // configuration adjustments for 'dev' environment
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = [
+        'class' => 'yii\debug\Module',
+        // uncomment the following to add your IP if you are not connecting from localhost.
+        'allowedIPs' => [@$_SERVER['REMOTE_ADDR'], '127.0.0.1', '::1'],
+    ];
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+        // uncomment the following to add your IP if you are not connecting from localhost.
+        'allowedIPs' => [@$_SERVER['REMOTE_ADDR'], '127.0.0.1', '::1'],
+        'generators' => [
+            'enumerable' => [
+                'class' => 'yii2mod\gii\enum\Generator',
+            ],
+            'crud' => [
+                'class' => 'yii2mod\gii\crud\Generator',
+            ],
+        ],
+    ];
+}
 
 return $config;

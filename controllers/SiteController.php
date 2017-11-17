@@ -144,13 +144,13 @@ class SiteController extends Controller {
             throw new HttpException(404, 'Page not found');
         }
     }
-    
-    public function actionViewcart(){
+
+    public function actionViewcart() {
         return $this->render('viewcart', [
         ]);
     }
-    
-    public function actionCheckout(){
+
+    public function actionCheckout() {
         return $this->render('checkout', [
         ]);
     }
@@ -272,10 +272,10 @@ class SiteController extends Controller {
             throw new \yii\web\HttpException(404, 'Page not found');
         }
     }
-    
-    public function actionDeletedetailorder($id){
+
+    public function actionDeletedetailorder($id) {
         Yii::$app->cart->remove($id);
-            Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Hecho | The product was removed from cart. | Continuar'));
+        Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Hecho | The product was removed from cart. | Continuar'));
         return $this->redirect(Url::to(['viewcart']));
     }
 
@@ -293,12 +293,32 @@ class SiteController extends Controller {
     public function actionSubscriber() {
         if (Yii::$app->request->isPost) {
             if (Yii::$app->request->isAjax) {
-                $model = new Subscribers();
+                $model = new Subscribers(['scenario' => Subscribers::SCENARIO_MAIN]);
 //                return $this->asJson(['post' => Yii::$app->request->post()]);
                 if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 //                    if ($model->save()) {
-                        return $this->asJson(['successAjax' => true, 'hasError' => false, 'errors' => $model->errors]);
+                    return $this->asJson(['successAjax' => true, 'hasError' => false, 'errors' => $model->errors]);
 //                    }
+                } else {
+                    return $this->asJson(['successAjax' => true, 'hasError' => true, 'errors' => $model->errors]);
+                }
+////                return \yii\widgets\ActiveForm::validate($model);
+            }
+        }
+    }
+
+    public function actionSubscribersimulator() {
+        if (Yii::$app->request->isPost) {
+            if (Yii::$app->request->isAjax) {
+                $model = new Subscribers(['scenario' => Subscribers::SCENARIO_SIMULATOR]);
+//                return $this->asJson(['post' => Yii::$app->request->post()]);
+                if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                    $exists = Subscribers::find()->where(['email' => $model->email])->exists();
+                    if (!$exists) {
+                        //doesn't exist so create record
+                        $model->save();
+                    }
+                    return $this->asJson(['successAjax' => true, 'hasError' => false, 'errors' => $model->errors]);
                 } else {
                     return $this->asJson(['successAjax' => true, 'hasError' => true, 'errors' => $model->errors]);
                 }

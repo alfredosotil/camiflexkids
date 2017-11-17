@@ -24,7 +24,7 @@ MapAsset::register($this);
                     <div class="col-sm-4">
                         <div class="c-body">
                             <div class="c-section">
-                                <h3>JANGO Inc.</h3>
+                                <h3>Camiflexkids Peru</h3>
                             </div>
                             <div class="c-section">
                                 <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">Address</div>
@@ -47,7 +47,7 @@ MapAsset::register($this);
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>         
         <div id="gmapbg" class="c-content-contact-1-gmap" style="height: 615px;"></div>
     </div> <!-- END: CONTENT/CONTACT/CONTACT-1 -->
 </div>
