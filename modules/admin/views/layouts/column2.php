@@ -59,8 +59,16 @@ AdminAsset::register($this);
                                 'url' => ['/admin/user/index'],
                             ],
                             [
+                                'label' => '<i class="glyphicon glyphicon-th-list"></i> Subscriber List',
+                                'url' => ['/subscriber/index'],
+                            ],
+                            [
                                 'label' => '<i class="glyphicon glyphicon-plus"></i> Create User',
                                 'url' => ['/admin/user/create'],
+                            ],
+                            [
+                                'label' => '<i class="glyphicon glyphicon-plus"></i> Subscriber User',
+                                'url' => ['/ subscriber/create'],
                             ],
                         ],
                     ],
@@ -74,6 +82,19 @@ AdminAsset::register($this);
                             [
                                 'label' => '<i class="glyphicon glyphicon-plus"></i> Create Product',
                                 'url' => ['/product/create'],
+                            ],
+                        ],
+                    ],
+                    [
+                        'label' => '<i class="glyphicon glyphicons-package"></i> Orders',
+                        'items' => [
+                            [
+                                'label' => '<i class="glyphicon glyphicon-th-list"></i> Order List',
+                                'url' => ['/order/index'],
+                            ],
+                            [
+                                'label' => '<i class="glyphicon glyphicon-plus"></i> Create Order',
+                                'url' => ['/order/create'],
                             ],
                         ],
                     ],

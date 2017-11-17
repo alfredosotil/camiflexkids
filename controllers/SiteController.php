@@ -144,6 +144,16 @@ class SiteController extends Controller {
             throw new HttpException(404, 'Page not found');
         }
     }
+    
+    public function actionViewcart(){
+        return $this->render('viewcart', [
+        ]);
+    }
+    
+    public function actionCheckout(){
+        return $this->render('checkout', [
+        ]);
+    }
 
     public function actionSignup() {
         if (Yii::$app->request->isAjax) {
@@ -261,6 +271,12 @@ class SiteController extends Controller {
         } else {
             throw new \yii\web\HttpException(404, 'Page not found');
         }
+    }
+    
+    public function actionDeletedetailorder($id){
+        Yii::$app->cart->remove($id);
+            Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Hecho | The product was removed from cart. | Continuar'));
+        return $this->redirect(Url::to(['viewcart']));
     }
 
     /**

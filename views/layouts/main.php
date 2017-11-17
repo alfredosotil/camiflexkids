@@ -139,7 +139,7 @@ AppAsset::register($this);
                     </div>			
                     <!-- BEGIN: LAYOUT/HEADERS/QUICK-CART -->
                     <?php
-                    if (!in_array(Yii::$app->controller->action->id, ['detailcart', 'checkout'])) {
+                    if (!in_array(Yii::$app->controller->action->id, ['viewcart', ''])) {
                         echo CartViewWidget::widget([]);
                     }
                     ?>
