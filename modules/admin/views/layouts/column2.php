@@ -41,106 +41,107 @@ AdminAsset::register($this);
         <div class="wrap">
             <?php
             NavBar::begin([
-                'brandLabel' => 'Admin Panel',
-                'brandUrl' => yii\helpers\Url::toRoute(['/admin']),
+//                'brandLabel' => 'Admin Panel',
+//                'brandUrl' => yii\helpers\Url::toRoute(['/admin']),
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
-            echo Nav::widget([
-                'options' => ['class' => 'navbar-nav'],
-                'encodeLabels' => false,
-                'items' => [
-                    [
-                        'label' => '<i class="glyphicon glyphicon-user"></i> Users',
-                        'items' => [
-                            [
-                                'label' => '<i class="glyphicon glyphicon-th-list"></i> User List',
-                                'url' => ['/admin/user/index'],
-                            ],
-                            [
-                                'label' => '<i class="glyphicon glyphicon-th-list"></i> Subscriber List',
-                                'url' => ['/subscribers/index'],
-                            ],
-                            [
-                                'label' => '<i class="glyphicon glyphicon-plus"></i> Create User',
-                                'url' => ['/admin/user/create'],
-                            ],
-                            [
-                                'label' => '<i class="glyphicon glyphicon-plus"></i> Subscriber User',
-                                'url' => ['/subscribers/create'],
-                            ],
-                        ],
-                    ],
-                    [
-                        'label' => '<i class="glyphicon glyphicons-package"></i> Products',
-                        'items' => [
-                            [
-                                'label' => '<i class="glyphicon glyphicon-th-list"></i> Product List',
-                                'url' => ['/product/index'],
-                            ],
-                            [
-                                'label' => '<i class="glyphicon glyphicon-plus"></i> Create Product',
-                                'url' => ['/product/create'],
+            if (Yii::$app->getUser()->can('admin')) {
+                echo Nav::widget([
+                    'options' => ['class' => 'navbar-nav'],
+                    'encodeLabels' => false,
+                    'items' => [
+                        [
+                            'label' => '<i class="glyphicon glyphicon-user"></i> Users',
+                            'items' => [
+                                [
+                                    'label' => '<i class="glyphicon glyphicon-th-list"></i> User List',
+                                    'url' => ['/admin/user/index'],
+                                ],
+                                [
+                                    'label' => '<i class="glyphicon glyphicon-th-list"></i> Subscriber List',
+                                    'url' => ['/subscribers/index'],
+                                ],
+                                [
+                                    'label' => '<i class="glyphicon glyphicon-plus"></i> Create User',
+                                    'url' => ['/admin/user/create'],
+                                ],
+                                [
+                                    'label' => '<i class="glyphicon glyphicon-plus"></i> Subscriber User',
+                                    'url' => ['/subscribers/create'],
+                                ],
                             ],
                         ],
-                    ],
-                    [
-                        'label' => '<i class="glyphicon glyphicons-package"></i> Orders',
-                        'items' => [
-                            [
-                                'label' => '<i class="glyphicon glyphicon-th-list"></i> Order List',
-                                'url' => ['/order/index'],
-                            ],
-                            [
-                                'label' => '<i class="glyphicon glyphicon-plus"></i> Create Order',
-                                'url' => ['/order/create'],
+                        [
+                            'label' => '<i class="glyphicon glyphicons-package"></i> Products',
+                            'items' => [
+                                [
+                                    'label' => '<i class="glyphicon glyphicon-th-list"></i> Product List',
+                                    'url' => ['/product/index'],
+                                ],
+                                [
+                                    'label' => '<i class="glyphicon glyphicon-plus"></i> Create Product',
+                                    'url' => ['/product/create'],
+                                ],
                             ],
                         ],
-                    ],
-                    [
-                        'label' => '<i class="glyphicon glyphicon-file"></i> CMS',
+                        [
+                            'label' => '<i class="glyphicon glyphicons-package"></i> Orders',
+                            'items' => [
+                                [
+                                    'label' => '<i class="glyphicon glyphicon-th-list"></i> Order List',
+                                    'url' => ['/order/index'],
+                                ],
+                                [
+                                    'label' => '<i class="glyphicon glyphicon-plus"></i> Create Order',
+                                    'url' => ['/order/create'],
+                                ],
+                            ],
+                        ],
+                        [
+                            'label' => '<i class="glyphicon glyphicon-file"></i> CMS',
 //                    'url' => ['/admin/cms/index'],
-                        'items' => [
-                            [
-                                'label' => '<i class="glyphicon glyphicon-th-list"></i> Comments List',
-                                'url' => ['/comment/manage/index'],
-                            ],
-                            [
-                                'label' => '<i class="glyphicon glyphicon-th-list"></i> Pages List',
-                                'url' => ['/admin/cms/index'],
-                            ],
-                            [
-                                'label' => '<i class="glyphicon glyphicon-th-list"></i> Slider List',
-                                'url' => ['/slider/index'],
-                            ],
-                            [
-                                'label' => '<i class="glyphicon glyphicon-plus"></i> Create Page',
-                                'url' => ['/admin/cms/create'],
-                            ],
-                            [
-                                'label' => '<i class="glyphicon glyphicon-plus"></i> Create Slider',
-                                'url' => ['/slider/create'],
-                            ],
-                        ]
+                            'items' => [
+                                [
+                                    'label' => '<i class="glyphicon glyphicon-th-list"></i> Comments List',
+                                    'url' => ['/comment/manage/index'],
+                                ],
+                                [
+                                    'label' => '<i class="glyphicon glyphicon-th-list"></i> Pages List',
+                                    'url' => ['/admin/cms/index'],
+                                ],
+                                [
+                                    'label' => '<i class="glyphicon glyphicon-th-list"></i> Slider List',
+                                    'url' => ['/slider/index'],
+                                ],
+                                [
+                                    'label' => '<i class="glyphicon glyphicon-plus"></i> Create Page',
+                                    'url' => ['/admin/cms/create'],
+                                ],
+                                [
+                                    'label' => '<i class="glyphicon glyphicon-plus"></i> Create Slider',
+                                    'url' => ['/slider/create'],
+                                ],
+                            ]
+                        ],
+                        [
+                            'label' => '<i class="glyphicon glyphicon-user"></i> RBAC',
+                            'url' => ['/admin/rbac/assignment/index'],
+                            'active' => $this->context->module->id == 'rbac',
+                        ],
+                        [
+                            'label' => '<i class="glyphicon glyphicon-wrench"></i> Settings Storage',
+                            'url' => ['/admin/settings-storage'],
+                            'active' => $this->context->module->id == 'settings-storage',
+                        ],
+                        [
+                            'label' => '<i class="glyphicon glyphicon-cog"></i> Cron Schedule Log',
+                            'url' => ['/admin/settings/cron'],
+                        ],
                     ],
-                    [
-                        'label' => '<i class="glyphicon glyphicon-user"></i> RBAC',
-                        'url' => ['/admin/rbac/assignment/index'],
-                        'active' => $this->context->module->id == 'rbac',
-                    ],
-                    [
-                        'label' => '<i class="glyphicon glyphicon-wrench"></i> Settings Storage',
-                        'url' => ['/admin/settings-storage'],
-                        'active' => $this->context->module->id == 'settings-storage',
-                    ],
-                    [
-                        'label' => '<i class="glyphicon glyphicon-cog"></i> Cron Schedule Log',
-                        'url' => ['/admin/settings/cron'],
-                    ],
-                ],
-            ]);
-
+                ]);
+            }
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
@@ -155,13 +156,13 @@ AdminAsset::register($this);
             NavBar::end();
             ?>
             <div class="container">
-                    <?php
-                    echo Breadcrumbs::widget([
-                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    ])
-                    ?>
+                <?php
+                echo Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                ])
+                ?>
                 <div class="row">
-                        <?php if (isset($this->params['sidebar'])): ?>
+                    <?php if (isset($this->params['sidebar'])): ?>
                         <div class="col-lg-2">
                             <?php
                             echo Menu::widget([
@@ -173,15 +174,15 @@ AdminAsset::register($this);
                             ]);
                             ?>
                         </div>
-<?php endif; ?>
+                    <?php endif; ?>
                     <div class="col-lg-10">
-        <?php echo $content; ?>
+                        <?php echo $content; ?>
                     </div>
                 </div>
             </div>
         </div>
 
-<?php $this->endBody() ?>
+        <?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>

@@ -26,6 +26,7 @@ AppAsset::register($this);
         <?php $this->registerMetaTag(['charset' => Yii::$app->charset]); ?>
         <?php $this->registerMetaTag(['http-equiv' => 'X-UA-Compatible', 'content' => 'IE=edge']); ?>
         <?php $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1']); ?>
+        <?php $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, user-scalable=no']); ?>
         <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700&amp;subset=all' rel='stylesheet' type='text/css'>
         <?php echo Html::csrfMetaTags(); ?>
         <title><?php echo implode(' | ', array_filter([Html::encode($this->title), Yii::$app->name])); ?></title>
@@ -77,62 +78,93 @@ AppAsset::register($this);
                         <!-- BEGIN: MEGA MENU -->
                         <!-- Dropdown menu toggle on mobile: c-toggler class can be applied to the link arrow or link itself depending on toggle mode -->
                         <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
-                            <ul class="nav navbar-nav c-theme-nav"> 
-                                <li class="c-active">
-                                    <a href="<?= Url::toRoute("/site/index") ?>" class="c-link">Inicio<span class="c-arrow c-toggler"></span></a>
-                                </li>
-                                <li class="c-menu-type-classic">
-                                    <a href="<?= Url::toRoute("/site/about") ?>" class="c-link">Nosotros<span class="c-arrow c-toggler"></span></a>
-                                </li>
-                                <li >
-                                    <a href="<?= Url::toRoute("/site/products") ?>" class="c-link">Productos<span class="c-arrow c-toggler"></span></a>
-                                </li>
-                                <li>
-                                    <a href="<?= Url::toRoute("site/simulator") ?>" class="c-link">Simulador<span class="c-arrow c-toggler"></span></a>
-                                </li>
-                                <li>
-                                    <a href="<?= Url::toRoute("site/contact") ?>" class="c-link">Contacto<span class="c-arrow c-toggler"></span></a>
-                                </li>
-                                <!--                                <li class="c-search-toggler-wrapper">
-                                                                    <a  href="#" class="c-btn-icon c-search-toggler"><i class="fa fa-search"></i></a>
-                                                                </li>-->
-
-                                <li class="c-cart-toggler-wrapper">
-                                    <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg"><?= count(Yii::$app->cart->getItems()); ?></span></a>
-                                </li>
-                                <?php if (Yii::$app->user->isGuest): ?>
-                                    <li>
-                                        <a href="#" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> <?= Yii::t('yii2mod.user', 'Sign In'); ?></a>
-                                    </li>
-                                <?php else: ?>
-
-                                    <li>
-                                        <?php
-                                        echo Html::tag('h5', Html::tag('span', Html::a(Yii::t('yii2mod.user', 'Account'), ['site/account'], [
-                                                            'class' => 'c-btn-border-opacity-04 btn-no-focus c-btn-header c-btn-border-1x c-btn-white  c-btn-uppercase c-btn-sbold',
-                                                        ]), ['class' => 'label label-info']));
-                                        ?>
-                                        <?php
-                                        if (Yii::$app->getUser()->can('admin')) {
-                                            echo Html::tag('h5', Html::tag('span', Html::a(Yii::t('yii2mod.user', 'Administration'), ['admin/'], [
-                                                                'class' => 'c-btn-border-opacity-04 btn-no-focus c-btn-header c-btn-border-1x c-btn-white  c-btn-uppercase c-btn-sbold',
-                                                            ]), ['class' => 'label label-info']));
-                                        }
-                                        ?>
-                                    </li>
-                                    <li>
-                                        <?php
-                                        echo Html::a(Yii::t('yii2mod.user', 'Logout'), ['site/logout'], [
-                                            'class' => 'c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold',
-                                            'data' => [
-                                                'confirm' => Yii::t('yii2mod.user', 'Are you sure you want to sign out?'),
-                                                'method' => 'post',
-                                            ]
-                                        ]);
-                                        ?>
-                                    </li>
-                                <?php endif; ?>
-                            </ul>
+                            <?php
+                            $items = [
+                                [
+                                    'label' => 'Inicio<span class="c-arrow c-toggler"></span>',
+                                    'url' => ['/site/index'],
+                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/index') ? 'color: red;' : null],
+//                                    'active' => $this->context->route == 'site/index',
+                                ],
+                                [
+                                    'label' => 'Nosotros<span class="c-arrow c-toggler"></span>',
+                                    'url' => ['/site/about'],
+                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/about') ? 'color: red;' : null],
+//                                    'active' => $this->context->route == 'site/about',
+                                ],
+                                [
+                                    'label' => 'Productos<span class="c-arrow c-toggler"></span>',
+                                    'url' => ['/site/products'],
+                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/products') ? 'color: red;' : null],
+//                                    'active' => $this->context->route == 'site/products',
+                                ],
+                                [
+                                    'label' => 'Simulador<span class="c-arrow c-toggler"></span>',
+                                    'url' => ['/site/simulator'],
+                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/simulator') ? 'color: red;' : null],
+//                                    'active' => $this->context->route == 'site/simulator',
+                                ],
+                                [
+                                    'label' => 'Contacto<span class="c-arrow c-toggler"></span>',
+                                    'url' => ['/site/contact'],
+                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/contact') ? 'color: red;' : null],
+//                                    'active' => $this->context->route == 'site/contact',
+                                ],
+                                [
+                                    'label' => '<i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">' . count(Yii::$app->cart->getItems()) . '</span>',
+                                    'url' => '#',
+                                    'linkOptions' => ['class' => 'c-btn-icon c-cart-toggler'],
+                                    'options' => ['class' => 'c-cart-toggler-wrapper']
+                                ],
+                                [
+                                    'label' => '<i class="icon-user"></i>' . Yii::t('yii2mod.user', 'Sign In'),
+                                    'url' => '#',
+                                    'linkOptions' => [
+                                        'class' => 'c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold',
+                                        'data' => [
+                                            'toggle' => 'modal',
+                                            'target' => '#login-form',
+                                        ]
+                                    ],
+                                    'visible' => Yii::$app->user->isGuest
+                                ],
+                                [
+                                    'label' => Yii::t('app', 'User Opt'),
+                                    'linkOptions' => ['class' => 'c-link'],
+                                    'options' => ['class' => 'c-menu-type-classic'],
+                                    'dropDownOptions' => ['class' => 'c-menu-type-classic c-pull-left', 'style' => 'min-width: auto;'],
+                                    'items' => [
+                                        [
+                                            'label' => Yii::t('yii2mod.user', 'Account'),
+                                            'url' => ['site/account'],
+//                                            'linkOptions' => ['class' => 'c-menu-type-mega c-menu-type-fullwidth'],
+//                                            'options' => ['class' => 'c-menu-type-mega c-menu-type-fullwidth']
+                                        ],
+                                        [
+                                            'label' => Yii::t('yii2mod.user', 'Administration'),
+                                            'url' => ['admin/'],
+                                            'visible' => Yii::$app->getUser()->can('admin'),
+//                                            'linkOptions' => ['class' => 'c-menu-type-mega c-menu-type-fullwidth'],
+//                                            'options' => ['class' => 'c-menu-type-mega c-menu-type-fullwidth']
+                                        ],
+                                    ],
+//                                    'options' => ['class' => 'c-menu-type-mega c-menu-type-fullwidth'],
+                                    'visible' => !Yii::$app->user->isGuest
+                                ],
+                                ['label' => Yii::t('yii2mod.user', 'Logout'), 'url' => ['site/logout'], 'linkOptions' => ['class' => 'c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold', 'data' => [
+                                            'confirm' => Yii::t('yii2mod.user', 'Are you sure you want to sign out?'),
+                                            'method' => 'post',
+                                        ]],
+                                    'visible' => !Yii::$app->user->isGuest
+                                ],
+                            ];
+                            echo Nav::widget([
+//                                'options' => ['class' => 'nav navbar-nav c-theme-nav'],
+                                'options' => ['class' => 'nav navbar-nav'],
+                                'items' => $items,
+                                'encodeLabels' => false,
+                            ]);
+                            ?>
                         </nav>
                         <!-- END: MEGA MENU --><!-- END: LAYOUT/HEADERS/MEGA-MENU -->
                         <!-- END: HOR NAV -->		
@@ -147,119 +179,7 @@ AppAsset::register($this);
                 </div>
             </div>
         </header>
-        <!-- END: HEADER --><!-- END: LAYOUT/HEADERS/HEADER-1 -->
-
-        <!-- BEGIN: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
-<!--        <nav class="c-layout-quick-sidebar">
-            <div class="c-header">
-                <button type="button" class="c-link c-close">
-                    <i class="icon-login"></i>		
-                </button>
-            </div>
-            <div class="c-content">
-                <div class="c-section">
-                    <h3>JANGO DEMOS</h3>
-                    <div class="c-settings c-demos c-bs-grid-reset-space">	
-                        <div class="row">
-                            <div class="col-md-12">
-                                <a href="index.html" class="c-demo-container c-demo-img-lg">
-                                    <div class="c-demo-thumb active">
-                                        <img src="<?= Yii::$app->request->baseUrl; ?>/img/content/quick-sidebar/default.jpg" class="c-demo-thumb-img"/>
-                                    </div>
-                                </a>	
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a href="../corporate_1/index.html" class="c-demo-container">
-                                    <div class="c-demo-thumb  c-thumb-left">
-                                        <img src="<?= Yii::$app->request->baseUrl; ?>/img/content/quick-sidebar/corporate_1.jpg" class="c-demo-thumb-img"/>
-                                    </div>
-                                </a>	
-                            </div>
-                            <div class="col-md-6">
-                                <a href="../agency_1/index.html" class="c-demo-container">
-                                    <div class="c-demo-thumb  c-thumb-right">
-                                        <img src="<?= Yii::$app->request->baseUrl; ?>/img/content/quick-sidebar/corporate_1-onepage.jpg" class="c-demo-thumb-img"/>
-                                    </div>
-                                </a>	
-                            </div>
-                        </div>			
-                    </div>
-                </div>	
-                <div class="c-section">
-                    <h3>Theme Colors</h3>
-                    <div class="c-settings">
-
-                        <span class="c-color c-default c-active" data-color="default"></span>
-
-                        <span class="c-color c-green1" data-color="green1"></span>
-                        <span class="c-color c-green2" data-color="green2"></span>
-                        <span class="c-color c-green3" data-color="green3"></span>
-
-                        <span class="c-color c-yellow1" data-color="yellow1"></span>
-                        <span class="c-color c-yellow2" data-color="yellow2"></span>
-                        <span class="c-color c-yellow3" data-color="yellow3"></span>
-
-                        <span class="c-color c-red1" data-color="red1"></span>
-                        <span class="c-color c-red2" data-color="red2"></span>
-                        <span class="c-color c-red3" data-color="red3"></span>
-
-                        <span class="c-color c-purple1" data-color="purple1"></span>
-                        <span class="c-color c-purple2" data-color="purple2"></span>
-                        <span class="c-color c-purple3" data-color="purple3"></span>
-
-                        <span class="c-color c-blue1" data-color="blue1"></span>
-                        <span class="c-color c-blue2" data-color="blue2"></span>
-                        <span class="c-color c-blue3" data-color="blue3"></span>
-
-                        <span class="c-color c-brown1" data-color="brown1"></span>
-                        <span class="c-color c-brown2" data-color="brown2"></span>
-                        <span class="c-color c-brown3" data-color="brown3"></span>
-
-                        <span class="c-color c-dark1" data-color="dark1"></span>
-                        <span class="c-color c-dark2" data-color="dark2"></span>
-                        <span class="c-color c-dark3" data-color="dark3"></span>
-                    </div>
-                </div>	
-                <div class="c-section">
-                    <h3>Header Type</h3>
-                    <div class="c-settings">				
-                        <input type="button" class="c-setting_header-type btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active" data-value="boxed" value="boxed"/>
-                        <input type="button" class="c-setting_header-type btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase" data-value="fluid" value="fluid"/>
-                    </div>
-                </div>		
-                <div class="c-section">
-                    <h3>Header Mode</h3>
-                    <div class="c-settings">			
-                        <input type="button" class="c-setting_header-mode btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active" data-value="fixed" value="fixed"/>
-                        <input type="button" class="c-setting_header-mode btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase" data-value="static" value="static"/>
-                    </div>
-                </div>
-                <div class="c-section">
-                    <h3>Mega Menu Style</h3>
-                    <div class="c-settings">			
-                        <input type="button" class="c-setting_megamenu-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active" data-value="dark" value="dark"/>
-                        <input type="button" class="c-setting_megamenu-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase" data-value="light" value="light"/>
-                    </div>
-                </div>
-                <div class="c-section">
-                    <h3>Font Style</h3>
-                    <div class="c-settings">			
-                        <input type="button" class="c-setting_font-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active" data-value="default" value="default"/>
-                        <input type="button" class="c-setting_font-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase" data-value="light" value="light"/>
-                    </div>
-                </div>
-                <div class="c-section">
-                    <h3>Reading Style</h3>
-                    <div class="c-settings">	
-                        <a href="../../index.html" class="c-setting_font-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active">LTR</a>		
-                        <a href="http://www.themehats.com/themes/jango/rtl/" class="c-setting_font-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase ">RTL</a>		
-                    </div>
-                </div>
-            </div>
-        </nav>-->
-        <!-- END: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
+        <!-- END: HEADER --><!-- END: LAYOUT/HEADERS/HEADER-1 -->        
         <div class="c-layout-page">
             <?= $content ?>
         </div>

@@ -10,19 +10,7 @@ use yii\helpers\Html;
 //use yii\widgets\ActiveForm;
 use yii\bootstrap\ActiveForm;
 
-//$this->title = Yii::t('yii2mod.user', 'Login');
-//$this->params['breadcrumbs'][] = $this->title;
 $items = Yii::$app->cart->getItems();
-//Yii::$app->cart->clear();
-//$product = app\models\Product::findOne(1);
-//$detail = new \app\models\Detailorder();
-//$detail->name = 'test detail';
-//$detail->qty = 3;
-//$detail->price_per_unit = $product->price;
-//$detail->price = $detail->price_per_unit * $detail->qty;
-//$detail->vat = $detail->price + $detail->tax;
-//$detail->product_id = $product->id;
-//Yii::$app->cart->add($detail);
 ?>
 
 <!-- BEGIN: CART MENU -->
