@@ -13,6 +13,7 @@ $config = [
                 '@vendor/yii2mod/yii2-comments/migrations',
                 '@vendor/yii2mod/yii2-settings/migrations',
                 '@vendor/yii2mod/yii2-cart/migrations',
+                '@vendor/tigrov/yii2-country/migrations',
                 '@yii/rbac/migrations',
                 '@yii/migrations',
                 '@app/migrations',

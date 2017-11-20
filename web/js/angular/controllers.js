@@ -35,12 +35,28 @@ angular.module('camiflexkids-app.controllers', [])
                         console.log(response.data);
                         if (response.data.successAjax) {
                             swal({
-                                title: 'Good job!',
-                                text: 'You clicked the button!',
+                                title: 'Bien!!',
+                                text: 'El detalle fue agregado al carrito!',
                                 type: 'success',
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
                                 confirmButtonText: 'Continuar',
                                 allowOutsideClick: true,
+                            }, (result) => {
+                                if (result) {
+                                    window.location.href = response.data.redirect;
+                                }
                             });
+                        } else {
+                            swal({
+                                title: 'Error',
+                                text: 'El detalle NO fue agregado al carrito!',
+                                type: 'error',
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Continuar',
+                                allowOutsideClick: true,
+                            })
                         }
                     }, function errorCallback(response) {
                         // called asynchronously if an error occurs

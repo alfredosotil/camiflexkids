@@ -331,11 +331,27 @@ class SiteController extends Controller {
         if (Yii::$app->request->isPost) {
             if (Yii::$app->request->isAjax) {
                 $data = json_decode(Yii::$app->request->getRawBody());
+                $i = 0;
                 foreach ($data->details as $value) {
                     $model = \app\models\Product::findOne(['color' => $value->color]);
+                    
+                    if (isset($model)) {
+                        $detail = new \app\models\Detailorder();
+                        $detail->name = $model->name;
+                        $detail->qty = $value->quantity;
+                        $detail->price_per_unit = $model->price;
+                        $detail->price = $detail->price_per_unit * $detail->qty;
+                        $detail->tax = 0;
+                        $detail->vat = $detail->price + $detail->tax;
+                        $detail->product_id = $model->id;
+                        usleep(500000);
+                        $detail->detailorderuniqueid = strtotime('now');
+                        Yii::$app->cart->add($detail);
+                    }
                 }
 
-                return $this->asJson(['successAjax' => true, 'count' => count($data->details)]);
+//                Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Excelente | The product was added to cart. | Continuar'));
+                return $this->asJson(['successAjax' => true, 'redirect' => Url::to(['viewcart']), 'count' => count($data->details)]);
             }
         }
     }

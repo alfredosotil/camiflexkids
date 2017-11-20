@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "704c1a79cfc5ebd1613515633bd7dc84",
+    "content-hash": "c45fffec2e804fe684b34e12020a0fcb",
     "packages": [
         {
             "name": "2amigos/yii2-arrayquery-component",
@@ -3174,6 +3174,118 @@
                 "minifier"
             ],
             "time": "2017-05-30T02:59:46+00:00"
+        },
+        {
+            "name": "tigrov/intldata",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Tigrov/intldata.git",
+                "reference": "fd0e32eb1eb0aa954974c61f21fe3c0df3f47c3a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Tigrov/intldata/zipball/fd0e32eb1eb0aa954974c61f21fe3c0df3f47c3a",
+                "reference": "fd0e32eb1eb0aa954974c61f21fe3c0df3f47c3a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-intl": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "tigrov\\intldata\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergei Tigrov",
+                    "email": "rrr-r@ya.ru"
+                }
+            ],
+            "description": "Intl extension data in comfortable format.",
+            "keywords": [
+                "continent",
+                "country",
+                "currency",
+                "i18n",
+                "internationalization",
+                "intl",
+                "l10n",
+                "language",
+                "locale",
+                "localization",
+                "measurement",
+                "region",
+                "time zone",
+                "timezone"
+            ],
+            "time": "2017-09-05T18:32:56+00:00"
+        },
+        {
+            "name": "tigrov/yii2-country",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Tigrov/yii2-country.git",
+                "reference": "31c5bb149da0a40343ebb42885329276336c4c56"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Tigrov/yii2-country/zipball/31c5bb149da0a40343ebb42885329276336c4c56",
+                "reference": "31c5bb149da0a40343ebb42885329276336c4c56",
+                "shasum": ""
+            },
+            "require": {
+                "tigrov/intldata": "*",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "suggest": {
+                "rinvex/country": "Allows access to additional data of countries"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "bootstrap": "tigrov\\country\\Bootstrap"
+            },
+            "autoload": {
+                "psr-4": {
+                    "tigrov\\country\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergei Tigrov",
+                    "email": "rrr-r@ya.ru"
+                }
+            ],
+            "description": "Country data for Yii2 using Intl extension and more.",
+            "keywords": [
+                "continent",
+                "country",
+                "currency",
+                "i18n",
+                "internationalization",
+                "intl",
+                "l10n",
+                "language",
+                "locale",
+                "localization",
+                "measurement",
+                "region",
+                "time zone",
+                "timezone",
+                "yii2"
+            ],
+            "time": "2017-09-17T09:56:16+00:00"
         },
         {
             "name": "tubalmartin/cssmin",

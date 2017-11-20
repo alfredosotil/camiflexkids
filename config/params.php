@@ -5,10 +5,10 @@ return [
     'user.passwordResetTokenExpire' => 3600,
     'mainSlider' => json_encode(
             [
-                ['file' => 'image', 'urlFile' => 'img/content/slides/11.jpg', 'desc' => 'TAKE THE WEB BY<br>STORM WITH JANGO', 'urlRedirect' => 'site/products', 'labelUrlRedirect' => 'Comprar'],
-                ['file' => 'image', 'urlFile' => 'img/content/slides/5.jpg', 'desc' => 'JANGO IS OPTIMIZED<br>TO EVERY DEVELOPMENT', 'urlRedirect' => 'site/products', 'labelUrlRedirect' => 'Comprar'],
-                ['file' => 'image', 'urlFile' => 'img/content/slides/10.jpg', 'desc' => 'JANGO IS OPTIMIZED<br>TO EVERY DEVELOPMENT', 'urlRedirect' => 'site/products', 'labelUrlRedirect' => 'Comprar'],
-                ['file' => 'video', 'urlFile' => 'media/video/video-3.mp4', 'desc' => 'Let us show you <br>Unlimited possibilities', 'urlRedirect' => 'site/products', 'labelUrlRedirect' => 'Comprar'],
+                ['file' => 'image', 'urlFile' => 'img/content/slides/11.jpg', 'desc' => 'MIRA NUESTROS PRODUCTOS<br>CAMIFLEXKIDS PERU', 'urlRedirect' => 'site/products', 'labelUrlRedirect' => 'Mirar Productos'],
+                ['file' => 'image', 'urlFile' => 'img/content/slides/5.jpg', 'desc' => 'DISEÑA TU ESPACIO<br>USA TU CREATIVIDAD', 'urlRedirect' => 'site/products', 'labelUrlRedirect' => 'Comprar'],
+                ['file' => 'image', 'urlFile' => 'img/content/slides/10.jpg', 'desc' => 'USALO EN CUALQUIER LUGAR<br>PARA CUALQUIER ESPACIO', 'urlRedirect' => 'site/products', 'labelUrlRedirect' => 'Comprar'],
+                ['file' => 'video', 'urlFile' => 'media/video/video-3.mp4', 'desc' => 'DISEÑOS PERSONALIZADOS <br> CONSULTANOS!', 'urlRedirect' => 'site/simulator', 'labelUrlRedirect' => 'Ve al simulador'],
     ]),
     'projects' => json_encode(
             [
