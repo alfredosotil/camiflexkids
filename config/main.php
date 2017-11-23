@@ -28,7 +28,10 @@ $config = [
         ],
         'gridview' => [
             'class' => '\kartik\grid\Module'
-        ]
+        ],
+        'geography' => [
+            'class' => 'amstr1k\geography\Module'
+        ],
     ],
     'components' => [
         'settings' => [

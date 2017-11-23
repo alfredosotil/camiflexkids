@@ -151,7 +151,16 @@ class SiteController extends Controller {
     }
 
     public function actionCheckout() {
+        $model = new \app\models\Order();
+        $model->country = 'PERU';
+        $model->amount = Yii::$app->cart->getAttributeTotal('vat');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Order has been created.');
+            return $this->redirect(['index']);
+        }
+
         return $this->render('checkout', [
+            'model' => $model,
         ]);
     }
 

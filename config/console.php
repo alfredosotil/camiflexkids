@@ -13,7 +13,6 @@ $config = [
                 '@vendor/yii2mod/yii2-comments/migrations',
                 '@vendor/yii2mod/yii2-settings/migrations',
                 '@vendor/yii2mod/yii2-cart/migrations',
-                '@vendor/tigrov/yii2-country/migrations',
                 '@yii/rbac/migrations',
                 '@yii/migrations',
                 '@app/migrations',
@@ -22,6 +21,9 @@ $config = [
         'fixture' => [
             'class' => 'yii\console\controllers\FixtureController',
             'namespace' => 'app\tests\fixtures',
+        ],
+        'geonames-integration' => [
+            'class' => 'amstr1k\geography\commands\GeoNamesController'
         ],
     ],
     'components' => [
@@ -45,6 +47,9 @@ $config = [
         ],
         'user' => [
             'class' => 'yii2mod\user\ConsoleModule',
+        ],
+        'geography' => [
+            'class' => 'amstr1k\geography\Module'
         ],
     ]
 ];

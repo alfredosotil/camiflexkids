@@ -37,7 +37,7 @@ $form = ActiveForm::begin([
                 'label' => 'Subscribir  <i class="fa fa-angle-right"></i>',
                 'ajaxOptions' => [
                     'type' => 'POST',
-                    'url' => 'subscriber',
+                    'url' => yii\helpers\Url::toRoute(['site/subscriber']),
                     'data' => new \yii\web\JsExpression('
                             $("#subscriber-form-main").serialize()
                     '),

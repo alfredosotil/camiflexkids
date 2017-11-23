@@ -1,102 +1,65 @@
 <?php
 /* @var $this yii\web\View */
 
-//use app\assets\AngularAsset;
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 $this->title = 'Checkout';
-//AngularAsset::register($this);
+//app\assets\AngularAsset::register($this);
 ?>
 <div class="row-correction"></div>
 <div class="c-content-box c-size-lg">
     <div class="container">
-        <form class="c-shop-form-1">
+        <div class="c-shop-form-1">
             <div class="row">
                 <!-- BEGIN: ADDRESS FORM -->
                 <div class="col-md-7 c-padding-20">
                     <!-- BEGIN: BILLING ADDRESS -->
                     <h3 class="c-font-bold c-font-uppercase c-font-24">Billing Address</h3>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Country</label>
-                            <select class="form-control c-square c-theme">
-                                <option value="1">Malaysia</option>
-                                <option value="2">Singapore</option>
-                                <option value="3">Indonesia</option>
-                                <option value="4">Thailand</option>
-                                <option value="5">China</option>
-                            </select>
+                    <div class="order-form">
+
+                        <?php $form = ActiveForm::begin(); ?>
+
+                        <?php echo $form->field($model, 'amount')->textInput() ?>
+
+                        <?php echo $form->field($model, 'ship_name')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu nombre']) ?>
+
+                        <?php echo $form->field($model, 'ship_address')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu direccion']) ?>
+
+                        <?php echo $form->field($model, 'city')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu ciudad']) ?>
+
+                        <?php echo $form->field($model, 'state')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu distrito']) ?>
+
+                        <?php echo $form->field($model, 'zip')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu codigo postal']) ?>
+
+                        <?php echo $form->field($model, 'country')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu pais']) ?>
+
+                        <?php echo $form->field($model, 'phone')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu telefono']) ?>
+
+                        <?php echo $form->field($model, 'fax')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu fax']) ?>
+
+                        <?php echo $form->field($model, 'email')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu correo electronico']) ?>
+
+                        <?php echo $form->field($model, 'shipping')->textInput() ?>
+
+                        <?php echo $form->field($model, 'tax')->textInput() ?>
+
+                        <?php // echo $form->field($model, 'created_at')->textInput() ?>
+
+                        <?php // echo $form->field($model, 'updated_at')->textInput() ?>
+
+                        <?php // echo $form->field($model, 'tracking_number')->textInput(['maxlength' => 255]) ?>
+
+                        <?php // echo $form->field($model, 'shipped')->textInput() ?>
+
+                        <?php // echo $form->field($model, 'active')->textInput() ?>
+
+                        <div class="form-group">
+                            <?php echo Html::submitButton($model->isNewRecord ? Yii::t('product', 'Create') : Yii::t('product', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">First Name</label>
-                                    <input type="text" class="form-control c-square c-theme" placeholder="First Name">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label">Last Name</label>
-                                    <input type="text" class="form-control c-square c-theme" placeholder="Last Name">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Company Name</label>
-                            <input type="text" class="form-control c-square c-theme" placeholder="Company Name">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Address</label>
-                            <input type="text" class="form-control c-square c-theme" placeholder="Street Address">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <input type="text" class="form-control c-square c-theme" placeholder="Apartment, suite, unit etc. (optional)">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Town / City</label>
-                            <input type="text" class="form-control c-square c-theme" placeholder="Town / City">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">State / County</label> <select class="form-control c-square c-theme">
-                                        <option value="0">Select an option...</option>
-                                        <option value="1">Malaysia</option>
-                                        <option value="2">Singapore</option>
-                                        <option value="3">Indonesia</option>
-                                        <option value="4">Thailand</option>
-                                        <option value="5">China</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label">Postcode / Zip</label>
-                                    <input type="text" class="form-control c-square c-theme" placeholder="Postcode / Zip">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Email Address</label>
-                                    <input type="email" class="form-control c-square c-theme" placeholder="Email Address">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label">Phone</label>
-                                    <input type="tel" class="form-control c-square c-theme" placeholder="Phone">
-                                </div>
-                            </div>
-                        </div>
+
+                        <?php ActiveForm::end(); ?>
+
                     </div>
                     <div class="row c-margin-t-15">
                         <div class="form-group col-md-12">
@@ -361,6 +324,6 @@ $this->title = 'Checkout';
                 </div>
                 <!-- END: ORDER FORM -->
             </div>
-        </form>
+        </div>
     </div>
 </div>
