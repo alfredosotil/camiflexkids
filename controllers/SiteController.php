@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\forms\ContactForm;
 use app\models\forms\ResetPasswordForm;
 use app\models\Subscribers;
+use app\models\Ubigeoperu;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -149,10 +150,25 @@ class SiteController extends Controller {
         return $this->render('viewcart', [
         ]);
     }
+    public function actionUpdatestate() {
+        $states = Ubigeoperu::find()->where(['departamento' => $_POST['value'], 'distrito' => '00'])->orderBy('nombre')->all();
+        foreach ($states as $value) {
+            echo \yii\helpers\Html::tag('option', $value->nombre, ['value' => $value->provincia]);
+        }
+    }
+    public function actionUpdatezip() {
+        $zip = Ubigeoperu::find()->where(['departamento' => $_POST['valuedepartamento'], 'provincia' => $_POST['valueprovincia']])->orderBy('nombre')->all();
+        foreach ($zip as $value) {
+            echo \yii\helpers\Html::tag('option', $value->nombre, ['value' => $value->provincia]);
+        }
+    }
 
     public function actionCheckout() {
         $model = new \app\models\Order();
         $model->country = 'PERU';
+        $model->city = '15';
+        $model->state = '00';
+        $model->zip = '00';
         $model->amount = Yii::$app->cart->getAttributeTotal('vat');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Order has been created.');

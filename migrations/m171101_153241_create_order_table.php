@@ -22,7 +22,7 @@ class m171101_153241_create_order_table extends Migration
             'zip' => $this->string()->notNull(),
             'country' => $this->string()->notNull(),
             'phone' => $this->string()->notNull(),
-            'fax' => $this->string()->notNull(),
+            'fax' => $this->string(),
             'email' => $this->string()->notNull(),
             'shipping' => $this->double()->notNull(),
             'tax' => $this->double()->notNull(),

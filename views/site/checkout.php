@@ -15,246 +15,102 @@ $this->title = 'Checkout';
                 <!-- BEGIN: ADDRESS FORM -->
                 <div class="col-md-7 c-padding-20">
                     <!-- BEGIN: BILLING ADDRESS -->
-                    <h3 class="c-font-bold c-font-uppercase c-font-24">Billing Address</h3>
+                    <h3 class="c-font-bold c-font-uppercase c-font-24">Informacion de la Orden</h3>
                     <div class="order-form">
 
                         <?php $form = ActiveForm::begin(); ?>
 
-                        <?php echo $form->field($model, 'amount')->textInput() ?>
+                        <?php echo $form->field($model, 'amount')->hiddenInput()->label(false) ?>
 
-                        <?php echo $form->field($model, 'ship_name')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu nombre']) ?>
+                        <?php echo $form->field($model, 'ship_name')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu nombre'])->label('A nombre de:') ?>
 
-                        <?php echo $form->field($model, 'ship_address')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu direccion']) ?>
+                        <?php echo $form->field($model, 'ship_address')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu direccion'])->label('Domicilio de facturación:') ?>
 
-                        <?php echo $form->field($model, 'city')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu ciudad']) ?>
+                        <?php echo $form->field($model, 'country')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'readonly' => 'readonly']) ?>
 
-                        <?php echo $form->field($model, 'state')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu distrito']) ?>
+                        <?php
+                        echo $form->field($model, 'city')->dropDownList(yii\helpers\ArrayHelper::map(app\models\Ubigeoperu::find()->where(['provincia' => '00', 'distrito' => '00'])->orderBy('nombre')->all(), 'departamento', 'nombre'), ['class' => 'form-control c-square c-theme',
+                            'onchange' => '$.post( "' . Yii::$app->urlManager->createUrl(["site/updatestate"]) . '",{value:this.value},function(data){$("#order-state").html( data );$("#order-zip").html("");})'])->label('Departamento:')
+                        ?>
 
-                        <?php echo $form->field($model, 'zip')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu codigo postal']) ?>
+                        <?php
+                        echo $form->field($model, 'state')->dropDownList(yii\helpers\ArrayHelper::map(app\models\Ubigeoperu::find()->where(['departamento' => '15', 'distrito' => '00'])->orderBy('nombre')->all(), 'provincia', 'nombre'), ['class' => 'form-control c-square c-theme',
+                            'onchange' => '$.post( "' . Yii::$app->urlManager->createUrl(["site/updatezip"]) . '",{valueprovincia:this.value, valuedepartamento:$("#order-city").val()},function(data){$("#order-zip").html( data );})'])->label('Provincia:')
+                        ?>
 
-                        <?php echo $form->field($model, 'country')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu pais']) ?>
+                        <?php echo $form->field($model, 'zip')->dropDownList(yii\helpers\ArrayHelper::map(app\models\Ubigeoperu::find()->where(['departamento' => '15', 'provincia' => '01'])->orderBy('nombre')->all(), 'distrito', 'nombre'), ['class' => 'form-control c-square c-theme'])->label('Distrito:') ?>
 
-                        <?php echo $form->field($model, 'phone')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu telefono']) ?>
+                        <?php echo $form->field($model, 'phone')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu telefono'])->label('Telefono') ?>
 
                         <?php echo $form->field($model, 'fax')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu fax']) ?>
 
                         <?php echo $form->field($model, 'email')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui tu correo electronico']) ?>
 
-                        <?php echo $form->field($model, 'shipping')->textInput() ?>
+                        <?php echo $form->field($model, 'notes')->textarea(['maxlength' => 500, 'style' => 'resize: none;', 'class' => 'form-control c-square c-theme', 'placeholder' => 'Coloca aqui alguna nota si deseas que la tomemos en cuenta.'])->label('Agrega tu nota') ?>
 
-                        <?php echo $form->field($model, 'tax')->textInput() ?>
+                        <?php // echo $form->field($model, 'shipping')->textInput()    ?>
 
-                        <?php // echo $form->field($model, 'created_at')->textInput() ?>
+                        <?php // echo $form->field($model, 'tax')->textInput()    ?>
 
-                        <?php // echo $form->field($model, 'updated_at')->textInput() ?>
+                        <?php // echo $form->field($model, 'created_at')->textInput()    ?>
 
-                        <?php // echo $form->field($model, 'tracking_number')->textInput(['maxlength' => 255]) ?>
+                        <?php // echo $form->field($model, 'updated_at')->textInput()    ?>
 
-                        <?php // echo $form->field($model, 'shipped')->textInput() ?>
+                        <?php // echo $form->field($model, 'tracking_number')->textInput(['maxlength' => 255])    ?>
 
-                        <?php // echo $form->field($model, 'active')->textInput() ?>
+                        <?php // echo $form->field($model, 'shipped')->textInput()    ?>
+
+                        <?php // echo $form->field($model, 'active')->textInput()    ?>
 
                         <div class="form-group">
-                            <?php echo Html::submitButton($model->isNewRecord ? Yii::t('product', 'Create') : Yii::t('product', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+                            <?php // echo Html::submitButton($model->isNewRecord ? Yii::t('product', 'Create') : Yii::t('product', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                         </div>
 
                         <?php ActiveForm::end(); ?>
 
-                    </div>
-                    <div class="row c-margin-t-15">
-                        <div class="form-group col-md-12">
-                            <div class="c-checkbox c-toggle-hide" data-object-selector="c-account" data-animation-speed="600">
-                                <input type="checkbox" id="checkbox1-77" class="c-check">
-                                <label for="checkbox1-77">
-                                    <span class="inc"></span>
-                                    <span class="check"></span>
-                                    <span class="box"></span>
-                                    Create an account?
-                                </label>
-                            </div>
-                            <p class="help-block">Create an account by entering the information below. If you are a returning customer please login.</p>
-                        </div>
-                    </div>
-                    <div class="row c-account" style="display: none;">
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Account Password</label>
-                            <input type="password" class="form-control c-square c-theme" placeholder="Password">
-                        </div>
-                    </div>
-                    <!-- BILLING ADDRESS -->
-                    <!-- SHIPPING ADDRESS -->
-                    <h3 class="c-font-bold c-font-uppercase c-font-24">Shipping Address</h3>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <div class="c-checkbox-inline">
-                                <div class="c-checkbox c-toggle-hide" data-object-selector="c-shipping-address" data-animation-speed="600">
-                                    <input type="checkbox" id="checkbox6-444" class="c-check">
-                                    <label for="checkbox6-444">
-                                        <span class="inc"></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span>
-                                        Ship to different address?
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="c-shipping-address" style="display: none;">
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <label class="control-label">Country</label> <select class="form-control c-square c-theme">
-                                    <option value="1">Malaysia</option>
-                                    <option value="2">Singapore</option>
-                                    <option value="3">Indonesia</option>
-                                    <option value="4">Thailand</option>
-                                    <option value="5">China</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">First Name</label>
-                                        <input type="text" class="form-control c-square c-theme" placeholder="First Name">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="control-label">Last Name</label>
-                                        <input type="text" class="form-control c-square c-theme" placeholder="Last Name">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <label class="control-label">Company Name</label>
-                                <input type="text" class="form-control c-square c-theme" placeholder="Company Name">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <label class="control-label">Address</label>
-                                <input type="text" class="form-control c-square c-theme" placeholder="Street Address">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <input type="text" class="form-control c-square c-theme" placeholder="Apartment, suite, unit etc. (optional)">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <label class="control-label">Town / City</label>
-                                <input type="text" class="form-control c-square c-theme" placeholder="Town / City">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">State / County</label> <select class="form-control c-square c-theme">
-                                            <option value="0">Select an option...</option>
-                                            <option value="1">Malaysia</option>
-                                            <option value="2">Singapore</option>
-                                            <option value="3">Indonesia</option>
-                                            <option value="4">Thailand</option>
-                                            <option value="5">China</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="control-label">Postcode / Zip</label>
-                                        <input type="text" class="form-control c-square c-theme" placeholder="Postcode / Zip">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Email Address</label>
-                                        <input type="email" class="form-control c-square c-theme" placeholder="Email Address">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="control-label">Phone</label>
-                                        <input type="tel" class="form-control c-square c-theme" placeholder="Phone">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- SHIPPING ADDRESS -->
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Order Notes</label>
-                            <textarea class="form-control c-square c-theme" rows="3" placeholder="Note about your order, e.g. special notes for delivery."></textarea>
-                        </div>
                     </div>
                 </div>
                 <!-- END: ADDRESS FORM -->
                 <!-- BEGIN: ORDER FORM -->
                 <div class="col-md-5">
                     <div class="c-content-bar-1 c-align-left c-bordered c-theme-border c-shadow">
-                        <h1 class="c-font-bold c-font-uppercase c-font-24">Your Order</h1>
+                        <h1 class="c-font-bold c-font-uppercase c-font-24">Tu Orden</h1>
                         <ul class="c-order list-unstyled">
                             <li class="row c-margin-b-15">
-                                <div class="col-md-6 c-font-20"><h2>Product</h2></div>
+                                <div class="col-md-6 c-font-20"><h2>Producto</h2></div>
                                 <div class="col-md-6 c-font-20"><h2>Total</h2></div>
                             </li>
                             <li class="row c-border-bottom"></li>
-                            <li class="row c-margin-b-15 c-margin-t-15">
-                                <div class="col-md-6 c-font-20"><a href="shop-product-details.html" class="c-theme-link">Winter Coat x 1</a></div>
-                                <div class="col-md-6 c-font-20">
-                                    <p class="">$30.99</p>
-                                </div>
-                            </li>
-                            <li class="row c-margin-b-15 c-margin-t-15">
-                                <div class="col-md-6 c-font-20"><a href="shop-product-details-2.html" class="c-theme-link">Sports Wear x 1</a></div>
-                                <div class="col-md-6 c-font-20">
-                                    <p class="">$30.99</p>
-                                </div>
-                            </li>
-                            <li class="row c-margin-b-15 c-margin-t-15">
+                            <?php 
+                            $items = Yii::$app->cart->getItems();
+                            ?>
+                            <?php foreach ($items as $value): ?>
+                                <li class="row c-margin-b-15 c-margin-t-15">
+                                    <div class="col-md-6 c-font-20"><a href="<?= \yii\helpers\Url::toRoute(['site/productdetail', 'id' => $value->product->id]) ?>" class="c-theme-link"><?= $value->name ?> x <?= $value->qty ?></a></div>
+                                    <div class="col-md-6 c-font-20">
+                                        <p class="">S/.<?= $value->price ?></p>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>                            
+<!--                            <li class="row c-margin-b-15 c-margin-t-15">
                                 <div class="col-md-6 c-font-20">Subtotal</div>
                                 <div class="col-md-6 c-font-20">
-                                    <p class="">$<span class="c-subtotal">61.98</span></p>
+                                    <p class="">S/.<span class="c-subtotal"><?= Yii::$app->cart->getAttributeTotal('vat')?></span></p>
                                 </div>
-                            </li>
+                            </li>-->
                             <li class="row c-border-top c-margin-b-15"></li>
-                            <li class="row">
-                                <div class="col-md-6 c-font-20">Shipping</div>
-                                <div class="col-md-6">
-                                    <div class="c-radio-list c-shipping-calculator" data-name="shipping_price" data-subtotal-selector="c-subtotal" data-total-selector="c-shipping-total">
-                                        <div class="c-radio">
-                                            <input type="radio" value="20" id="radio11" class="c-radio" name="shipping_price" checked="">
-                                            <label for="radio11">
-                                                <span class="inc"></span>
-                                                <span class="check"></span>
-                                                <span class="box"></span>
-                                                Flat Rate
-                                            </label>
-                                            <p class="c-shipping-price c-font-bold c-font-20">$20.00</p>
-                                        </div>
-                                        <div class="c-radio">
-                                            <input type="radio" value="10" id="radio12" class="c-radio" name="shipping_price">
-                                            <label for="radio12">
-                                                <span class="inc"></span>
-                                                <span class="check"></span>
-                                                <span class="box"></span>
-                                                Local Delivery
-                                            </label>
-                                            <p class="c-shipping-price c-font-bold c-font-20">$10.00</p>
-                                        </div>
-                                        <div class="c-radio">
-                                            <input type="radio" value="0" id="radio13" class="c-radio" name="shipping_price">
-                                            <label for="radio13">
-                                                <span class="inc"></span>
-                                                <span class="check"></span>
-                                                <span class="box"></span>
-                                                Local Pickup
-                                            </label>
-                                        </div>
+                            <li class="row c-margin-t-15">
+                                <div class="form-group col-md-12">
+                                    <div class="c-checkbox c-toggle-hide" data-object-selector="c-account" data-animation-speed="600">
+                                        <input type="checkbox" id="checkbox1-77" class="c-check">
+                                        <label for="checkbox1-77">
+                                            <span class="inc"></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span>
+                                            Envio de mercaderia?
+                                        </label>
                                     </div>
+                                    <p class="help-block">Podemos dejar tus productos en la puerta de tu casa.</p>
                                 </div>
                             </li>
                             <li class="row c-margin-b-15 c-margin-t-15">
@@ -262,7 +118,7 @@ $this->title = 'Checkout';
                                     <p class="c-font-30">Total</p>
                                 </div>
                                 <div class="col-md-6 c-font-20">
-                                    <p class="c-font-bold c-font-30">$<span class="c-shipping-total">81.98</span></p>
+                                    <p class="c-font-bold c-font-30">S/.<span class="c-shipping-total"><?= Yii::$app->cart->getAttributeTotal('vat')?></span></p>
                                 </div>
                             </li>
                             <li class="row">
@@ -308,15 +164,15 @@ $this->title = 'Checkout';
                                             <span class="inc"></span>
                                             <span class="check"></span>
                                             <span class="box"></span>
-                                            I’ve read and accept the Terms &amp; Conditions
+                                            He le&iacute;do los terminos &amp; condiciones.
                                         </label>
                                     </div>
                                 </div>
                             </li>
                             <li class="row">
                                 <div class="form-group col-md-12" role="group">
-                                    <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">Submit</button>
-                                    <button type="submit" class="btn btn-lg btn-default c-btn-square c-btn-uppercase c-btn-bold">Cancel</button>
+                                    <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">Enviar</button>
+                                    <button type="submit" class="btn btn-lg btn-default c-btn-square c-btn-uppercase c-btn-bold">Cancelar</button>
                                 </div>
                             </li>
                         </ul>
