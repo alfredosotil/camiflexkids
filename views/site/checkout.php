@@ -81,7 +81,7 @@ $this->title = 'Checkout';
                                 <div class="col-md-6 c-font-20"><h2>Total</h2></div>
                             </li>
                             <li class="row c-border-bottom"></li>
-                            <?php 
+                            <?php
                             $items = Yii::$app->cart->getItems();
                             ?>
                             <?php foreach ($items as $value): ?>
@@ -92,12 +92,12 @@ $this->title = 'Checkout';
                                     </div>
                                 </li>
                             <?php endforeach; ?>                            
-<!--                            <li class="row c-margin-b-15 c-margin-t-15">
-                                <div class="col-md-6 c-font-20">Subtotal</div>
-                                <div class="col-md-6 c-font-20">
-                                    <p class="">S/.<span class="c-subtotal"><?= Yii::$app->cart->getAttributeTotal('vat')?></span></p>
-                                </div>
-                            </li>-->
+                            <!--                            <li class="row c-margin-b-15 c-margin-t-15">
+                                                            <div class="col-md-6 c-font-20">Subtotal</div>
+                                                            <div class="col-md-6 c-font-20">
+                                                                <p class="">S/.<span class="c-subtotal"><?= Yii::$app->cart->getAttributeTotal('vat') ?></span></p>
+                                                            </div>
+                                                        </li>-->
                             <li class="row c-border-top c-margin-b-15"></li>
                             <li class="row c-margin-t-15">
                                 <div class="form-group col-md-12">
@@ -115,45 +115,74 @@ $this->title = 'Checkout';
                             </li>
                             <li class="row c-margin-b-15 c-margin-t-15">
                                 <div class="col-md-6 c-font-20">
-                                    <p class="c-font-30">Total</p>
+                                    <p class="c-font-30">Total a pagar</p>
                                 </div>
                                 <div class="col-md-6 c-font-20">
-                                    <p class="c-font-bold c-font-30">S/.<span class="c-shipping-total"><?= Yii::$app->cart->getAttributeTotal('vat')?></span></p>
+                                    <p class="c-font-bold c-font-30">S/.<span class="c-shipping-total"><?= Yii::$app->cart->getAttributeTotal('vat') ?></span></p>
                                 </div>
                             </li>
                             <li class="row">
                                 <div class="col-md-12">
                                     <div class="c-radio-list">
                                         <div class="c-radio">
-                                            <input type="radio" id="radio1" class="c-radio" name="payment" checked="">
+                                            <input type="radio" id="radio1" class="c-radio" name="payment" value="TRANSFER" onclick="$('#cardpayment').toggle(false);">
                                             <label for="radio1" class="c-font-bold c-font-20">
                                                 <span class="inc"></span>
                                                 <span class="check"></span>
                                                 <span class="box"></span>
-                                                Direct Bank Transfer
+                                                Transferencia Bancaria
                                             </label>
-                                            <p class="help-block">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                            <p class="help-block">Has tu pago directamente al banco. Por favor usa el numero de orden como referencia de pago. Tu orden no sera enviada hasta revisar el pago en la cuenta del negocio.</p>
                                         </div>
+                                        <!--                                        <div class="c-radio">
+                                                                                    <input type="radio" id="radio2" class="c-radio" name="payment">
+                                                                                    <label for="radio2" class="c-font-bold c-font-20">
+                                                                                        <span class="inc"></span>
+                                                                                        <span class="check"></span>
+                                                                                        <span class="box"></span>
+                                                                                        Cheque Payment
+                                                                                    </label>
+                                                                                </div>-->
                                         <div class="c-radio">
-                                            <input type="radio" id="radio2" class="c-radio" name="payment">
-                                            <label for="radio2" class="c-font-bold c-font-20">
-                                                <span class="inc"></span>
-                                                <span class="check"></span>
-                                                <span class="box"></span>
-                                                Cheque Payment
-                                            </label>
-                                        </div>
-                                        <div class="c-radio">
-                                            <input type="radio" id="radio3" class="c-radio" name="payment">
+                                            <input type="radio" id="radio3" class="c-radio" name="payment" value="CULQI" checked="" onclick="$('#cardpayment').toggle(true);">
                                             <label for="radio3" class="c-font-bold c-font-20">
                                                 <span class="inc"></span>
                                                 <span class="check"></span>
                                                 <span class="box"></span>
-                                                Paypal
+                                                Culqi
                                             </label>
                                             <img class="img-responsive" width="250" src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png">
                                         </div>
                                     </div>
+                                </div>
+                            </li>
+                            <li class="row">
+                                <div id="cardpayment" class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">
+                                                Payment Details
+                                            </h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <?php
+                                            $culqimodel = new \app\models\forms\CulqiForm();
+                                            $formculqi = ActiveForm::begin([]);
+                                            ?>
+                                            <?= $formculqi->field($culqimodel, 'email')->textInput(['maxlength' => 20, 'class' => 'form-control c-square c-theme']) ?>
+                                            <?= $formculqi->field($culqimodel, 'cardnumber')->textInput()->textInput(['maxlength' => 20, 'class' => 'form-control c-square c-theme']) ?>
+                                            <?= $formculqi->field($culqimodel, 'expirationmonth')->textInput(['maxlength' => 2, 'class' => 'form-control c-square c-theme', 'placeholder' => 'MM']) ?>
+                                            <?= $formculqi->field($culqimodel, 'expirationyear')->textInput(['maxlength' => 4, 'class' => 'form-control c-square c-theme', 'placeholder' => 'AAAA']) ?>
+                                            <?= $formculqi->field($culqimodel, 'cvv')->textInput(['maxlength' => 3, 'class' => 'form-control c-square c-theme', 'placeholder' => '999']) ?> 
+                                            <?php ActiveForm::end(); ?>
+                                        </div>
+                                    </div>
+                                    <!--                                    <ul class="nav nav-pills nav-stacked">
+                                                                            <li class="active"><a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <br/>
+                                                                        <a href="http://www.jquery2dotnet.com" class="btn btn-success btn-lg btn-block" role="button">Pay</a>-->
                                 </div>
                             </li>
                             <li class="row c-margin-b-15 c-margin-t-15">

@@ -21,6 +21,10 @@ class m171023_174816_create_category_table extends Migration {
             'name' => $this->string()->notNull()->unique(),
             'active' => $this->smallInteger()->notNull()->defaultValue(1),
         ]);
+
+        $this->insert('{{%Category}}', [
+            'name' => 'Pisos de goma',
+        ]);
     }
 
     /**

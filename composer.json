@@ -54,7 +54,8 @@
         "kartik-v/yii2-widget-touchspin": "*",
         "yii2mod/yii2-sweet-alert": "*",
         "kartik-v/yii2-widget-activeform": "@dev",
-        "derekisbusy/yii2-geo": "*"
+        "derekisbusy/yii2-geo": "*",
+        "culqi/culqi-php": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

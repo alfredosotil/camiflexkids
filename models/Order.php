@@ -24,32 +24,35 @@ use Yii;
  * @property integer $updated_at
  * @property integer $shipped
  * @property string $tracking_number
+ * @property string $typepayment
  * @property string $notes
  * @property integer $active
  *
  * @property Detailorder[] $detailorders
  */
-class Order extends \yii\db\ActiveRecord
-{
+class Order extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'order';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['amount', 'ship_name', 'ship_address', 'city', 'state', 'zip', 'country', 'phone', 'email', 'shipping', 'tax', 'created_at', 'updated_at', 'tracking_number'], 'required'],
             [['amount', 'shipping', 'tax'], 'number'],
             [['created_at', 'updated_at', 'shipped', 'active'], 'integer'],
             [['ship_name', 'ship_address', 'city', 'state', 'zip', 'country', 'phone', 'fax', 'email', 'tracking_number'], 'string', 'max' => 255],
+            [['typepayment'], 'string', 'max' => 20],
             [['notes'], 'string', 'max' => 500],
+            ['email', 'email'],
+            ['phone', 'match', 'pattern' => '/^\d{3}\d{3}\d{3}$/gm', 'message' => 'El telefono debe ser numero de 9 digitos'],
+            ['fax', 'match', 'pattern' => '/^\d{3}\d{3}\d{3}$/gm', 'message' => 'El telefono debe ser numero de 9 digitos']
         ];
     }
 
@@ -62,8 +65,7 @@ class Order extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => Yii::t('app', 'ID'),
             'amount' => Yii::t('app', 'Amount'),
@@ -82,6 +84,7 @@ class Order extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
             'shipped' => Yii::t('app', 'Shipped'),
             'tracking_number' => Yii::t('app', 'Tracking Number'),
+            'typepayment' => Yii::t('app', 'Typepayment'),
             'notes' => Yii::t('app', 'Notes'),
             'active' => Yii::t('app', 'Active'),
         ];
@@ -90,8 +93,8 @@ class Order extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDetailorders()
-    {
+    public function getDetailorders() {
         return $this->hasMany(Detailorder::className(), ['order_id' => 'id']);
     }
+
 }
