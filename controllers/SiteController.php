@@ -150,13 +150,15 @@ class SiteController extends Controller {
         return $this->render('viewcart', [
         ]);
     }
-    public function actionUpdatestate() {
+
+    public function actionUpdateprovince() {
         $states = Ubigeoperu::find()->where(['departamento' => $_POST['value'], 'distrito' => '00'])->orderBy('nombre')->all();
         foreach ($states as $value) {
             echo \yii\helpers\Html::tag('option', $value->nombre, ['value' => $value->provincia]);
         }
     }
-    public function actionUpdatezip() {
+
+    public function actionUpdatedistrict() {
         $zip = Ubigeoperu::find()->where(['departamento' => $_POST['valuedepartamento'], 'provincia' => $_POST['valueprovincia']])->orderBy('nombre')->all();
         foreach ($zip as $value) {
             echo \yii\helpers\Html::tag('option', $value->nombre, ['value' => $value->provincia]);
@@ -166,9 +168,9 @@ class SiteController extends Controller {
     public function actionCheckout() {
         $model = new \app\models\Order();
         $model->country = 'PERU';
-        $model->city = '15';
-        $model->state = '00';
-        $model->zip = '00';
+        $model->departament = '15';
+        $model->province = '00';
+        $model->district = '00';
         $model->amount = Yii::$app->cart->getAttributeTotal('vat');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Order has been created.');
@@ -176,7 +178,7 @@ class SiteController extends Controller {
         }
 
         return $this->render('checkout', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -281,21 +283,53 @@ class SiteController extends Controller {
         }
 
         if (isset($model)) {
-            $detail = new \app\models\Detailorder();
-            $detail->name = $model->name;
-            $detail->qty = $qty;
-            $detail->price_per_unit = $model->price;
-            $detail->price = $detail->price_per_unit * $detail->qty;
-            $detail->tax = 0;
-            $detail->vat = $detail->price + $detail->tax;
-            $detail->product_id = $model->id;
-            $detail->detailorderuniqueid = strtotime('now');
-            Yii::$app->cart->add($detail);
-            Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Excelente | The product was added to cart. | Continuar'));
+            if ($this->addtocart($model, $qty)) {
+                Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Excelente | El producto fue agregado al carrito de compras. | Continuar'));
+            } else {
+                Yii::$app->getSession()->setFlash('error', Yii::t('app', 'Error | No se agrego el producto al carrito de compras. | Continuar'));
+            }
             return $this->redirect(Url::to(is_null($id) ? ['productdetail', 'id' => $model->id] : ['products']));
         } else {
             throw new \yii\web\HttpException(404, 'Page not found');
         }
+    }
+
+    public function addtocart($product, $qty) {
+        $items = Yii::$app->cart->getItems();
+        $temp_detail = null;
+        $result = false;
+        foreach ($items as $value) {
+            if ($value->product_id === $product->id) {
+                $temp_detail = $value;
+                break;
+            }
+        }
+        $detail = new \app\models\Detailorder();
+        if (is_null($temp_detail)) {
+            $detail->name = $product->name;
+            $detail->qty = $qty;
+            $detail->price_per_unit = $product->price;
+            $detail->price = $detail->price_per_unit * $detail->qty;
+            $detail->tax = 0;
+            $detail->vat = $detail->price + $detail->tax;
+            $detail->product_id = $product->id;
+            $detail->detailorderuniqueid = strtotime('now');
+            Yii::$app->cart->add($detail);
+            $result = true;
+        } else {
+            Yii::$app->cart->remove($temp_detail->detailorderuniqueid);
+            $detail->name = $product->name;
+            $detail->qty = $temp_detail->qty + $qty;
+            $detail->price_per_unit = $product->price;
+            $detail->price = $detail->price_per_unit * $detail->qty;
+            $detail->tax = 0;
+            $detail->vat = $detail->price + $detail->tax;
+            $detail->product_id = $product->id;
+            $detail->detailorderuniqueid = strtotime('now');
+            Yii::$app->cart->add($detail);
+            $result = true;
+        }
+        return $result;
     }
 
     public function actionDeletedetailorder($id) {
@@ -359,19 +393,10 @@ class SiteController extends Controller {
                 $i = 0;
                 foreach ($data->details as $value) {
                     $model = \app\models\Product::findOne(['color' => $value->color]);
-                    
+
                     if (isset($model)) {
-                        $detail = new \app\models\Detailorder();
-                        $detail->name = $model->name;
-                        $detail->qty = $value->quantity;
-                        $detail->price_per_unit = $model->price;
-                        $detail->price = $detail->price_per_unit * $detail->qty;
-                        $detail->tax = 0;
-                        $detail->vat = $detail->price + $detail->tax;
-                        $detail->product_id = $model->id;
+                        $this->addtocart($model, $value->quantity);
                         usleep(500000);
-                        $detail->detailorderuniqueid = strtotime('now');
-                        Yii::$app->cart->add($detail);
                     }
                 }
 
@@ -400,17 +425,10 @@ class SiteController extends Controller {
     }
 
     private function getAboutMainSlides() {
-        $model = \app\models\Slider::findOne(['name' => 'about-slider']);
+        $slides = json_decode(Yii::$app->params['latestProjectSlider']);
         $htmlSlides = "";
-        if (isset($model)) {
-            $slides = [];
-            foreach ($model->getBehavior('galleryBehavior')->getImages() as $image) {
-                $slides[] = $image->getUrl('original');
-            }
-            foreach ($slides as $value) {
-                $htmlSlides .= $this->renderPartial('slideabout-template', ['data' => $value]);
-//            $htmlSlides .= $this->renderPartial('slideabout-template', ['data' => '/'.$value->urlFile]);
-            }
+        foreach ($slides as $value) {
+            $htmlSlides .= $this->renderPartial('slideabout-template', ['data' => '/' . $value->urlFile]);
         }
         return $htmlSlides;
     }

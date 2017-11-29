@@ -16,9 +16,9 @@ $this->title = 'Detalles del Productos Camiflex Kids';
                     <h3 class="c-font-uppercase c-font-bold"><?= $model->name ?></h3>
                 </div>
             </div>
-            <div class="c-product-gallery">
+            <div class="c-product-gallery" style="border: black solid 2px;">
                 <div class="row c-bs-grid-reset-space">
-                    <div class="col-md-6 c-product-gallery-content">
+                    <div class="col-md-6 c-product-gallery-content" style="border-right: black solid 2px;">
                         <?php
                         foreach ($images as $image) {
                             echo Html::tag('div', Html::img($image->getUrl('original')), ['class' => 'c-zoom']);
@@ -101,7 +101,7 @@ $this->title = 'Detalles del Productos Camiflex Kids';
             <div role="tabpanel" class="tab-pane fade in active" id="tab-1"> 
                 <div class="c-product-desc c-center">
                     <div class="container">
-                        <?= isset($images[0]) ? Html::img($images[0]->getUrl('original')) : '' ?>
+                        <?= isset($images[1]) ? Html::img($images[1]->getUrl('original')) : '' ?>
                         <p>
                             <?= $model->long_desc ?>
                         </p>
@@ -112,6 +112,17 @@ $this->title = 'Detalles del Productos Camiflex Kids';
             <div role="tabpanel" class="tab-pane fade" id="tab-2">
                 <div class="c-product-tab-meta-bg c-bg-grey c-center">
                     <div class="container">
+                        <div class="c-product-tab-meta">
+                            <div id="showBarcode"></div>
+                        </div>
+                        <?php
+                        $optionsArray = array(
+                            'elementId' => 'showBarcode', /* div or canvas id */
+                            'value' => $model->sku, /* value for EAN 13 be careful to set right values for each barcode type */
+                            'type' => 'code11', /* supported types  ean8, ean13, upc, std25, int25, code11, code39, code93, code128, codabar, msi, datamatrix */
+                        );
+                        echo barcode\barcode\BarcodeGenerator::widget($optionsArray);
+                        ?>
                         <p class="c-product-tab-meta"><strong>SKU:</strong> <?= $model->sku ?></p>
                         <p class="c-product-tab-meta"><strong>Categorias:</strong> <?= $model->category->name ?></p>
                     </div>

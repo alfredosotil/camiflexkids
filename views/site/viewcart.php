@@ -13,11 +13,24 @@ $this->title = 'View Cart';
         echo \yii2mod\cart\widgets\CartGrid::widget([
             // Some widget property maybe need to change. 
             'cartColumns' => [
-                'uniqueid',
-                'label',
-                'price',
                 [
-                    'header' => 'Action',
+                    'attribute' => 'uniqueid',
+                    'label' => 'Codigo detalle',
+                ],
+                [
+                    'attribute' => 'label',
+                    'label' => 'Color',
+                ],
+                [
+                    'attribute' => 'qty',
+                    'label' => 'Cantidad',
+                ],
+                [
+                    'attribute' => 'price',
+                    'label' => 'Precio',
+                ],
+                [
+                    'header' => 'Borrar',
                     'class' => 'yii\grid\ActionColumn',
                     'template' => '{delete}',
                     'buttons' => [

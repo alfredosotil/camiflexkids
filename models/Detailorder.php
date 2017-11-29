@@ -88,6 +88,10 @@ class Detailorder extends \yii\db\ActiveRecord implements \yii2mod\cart\models\C
         return $this->hasOne(Product::className(), ['id' => 'product_id']);
     }
 
+    public function getQty() {
+        return $this->qty;
+    }
+    
     public function getPrice() {
         return $this->price;
     }

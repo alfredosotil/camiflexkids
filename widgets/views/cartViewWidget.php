@@ -25,7 +25,7 @@ $items = Yii::$app->cart->getItems();
                 <!--                <div class="c-cart-menu-close">
                                     <a href="#" class="c-theme-link">×</a>
                                 </div>-->
-                <div class="mat-color" style="background-color: <?= $value->product->color ?>"></div>
+                <div class="mat-color" style="border:black solid 1px; background-color: <?= $value->product->color ?>;"></div>
                 <div class="c-cart-menu-content">
                     <p><?= $value->qty ?> x <span class="c-item-price c-theme-font"><?= $value->price_per_unit ?></span></p>
                     <p>Total detalle <?= $value->price ?></p>
@@ -35,7 +35,7 @@ $items = Yii::$app->cart->getItems();
         <?php endforeach; ?>
     </ul> 
     <div class="c-cart-menu-footer">
-        <a href="<?= \yii\helpers\Url::toRoute(['site/viewcart']) ?>" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase">View Cart</a>
+        <a href="<?= \yii\helpers\Url::toRoute(['site/viewcart']) ?>" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase">Ver Carrito</a>
         <a href="<?= \yii\helpers\Url::toRoute(['site/checkout']) ?>" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase">Checkout</a>
     </div>
 </div>

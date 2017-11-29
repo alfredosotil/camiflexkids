@@ -24,7 +24,7 @@ use Yii;
  * @property double $stock
  * @property integer $active
  *
- * @property Detailcart[] $detailcarts
+ * @property Detailorder[] $detailorders
  * @property Category $category
  * @property Productoption[] $productoptions
  */
@@ -42,7 +42,7 @@ class Product extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['name', 'sku', 'price', 'cart_desc', 'color','long_desc', 'category_id', 'stock'], 'required'],
+            [['name', 'sku', 'price', 'color', 'cart_desc', 'long_desc', 'thumb', 'image', 'category_id', 'created_at', 'updated_at', 'stock'], 'required'],
             [['price', 'weight', 'stock'], 'number'],
             [['category_id', 'created_at', 'updated_at', 'active'], 'integer'],
             [['name', 'sku', 'color'], 'string', 'max' => 255],
@@ -50,9 +50,9 @@ class Product extends \yii\db\ActiveRecord {
             [['short_desc'], 'string', 'max' => 100],
             [['long_desc'], 'string', 'max' => 250],
             [['thumb', 'image'], 'string', 'max' => 60],
-            [['color'], 'unique'],
             [['name'], 'unique'],
             [['sku'], 'unique'],
+            [['color'], 'unique'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
@@ -117,8 +117,8 @@ class Product extends \yii\db\ActiveRecord {
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDetailcarts() {
-        return $this->hasMany(Detailcart::className(), ['product_id' => 'id']);
+    public function getDetailorders() {
+        return $this->hasMany(Detailorder::className(), ['product_id' => 'id']);
     }
 
     /**

@@ -19,7 +19,7 @@ class OrderSearch extends Order
     {
         return [
             [['id', 'created_at', 'updated_at', 'shipped', 'active'], 'integer'],
-            [['amount', 'ship_name', 'ship_address', 'city', 'state', 'zip', 'country', 'phone', 'fax', 'email', 'shipping', 'tax', 'tracking_number'], 'safe'],
+            [['amount', 'ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'fax', 'email', 'shipping', 'tax', 'tracking_number'], 'safe'],
         ];
     }
 
@@ -59,9 +59,9 @@ class OrderSearch extends Order
         $query->andFilterWhere(['like', 'amount', $this->amount])
             ->andFilterWhere(['like', 'ship_name', $this->ship_name])
             ->andFilterWhere(['like', 'ship_address', $this->ship_address])
-            ->andFilterWhere(['like', 'city', $this->city])
-            ->andFilterWhere(['like', 'state', $this->state])
-            ->andFilterWhere(['like', 'zip', $this->zip])
+            ->andFilterWhere(['like', 'departament', $this->departament])
+            ->andFilterWhere(['like', 'province', $this->province])
+            ->andFilterWhere(['like', 'district', $this->district])
             ->andFilterWhere(['like', 'country', $this->country])
             ->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'fax', $this->fax])

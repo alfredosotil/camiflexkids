@@ -11,9 +11,9 @@ use Yii;
  * @property double $amount
  * @property string $ship_name
  * @property string $ship_address
- * @property string $city
- * @property string $state
- * @property string $zip
+ * @property string $departament
+ * @property string $province
+ * @property string $district
  * @property string $country
  * @property string $phone
  * @property string $fax
@@ -44,10 +44,10 @@ class Order extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['amount', 'ship_name', 'ship_address', 'city', 'state', 'zip', 'country', 'phone', 'email', 'shipping', 'tax', 'created_at', 'updated_at', 'tracking_number'], 'required'],
+            [['amount', 'ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'email', 'shipping', 'tax', 'created_at', 'updated_at', 'tracking_number'], 'required'],
             [['amount', 'shipping', 'tax'], 'number'],
             [['created_at', 'updated_at', 'shipped', 'active'], 'integer'],
-            [['ship_name', 'ship_address', 'city', 'state', 'zip', 'country', 'phone', 'fax', 'email', 'tracking_number'], 'string', 'max' => 255],
+            [['ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'fax', 'email', 'tracking_number'], 'string', 'max' => 255],
             [['typepayment'], 'string', 'max' => 20],
             [['notes'], 'string', 'max' => 500],
             ['email', 'email'],
@@ -71,9 +71,9 @@ class Order extends \yii\db\ActiveRecord {
             'amount' => Yii::t('app', 'Amount'),
             'ship_name' => Yii::t('app', 'Ship Name'),
             'ship_address' => Yii::t('app', 'Ship Address'),
-            'city' => Yii::t('app', 'City'),
-            'state' => Yii::t('app', 'State'),
-            'zip' => Yii::t('app', 'Zip'),
+            'departament' => Yii::t('app', 'Departament'),
+            'province' => Yii::t('app', 'Province'),
+            'district' => Yii::t('app', 'District'),
             'country' => Yii::t('app', 'Country'),
             'phone' => Yii::t('app', 'Phone'),
             'fax' => Yii::t('app', 'Fax'),

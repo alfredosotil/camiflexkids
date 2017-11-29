@@ -95,7 +95,7 @@ angular.module('camiflexkids-app.controllers', [])
                         var existe = colors.some(function (item) {
                             return item.hexc.includes(color_hexc);
                         });
-                        if (!existe && !(color_hexc.localeCompare('#ffffff') === 0)) {
+                        if (!existe) {
                             colors.push({rgb: color_rgb, hexc: color_hexc});
                         }
                     });

@@ -13367,7 +13367,9 @@ h1 {
 .c-shop-product-details-4 .c-product-gallery .c-product-gallery-thumbnail .c-product-thumb {
     cursor: pointer;
     overflow: hidden;
-    height: 250px !important; }
+    height: 250px !important; 
+    border: black solid 1px;
+}
 .c-shop-product-details-4 .c-product-gallery img {
     width: 100%; }
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c9b211ad1d9008de1c20b3a2cc6a946",
+    "content-hash": "df22906e7c149f033f9e3b9b4e2fdd42",
     "packages": [
         {
             "name": "2amigos/yii2-arrayquery-component",
@@ -4972,6 +4972,46 @@
             "time": "2017-05-16T13:45:26+00:00"
         },
         {
+            "name": "vilochane/yii2-barcode-generator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vilochane/yii2-barcode-generator-8-types.git",
+                "reference": "b900ad0c26f6895deaa3d8ce88060d07c0d77fe6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vilochane/yii2-barcode-generator-8-types/zipball/b900ad0c26f6895deaa3d8ce88060d07c0d77fe6",
+                "reference": "b900ad0c26f6895deaa3d8ce88060d07c0d77fe6",
+                "shasum": ""
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "barcode\\barcode\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vilochane",
+                    "email": "vilochane@gmail.com"
+                }
+            ],
+            "description": "This extension based on Simple jQuery Based Barcode Generator Wrapper for BarCode Coder Library (BCC Library Version 2.0) by DEMONTE Jean-Baptiste, HOUREZ Jonathan.",
+            "homepage": "https://github.com/Vilochane/yii2-barcode-generator-8-types.git",
+            "keywords": [
+                " barcode-generator",
+                " barcode-generator-8-types",
+                "extension",
+                "yii2"
+            ],
+            "time": "2017-10-03T05:05:50+00:00"
+        },
+        {
             "name": "yii2mod/yii2-behaviors",
             "version": "1.2",
             "source": {
@@ -9221,7 +9261,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "zxbodya/yii2-gallery-manager": 20,
-        "kartik-v/yii2-widget-activeform": 20
+        "kartik-v/yii2-widget-activeform": 20,
+        "vilochane/yii2-barcode-generator": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
