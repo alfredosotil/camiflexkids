@@ -56,7 +56,8 @@
         "kartik-v/yii2-widget-activeform": "@dev",
         "derekisbusy/yii2-geo": "*",
         "culqi/culqi-php": "*",
-        "vilochane/yii2-barcode-generator": "dev-master"
+        "vilochane/yii2-barcode-generator": "dev-master",
+        "yii2mod/yii2-google-maps-markers": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

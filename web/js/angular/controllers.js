@@ -27,11 +27,15 @@ angular.module('camiflexkids-app.controllers', [])
 //                    var param = '_csrf';
 //                    var token = yii.getCsrfToken();
 //                    console.log({_csrf: token});
-                    console.log($('meta[name="csrf-token"]').attr('content'));
+//                    console.log($('meta[name="csrf-token"]').attr('content'));
+                    var l = Ladda.create(document.querySelector('#stepwizard_step4_save'));
+//                    var l = $('#stepwizard_step4_save').ladda();
+                    l.start();
                     $http.post("addarraytocart", {'details': $scope.details}).then(function successCallback(response) {
                         // this callback will be called asynchronously
                         // when the response is available
 //                        $scope.data = response.data;
+                        l.stop();
                         console.log(response.data);
                         if (response.data.successAjax) {
                             swal({

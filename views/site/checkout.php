@@ -200,7 +200,7 @@ $this->title = 'Checkout';
                             </li>
                             <li class="row">
                                 <div class="form-group col-md-12" role="group">
-                                    <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">Enviar</button>
+                                    <button type="submit" class="ladda-button btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" data-style="contract" data-size="l" data-spinner-color="#FF0000" onclick="var l = Ladda.create(this);l.start();"><span class="ladda-label">Enviar</span></button>
                                     <button type="submit" class="btn btn-lg btn-default c-btn-square c-btn-uppercase c-btn-bold">Cancelar</button>
                                 </div>
                             </li>

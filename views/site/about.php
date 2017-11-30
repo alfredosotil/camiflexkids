@@ -3,8 +3,8 @@
 
 use yii\helpers\Html;
 
-$this->title = 'About';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Nosotros';
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row-correction"></div>
 <!-- BEGIN: CONTENT/MISC/LATEST-ITEMS-3 -->
@@ -15,18 +15,19 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="c-line-left"></div>
         </div>-->
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="c-content-media-1 c-bordered wow animated fadeInLeft" style="min-height: 380px;">
                     <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">Nuestra Misi&oacute;n</div>
-                    <a href="#" class="c-title c-font-uppercase c-theme-on-hover c-font-bold">{{Titulo}}</a>
-                    <p>Lorem ipsum dolor sit amet, coectetuer adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat</p>
-                    <div class="c-author">
-                        <div class="c-portrait" style="background-image: url(<?= Yii::$app->request->baseUrl; ?>/img/content/team/team16.jpg)"></div>
-                        <div class="c-name c-font-uppercase">Jack Nilson</div>
+                    <a href="#" class="c-title c-font-uppercase c-theme-on-hover c-font-bold">Proteger la salud </a>
+                    <p>Somos una marca que ofrece los mejores pisos de Eva microporoso del mercado. Nuestros pisos son superficies flexibles, antideslizantes e hipoalerg&eacute;nicas que estimulan el desarrollo de los mas peque&ntilde;os. Son seguros e ideales para desarrollar actividades motoras durante los primeros a&ntilde;os de vida. Excelentes para dormitorios, cuartos de juego, salas de estimulaci&oacute;n y m&aacute;s.
+Son fabricados localmente con el mejor microporoso a nivel nacional y cubren los estandares de calidad mas exigentes.</p>
+                    <div class="">
+                        <!--<div class="c-portrait" style="background-image: url(<?= Yii::$app->request->baseUrl; ?>/img/content/team/team16.jpg)"></div>-->
+                        <div class="c-name c-font-uppercase"><strong>Luigi Galbiati Rovira</strong></div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">		
+            <div class="col-md-6">		
                 <div class="c-content-media-2-slider wow animated fadeInRight" data-slider="owl">
                     <div class="c-content-label c-font-uppercase c-font-bold">&uacute;ltimos proyectos</div>						
                     <div class="owl-carousel owl-theme c-theme owl-single" data-single-item="true" data-navigation-dots="true" data-auto-play="4000" data-rtl="false">						
@@ -76,6 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div><!-- END: CONTENT/SLIDERS/CLIENT-LOGOS-1 -->
 <!-- BEGIN: CONTENT/TESTIMONIALS/TESTIMONIALS-2 -->
+<?php if (false): ?>
 <div class="c-content-box c-size-lg c-bg-white">
     <div class="container">
         <!-- Begin: testimonials 1 component -->
@@ -136,3 +138,4 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- End-->
     </div>
 </div><!-- END: CONTENT/TESTIMONIALS/TESTIMONIALS-2 -->
+<?php endif; ?>

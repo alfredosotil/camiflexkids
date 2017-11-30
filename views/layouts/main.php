@@ -2,17 +2,12 @@
 
 use app\assets\AppAsset;
 use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
-use yii\widgets\Menu;
-use yii2mod\notify\BootstrapNotify;
 use yii\helpers\Url;
 use app\widgets\LoginFormWidget;
 use app\widgets\PasswordResetRequestFormWidget;
 use app\widgets\SignupFormWidget;
 use app\widgets\CartViewWidget;
-use yii\bootstrap\ActiveForm;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -23,10 +18,36 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?php echo Yii::$app->language; ?>" data-ng-app="camiflexkids-app">
     <head>
-        <?php $this->registerMetaTag(['charset' => Yii::$app->charset]); ?>
-        <?php $this->registerMetaTag(['http-equiv' => 'X-UA-Compatible', 'content' => 'IE=edge']); ?>
-        <?php $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1']); ?>
-        <?php $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, user-scalable=no']); ?>
+        <?php
+        $this->registerMetaTag(['charset' => Yii::$app->charset]);
+        $this->registerMetaTag(['http-equiv' => 'X-UA-Compatible', 'content' => 'IE=edge']);
+        $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1']);
+        $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, user-scalable=no']);
+        $this->registerMetaTag(['name' => 'title', 'content' => "CAMIFLEXKIDS | www.camiflexkids.com"]);
+        $this->registerMetaTag(['name' => 'description', 'content' => 'Empresa Peruana dedicada al rubro de la proteccion de los niños con productos antibacteriales e higienicos.']);
+        $this->registerMetaTag(['name' => 'author', 'content' => "http://www.camiflexkids.com/"]);
+        $this->registerMetaTag(['name' => 'DC.Title', 'content' => "CAMIFLEXKIDS | www.camiflexkids.com"]);
+        $this->registerMetaTag(['name' => 'DC.Contributor', 'content' => "http://www.camiflexkids.com/"]);
+        $this->registerMetaTag(['name' => 'DC.Creator', 'content' => "http://www.camiflexkids.com/"]);
+        $this->registerMetaTag(['name' => 'DC.Description', 'content' => 'Empresa Peruana dedicada al rubro de la proteccion de los niños con productos antibacteriales e higienicos.']);
+        $this->registerMetaTag(['name' => 'DC.Language', 'content' => "es"]);
+        $this->registerMetaTag(['name' => 'DC.Publisher', 'content' => "http://www.camiflexkids.com/"]);
+        $this->registerMetaTag(['name' => 'geo.region', 'content' => 'PE-CAL']);
+        $this->registerMetaTag(['name' => 'geo.placename', 'content' => 'Lima']);
+        $this->registerMetaTag(['name' => 'geo.position', 'content' => '-12.046373;-77.042754']);
+        $this->registerMetaTag(['name' => 'ICBM', 'content' => '-12.046373;-77.042754']);
+        $this->registerMetaTag(['name' => 'og:site_name', 'content' => "http://www.camiflexkids.com/"]);
+        $this->registerMetaTag(['name' => 'og:type', 'content' => "website"]);
+        $this->registerMetaTag(['name' => 'og:title', 'content' => 'CAMIFLEXKIDS | www.camiflexkids.com']);
+        $this->registerMetaTag(['name' => 'og:description', 'content' => 'Empresa Peruana dedicada al rubro de la proteccion de los niños con productos antibacteriales e higienicos.']);
+        $this->registerMetaTag(['name' => 'og:url', 'content' => "http://www.camiflexkids.com/"]);
+        $this->registerMetaTag(['name' => 'og:image', 'content' => yii\helpers\Url::base(true) . '/img/logo-transparente.png']);
+        $this->registerMetaTag(['name' => 'og:image:type', 'content' => "image/png"]);
+        $this->registerMetaTag(['name' => 'og:image:height', 'content' => "226"]);
+        $this->registerMetaTag(['name' => 'og:image:width', 'content' => "55"]);
+        ?>
+
+        <link rel="icon" href="<?= Yii::$app->request->baseUrl; ?>/img/favicon.ico" type="image/x-icon"> 
         <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700&amp;subset=all' rel='stylesheet' type='text/css'>
         <?php echo Html::csrfMetaTags(); ?>
         <title><?php echo implode(' | ', array_filter([Html::encode($this->title), Yii::$app->name])); ?></title>
@@ -211,14 +232,14 @@ AppAsset::register($this);
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="c-content-title-1 c-title-md">
-                                    <h3 class="c-font-uppercase c-font-bold">About <span class="c-theme-font">CAMIFLEXKIDS</span></h3>
+                                    <h3 class="c-font-uppercase c-font-bold">Sobre <span class="c-theme-font">CAMIFLEXKIDS</span></h3>
                                     <div class="c-line-left hide"></div>
                                 </div>
-                                <p class="c-text c-font-16 c-font-regular">Tolerare unus ducunt ad brevis buxum. Est alter buxum, cesaris. Eheu, lura! Racanas crescere in emeritis oenipons! Ubi est rusticus repressor? Lixa grandis clabulare est. Eposs tolerare.</p>
+                                <p class="c-text c-font-16 c-font-regular">Empresa Peruana dedicada al rubro de la proteccion de los niños con productos antibacteriales e higienicos.</p>
                             </div>
                             <div class="col-md-5">
                                 <div class="c-content-title-1 c-title-md">
-                                    <h3 class="c-font-uppercase c-font-bold">Subscribe to Newsletter</h3>
+                                    <h3 class="c-font-uppercase c-font-bold">Subscribete a nuestras noticias!</h3>
                                     <div class="c-line-left hide"></div>
                                 </div>
                                 <div class="c-line-left hide"></div>

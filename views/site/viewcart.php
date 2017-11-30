@@ -13,10 +13,10 @@ $this->title = 'View Cart';
         echo \yii2mod\cart\widgets\CartGrid::widget([
             // Some widget property maybe need to change. 
             'cartColumns' => [
-                [
-                    'attribute' => 'uniqueid',
-                    'label' => 'Codigo detalle',
-                ],
+//                [
+//                    'attribute' => 'uniqueid',
+//                    'label' => 'Codigo detalle',
+//                ],
                 [
                     'attribute' => 'label',
                     'label' => 'Color',

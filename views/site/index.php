@@ -20,6 +20,23 @@ $this->title = 'Inicio';
 <?= $this->render('services-template'); ?>
 
 <!-- BEGIN: CONTENT/ISOTOPE/GALLERY-4 -->
+<?php if(true): ?>
+<div class="c-content-box c-size-md c-bg-grey-1" id="team">
+    <div class="container">
+        <div class="c-content-person-1-slider" data-slider="owl">
+            <div class="c-content-title-1 wow animated fadeIn">
+                <h3 class="c-center c-font-uppercase c-font-bold">10 Razones para tener pisos de EVA</h3>
+                <div class="c-line-center c-theme-bg"></div>
+            </div>
+
+            <div class="owl-carousel owl-theme c-theme c-owl-nav-center wow animated fadeInUp" data-items="3" data-slide-speed="8000" data-rtl="false"> 
+                 <?= $reasons ?> 
+            </div>       
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+<?php if(false): ?>
 <div id="c-isotope-anchor-1" class="c-content-box c-size-md c-bg-img-center" style="background-image: url(<?= Yii::$app->request->baseUrl; ?>/img/content/backgrounds/bg-84.jpg)">
     <div class="container">
         <div class="c-content-title-1">
@@ -162,7 +179,9 @@ $this->title = 'Inicio';
             </div>
         </div>
     </div> 
-</div><!-- END: CONTENT/ISOTOPE/GALLERY-4 -->
+</div>
+<?php endif; ?>
+<!-- END: CONTENT/ISOTOPE/GALLERY-4 -->
 
 <!-- BEGIN: CONTENT/PORTFOLIO/LATEST-WORKS-2 -->
 <!--<div class="c-content-box c-size-md c-bg-grey-1">
@@ -293,65 +312,68 @@ $this->title = 'Inicio';
 <!-- END: CONTENT/PORTFOLIO/LATEST-WORKS-2 -->
 
 <!-- BEGIN: CONTENT/TESTIMONIALS/TESTIMONIALS-2 -->
-<div class="c-content-box c-size-lg c-bg-white">
-    <div class="container">
-        <!-- Begin: testimonials 1 component -->
-        <div class="c-content-testimonials-1 c-option-2 wow animated fadeIn" data-slider="owl">
-            <!-- Begin: Title 1 component -->
-            <div class="c-content-title-1">
-                <h3 class="c-center c-font-uppercase c-font-bold">Nuestros Clientes Satisfechos</h3>
-                <div class="c-line-center c-theme-bg"></div>
-            </div>
-            <!-- End-->
-
-            <!-- Begin: Owlcarousel -->
-
-            <div class="owl-carousel owl-theme c-theme c-owl-nav-center wow animated fadeInUp" data-single-item="true" data-slide-speed="8000" data-rtl="false"> 
-                <div class="item">
-                    <div class="c-testimonial">
-                        <p>
-                            “Camiflexkids is an international, privately held company that specializes in the start-up, promotion and operation of multiple online marketplaces”
-                        </p>
-                        <h3>
-                            <span class="c-name c-theme">John Snow</span>, CEO, Mockingbird
-                        </h3>
-                    </div>
+<?php if (false): ?>
+    <div class="c-content-box c-size-lg c-bg-white">
+        <div class="container">
+            <!-- Begin: testimonials 1 component -->
+            <div class="c-content-testimonials-1 c-option-2 wow animated fadeIn" data-slider="owl">
+                <!-- Begin: Title 1 component -->
+                <div class="c-content-title-1">
+                    <h3 class="c-center c-font-uppercase c-font-bold">Nuestros Clientes Satisfechos</h3>
+                    <div class="c-line-center c-theme-bg"></div>
                 </div>
-                <div class="item">
-                    <div class="c-testimonial">
-                        <p>
-                            “After co-founding the company in 2006 the group launched Camiflexkids, the first digital marketplace which focused on rich multimedia web content”
-                        </p>
-                        <h3>
-                            <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
-                        </h3>
+                <!-- End-->
+
+                <!-- Begin: Owlcarousel -->
+
+                <div class="owl-carousel owl-theme c-theme c-owl-nav-center wow animated fadeInUp" data-single-item="true" data-slide-speed="8000" data-rtl="false"> 
+                    <div class="item">
+                        <div class="c-testimonial">
+                            <p>
+                                “Camiflexkids is an international, privately held company that specializes in the start-up, promotion and operation of multiple online marketplaces”
+                            </p>
+                            <h3>
+                                <span class="c-name c-theme">John Snow</span>, CEO, Mockingbird
+                            </h3>
+                        </div>
                     </div>
-                </div>	
-                <div class="item">
-                    <div class="c-testimonial">
-                        <p>
-                            “It was the smoothest implementation process I have ever been through with Camiflexkids’s process and schedule.”
-                        </p>
-                        <h3>
-                            <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
-                        </h3>
-                    </div>
-                </div>	
-                <div class="item">
-                    <div class="c-testimonial">
-                        <p>
-                            “A system change is always stressful and Camiflexkids did a great job of staying positive, helpful, and patient with us.”
-                        </p>
-                        <h3>
-                            <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
-                        </h3>
-                    </div>
-                </div>			 
+                    <div class="item">
+                        <div class="c-testimonial">
+                            <p>
+                                “After co-founding the company in 2006 the group launched Camiflexkids, the first digital marketplace which focused on rich multimedia web content”
+                            </p>
+                            <h3>
+                                <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
+                            </h3>
+                        </div>
+                    </div>	
+                    <div class="item">
+                        <div class="c-testimonial">
+                            <p>
+                                “It was the smoothest implementation process I have ever been through with Camiflexkids’s process and schedule.”
+                            </p>
+                            <h3>
+                                <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
+                            </h3>
+                        </div>
+                    </div>	
+                    <div class="item">
+                        <div class="c-testimonial">
+                            <p>
+                                “A system change is always stressful and Camiflexkids did a great job of staying positive, helpful, and patient with us.”
+                            </p>
+                            <h3>
+                                <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
+                            </h3>
+                        </div>
+                    </div>			 
+                </div>
+                <!-- End-->
             </div>
             <!-- End-->
         </div>
-        <!-- End-->
     </div>
-</div>
+<?php endif; ?>
+
 <!-- END: CONTENT/TESTIMONIALS/TESTIMONIALS-2 -->
 <!-- END: PAGE CONTENT -->

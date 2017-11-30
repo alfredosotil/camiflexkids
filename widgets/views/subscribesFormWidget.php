@@ -28,7 +28,7 @@ $form = ActiveForm::begin([
         ]);
 ?>  
 <div class="input-group input-group-lg c-square">
-    <?php echo $form->field($model, 'email')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-font-grey-3 c-border-grey c-theme input-lg', 'placeholder' => Yii::t('app', 'Your Email Here')])->label(false) ?>
+    <?php echo $form->field($model, 'email')->textInput(['maxlength' => 255, 'class' => 'form-control c-square c-font-grey-3 c-border-grey c-theme input-lg', 'placeholder' => Yii::t('app', 'Tu Correo electrónico')])->label(false) ?>
     <span class="input-group-btn">
         <?php
             \demogorgorn\ajax\AjaxSubmitButton::begin([

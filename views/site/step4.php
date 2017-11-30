@@ -20,7 +20,7 @@ use yii\bootstrap\ActiveForm;
     </div>    
     <div class="row">
         <div class="list-inline">
-            <button ng-click="addtocart()" type="button" id="stepwizard_step4_save" class="btn btn-block btn-outline green button-next btn-outline green button-next next-step">Continuar <i class="fa fa-shopping-cart"></i></button>
+            <button ng-click="addtocart()" type="button" id="stepwizard_step4_save" class="ladda-button btn btn-block btn-outline green button-next btn-outline green button-next next-step" data-spinner-color="red" data-style="zoom-in"><span class="ladda-label">Continuar <i class="fa fa-shopping-cart"></i></span></button>
         </div>
     </div>
 </div>   

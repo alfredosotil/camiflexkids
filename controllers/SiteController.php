@@ -209,7 +209,10 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
 //        Yii::$app->session->setFlash('success', 'Excelente | esto es una prueba | Continuar');
-        return $this->render('index', ['slides' => $this->getIndexMainSlides()]);
+        return $this->render('index', [
+                    'slides' => $this->getIndexMainSlides(),
+                    'reasons' => $this->getReasons(),
+        ]);
     }
 
     public function actionAbout() {
@@ -390,17 +393,15 @@ class SiteController extends Controller {
         if (Yii::$app->request->isPost) {
             if (Yii::$app->request->isAjax) {
                 $data = json_decode(Yii::$app->request->getRawBody());
-                $i = 0;
                 foreach ($data->details as $value) {
-                    $model = \app\models\Product::findOne(['color' => $value->color]);
-
+//                    $model = \app\models\Product::findOne(['color' => $value->color]);
+                    $model = \app\models\Product::find()->where(['color' => $value->color])->one();
                     if (isset($model)) {
                         $this->addtocart($model, $value->quantity);
-                        usleep(500000);
+                        sleep(1);
+                        unset($model);
                     }
                 }
-
-//                Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Excelente | The product was added to cart. | Continuar'));
                 return $this->asJson(['successAjax' => true, 'redirect' => Url::to(['viewcart']), 'count' => count($data->details)]);
             }
         }
@@ -438,6 +439,15 @@ class SiteController extends Controller {
         $htmlTeam = "";
         foreach ($slides as $value) {
             $htmlTeam .= $this->renderPartial('team-template', ['data' => $value]);
+        }
+        return $htmlTeam;
+    }
+
+    private function getReasons() {
+        $slides = json_decode(Yii::$app->params['reasons']);
+        $htmlTeam = "";
+        foreach ($slides as $value) {
+            $htmlTeam .= $this->renderPartial('reason-template', ['data' => $value]);
         }
         return $htmlTeam;
     }

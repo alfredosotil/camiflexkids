@@ -47,6 +47,8 @@ class AppAsset extends AssetBundle
         'plugins/ilightbox/css/ilightbox.css',
         'plugins/ilightbox/dark-skin/skin.css',
         'css/plugins.css',
+        'css/ladda-themeless.min.css',
+//        'css/ladda.min.css',
         'css/components.css',
         'css/custom.css',
         'css/default.css',
@@ -94,6 +96,8 @@ class AppAsset extends AssetBundle
         'plugins/ilightbox/js/ilightbox.packed.js',
         'plugins/isotope/isotope-gallery.js',
         'plugins/isotope/isotope-grid.js',
+        'js/spin.min.js',        
+        'js/ladda.min.js',        
         'js/main.js',        
     ];
     /**
