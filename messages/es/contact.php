@@ -18,6 +18,7 @@
  */
 return [
     'Body' => 'Cuerpo del Mensaje',
+    'CVV' => '',
     'Code' => '',
     'Contact' => 'Contacto',
     'Contacts' => '@@@@',

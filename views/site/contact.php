@@ -48,7 +48,30 @@ MapAsset::register($this);
                 </div>
             </div>
         </div>         
-        <div id="gmapbg" class="c-content-contact-1-gmap" style="height: 615px;"></div>
+        <div class="c-content-contact-1-gmap" style="height: 615px;">
+            <?=
+            yii2mod\google\maps\markers\GoogleMaps::widget([
+                'userLocations' => [
+                    [
+                        'location' => [
+                            'lat' => '-12.113555',
+                            'lng' => '-77.012000',
+//                            'country' => 'Ukraine',
+                        ],
+//                        'htmlContent' => '<h1>Oficina Central</h1>',
+                        'htmlContent' => '<h3>CamiflexKids.</h3><p>Surquillo, Lima - Peru</p>',
+                    ],
+                ],
+                'googleMapsOptions' => [
+                    'mapTypeId' => 'roadmap',
+                    'tilt' => 45,
+                    'zoom' => 16,
+                    'lat' => '-12.113555',
+                    'lng' => '-77.012000',
+                ],
+            ]);
+            ?>
+        </div>
     </div> <!-- END: CONTENT/CONTACT/CONTACT-1 -->
 </div>
 <!-- BEGIN: PAGE CONTENT -->

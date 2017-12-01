@@ -2679,7 +2679,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`, `last_login`) VALUES
-(1, 'asotip', 'rUMD2Vek2QSCUE1oqBUWzpJRaobe_kGi', '$2y$13$1f8HhGDR.DPnTduKWHDXAOYGbWQ7E9pLXhoqf8jmMdT7L078wlCTe', NULL, 'alfredosotil@gmail.com', 1, 1511988524, 1511988524, 1511991674);
+(1, 'asotilp', 'rUMD2Vek2QSCUE1oqBUWzpJRaobe_kGi', '$2y$13$1f8HhGDR.DPnTduKWHDXAOYGbWQ7E9pLXhoqf8jmMdT7L078wlCTe', NULL, 'alfredosotil@gmail.com', 1, 1511988524, 1511988524, 1511991674);
 
 --
 -- Índices para tablas volcadas

@@ -17,19 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Body' => '',
-    'CVV' => '',
-    'Code' => '',
-    'Contact' => '',
-    'Contacts' => '@@@@',
-    'Email' => '',
-    'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.' => '',
-    'Name' => '',
-    'Subject' => '',
-    'Submit' => '',
-    'Verification Code' => '',
-    'Your Email' => '',
-    'Your Message' => '',
-    'Your Subject' => '',
-    'Your name' => '',
+    'Note:' => '',
+    'Your browser does not support {validation}. Try an alternative or more recent browser to access these features.' => '',
+    'file preview and multiple file upload' => '',
+    'multiple file upload' => '',
 ];

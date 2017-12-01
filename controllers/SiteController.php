@@ -337,7 +337,7 @@ class SiteController extends Controller {
 
     public function actionDeletedetailorder($id) {
         Yii::$app->cart->remove($id);
-        Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Hecho | The product was removed from cart. | Continuar'));
+        Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Hecho | El producto fue eliminado del carrito de compras. | Continuar'));
         return $this->redirect(Url::to(['viewcart']));
     }
 
