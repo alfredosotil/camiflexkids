@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Checkout';
 //app\assets\AngularAsset::register($this);
+app\assets\CulqiAsset::register($this);
 ?>
 <div class="row-correction"></div>
 <div class="c-content-box c-size-lg">
@@ -18,7 +19,17 @@ $this->title = 'Checkout';
                     <h3 class="c-font-bold c-font-uppercase c-font-24">Informacion de la Orden</h3>
                     <div class="order-form">
 
-                        <?php $form = ActiveForm::begin(); ?>
+                        <?php
+                        $form = ActiveForm::begin([
+                                    'id' => 'order-form-checkout',
+                                    'enableAjaxValidation' => false,
+                                    'enableClientValidation' => true,
+//                        'method' => 'post',
+//                        'action' => '',
+                                    'options' => ['onsubmit' => 'return false;']
+//                        'validateOnSubmit' => false,
+                        ]);
+                        ?>
 
                         <?php echo $form->field($model, 'amount')->hiddenInput()->label(false) ?>
 
@@ -60,11 +71,11 @@ $this->title = 'Checkout';
 
                         <?php // echo $form->field($model, 'shipped')->textInput()    ?>
 
-                        <?php // echo $form->field($model, 'active')->textInput()    ?>
+                        <?php // echo $form->field($model, 'active')->textInput()     ?>
 
-                        <div class="form-group">
-                            <?php // echo Html::submitButton($model->isNewRecord ? Yii::t('product', 'Create') : Yii::t('product', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-                        </div>
+                        <!--                        <div class="form-group">
+                        <?php // echo Html::submitButton($model->isNewRecord ? Yii::t('product', 'Create') : Yii::t('product', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])  ?>
+                                                </div>-->
 
                         <?php ActiveForm::end(); ?>
 
@@ -86,16 +97,16 @@ $this->title = 'Checkout';
                             ?>
                             <?php foreach ($items as $value): ?>
                                 <li class="row c-margin-b-15 c-margin-t-15">
-                                    <div class="col-md-6 c-font-20"><a href="<?= \yii\helpers\Url::toRoute(['site/productdetail', 'id' => $value->product->id]) ?>" class="c-theme-link"><?= $value->name ?> x <?= $value->qty ?></a></div>
+                                    <div class="col-md-6 c-font-20"><a href="<?php echo \yii\helpers\Url::toRoute(['site/productdetail', 'id' => $value->product->id]) ?>" class="c-theme-link"><?php echo $value->name ?> x <?php echo $value->qty ?></a></div>
                                     <div class="col-md-6 c-font-20">
-                                        <p class="">S/.<?= $value->price ?></p>
+                                        <p class="">S/.<?php echo $value->price ?></p>
                                     </div>
                                 </li>
                             <?php endforeach; ?>                            
                             <!--                            <li class="row c-margin-b-15 c-margin-t-15">
                                                             <div class="col-md-6 c-font-20">Subtotal</div>
                                                             <div class="col-md-6 c-font-20">
-                                                                <p class="">S/.<span class="c-subtotal"><?= Yii::$app->cart->getAttributeTotal('vat') ?></span></p>
+                                                                <p class="">S/.<span class="c-subtotal"><?php echo Yii::$app->cart->getAttributeTotal('vat') ?></span></p>
                                                             </div>
                                                         </li>-->
                             <li class="row c-border-top c-margin-b-15"></li>
@@ -118,90 +129,77 @@ $this->title = 'Checkout';
                                     <p class="c-font-30">Total a pagar</p>
                                 </div>
                                 <div class="col-md-6 c-font-20">
-                                    <p class="c-font-bold c-font-30">S/.<span class="c-shipping-total"><?= Yii::$app->cart->getAttributeTotal('vat') ?></span></p>
+                                    <p class="c-font-bold c-font-30">S/.<span class="c-shipping-total"><?php echo Yii::$app->cart->getAttributeTotal('vat') ?></span></p>
                                 </div>
                             </li>
-                            <li class="row">
-                                <div class="col-md-12">
-                                    <div class="c-radio-list">
-                                        <div class="c-radio">
-                                            <input type="radio" id="radio1" class="c-radio" name="payment" value="TRANSFER" onclick="$('#cardpayment').toggle(false);">
-                                            <label for="radio1" class="c-font-bold c-font-20">
-                                                <span class="inc"></span>
-                                                <span class="check"></span>
-                                                <span class="box"></span>
-                                                Transferencia Bancaria
-                                            </label>
-                                            <p class="help-block">Has tu pago directamente al banco. Por favor usa el numero de orden como referencia de pago. Tu orden no sera enviada hasta revisar el pago en la cuenta del negocio.</p>
-                                        </div>
-                                        <!--                                        <div class="c-radio">
-                                                                                    <input type="radio" id="radio2" class="c-radio" name="payment">
-                                                                                    <label for="radio2" class="c-font-bold c-font-20">
-                                                                                        <span class="inc"></span>
-                                                                                        <span class="check"></span>
-                                                                                        <span class="box"></span>
-                                                                                        Cheque Payment
-                                                                                    </label>
-                                                                                </div>-->
-                                        <div class="c-radio">
-                                            <input type="radio" id="radio3" class="c-radio" name="payment" value="CULQI" checked="" onclick="$('#cardpayment').toggle(true);">
-                                            <label for="radio3" class="c-font-bold c-font-20">
-                                                <span class="inc"></span>
-                                                <span class="check"></span>
-                                                <span class="box"></span>
-                                                Culqi
-                                            </label>
-                                            <img class="img-responsive" width="250" src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png">
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="row">
-                                <div id="cardpayment" class="col-md-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">
-                                                Payment Details
-                                            </h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            <?php
-                                            $culqimodel = new \app\models\forms\CulqiForm();
-                                            $formculqi = ActiveForm::begin([]);
-                                            ?>
-                                            <?= $formculqi->field($culqimodel, 'email')->textInput(['maxlength' => 20, 'class' => 'form-control c-square c-theme']) ?>
-                                            <?= $formculqi->field($culqimodel, 'cardnumber')->textInput()->textInput(['maxlength' => 20, 'class' => 'form-control c-square c-theme']) ?>
-                                            <?= $formculqi->field($culqimodel, 'expirationmonth')->textInput(['maxlength' => 2, 'class' => 'form-control c-square c-theme', 'placeholder' => 'MM']) ?>
-                                            <?= $formculqi->field($culqimodel, 'expirationyear')->textInput(['maxlength' => 4, 'class' => 'form-control c-square c-theme', 'placeholder' => 'AAAA']) ?>
-                                            <?= $formculqi->field($culqimodel, 'cvv')->textInput(['maxlength' => 3, 'class' => 'form-control c-square c-theme', 'placeholder' => '999']) ?> 
-                                            <?php ActiveForm::end(); ?>
-                                        </div>
-                                    </div>
-                                    <!--                                    <ul class="nav nav-pills nav-stacked">
-                                                                            <li class="active"><a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a>
-                                                                            </li>
-                                                                        </ul>
-                                                                        <br/>
-                                                                        <a href="http://www.jquery2dotnet.com" class="btn btn-success btn-lg btn-block" role="button">Pay</a>-->
-                                </div>
-                            </li>
-                            <li class="row c-margin-b-15 c-margin-t-15">
-                                <div class="form-group col-md-12">
-                                    <div class="c-checkbox">
-                                        <input type="checkbox" id="checkbox1-11" class="c-check">
-                                        <label for="checkbox1-11">
-                                            <span class="inc"></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span>
-                                            He le&iacute;do los terminos &amp; condiciones.
-                                        </label>
-                                    </div>
-                                </div>
-                            </li>
+                            <!--                            <li class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="c-radio-list">
+                                                                    <div class="c-radio">
+                                                                        <input type="radio" id="radio1" class="c-radio" name="payment" value="TRANSFER" onclick="$('#cardpayment').toggle(false);">
+                                                                        <label for="radio1" class="c-font-bold c-font-20">
+                                                                            <span class="inc"></span>
+                                                                            <span class="check"></span>
+                                                                            <span class="box"></span>
+                                                                            Transferencia Bancaria
+                                                                        </label>
+                                                                        <p class="help-block">Has tu pago directamente al banco. Por favor usa el numero de orden como referencia de pago. Tu orden no sera enviada hasta revisar el pago en la cuenta del negocio.</p>
+                                                                    </div>
+                                                                                                            <div class="c-radio">
+                                                                                                                <input type="radio" id="radio2" class="c-radio" name="payment">
+                                                                                                                <label for="radio2" class="c-font-bold c-font-20">
+                                                                                                                    <span class="inc"></span>
+                                                                                                                    <span class="check"></span>
+                                                                                                                    <span class="box"></span>
+                                                                                                                    Cheque Payment
+                                                                                                                </label>
+                                                                                                            </div>
+                                                                    <div class="c-radio">
+                                                                        <input type="radio" id="radio3" class="c-radio" name="payment" value="CULQI" checked="" onclick="$('#cardpayment').toggle(true);">
+                                                                        <label for="radio3" class="c-font-bold c-font-20">
+                                                                            <span class="inc"></span>
+                                                                            <span class="check"></span>
+                                                                            <span class="box"></span>
+                                                                            Culqi
+                                                                        </label>
+                                                                        <img class="img-responsive" width="250" src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>-->
                             <li class="row">
                                 <div class="form-group col-md-12" role="group">
+                                    <div class="list-inline">
+                                        <?php
+                                        \demogorgorn\ajax\AjaxSubmitButton::begin([
+                                            'encodeLabel' => false,
+                                            'tagName' => 'a',
+                                            'label' => 'Validar  <i class="fa fa-angle-right"></i>',
+                                            'ajaxOptions' => [
+                                                'type' => 'POST',
+                                                'url' => 'makeorder',
+                                                'data' => new \yii\web\JsExpression('$("#order-form-checkout").serialize()'),
+                                                'beforeSend' => new \yii\web\JsExpression('function(xhr){}'),
+                                                'success' => new \yii\web\JsExpression('
+                                                        function(data){
+                                                            console.log(data);
+                                                                $("#order-form-checkout").data("yiiActiveForm").submitting = true;
+                                                                $("#order-form-checkout").yiiActiveForm("validate");
+                                                                if(!data.hasError){
+                                                                    configurarCulqi(data.order_id, $("#order-amount").val());
+                                                                    Culqi.abrir();
+                                                                }
+                                                            return false;
+                                                        }
+                                                '),
+                                            ],
+                                            'options' => ['class' => 'btn btn-block btn-outline green button-next'],
+                                        ]);
+                                        \demogorgorn\ajax\AjaxSubmitButton::end();
+                                        ?>
+                                    </div>
                                     <button type="submit" class="ladda-button btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" data-style="contract" data-size="l" data-spinner-color="#FF0000" onclick="var l = Ladda.create(this);l.start();"><span class="ladda-label">Enviar</span></button>
-                                    <button type="submit" class="btn btn-lg btn-default c-btn-square c-btn-uppercase c-btn-bold">Cancelar</button>
+                                    <!--<button type="submit" class="btn btn-lg btn-default c-btn-square c-btn-uppercase c-btn-bold">Cancelar</button>-->
                                 </div>
                             </li>
                         </ul>

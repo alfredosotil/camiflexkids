@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\forms\ContactForm;
 use app\models\forms\ResetPasswordForm;
 use app\models\Subscribers;
+use app\models\Order;
 use app\models\Ubigeoperu;
 use Yii;
 use yii\filters\VerbFilter;
@@ -232,9 +233,9 @@ class SiteController extends Controller {
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->contact(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', Yii::t('app', 'Excelente | Thank you for contacting us. We will respond to you as soon as possible. | Continuar'));
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Listo | Gracias por contactarnos, te escribiremos lo antes posible | Continuar'));
             } else {
-                Yii::$app->session->setFlash('error', Yii::t('app', 'Error | There was an error sending email. | Continuar'));
+                Yii::$app->session->setFlash('error', Yii::t('app', 'Error | Hubo un error, no se envió el correo. | Continuar'));
             }
 
             return $this->refresh();
@@ -386,6 +387,22 @@ class SiteController extends Controller {
                 }
 ////                return \yii\widgets\ActiveForm::validate($model);
             }
+        }
+    }
+
+    public function actionMakeorder() {
+        if (Yii::$app->request->isPost && Yii::$app->request->isAjax) {
+            $model = new Order();
+            $model->tax = 0;
+            $model->shipping = 0;
+            $model->tracking_number = strval(strtotime("now"));
+//                return $this->asJson(['post' => Yii::$app->request->post()]);
+            if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
+                return $this->asJson(['successAjax' => true, 'hasError' => false, 'order_id' => $model->id]);
+            } else {
+                return $this->asJson(['successAjax' => true, 'hasError' => true, 'errors' => $model->errors]);
+            }
+////                return \yii\widgets\ActiveForm::validate($model);
         }
     }
 

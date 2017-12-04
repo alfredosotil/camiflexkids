@@ -44,15 +44,15 @@ class Order extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['amount', 'ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'email', 'shipping', 'tax', 'created_at', 'updated_at', 'tracking_number'], 'required'],
+            [['amount', 'ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'email', 'shipping', 'tax', 'tracking_number'], 'required'],
             [['amount', 'shipping', 'tax'], 'number'],
             [['created_at', 'updated_at', 'shipped', 'active'], 'integer'],
             [['ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'fax', 'email', 'tracking_number'], 'string', 'max' => 255],
             [['typepayment'], 'string', 'max' => 20],
             [['notes'], 'string', 'max' => 500],
             ['email', 'email'],
-            ['phone', 'match', 'pattern' => '/^\d{3}\d{3}\d{3}$/gm', 'message' => 'El telefono debe ser numero de 9 digitos'],
-            ['fax', 'match', 'pattern' => '/^\d{3}\d{3}\d{3}$/gm', 'message' => 'El telefono debe ser numero de 9 digitos']
+//            ['phone', 'match', 'pattern' => '/^\d{3}\d{3}\d{3}$/gm', 'message' => 'El telefono debe ser numero de 9 digitos'],
+//            ['fax', 'match', 'pattern' => '/^\d{3}\d{3}\d{3}$/gm', 'message' => 'El telefono debe ser numero de 9 digitos']
         ];
     }
 

@@ -10,8 +10,8 @@ use app\assets\MapAsset;
 /* @var $model app\models\forms\ContactForm */
 
 $this->title = Yii::t('contact', 'Contact');
-$this->params['breadcrumbs'][] = $this->title;
-MapAsset::register($this);
+//$this->params['breadcrumbs'][] = $this->title;
+//MapAsset::register($this);
 ?>
 <div class="row-correction"></div>
 <div class="container">
@@ -27,20 +27,18 @@ MapAsset::register($this);
                                 <h3>Camiflexkids Peru</h3>
                             </div>
                             <div class="c-section">
-                                <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">Address</div>
+                                <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">Direcci&oacute;n</div>
                                 <p>25, Lorem Lis Street,<br/>Orange C, California,<br/>United States of America</p>
                             </div>
                             <div class="c-section">
-                                <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">Contacts</div>
+                                <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">Contactos</div>
                                 <p><strong>T</strong> 800 123 0000<br/><strong>F</strong> 800 123 8888</p>
                             </div>
                             <div class="c-section">
                                 <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">Social</div><br/>
                                 <ul class="c-content-iconlist-1 c-theme">
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="https://www.facebook.com/camiflexkids/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://www.instagram.com/camiflexperu/?hl=es-la" target="_blank"><i class="fa fa-instagram"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -51,6 +49,19 @@ MapAsset::register($this);
         <div class="c-content-contact-1-gmap" style="height: 615px;">
             <?=
             yii2mod\google\maps\markers\GoogleMaps::widget([
+                'googleMapsUrlOptions' => [
+                    'key' => 'AIzaSyDLPWnOu970nrxAY1eApfQb0UKBaxov3zg',
+                    'language' => 'es',
+                    'version' => '3.1.18',
+                ],
+                'googleMapsOptions' => [
+                    'mapTypeId' => 'roadmap',
+                    'tilt' => 45,
+                    'zoom' => 16,
+                    'lat' => '-12.113555',
+                    'lng' => '-77.012000',
+                    'icon' => Yii::$app->request->baseUrl . '/img/logo-transparente.png',
+                ],
                 'userLocations' => [
                     [
                         'location' => [
@@ -62,20 +73,12 @@ MapAsset::register($this);
                         'htmlContent' => '<h3>CamiflexKids.</h3><p>Surquillo, Lima - Peru</p>',
                     ],
                 ],
-                'googleMapsOptions' => [
-                    'mapTypeId' => 'roadmap',
-                    'tilt' => 45,
-                    'zoom' => 16,
-                    'lat' => '-12.113555',
-                    'lng' => '-77.012000',
-                ],
             ]);
             ?>
         </div>
     </div> <!-- END: CONTENT/CONTACT/CONTACT-1 -->
 </div>
 <!-- BEGIN: PAGE CONTENT -->
-
 
 <!-- BEGIN: CONTENT/CONTACT/FEEDBACK-1 -->
 <div class="c-content-box c-size-md c-bg-white">
@@ -91,11 +94,12 @@ MapAsset::register($this);
                                 <?php echo Yii::t('contact', 'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.'); ?>
                             </p>
                         </div>
+                        <!--alfredosotil@gmail.com-->
                         <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-                        <?php echo $form->field($model, 'name', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Your name'), 'class' => 'form-control c-square c-theme input-lg']]); ?>
-                        <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Your Email'), 'class' => 'form-control c-square c-theme input-lg']]); ?>
-                        <?php echo $form->field($model, 'subject', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Your Subject'), 'class' => 'form-control c-square c-theme input-lg']]); ?>
-                        <?php echo $form->field($model, 'body', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Your Message'), 'class' => 'form-control c-square c-theme input-lg']])->textArea(['rows' => 6]); ?>
+                        <?php echo $form->field($model, 'name', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Tu nombre'), 'class' => 'form-control c-square c-theme input-lg']]); ?>
+                        <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Tu Email'), 'class' => 'form-control c-square c-theme input-lg']]); ?>
+                        <?php echo $form->field($model, 'subject', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Tu título'), 'class' => 'form-control c-square c-theme input-lg']]); ?>
+                        <?php echo $form->field($model, 'body', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Tu mensaje'), 'class' => 'form-control c-square c-theme input-lg']])->textArea(['rows' => 6]); ?>
                         <?php
                         echo $form->field($model, 'verifyCode')->widget(Captcha::class, [
                             'options' => ['placeholder' => Yii::t('contact', 'Code'), 'class' => 'form-control c-square c-theme input-lg']

@@ -16,15 +16,20 @@ namespace app\assets;
 use yii\web\AssetBundle;
 use yii\web\View;
 
-class MapAsset extends AssetBundle {
+class CulqiAsset extends AssetBundle {
     
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $js = [
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyDLPWnOu970nrxAY1eApfQb0UKBaxov3zg',
-        'plugins/gmaps/gmaps.js',
-        'js/contact.js',
+        'https://integ-pago.culqi.com/js/v1',
+        'js/waitMe.min.js',
+        'js/Culqi.js',
     ];
+    
+    public $css = [
+        'css/waitMe.min.css',
+    ];
+    
     public $depends = [
         'yii\web\YiiAsset',
     ];

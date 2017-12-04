@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'adminEmail' => 'admin@camiflexkids.com',
+    'adminEmail' => 'contacto@camiflexkids.com',
     'user.passwordResetTokenExpire' => 3600,
     'mainSlider' => json_encode(
             [
