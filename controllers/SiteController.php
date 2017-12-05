@@ -16,6 +16,7 @@ use yii2mod\user\models\PasswordResetRequestForm;
 use yii2mod\user\models\SignupForm;
 use yii2mod\user\traits\EventTrait;
 use yii\helpers\Url;
+use Culqi\Culqi;
 
 /**
  * Class SiteController
@@ -25,6 +26,8 @@ use yii\helpers\Url;
 class SiteController extends Controller {
 
     use EventTrait;
+
+    public $SECRET_API_KEY = 'pk_test_O7LKYtalUAXdbvwo';
 
     /**
      * @inheritdoc
@@ -172,7 +175,7 @@ class SiteController extends Controller {
         $model->departament = '15';
         $model->province = '00';
         $model->district = '00';
-        $model->amount = Yii::$app->cart->getAttributeTotal('vat');
+        $model->amount = number_format(doubleval(Yii::$app->cart->getAttributeTotal('vat')), 2, '.', '');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Order has been created.');
             return $this->redirect(['index']);
@@ -378,7 +381,7 @@ class SiteController extends Controller {
                 if ($model->load(Yii::$app->request->post()) && $model->validate()) {
                     $exists = Subscribers::find()->where(['email' => $model->email])->exists();
                     if (!$exists) {
-                        //doesn't exist so create record
+//doesn't exist so create record
                         $model->save();
                     }
                     return $this->asJson(['successAjax' => true, 'hasError' => false, 'errors' => $model->errors]);
@@ -397,12 +400,48 @@ class SiteController extends Controller {
             $model->shipping = 0;
             $model->tracking_number = strval(strtotime("now"));
 //                return $this->asJson(['post' => Yii::$app->request->post()]);
-            if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
+            if ($model->load(Yii::$app->request->post()) && $model->validate()
+//                    && $model->save()
+            ) {
                 return $this->asJson(['successAjax' => true, 'hasError' => false, 'order_id' => $model->id]);
             } else {
                 return $this->asJson(['successAjax' => true, 'hasError' => true, 'errors' => $model->errors]);
             }
 ////                return \yii\widgets\ActiveForm::validate($model);
+        }
+    }
+
+    public function actionAcceptcreditcard() {
+        if (Yii::$app->request->isPost && Yii::$app->request->isAjax) {
+            $culqi = new Culqi\Culqi(['api_key' => $this->SECRET_API_KEY]);
+            // Entorno: Integración (pruebas)
+            $culqi->setEnv("INTEG");
+
+            // Generamos un Código de pedido único (ejemplo)
+            $pedidoId = time() . "comerciocamiflexkids";
+            try {
+                $cargo = 'ok';
+//                $cargo = $culqi->Cargos->create(array(
+//                    "moneda" => "PEN",
+//                    "monto" => 19900,
+//                    "usuario" => "71701956",
+//                    "descripcion" => "Venta de prueba",
+//                    "pedido" => $pedidoId,
+//                    "codigo_pais" => "PE",
+//                    "direccion" => "Avenida Lima 1232",
+//                    "ciudad" => "Lima",
+//                    "telefono" => 3333339,
+//                    "nombres" => "Brayan",
+//                    "apellidos" => "Cruces",
+//                    "correo_electronico" => "brayan.cruces@culqi.com",
+//                    "token" => "vJk6e1LIoZLdDwEXTE6KMQlaJvqswSwU"
+//                ));
+                return $this->asJson(['successAjax' => true, 'hasError' => false, 'cargo' => $cargo]);
+            } catch (Exception $e) {
+                // ERROR: El cargo tuvo algún error o fue rechazado
+//                echo $e->getMessage();
+                return $this->asJson(['successAjax' => true, 'hasError' => true, 'error_message' => $e->getMessage()]);
+            }
         }
     }
 

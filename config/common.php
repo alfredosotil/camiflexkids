@@ -10,7 +10,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'assetsAutoCompress'],
     'components' => [
-        'assetsAutoCompress' => (YII_ENV === 'dev')  ?
+        'assetsAutoCompress' => (YII_ENV === 'dev') ?
         [
     'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
     'webroot' => '/home/qlnvdczv/public_html',
@@ -45,6 +45,16 @@ $config = [
 //                'no-comments' => true   //cut all the html comments
 //            ],
 //        ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'thousandSeparator' => '',
+            'decimalSeparator' => '.',
+            'currencyCode' => 'S/.',
+            'numberFormatterOptions' => [
+                NumberFormatter::MIN_FRACTION_DIGITS => 0,
+                NumberFormatter::MAX_FRACTION_DIGITS => 2,
+            ]
+        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             'defaultRoles' => ['guest', 'user'],

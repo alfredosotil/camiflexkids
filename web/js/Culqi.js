@@ -24,6 +24,16 @@ function culqi() {
         $(document).ajaxStart(function () {
             run_waitMe();
         });
+        $.post("/acceptcreditcard", // Ruta hacia donde enviaremos el token vía POST
+        {token: Culqi.token.id},
+        function(data, status){
+            if (data=='ok') {
+                alert('¡Todo en orden! Token enviado.');
+            } else {
+                alert('Error');
+            }
+        });
+       }
         console.log(Culqi.token.id);
     } else {
         // Hubo un problema...

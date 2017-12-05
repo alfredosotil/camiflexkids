@@ -24,6 +24,7 @@ use Yii;
  * @property integer $updated_at
  * @property integer $shipped
  * @property string $tracking_number
+ * @property integer $ispaid
  * @property string $typepayment
  * @property string $notes
  * @property integer $active
@@ -46,7 +47,7 @@ class Order extends \yii\db\ActiveRecord {
         return [
             [['amount', 'ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'email', 'shipping', 'tax', 'tracking_number'], 'required'],
             [['amount', 'shipping', 'tax'], 'number'],
-            [['created_at', 'updated_at', 'shipped', 'active'], 'integer'],
+            [['created_at', 'updated_at', 'shipped', 'ispaid', 'active'], 'integer'],
             [['ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'fax', 'email', 'tracking_number'], 'string', 'max' => 255],
             [['typepayment'], 'string', 'max' => 20],
             [['notes'], 'string', 'max' => 500],
@@ -84,6 +85,7 @@ class Order extends \yii\db\ActiveRecord {
             'updated_at' => Yii::t('app', 'Updated At'),
             'shipped' => Yii::t('app', 'Shipped'),
             'tracking_number' => Yii::t('app', 'Tracking Number'),
+            'ispaid' => Yii::t('app', 'Ispaid'),
             'typepayment' => Yii::t('app', 'Typepayment'),
             'notes' => Yii::t('app', 'Notes'),
             'active' => Yii::t('app', 'Active'),

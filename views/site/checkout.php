@@ -106,7 +106,7 @@ app\assets\CulqiAsset::register($this);
                             <!--                            <li class="row c-margin-b-15 c-margin-t-15">
                                                             <div class="col-md-6 c-font-20">Subtotal</div>
                                                             <div class="col-md-6 c-font-20">
-                                                                <p class="">S/.<span class="c-subtotal"><?php echo Yii::$app->cart->getAttributeTotal('vat') ?></span></p>
+                                                                <p class="">S/.<span class="c-subtotal"><?php echo $model->amount ?></span></p>
                                                             </div>
                                                         </li>-->
                             <li class="row c-border-top c-margin-b-15"></li>
@@ -129,7 +129,7 @@ app\assets\CulqiAsset::register($this);
                                     <p class="c-font-30">Total a pagar</p>
                                 </div>
                                 <div class="col-md-6 c-font-20">
-                                    <p class="c-font-bold c-font-30">S/.<span class="c-shipping-total"><?php echo Yii::$app->cart->getAttributeTotal('vat') ?></span></p>
+                                    <p class="c-font-bold c-font-30">S/.<span class="c-shipping-total"><?php echo $model->amount ?></span></p>
                                 </div>
                             </li>
                             <!--                            <li class="row">
@@ -174,7 +174,7 @@ app\assets\CulqiAsset::register($this);
                                         \demogorgorn\ajax\AjaxSubmitButton::begin([
                                             'encodeLabel' => false,
                                             'tagName' => 'a',
-                                            'label' => 'Validar  <i class="fa fa-angle-right"></i>',
+                                            'label' => 'Realizar pago  <i class="fa fa-check"></i>',
                                             'ajaxOptions' => [
                                                 'type' => 'POST',
                                                 'url' => 'makeorder',
@@ -186,20 +186,18 @@ app\assets\CulqiAsset::register($this);
                                                                 $("#order-form-checkout").data("yiiActiveForm").submitting = true;
                                                                 $("#order-form-checkout").yiiActiveForm("validate");
                                                                 if(!data.hasError){
-                                                                    configurarCulqi(data.order_id, $("#order-amount").val());
+                                                                    configurarCulqi(data.order_id, $("#order-amount").val().replace(".",""));
                                                                     Culqi.abrir();
                                                                 }
                                                             return false;
                                                         }
                                                 '),
                                             ],
-                                            'options' => ['class' => 'btn btn-block btn-outline green button-next'],
+                                            'options' => ['class' => 'ladda-button btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block'],
                                         ]);
                                         \demogorgorn\ajax\AjaxSubmitButton::end();
                                         ?>
                                     </div>
-                                    <button type="submit" class="ladda-button btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" data-style="contract" data-size="l" data-spinner-color="#FF0000" onclick="var l = Ladda.create(this);l.start();"><span class="ladda-label">Enviar</span></button>
-                                    <!--<button type="submit" class="btn btn-lg btn-default c-btn-square c-btn-uppercase c-btn-bold">Cancelar</button>-->
                                 </div>
                             </li>
                         </ul>
