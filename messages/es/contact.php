@@ -23,7 +23,7 @@ return [
     'Contact' => 'Contacto',
     'Contacts' => '@@@@',
     'Email' => '',
-    'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.' => '',
+    'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.' => 'Si tienes alguna pregunta de negocio o inquietud, por favor llena el siguiente formulario para contactarnos',
     'Name' => 'Nombre',
     'Subject' => 'Titulo de mensaje',
     'Submit' => 'Enviar',

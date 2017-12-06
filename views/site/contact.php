@@ -28,14 +28,14 @@ $this->title = Yii::t('contact', 'Contact');
                             </div>
                             <div class="c-section">
                                 <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">Direcci&oacute;n</div>
-                                <p>25, Lorem Lis Street,<br/>Orange C, California,<br/>United States of America</p>
+                                <p>Calle Antenor Rizo Patron 134,<br/> Surquillo,<br/>Lima - Per&uacute;</p>
                             </div>
                             <div class="c-section">
                                 <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">Contactos</div>
-                                <p><strong>T</strong> 800 123 0000<br/><strong>F</strong> 800 123 8888</p>
+                                <p><strong>T</strong> +51 964 103 600</p>
                             </div>
                             <div class="c-section">
-                                <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">Social</div><br/>
+                                <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">Social Media</div><br/>
                                 <ul class="c-content-iconlist-1 c-theme">
                                     <li><a href="https://www.facebook.com/camiflexkids/" target="_blank"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="https://www.instagram.com/camiflexperu/?hl=es-la" target="_blank"><i class="fa fa-instagram"></i></a></li>
@@ -103,7 +103,7 @@ $this->title = Yii::t('contact', 'Contact');
                         <?php
                         echo $form->field($model, 'verifyCode')->widget(Captcha::class, [
                             'options' => ['placeholder' => Yii::t('contact', 'Code'), 'class' => 'form-control c-square c-theme input-lg']
-//                            'template' => '<div class="form"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+//                            'template' => '<div class="form-group"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                         ]);
                         ?>
                         <div class="form-group">

@@ -6,12 +6,12 @@
     <div class="c-caption c-content-overlay">
 <!--        <div class="c-overlay-wrapper">
             <div class="c-overlay-content">
-                <a class="team-gallery" href="<?= Yii::$app->request->baseUrl. '/' . $data->urlImg;?>" data-lightbox="fancybox" data-fancybox-group="gallery-2">
+                <a class="team-gallery" href="<?= $data->urlImg;?>" data-lightbox="fancybox" data-fancybox-group="gallery-2">
                     <i class="icon-magnifier"></i>
                 </a>
             </div>
         </div>-->
-        <img src="<?= Yii::$app->request->baseUrl. '/' . $data->urlImg;?>" class="img-responsive c-overlay-object" alt="">
+        <img src="<?= $data->urlImg;?>" class="img-responsive c-overlay-object" alt="">
     </div>
     <div class="c-body">
         <div class="c-head">

@@ -182,11 +182,11 @@ app\assets\CulqiAsset::register($this);
                                                 'beforeSend' => new \yii\web\JsExpression('function(xhr){}'),
                                                 'success' => new \yii\web\JsExpression('
                                                         function(data){
-                                                            console.log(data);
                                                                 $("#order-form-checkout").data("yiiActiveForm").submitting = true;
                                                                 $("#order-form-checkout").yiiActiveForm("validate");
                                                                 if(!data.hasError){
-                                                                    configurarCulqi(data.order_id, $("#order-amount").val().replace(".",""));
+                                                                    console.log(data.order);
+                                                                    configurarCulqi($("#order-amount").val().replace(".",""));
                                                                     Culqi.abrir();
                                                                 }
                                                             return false;

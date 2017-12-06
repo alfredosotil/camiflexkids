@@ -216,6 +216,7 @@ class SiteController extends Controller {
         return $this->render('index', [
                     'slides' => $this->getIndexMainSlides(),
                     'reasons' => $this->getReasons(),
+                    'gallery' => $this->getIndexGallery(),
         ]);
     }
 
@@ -403,7 +404,7 @@ class SiteController extends Controller {
             if ($model->load(Yii::$app->request->post()) && $model->validate()
 //                    && $model->save()
             ) {
-                return $this->asJson(['successAjax' => true, 'hasError' => false, 'order_id' => $model->id]);
+                return $this->asJson(['successAjax' => true, 'hasError' => false, 'order' => $model]);
             } else {
                 return $this->asJson(['successAjax' => true, 'hasError' => true, 'errors' => $model->errors]);
             }
@@ -413,30 +414,26 @@ class SiteController extends Controller {
 
     public function actionAcceptcreditcard() {
         if (Yii::$app->request->isPost && Yii::$app->request->isAjax) {
-            $culqi = new Culqi\Culqi(['api_key' => $this->SECRET_API_KEY]);
+            $culqi = new Culqi(['api_key' => $this->SECRET_API_KEY]);
             // Entorno: Integración (pruebas)
-            $culqi->setEnv("INTEG");
-
+//            $culqi->setEnv("INTEG");
             // Generamos un Código de pedido único (ejemplo)
             $pedidoId = time() . "comerciocamiflexkids";
+            $data = json_decode(Yii::$app->request->getRawBody());
             try {
-                $cargo = 'ok';
-//                $cargo = $culqi->Cargos->create(array(
-//                    "moneda" => "PEN",
-//                    "monto" => 19900,
-//                    "usuario" => "71701956",
-//                    "descripcion" => "Venta de prueba",
-//                    "pedido" => $pedidoId,
-//                    "codigo_pais" => "PE",
-//                    "direccion" => "Avenida Lima 1232",
-//                    "ciudad" => "Lima",
-//                    "telefono" => 3333339,
-//                    "nombres" => "Brayan",
-//                    "apellidos" => "Cruces",
-//                    "correo_electronico" => "brayan.cruces@culqi.com",
-//                    "token" => "vJk6e1LIoZLdDwEXTE6KMQlaJvqswSwU"
-//                ));
-                return $this->asJson(['successAjax' => true, 'hasError' => false, 'cargo' => $cargo]);
+                $charge = $data;
+//                $charge = $culqi->Charges->create(
+//                        [
+//                            "amount" => 1000,
+//                            "capture" => true,
+//                            "currency_code" => "PEN",
+//                            "description" => "Venta de prueba",
+//                            "email" => "test777@culqi.com",
+//                            "installments" => (int) $_POST["installments"],
+//                            "source_id" => $_POST["token"]
+//                        ]
+//                );
+                return $this->asJson(['successAjax' => true, 'hasError' => false, 'charge' => $charge]);
             } catch (Exception $e) {
                 // ERROR: El cargo tuvo algún error o fue rechazado
 //                echo $e->getMessage();
@@ -513,6 +510,15 @@ class SiteController extends Controller {
         $htmlClients = "";
         foreach ($slides as $value) {
             $htmlClients .= $this->renderPartial('clients-template', ['data' => $value]);
+        }
+        return $htmlClients;
+    }
+    
+    private function getIndexGallery() {
+        $slides = json_decode(Yii::$app->params['gallery']);
+        $htmlClients = "";
+        foreach ($slides as $value) {
+            $htmlClients .= $this->renderPartial('galleryindex-template', ['data' => $value]);
         }
         return $htmlClients;
     }
