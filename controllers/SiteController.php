@@ -175,6 +175,13 @@ class SiteController extends Controller {
         $model->departament = '15';
         $model->province = '00';
         $model->district = '00';
+//        test
+        $model->ship_name = 'alfredo';
+        $model->ship_address = 'avenida brigida silva';
+        $model->phone = '980727281';
+        $model->fax = '980727281';
+        $model->email = 'alfredosotil@gmail.com';
+        
         $model->amount = number_format(doubleval(Yii::$app->cart->getAttributeTotal('vat')), 2, '.', '');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Order has been created.');
@@ -413,33 +420,34 @@ class SiteController extends Controller {
     }
 
     public function actionAcceptcreditcard() {
-        if (Yii::$app->request->isPost && Yii::$app->request->isAjax) {
-            $culqi = new Culqi(['api_key' => $this->SECRET_API_KEY]);
-            // Entorno: Integración (pruebas)
-//            $culqi->setEnv("INTEG");
-            // Generamos un Código de pedido único (ejemplo)
-            $pedidoId = time() . "comerciocamiflexkids";
-            $data = json_decode(Yii::$app->request->getRawBody());
-            try {
-                $charge = $data;
-//                $charge = $culqi->Charges->create(
-//                        [
-//                            "amount" => 1000,
-//                            "capture" => true,
-//                            "currency_code" => "PEN",
-//                            "description" => "Venta de prueba",
-//                            "email" => "test777@culqi.com",
-//                            "installments" => (int) $_POST["installments"],
-//                            "source_id" => $_POST["token"]
-//                        ]
-//                );
-                return $this->asJson(['successAjax' => true, 'hasError' => false, 'charge' => $charge]);
-            } catch (Exception $e) {
-                // ERROR: El cargo tuvo algún error o fue rechazado
-//                echo $e->getMessage();
-                return $this->asJson(['successAjax' => true, 'hasError' => true, 'error_message' => $e->getMessage()]);
-            }
-        }
+        return $this->asJson(['successAjax' => true, 'hasError' => false, 'charge' => 'ok']);
+//        if (Yii::$app->request->isPost && Yii::$app->request->isAjax) {
+//            $culqi = new Culqi(['api_key' => $this->SECRET_API_KEY]);
+//            // Entorno: Integración (pruebas)
+////            $culqi->setEnv("INTEG");
+//            // Generamos un Código de pedido único (ejemplo)
+//            $pedidoId = time() . "comerciocamiflexkids";
+//            $data = json_decode(Yii::$app->request->getRawBody());
+//            try {
+//                $charge = $data;
+////                $charge = $culqi->Charges->create(
+////                        [
+////                            "amount" => 1000,
+////                            "capture" => true,
+////                            "currency_code" => "PEN",
+////                            "description" => "Venta de prueba",
+////                            "email" => "test777@culqi.com",
+////                            "installments" => (int) $_POST["installments"],
+////                            "source_id" => $_POST["token"]
+////                        ]
+////                );
+//                return $this->asJson(['successAjax' => true, 'hasError' => false, 'charge' => $charge]);
+//            } catch (Exception $e) {
+//                // ERROR: El cargo tuvo algún error o fue rechazado
+////                echo $e->getMessage();
+//                return $this->asJson(['successAjax' => true, 'hasError' => true, 'error_message' => $e->getMessage()]);
+//            }
+//        }
     }
 
     public function actionAddarraytocart() {

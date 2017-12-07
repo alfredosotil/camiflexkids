@@ -9,15 +9,23 @@
 function configurarCulqi(amount) {
     Culqi.codigoComercio = 'pk_test_O7LKYtalUAXdbvwo';
     Culqi.configurar({
+        order_id: '---',
         nombre: 'CAMIFLEXKIDS',
         moneda: 'PEN',
         descripcion: 'Pago de orden Camiflexkids',
-        monto: parseInt(amount)
+        monto: parseInt(amount),
+//        numero_tarjeta: '5111111111111118',
+//        fecha: '062020',
+//        cvv: '039',        
+////        nombre: 'Alfredo',        
+//        apellido: 'Sotil',        
+//        email: 'alfredosotil@gmail.com',        
     });
 }
 
 function culqi() {
-
+    console.log('ingreso metodo culqi');
+    console.log(Culqi);
     if (Culqi.error) {
         // Mostramos JSON de objeto error en consola
         console.log(Culqi.error);
@@ -25,17 +33,43 @@ function culqi() {
         alert(Culqi.error.mensaje);
     } else {
         run_waitMe();
-        $.post("acceptcreditcard", // Ruta hacia donde enviaremos el token vía POST
-                {token: Culqi.token.id, installments: Culqi.token.metadata.installments},
-                function (data, status) {
-                    if (!data.hasError) {
-                        alert('¡Todo en orden! Token enviado.');
-                        console.log(data);
-                    } else {
-                        alert('Error');
-                    }
-                    $('body').waitMe('hide');
-                });
+//        $.post("acceptcreditcard", // Ruta hacia donde enviaremos el token vía POST
+//                {token: Culqi.token.id, installments: Culqi.token.metadata.installments},
+//                function (data) {
+//                    if (!data.hasError) {
+//                        alert('¡Todo en orden! Token enviado.');
+//                        console.log(data);
+//                    } else {
+//                        alert('Error');
+//                    }
+//                    $('body').waitMe('hide');
+//                });
+        $.ajax({
+            type: 'POST',
+            url: 'acceptcreditcard',
+            data: {token: Culqi.token.id, installments: Culqi.token.metadata.installments},
+            datatype: 'json',
+            success: function (data) {
+                var result = "";
+//                if (data.constructor == String) {
+//                    result = JSON.parse(data);
+//                }
+//                if (data.constructor == Object) {
+//                    result = JSON.parse(JSON.stringify(data));
+//                }
+//                if (result.object === 'charge') {
+//                    resultdiv(result.outcome.user_message);
+//                }
+//                if (result.object === 'error') {
+//                    resultdiv(result.user_message);
+//                }
+                console.log(data);
+            },
+            error: function (error) {
+//                resultdiv(error)  
+                console.log(error);
+            }
+        });
     }
 
 //    if (Culqi.token) {

@@ -169,17 +169,21 @@ app\assets\CulqiAsset::register($this);
                                                         </li>-->
                             <li class="row">
                                 <div class="form-group col-md-12" role="group">
-                                    <div class="list-inline">
+                                    <div class="">
                                         <?php
                                         \demogorgorn\ajax\AjaxSubmitButton::begin([
                                             'encodeLabel' => false,
                                             'tagName' => 'a',
-                                            'label' => 'Realizar pago  <i class="fa fa-check"></i>',
+                                            'label' => '<span class="ladda-label">Realizar pago  <i class="fa fa-check"></span></i>',
                                             'ajaxOptions' => [
                                                 'type' => 'POST',
                                                 'url' => 'makeorder',
                                                 'data' => new \yii\web\JsExpression('$("#order-form-checkout").serialize()'),
-                                                'beforeSend' => new \yii\web\JsExpression('function(xhr){}'),
+                                                'beforeSend' => new \yii\web\JsExpression('
+                                                        function(xhr){
+                                                            var l = Ladda.create(document.querySelector(".invoque-culqi"));         
+                                                            l.start();                                                            
+                                                        }'),
                                                 'success' => new \yii\web\JsExpression('
                                                         function(data){
                                                                 $("#order-form-checkout").data("yiiActiveForm").submitting = true;
@@ -193,7 +197,7 @@ app\assets\CulqiAsset::register($this);
                                                         }
                                                 '),
                                             ],
-                                            'options' => ['class' => 'ladda-button btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block'],
+                                            'options' => ['style' => 'width:100%','data-style' => 'contract','class' => 'invoque-culqi ladda-button btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold'],
                                         ]);
                                         \demogorgorn\ajax\AjaxSubmitButton::end();
                                         ?>
