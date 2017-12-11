@@ -27,7 +27,7 @@ class SiteController extends Controller {
 
     use EventTrait;
 
-    public $SECRET_API_KEY = 'pk_test_O7LKYtalUAXdbvwo';
+    public $SECRET_API_KEY = 'sk_test_5dBvsJJspPxmwzMF';
 
     /**
      * @inheritdoc
@@ -181,7 +181,7 @@ class SiteController extends Controller {
         $model->phone = '980727281';
         $model->fax = '980727281';
         $model->email = 'alfredosotil@gmail.com';
-        
+
         $model->amount = number_format(doubleval(Yii::$app->cart->getAttributeTotal('vat')), 2, '.', '');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Order has been created.');
@@ -420,34 +420,35 @@ class SiteController extends Controller {
     }
 
     public function actionAcceptcreditcard() {
-        return $this->asJson(['successAjax' => true, 'hasError' => false, 'charge' => 'ok']);
-//        if (Yii::$app->request->isPost && Yii::$app->request->isAjax) {
-//            $culqi = new Culqi(['api_key' => $this->SECRET_API_KEY]);
-//            // Entorno: Integración (pruebas)
-////            $culqi->setEnv("INTEG");
-//            // Generamos un Código de pedido único (ejemplo)
-//            $pedidoId = time() . "comerciocamiflexkids";
+        if (Yii::$app->request->isPost && Yii::$app->request->isAjax) {
+            $culqi = new Culqi(['api_key' => $this->SECRET_API_KEY]);
+            // Entorno: Integración (pruebas)
+//            $culqi->setEnv("INTEG");
+            // Generamos un Código de pedido único (ejemplo)
+            parse_str(Yii::$app->request->post('form_order'), $order);
 //            $data = json_decode(Yii::$app->request->getRawBody());
-//            try {
-//                $charge = $data;
-////                $charge = $culqi->Charges->create(
-////                        [
-////                            "amount" => 1000,
-////                            "capture" => true,
-////                            "currency_code" => "PEN",
-////                            "description" => "Venta de prueba",
-////                            "email" => "test777@culqi.com",
-////                            "installments" => (int) $_POST["installments"],
-////                            "source_id" => $_POST["token"]
-////                        ]
-////                );
-//                return $this->asJson(['successAjax' => true, 'hasError' => false, 'charge' => $charge]);
-//            } catch (Exception $e) {
-//                // ERROR: El cargo tuvo algún error o fue rechazado
-////                echo $e->getMessage();
-//                return $this->asJson(['successAjax' => true, 'hasError' => true, 'error_message' => $e->getMessage()]);
-//            }
-//        }
+            $order_source = new Order();
+            $order_source->load($order);
+            try {
+//                $charge = $order_source;
+                $charge = $culqi->Charges->create(
+                        [
+                            'amount' => Yii::$app->request->post('amount'),
+                            'capture' => true,
+                            'currency_code' => 'PEN',
+                            'description' => 'Pago de orden Camiflexkids',
+                            'email' => Yii::$app->request->post('email'),
+                            'installments' => (int) Yii::$app->request->post('installments'),
+                            'source_id' => Yii::$app->request->post('token')
+                        ]
+                );
+                return $this->asJson(['successAjax' => true, 'hasError' => false, 'charge' => $charge]);
+            } catch (Exception $e) {
+                // ERROR: El cargo tuvo algún error o fue rechazado
+//                echo $e->getMessage();
+                return $this->asJson(['successAjax' => true, 'hasError' => true, 'error_message' => $e->getMessage()]);
+            }
+        }   
     }
 
     public function actionAddarraytocart() {
@@ -521,7 +522,7 @@ class SiteController extends Controller {
         }
         return $htmlClients;
     }
-    
+
     private function getIndexGallery() {
         $slides = json_decode(Yii::$app->params['gallery']);
         $htmlClients = "";

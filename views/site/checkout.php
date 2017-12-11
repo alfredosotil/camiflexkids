@@ -191,16 +191,21 @@ app\assets\CulqiAsset::register($this);
                                                                 if(!data.hasError){
                                                                     console.log(data.order);
                                                                     configurarCulqi($("#order-amount").val().replace(".",""));
-                                                                    Culqi.abrir();
+                                                                    Culqi.open();
                                                                 }
-                                                            return false;
                                                         }
                                                 '),
                                             ],
-                                            'options' => ['style' => 'width:100%','data-style' => 'contract','class' => 'invoque-culqi ladda-button btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold'],
+                                            'options' => ['style' => 'width:100%', 'data-style' => 'contract', 'class' => 'invoque-culqi ladda-button btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold'],
                                         ]);
                                         \demogorgorn\ajax\AjaxSubmitButton::end();
                                         ?>
+                                        <!--<button onclick="test();">test</button>-->
+                                    </div>
+                                    <div class="panel panel-default" id="response-panel" style="display: none;">
+                                        <div class="panel-heading">Response</div>
+                                        <div class="panel-body" id="response">
+                                        </div>
                                     </div>
                                 </div>
                             </li>

@@ -21,7 +21,7 @@ class CulqiAsset extends AssetBundle {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $js = [
-        'https://integ-pago.culqi.com/js/v1',
+        'https://checkout.culqi.com/plugins/v2/',
         'js/waitMe.min.js',
         'js/Culqi.js',
     ];
