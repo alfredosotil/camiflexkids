@@ -18,8 +18,8 @@ class OrderSearch extends Order
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'shipped', 'active'], 'integer'],
-            [['amount', 'ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'fax', 'email', 'shipping', 'tax', 'tracking_number'], 'safe'],
+            [['id', 'created_at', 'updated_at', 'shipped', 'ispaid', 'active'], 'integer'],
+            [['amount', 'ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'fax', 'email', 'shipping', 'tax', 'tracking_number', 'typepayment', 'notes'], 'safe'],
         ];
     }
 
@@ -53,6 +53,7 @@ class OrderSearch extends Order
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'shipped' => $this->shipped,
+            'ispaid' => $this->ispaid,
             'active' => $this->active,
         ]);
 
@@ -68,7 +69,9 @@ class OrderSearch extends Order
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'shipping', $this->shipping])
             ->andFilterWhere(['like', 'tax', $this->tax])
-            ->andFilterWhere(['like', 'tracking_number', $this->tracking_number]);
+            ->andFilterWhere(['like', 'tracking_number', $this->tracking_number])
+            ->andFilterWhere(['like', 'typepayment', $this->typepayment])
+            ->andFilterWhere(['like', 'notes', $this->notes]);
 
         return $dataProvider;
     }

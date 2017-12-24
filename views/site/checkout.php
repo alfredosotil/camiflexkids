@@ -181,16 +181,18 @@ app\assets\CulqiAsset::register($this);
                                                 'data' => new \yii\web\JsExpression('$("#order-form-checkout").serialize()'),
                                                 'beforeSend' => new \yii\web\JsExpression('
                                                         function(xhr){
+                                                            $("#order-form-checkout").data("yiiActiveForm").submitting = true;
+                                                            $("#order-form-checkout").yiiActiveForm("validate");
                                                             var l = Ladda.create(document.querySelector(".invoque-culqi"));         
                                                             l.start();                                                            
                                                         }'),
                                                 'success' => new \yii\web\JsExpression('
-                                                        function(data){
-                                                                $("#order-form-checkout").data("yiiActiveForm").submitting = true;
-                                                                $("#order-form-checkout").yiiActiveForm("validate");
-                                                                if(!data.hasError){
-                                                                    console.log(data.order);
-                                                                    configurarCulqi($("#order-amount").val().replace(".",""));
+                                                        function(data){                                                                
+                                                                if($("#order-form-checkout").find(".has-error").length){
+                                                                    Ladda.stopAll();
+                                                                    return false;
+                                                                }else{
+                                                                    configurarCulqi($("#order-amount").val().replace(".",""), data.order);
                                                                     Culqi.open();
                                                                 }
                                                         }
@@ -202,11 +204,11 @@ app\assets\CulqiAsset::register($this);
                                         ?>
                                         <!--<button onclick="test();">test</button>-->
                                     </div>
-                                    <div class="panel panel-default" id="response-panel" style="display: none;">
-                                        <div class="panel-heading">Response</div>
-                                        <div class="panel-body" id="response">
-                                        </div>
-                                    </div>
+                                    <!--                                    <div class="panel panel-default" id="response-panel" style="display: none;">
+                                                                            <div class="panel-heading">Response</div>
+                                                                            <div class="panel-body" id="response">
+                                                                            </div>
+                                                                        </div>-->
                                 </div>
                             </li>
                         </ul>

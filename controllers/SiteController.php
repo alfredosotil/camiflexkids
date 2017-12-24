@@ -170,13 +170,14 @@ class SiteController extends Controller {
     }
 
     public function actionCheckout() {
+        Yii::$app->assetsAutoCompress->jsFileCompile = false; //se desactiva compresion js tema tecnico con angular
         $model = new \app\models\Order();
         $model->country = 'PERU';
         $model->departament = '15';
         $model->province = '00';
         $model->district = '00';
 //        test
-        $model->ship_name = 'alfredo';
+        $model->ship_name = 'alfredo sotil';
         $model->ship_address = 'avenida brigida silva';
         $model->phone = '980727281';
         $model->fax = '980727281';
@@ -407,15 +408,11 @@ class SiteController extends Controller {
             $model->tax = 0;
             $model->shipping = 0;
             $model->tracking_number = strval(strtotime("now"));
+//            $model->load(Yii::$app->request->post());
 //                return $this->asJson(['post' => Yii::$app->request->post()]);
-            if ($model->load(Yii::$app->request->post()) && $model->validate()
-//                    && $model->save()
-            ) {
-                return $this->asJson(['successAjax' => true, 'hasError' => false, 'order' => $model]);
-            } else {
-                return $this->asJson(['successAjax' => true, 'hasError' => true, 'errors' => $model->errors]);
+            if ($model->load(Yii::$app->request->post())) {
+                return $this->asJson(['order' => $model]);
             }
-////                return \yii\widgets\ActiveForm::validate($model);
         }
     }
 
@@ -425,30 +422,38 @@ class SiteController extends Controller {
             // Entorno: Integración (pruebas)
 //            $culqi->setEnv("INTEG");
             // Generamos un Código de pedido único (ejemplo)
-            parse_str(Yii::$app->request->post('form_order'), $order);
+//            parse_str(Yii::$app->request->post('form_order'), $order);
 //            $data = json_decode(Yii::$app->request->getRawBody());
-            $order_source = new Order();
-            $order_source->load($order);
+            $order = new Order();
+//            $order->load(Yii::$app->request->post('order'));
+            $order->attributes = Yii::$app->request->post('order');
             try {
-//                $charge = $order_source;
                 $charge = $culqi->Charges->create(
-                        [
+                        array(
                             'amount' => Yii::$app->request->post('amount'),
                             'capture' => true,
                             'currency_code' => 'PEN',
                             'description' => 'Pago de orden Camiflexkids',
+                            'installments' => 0,
                             'email' => Yii::$app->request->post('email'),
-                            'installments' => (int) Yii::$app->request->post('installments'),
+                            'metadata' => array('test' => 'test'),
                             'source_id' => Yii::$app->request->post('token')
-                        ]
+                        )
                 );
-                return $this->asJson(['successAjax' => true, 'hasError' => false, 'charge' => $charge]);
+                if (strcmp($charge->object, 'charge') === 0) {
+                    $order->ispaid = 1;
+                    $order->save();
+                    \Yii::$app->cart->clear();
+                    return $this->asJson(['successAjax' => true, 'hasError' => false, 'order' => $order, 'charge' => $charge, 'redirect' => Url::to(['products'])]);
+                } else {
+                    return $this->asJson(['successAjax' => true, 'hasError' => true, 'charge' => $charge]);
+                }
             } catch (Exception $e) {
                 // ERROR: El cargo tuvo algún error o fue rechazado
 //                echo $e->getMessage();
                 return $this->asJson(['successAjax' => true, 'hasError' => true, 'error_message' => $e->getMessage()]);
             }
-        }   
+        }
     }
 
     public function actionAddarraytocart() {

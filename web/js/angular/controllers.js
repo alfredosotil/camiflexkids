@@ -60,7 +60,7 @@ angular.module('camiflexkids-app.controllers', [])
                                 cancelButtonColor: '#d33',
                                 confirmButtonText: 'Continuar',
                                 allowOutsideClick: true,
-                            })
+                            });
                         }
                     }, function errorCallback(response) {
                         // called asynchronously if an error occurs

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\OrderSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('product', 'Orders');
+$this->title = Yii::t('app', 'Orders');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?php echo Html::a(Yii::t('product', 'Create {modelClass}', [
+        <?php echo Html::a(Yii::t('app', 'Create {modelClass}', [
     'modelClass' => 'Order',
 ]), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -29,24 +29,27 @@ $this->params['breadcrumbs'][] = $this->title;
             'amount',
             'ship_name',
             'ship_address',
-            'city',
-            // 'state',
-            // 'zip',
+//            'departament',
+//             'province',
+            // 'district',
             // 'country',
-            // 'phone',
+             'phone',
             // 'fax',
-            // 'email:email',
+             'email:email',
             // 'shipping',
             // 'tax',
-            // 'created_at',
-            // 'updated_at',
+             'created_at:datetime',
+             'updated_at:datetime',
             // 'shipped',
-            // 'tracking_number',
-            // 'active',
+             'tracking_number',
+             'ispaid',
+            // 'typepayment',
+            // 'notes',
+             'active',
             [
                 'header' => 'Action',
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{update}{delete}',
+                'template' => '{view}{update}{delete}',
             ],
         ],
     ]);

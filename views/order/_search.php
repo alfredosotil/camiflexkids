@@ -23,11 +23,11 @@ use yii\widgets\ActiveForm;
 
     <?php echo $form->field($model, 'ship_address') ?>
 
-    <?php echo $form->field($model, 'city') ?>
+    <?php echo $form->field($model, 'departament') ?>
 
-    <?php // echo $form->field($model, 'state') ?>
+    <?php // echo $form->field($model, 'province') ?>
 
-    <?php // echo $form->field($model, 'zip') ?>
+    <?php // echo $form->field($model, 'district') ?>
 
     <?php // echo $form->field($model, 'country') ?>
 
@@ -49,11 +49,17 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'tracking_number') ?>
 
+    <?php // echo $form->field($model, 'ispaid') ?>
+
+    <?php // echo $form->field($model, 'typepayment') ?>
+
+    <?php // echo $form->field($model, 'notes') ?>
+
     <?php // echo $form->field($model, 'active') ?>
 
     <div class="form-group">
-        <?php echo Html::submitButton(Yii::t('product', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?php echo Html::resetButton(Yii::t('product', 'Reset'), ['class' => 'btn btn-default']) ?>
+        <?php echo Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
+        <?php echo Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
