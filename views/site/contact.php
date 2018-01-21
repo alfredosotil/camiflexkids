@@ -101,10 +101,16 @@ $this->title = Yii::t('contact', 'Contact');
                         <?php echo $form->field($model, 'subject', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Tu título'), 'class' => 'form-control c-square c-theme input-lg']]); ?>
                         <?php echo $form->field($model, 'body', ['inputOptions' => ['placeholder' => Yii::t('contact', 'Tu mensaje'), 'class' => 'form-control c-square c-theme input-lg']])->textArea(['rows' => 6]); ?>
                         <?php
-                        echo $form->field($model, 'verifyCode')->widget(Captcha::class, [
-                            'options' => ['placeholder' => Yii::t('contact', 'Code'), 'class' => 'form-control c-square c-theme input-lg']
-//                            'template' => '<div class="form-group"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                        ]);
+//                        echo $form->field($model, 'verifyCode')->widget(Captcha::class, [
+//                            'options' => ['placeholder' => Yii::t('contact', 'Code'), 'class' => 'form-control c-square c-theme input-lg'],
+////                            'template' => '<div class="row"><div class="col-lg-12">{image}</div><div class="col-lg-12">{input}</div></div>',
+////                            'template' => '<div class="form-group"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+//                        ]);                        
+                        ?>
+                        <?php
+//                        echo $form->field($model, 'verifyCode')->widget(\yii\captcha\Captcha::className(), [
+//                            'template' => '<div class="row"><div class="col-lg-12">{image}</div><div class="col-lg-12">{input}</div></div>',
+//                        ])
                         ?>
                         <div class="form-group">
                             <?php echo Html::submitButton(Yii::t('contact', 'Submit'), ['class' => 'btn c-theme-btn c-btn-uppercase btn-lg c-btn-bold c-btn-square', 'name' => 'contact-button']); ?>

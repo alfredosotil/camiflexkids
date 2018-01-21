@@ -30,9 +30,9 @@
         "yiisoft/yii2": "~2.0.11",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "yii2mod/yii2-cms": "*",
+        "yii2mod/yii2-cms": "1.9.1",
         "yii2mod/yii2-user": "*",
-        "yii2mod/yii2-rbac": "*",
+        "yii2mod/yii2-rbac": "1.9.1",
         "yii2mod/yii2-cron-log": "*",
         "yii2mod/yii2-settings": "*",
         "yii2mod/yii2-scheduling": "*",
@@ -56,7 +56,9 @@
         "kartik-v/yii2-widget-activeform": "@dev",
         "culqi/culqi-php": "^1.3",
         "vilochane/yii2-barcode-generator": "dev-master",
-        "yii2mod/yii2-google-maps-markers": "*"
+        "yii2mod/yii2-google-maps-markers": "*",
+        "mdmsoft/yii2-captcha": "~1.0",
+        "developit/yii2-captcha": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -86,10 +86,20 @@ class SiteController extends Controller {
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
+//            'captcha' => [
+//                'class' => 'yii\captcha\CaptchaAction',
+//                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+//            ],
+//            'captcha' => [
+//                'class' => 'mdm\captcha\CaptchaAction',
+//                'level' => 1, // avaliable level are 1,2,3 :D
+//            ],
+//            'captcha' => [
+//                'class' => 'developit\captcha\CaptchaAction',
+//                'type' => 'numbers', // 'numbers', 'letters' or 'default' (contains numbers & letters)
+//                'minLength' => 4,
+//                'maxLength' => 4,
+//            ],
 //            'login' => [
 //                'class' => 'yii2mod\user\actions\LoginAction',
 //            ],
