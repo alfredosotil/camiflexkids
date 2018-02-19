@@ -2,20 +2,24 @@
 
 use yii\db\Migration;
 
-class m171031_213308_table_product_option extends Migration {
+class m171031_213308_table_product_option extends Migration
+{
 
-    public function safeUp() {
+    public function safeUp()
+    {
         
     }
 
-    public function safeDown() {
+    public function safeDown()
+    {
         echo "m171031_213308_table_product_option cannot be reverted.\n";
 
         return false;
     }
 
     // Use up()/down() to run migration code without a transaction.
-    public function up() {
+    public function up()
+    {
         $this->createTable('{{%ProductOption}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull()->unique(),
@@ -27,51 +31,52 @@ class m171031_213308_table_product_option extends Migration {
         ]);
 
         $this->createIndex(
-                'idx-productoption-product-id', '{{%ProductOption}}', 'product_id'
+            'idx-productoption-product-id', '{{%ProductOption}}', 'product_id'
         );
 
         $this->addForeignKey(
-                'fk-productoption-product-id', '{{%ProductOption}}', 'product_id', '{{%Product}}', 'id', 'CASCADE'
+            'fk-productoption-product-id', '{{%ProductOption}}', 'product_id', '{{%Product}}', 'id', 'CASCADE'
         );
 
         $this->createIndex(
-                'idx-productoption-option-id', '{{%ProductOption}}', 'option_id'
+            'idx-productoption-option-id', '{{%ProductOption}}', 'option_id'
         );
 
         $this->addForeignKey(
-                'fk-productoption-option-id', '{{%ProductOption}}', 'option_id', '{{%Option}}', 'id', 'CASCADE'
+            'fk-productoption-option-id', '{{%ProductOption}}', 'option_id', '{{%Option}}', 'id', 'CASCADE'
         );
 
         $this->createIndex(
-                'idx-productoption-optiongroup-id', '{{%ProductOption}}', 'optiongroup_id'
+            'idx-productoption-optiongroup-id', '{{%ProductOption}}', 'optiongroup_id'
         );
 
         $this->addForeignKey(
-                'fk-productoption-optiongroup-id', '{{%ProductOption}}', 'optiongroup_id', '{{%OptionGroup}}', 'id', 'CASCADE'
+            'fk-productoption-optiongroup-id', '{{%ProductOption}}', 'optiongroup_id', '{{%OptionGroup}}', 'id', 'CASCADE'
         );
     }
 
-    public function down() {
+    public function down()
+    {
         $this->dropForeignKey(
-                'idx-productoption-product-id', '{{%ProductOption}}'
+            'idx-productoption-product-id', '{{%ProductOption}}'
         );
 
         $this->dropIndex(
-                'fk-productoption-product-id', '{{%ProductOption}}'
+            'fk-productoption-product-id', '{{%ProductOption}}'
         );
         $this->dropForeignKey(
-                'idx-productoption-option-id', '{{%ProductOption}}'
+            'idx-productoption-option-id', '{{%ProductOption}}'
         );
 
         $this->dropIndex(
-                'fk-productoption-option-id', '{{%ProductOption}}'
+            'fk-productoption-option-id', '{{%ProductOption}}'
         );
         $this->dropForeignKey(
-                'idx-productoption-optiongroup-id', '{{%ProductOption}}'
+            'idx-productoption-optiongroup-id', '{{%ProductOption}}'
         );
 
         $this->dropIndex(
-                'fk-productoption-optiongroup-id', '{{%ProductOption}}'
+            'fk-productoption-optiongroup-id', '{{%ProductOption}}'
         );
 
         $this->dropTable('{{%ProductOption}}');
@@ -79,5 +84,4 @@ class m171031_213308_table_product_option extends Migration {
 
         return false;
     }
-
 }

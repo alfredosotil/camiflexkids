@@ -7,6 +7,7 @@ use yii\db\Migration;
  */
 class m171128_164632_add_paymenttype_column_to_order_table extends Migration
 {
+
     /**
      * @inheritdoc
      */

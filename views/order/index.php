@@ -9,19 +9,24 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('app', 'Orders');
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="order-index">
 
     <h1><?php echo Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
     <p>
-        <?php echo Html::a(Yii::t('app', 'Create {modelClass}', [
-    'modelClass' => 'Order',
-]), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php
+        echo Html::a(Yii::t('app', 'Create {modelClass}', [
+                'modelClass' => 'Order',
+            ]), ['create'], ['class' => 'btn btn-success'])
+
+        ?>
     </p>
-    <?php \yii\widgets\Pjax::begin(['enablePushState' => false,'timeout' => 3000]); ?>
-    <?php echo GridView::widget([
+    <?php \yii\widgets\Pjax::begin(['enablePushState' => false, 'timeout' => 3000]); ?>
+    <?php
+    echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -33,19 +38,19 @@ $this->params['breadcrumbs'][] = $this->title;
 //             'province',
             // 'district',
             // 'country',
-             'phone',
+            'phone',
             // 'fax',
-             'email:email',
+            'email:email',
             // 'shipping',
             // 'tax',
-             'created_at:datetime',
-             'updated_at:datetime',
+            'created_at:datetime',
+            'updated_at:datetime',
             // 'shipped',
-             'tracking_number',
-             'ispaid',
+            'tracking_number',
+            'ispaid',
             // 'typepayment',
             // 'notes',
-             'active',
+            'active',
             [
                 'header' => 'Action',
                 'class' => 'yii\grid\ActionColumn',
@@ -53,6 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]);
+
     ?>
     <?php \yii\widgets\Pjax::end(); ?>
 

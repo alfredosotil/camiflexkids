@@ -13,6 +13,7 @@ use app\widgets\CartViewWidget;
 /* @var $content string */
 
 AppAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -45,6 +46,7 @@ AppAsset::register($this);
         $this->registerMetaTag(['name' => 'og:image:type', 'content' => "image/png"]);
         $this->registerMetaTag(['name' => 'og:image:height', 'content' => "226"]);
         $this->registerMetaTag(['name' => 'og:image:width', 'content' => "55"]);
+
         ?>
 
         <link rel="icon" href="<?= Yii::$app->request->baseUrl; ?>/img/favicon.ico" type="image/x-icon"> 
@@ -185,6 +187,7 @@ AppAsset::register($this);
                                 'items' => $items,
                                 'encodeLabels' => false,
                             ]);
+
                             ?>
                         </nav>
                         <!-- END: MEGA MENU --><!-- END: LAYOUT/HEADERS/MEGA-MENU -->
@@ -195,6 +198,7 @@ AppAsset::register($this);
                     if (!in_array(Yii::$app->controller->action->id, ['viewcart', ''])) {
                         echo CartViewWidget::widget([]);
                     }
+
                     ?>
                     <!-- END: LAYOUT/HEADERS/QUICK-CART -->
                 </div>

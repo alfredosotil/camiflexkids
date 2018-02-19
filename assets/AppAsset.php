@@ -5,7 +5,6 @@
  * @copyright Copyright (c) 2008 Yii Software LLC
  * @license   http://www.yiiframework.com/license/
  */
-
 namespace app\assets;
 
 use yii\web\AssetBundle;
@@ -17,14 +16,17 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
+
     /**
      * @var string
      */
     public $basePath = '@webroot';
+
     /**
      * @var string
      */
     public $baseUrl = '@web';
+
     /**
      * @var array
      */
@@ -54,6 +56,7 @@ class AppAsset extends AssetBundle
         'css/default.css',
         'css/site.css',
     ];
+
     /**
      * @var array
      */
@@ -96,10 +99,11 @@ class AppAsset extends AssetBundle
         'plugins/ilightbox/js/ilightbox.packed.js',
         'plugins/isotope/isotope-gallery.js',
         'plugins/isotope/isotope-grid.js',
-        'js/spin.min.js',        
-        'js/ladda.min.js',        
-        'js/main.js',        
+        'js/spin.min.js',
+        'js/ladda.min.js',
+        'js/main.js',
     ];
+
     /**
      * @var array
      */
@@ -109,8 +113,9 @@ class AppAsset extends AssetBundle
         'yii2mod\alert\AlertAsset',
 //        'yii\bootstrap\BootstrapAsset',
     ];
-    
-    public static function custom_echo($x, $length) {
+
+    public static function custom_echo($x, $length)
+    {
         if (strlen($x) <= $length) {
             echo $x;
         } else {

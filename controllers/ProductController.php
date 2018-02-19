@@ -1,5 +1,4 @@
 <?php
-
 namespace app\controllers;
 
 use Yii;
@@ -14,12 +13,13 @@ use yii\filters\VerbFilter;
  */
 class ProductController extends Controller
 {
+
     public $layout = '@app/modules/admin/views/layouts/column2';
-    
-   /**
-    * Behaviors
-    * @return array
-    */
+
+    /**
+     * Behaviors
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -31,11 +31,12 @@ class ProductController extends Controller
             ],
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
-    public function actions() {
+    public function actions()
+    {
         return [
             'galleryApi' => [
                 'class' => \zxbodya\yii2\galleryManager\GalleryManagerAction::className(),
@@ -46,7 +47,7 @@ class ProductController extends Controller
             ],
         ];
     }
-    
+
     /**
      * Lists all Product models.
      * @return mixed
@@ -57,8 +58,8 @@ class ProductController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -77,9 +78,8 @@ class ProductController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
+                'model' => $model,
         ]);
-
     }
 
     /**
@@ -98,9 +98,8 @@ class ProductController extends Controller
         }
 
         return $this->render('update', [
-            'model' => $model,
+                'model' => $model,
         ]);
-
     }
 
     /**

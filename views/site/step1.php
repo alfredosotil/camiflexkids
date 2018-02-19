@@ -7,6 +7,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Subscribers */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="subscribers-form container">
@@ -23,15 +24,16 @@ use yii\bootstrap\ActiveForm;
                 </h1><br>
                 <?php
                 $form = ActiveForm::begin([
-                            'id' => 'subscriber-form-simulator',
-                            'enableAjaxValidation' => false,
-                            'enableClientValidation' => true,
+                        'id' => 'subscriber-form-simulator',
+                        'enableAjaxValidation' => false,
+                        'enableClientValidation' => true,
 //                        'method' => 'post',
 //                        'action' => '',
-                            'layout' => 'horizontal',
-                            'options' => ['onsubmit' => 'return false;']
+                        'layout' => 'horizontal',
+                        'options' => ['onsubmit' => 'return false;']
 //                        'validateOnSubmit' => false,
                 ]);
+
                 ?>  
 
                 <?php echo $form->field($model, 'email')->textInput(['maxlength' => 255]) ?>
@@ -71,6 +73,7 @@ use yii\bootstrap\ActiveForm;
                             'options' => ['class' => 'btn btn-block btn-outline green button-next'],
                         ]);
                         \demogorgorn\ajax\AjaxSubmitButton::end();
+
                         ?>
                     </div>
                 </div>

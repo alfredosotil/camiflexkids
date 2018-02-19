@@ -4,6 +4,7 @@
 use yii\helpers\Url;
 
 $this->title = 'Productos Camiflex Kids';
+
 ?>
 <div class="row-correction"></div>
 <div class="container">
@@ -14,14 +15,14 @@ $this->title = 'Productos Camiflex Kids';
         <!-- BEGIN: CONTENT/SHOPS/SHOP-2-7 -->
         <div class="c-bs-grid-small-space">
             <div class="c-content-title-1 wow animated fadeIn">
-                <h3 class="c-font-uppercase c-font-bold">Nuestros Productos</h3>
+                <h3 class="c-font-uppercase c-font-bold">Nuestros Colores en Productos</h3>
                 <h4 class="c-font-grey-3 c-font-thin c-opacity-09">Te presentamos nuestros colores ¡ARMA TU COMBINACION IDEAL!</h4>
                 <div class="c-line-left"></div>
                 <!--<h4 class="c-font-grey-3 c-font-thin c-opacity-09">Ellos merecen lo mejor, nosotros lo tenemos</h4>-->
             </div>
             <div class="row">
                 <?php foreach (app\models\Product::find()->where(['active' => 1])->all() as $value): ?>
-                    <div class="col-md-4 col-sm-12 c-margin-b-20">
+                    <div class="col-md-3 col-sm-12 c-margin-b-20">
                         <div class="c-content-product-2 c-bg-white c-border">
                             <div class="c-content-overlay">
                                 <?= ($value->stock > 0) ? '<div class="c-label label-success c-font-uppercase c-font-white c-font-13 c-font-bold">En Stock</div>' : '<div class="c-label label-danger c-font-uppercase c-font-white c-font-13 c-font-bold">No Disponible</div>' ?>
@@ -30,7 +31,7 @@ $this->title = 'Productos Camiflex Kids';
                                         <a href="<?= Url::toRoute(['site/productdetail', 'id' => $value->id]) ?>" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Ver Detalle</a>
                                     </div>
                                 </div>
-                                <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: url(<?= $value->getFirstimage() ?>);"></div>
+                                <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; <?= is_null($value->getFirstimage()) ? "background-color: $value->color;" : "background-image: url(" . $value->getFirstimage() . ");" ?>"></div>
                             </div>
                             <div class="c-info">
                                 <p class="c-title c-font-16 c-font-slim"><?= \app\assets\AppAsset::custom_echo($value->short_desc, 45) ?></p>

@@ -1,5 +1,4 @@
 <?php
-
 namespace app\modules\admin\controllers;
 
 use app\models\UserModel;
@@ -18,6 +17,7 @@ use yii2mod\editable\EditableAction;
  */
 class UserController extends Controller
 {
+
     use FindModelTrait;
 
     /**
@@ -90,7 +90,7 @@ class UserController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
+                'model' => $model,
         ]);
     }
 
@@ -119,7 +119,7 @@ class UserController extends Controller
         }
 
         return $this->render('update', [
-            'model' => $model,
+                'model' => $model,
         ]);
     }
 

@@ -5,6 +5,7 @@ use yii2mod\rbac\rules\UserRule;
 
 class m160722_085418_init extends Migration
 {
+
     public function safeUp()
     {
         $this->createRule('user', UserRule::class);

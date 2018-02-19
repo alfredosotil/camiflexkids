@@ -2,20 +2,24 @@
 
 use yii\db\Migration;
 
-class m171025_201117_slider_table extends Migration {
+class m171025_201117_slider_table extends Migration
+{
 
-    public function safeUp() {
+    public function safeUp()
+    {
         
     }
 
-    public function safeDown() {
+    public function safeDown()
+    {
         echo "m171025_201117_slider_table cannot be reverted.\n";
 
         return false;
     }
 
     // Use up()/down() to run migration code without a transaction.
-    public function up() {
+    public function up()
+    {
         $this->createTable('{{%Slider}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull()->unique(),
@@ -27,10 +31,10 @@ class m171025_201117_slider_table extends Migration {
         ]);
     }
 
-    public function down() {
+    public function down()
+    {
         $this->dropTable('{{%Slider}}');
         echo "m171025_201117_slider_table cannot be reverted.\n";
         return false;
     }
-
 }

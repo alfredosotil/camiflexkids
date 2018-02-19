@@ -1,5 +1,4 @@
 <?php
-
 namespace app\traits;
 
 use Yii;
@@ -17,6 +16,7 @@ use yii\widgets\ActiveForm;
  */
 trait AjaxValidationTrait
 {
+
     /**
      * Performs ajax validation.
      *

@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 use Yii;
@@ -15,6 +14,7 @@ use Yii;
  */
 class Ubigeoperu extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */

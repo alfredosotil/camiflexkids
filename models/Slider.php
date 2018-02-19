@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 use Yii;
@@ -15,19 +14,22 @@ use Yii;
  * @property integer $updated_at
  * @property integer $active
  */
-class Slider extends \yii\db\ActiveRecord {
+class Slider extends \yii\db\ActiveRecord
+{
 
     /**
      * @inheritdoc
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return 'slider';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             [['name', 'long_desc'], 'required'],
             [['created_at', 'updated_at', 'active'], 'integer'],
@@ -38,7 +40,8 @@ class Slider extends \yii\db\ActiveRecord {
         ];
     }
 
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             \yii\behaviors\TimestampBehavior::class,
             'galleryBehavior' => [
@@ -52,8 +55,8 @@ class Slider extends \yii\db\ActiveRecord {
                     'small' => function ($img) {
                         /** @var \Imagine\Image\ImageInterface $img */
                         return $img
-                                        ->copy()
-                                        ->thumbnail(new \Imagine\Image\Box(200, 200));
+                                ->copy()
+                                ->thumbnail(new \Imagine\Image\Box(200, 200));
                     },
                     'medium' => function ($img) {
                         /** @var Imagine\Image\ImageInterface $img */
@@ -63,8 +66,8 @@ class Slider extends \yii\db\ActiveRecord {
                             $dstSize = $dstSize->widen($maxWidth);
                         }
                         return $img
-                                        ->copy()
-                                        ->resize($dstSize);
+                                ->copy()
+                                ->resize($dstSize);
                     },
                 ]
             ]
@@ -74,7 +77,8 @@ class Slider extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'id' => Yii::t('product', 'ID'),
             'name' => Yii::t('product', 'Name'),
@@ -85,5 +89,4 @@ class Slider extends \yii\db\ActiveRecord {
             'active' => Yii::t('product', 'Active'),
         ];
     }
-
 }

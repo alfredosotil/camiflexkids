@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 use Yii;
@@ -31,19 +30,22 @@ use Yii;
  *
  * @property Detailorder[] $detailorders
  */
-class Order extends \yii\db\ActiveRecord {
+class Order extends \yii\db\ActiveRecord
+{
 
     /**
      * @inheritdoc
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return 'order';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             [['amount', 'ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'email', 'shipping', 'tax', 'tracking_number'], 'required'],
             [['amount', 'shipping', 'tax'], 'number'],
@@ -57,7 +59,8 @@ class Order extends \yii\db\ActiveRecord {
         ];
     }
 
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             \yii\behaviors\TimestampBehavior::class,
         ];
@@ -66,7 +69,8 @@ class Order extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'id' => Yii::t('app', 'ID'),
             'amount' => Yii::t('app', 'Amount'),
@@ -95,8 +99,8 @@ class Order extends \yii\db\ActiveRecord {
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDetailorders() {
+    public function getDetailorders()
+    {
         return $this->hasMany(Detailorder::className(), ['order_id' => 'id']);
     }
-
 }

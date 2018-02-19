@@ -1,5 +1,4 @@
 <?php
-
 namespace app\commands;
 
 use Yii;
@@ -20,6 +19,7 @@ use yii2tech\sitemap\File;
  */
 class AppController extends BaseController
 {
+
     /**
      * Generate sitemap
      */

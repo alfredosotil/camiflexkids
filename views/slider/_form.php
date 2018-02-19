@@ -6,25 +6,27 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Slider */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="slider-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    
+
     <div class="form-group">
         <?php
         if ($model->isNewRecord) {
             echo '<h2><span class="label label-warning">Can not upload images for new record</span></h2>';
         } else {
             echo zxbodya\yii2\galleryManager\GalleryManager::widget(
-                    [
-                        'model' => $model,
-                        'behaviorName' => 'galleryBehavior',
-                        'apiRoute' => 'slider/galleryApi'
-                    ]
+                [
+                    'model' => $model,
+                    'behaviorName' => 'galleryBehavior',
+                    'apiRoute' => 'slider/galleryApi'
+                ]
             );
         }
+
         ?>
     </div>
 

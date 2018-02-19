@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 use yii\helpers\Url;
+
 ?>
 <li data-transition="fade" data-slotamount="1" data-masterspeed="1000">
     <img alt="" src="<?= $data->urlFile; ?>" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat">

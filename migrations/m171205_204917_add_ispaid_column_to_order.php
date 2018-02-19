@@ -4,6 +4,7 @@ use yii\db\Migration;
 
 class m171205_204917_add_ispaid_column_to_order extends Migration
 {
+
     /**
      * @inheritdoc
      */

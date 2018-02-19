@@ -5,22 +5,23 @@ use yii\helpers\Html;
 
 $this->title = 'Nosotros';
 //$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="row-correction"></div>
 <!-- BEGIN: CONTENT/MISC/LATEST-ITEMS-3 -->
 <div class="c-content-box c-size-md c-bg-white">
     <div class="container">
-<!--        <div class="c-content-title-1 wow animated fadeIn">
-            <h3 class="c-font-uppercase c-font-bold">Nuestra Misi&oacute;n</h3>
-            <div class="c-line-left"></div>
-        </div>-->
+        <!--        <div class="c-content-title-1 wow animated fadeIn">
+                    <h3 class="c-font-uppercase c-font-bold">Nuestra Misi&oacute;n</h3>
+                    <div class="c-line-left"></div>
+                </div>-->
         <div class="row">
             <div class="col-md-6">
                 <div class="c-content-media-1 c-bordered wow animated fadeInLeft" style="min-height: 380px;">
                     <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">Nuestra Misi&oacute;n</div>
                     <a href="#" class="c-title c-font-uppercase c-theme-on-hover c-font-bold">Proteger la salud </a>
                     <p>Somos una marca que ofrece los mejores pisos de Eva microporoso del mercado. Nuestros pisos son superficies flexibles, antideslizantes e hipoalerg&eacute;nicas que estimulan el desarrollo de los mas peque&ntilde;os. Son seguros e ideales para desarrollar actividades motoras durante los primeros a&ntilde;os de vida. Excelentes para dormitorios, cuartos de juego, salas de estimulaci&oacute;n y m&aacute;s.
-Son fabricados localmente con el mejor microporoso a nivel nacional y cubren los estandares de calidad mas exigentes.</p>
+                        Son fabricados localmente con el mejor microporoso a nivel nacional y cubren los estandares de calidad mas exigentes.</p>
                     <div class="">
                         <!--<div class="c-portrait" style="background-image: url(<?= Yii::$app->request->baseUrl; ?>/img/content/team/team16.jpg)"></div>-->
                         <div class="c-name c-font-uppercase"><strong>Luigi Galbiati Rovira</strong></div>
@@ -50,7 +51,7 @@ Son fabricados localmente con el mejor microporoso a nivel nacional y cubren los
             </div>
 
             <div class="owl-carousel owl-theme c-theme c-owl-nav-center wow animated fadeInUp" data-items="3" data-slide-speed="8000" data-rtl="false"> 
-                 <?= $team ?>	
+<?= $team ?>	
             </div>			 
         </div>
     </div>
@@ -78,64 +79,64 @@ Son fabricados localmente con el mejor microporoso a nivel nacional y cubren los
 </div><!-- END: CONTENT/SLIDERS/CLIENT-LOGOS-1 -->
 <!-- BEGIN: CONTENT/TESTIMONIALS/TESTIMONIALS-2 -->
 <?php if (false): ?>
-<div class="c-content-box c-size-lg c-bg-white">
-    <div class="container">
-        <!-- Begin: testimonials 1 component -->
-        <div class="c-content-testimonials-1 c-option-2 wow animated fadeIn" data-slider="owl">
-            <!-- Begin: Title 1 component -->
-            <div class="c-content-title-1">
-                <h3 class="c-center c-font-uppercase c-font-bold">Nuestros Clientes Satisfechos</h3>
-                <div class="c-line-center c-theme-bg"></div>
-            </div>
-            <!-- End-->
-
-            <!-- Begin: Owlcarousel -->
-
-            <div class="owl-carousel owl-theme c-theme c-owl-nav-center wow animated fadeInUp" data-single-item="true" data-slide-speed="8000" data-rtl="false"> 
-                <div class="item">
-                    <div class="c-testimonial">
-                        <p>
-                            “Camiflexkids is an international, privately held company that specializes in the start-up, promotion and operation of multiple online marketplaces”
-                        </p>
-                        <h3>
-                            <span class="c-name c-theme">John Snow</span>, CEO, Mockingbird
-                        </h3>
-                    </div>
+    <div class="c-content-box c-size-lg c-bg-white">
+        <div class="container">
+            <!-- Begin: testimonials 1 component -->
+            <div class="c-content-testimonials-1 c-option-2 wow animated fadeIn" data-slider="owl">
+                <!-- Begin: Title 1 component -->
+                <div class="c-content-title-1">
+                    <h3 class="c-center c-font-uppercase c-font-bold">Nuestros Clientes Satisfechos</h3>
+                    <div class="c-line-center c-theme-bg"></div>
                 </div>
-                <div class="item">
-                    <div class="c-testimonial">
-                        <p>
-                            “After co-founding the company in 2006 the group launched Camiflexkids, the first digital marketplace which focused on rich multimedia web content”
-                        </p>
-                        <h3>
-                            <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
-                        </h3>
+                <!-- End-->
+
+                <!-- Begin: Owlcarousel -->
+
+                <div class="owl-carousel owl-theme c-theme c-owl-nav-center wow animated fadeInUp" data-single-item="true" data-slide-speed="8000" data-rtl="false"> 
+                    <div class="item">
+                        <div class="c-testimonial">
+                            <p>
+                                “Camiflexkids is an international, privately held company that specializes in the start-up, promotion and operation of multiple online marketplaces”
+                            </p>
+                            <h3>
+                                <span class="c-name c-theme">John Snow</span>, CEO, Mockingbird
+                            </h3>
+                        </div>
                     </div>
-                </div>	
-                <div class="item">
-                    <div class="c-testimonial">
-                        <p>
-                            “It was the smoothest implementation process I have ever been through with Camiflexkids’s process and schedule.”
-                        </p>
-                        <h3>
-                            <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
-                        </h3>
-                    </div>
-                </div>	
-                <div class="item">
-                    <div class="c-testimonial">
-                        <p>
-                            “A system change is always stressful and Camiflexkids did a great job of staying positive, helpful, and patient with us.”
-                        </p>
-                        <h3>
-                            <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
-                        </h3>
-                    </div>
-                </div>			 
+                    <div class="item">
+                        <div class="c-testimonial">
+                            <p>
+                                “After co-founding the company in 2006 the group launched Camiflexkids, the first digital marketplace which focused on rich multimedia web content”
+                            </p>
+                            <h3>
+                                <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
+                            </h3>
+                        </div>
+                    </div>	
+                    <div class="item">
+                        <div class="c-testimonial">
+                            <p>
+                                “It was the smoothest implementation process I have ever been through with Camiflexkids’s process and schedule.”
+                            </p>
+                            <h3>
+                                <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
+                            </h3>
+                        </div>
+                    </div>	
+                    <div class="item">
+                        <div class="c-testimonial">
+                            <p>
+                                “A system change is always stressful and Camiflexkids did a great job of staying positive, helpful, and patient with us.”
+                            </p>
+                            <h3>
+                                <span class="c-name c-theme">Arya Stark</span>,  CFO, Valar Dohaeris
+                            </h3>
+                        </div>
+                    </div>			 
+                </div>
+                <!-- End-->
             </div>
             <!-- End-->
         </div>
-        <!-- End-->
-    </div>
-</div><!-- END: CONTENT/TESTIMONIALS/TESTIMONIALS-2 -->
+    </div><!-- END: CONTENT/TESTIMONIALS/TESTIMONIALS-2 -->
 <?php endif; ?>

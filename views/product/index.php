@@ -9,19 +9,24 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('product', 'Products');
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="product-index">
 
     <h1><?php echo Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
     <p>
-        <?php echo Html::a(Yii::t('product', 'Create {modelClass}', [
-    'modelClass' => 'Product',
-]), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php
+        echo Html::a(Yii::t('product', 'Create {modelClass}', [
+                'modelClass' => 'Product',
+            ]), ['create'], ['class' => 'btn btn-success'])
+
+        ?>
     </p>
-    <?php \yii\widgets\Pjax::begin(['enablePushState' => false,'timeout' => 3000]); ?>
-    <?php echo GridView::widget([
+    <?php \yii\widgets\Pjax::begin(['enablePushState' => false, 'timeout' => 3000]); ?>
+    <?php
+    echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -48,6 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]);
+
     ?>
     <?php \yii\widgets\Pjax::end(); ?>
 

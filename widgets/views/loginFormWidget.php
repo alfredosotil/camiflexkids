@@ -12,6 +12,7 @@ use yii\bootstrap\ActiveForm;
 
 //$this->title = Yii::t('yii2mod.user', 'Login');
 //$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <!-- BEGIN: CONTENT/USER/LOGIN-FORM -->
 <div class="modal fade c-content-login-form" id="login-form" role="dialog">
@@ -29,11 +30,12 @@ use yii\bootstrap\ActiveForm;
                         <p><?php echo Yii::t('yii2mod.user', 'Please fill out the following fields to login:'); ?></p>
                         <?php
                         $form = ActiveForm::begin([
-                                    'id' => 'modal-login-form',
-                            'enableAjaxValidation' => true,
-                                    'method' => 'post',
-                                    'action' => ['site/login'],
+                                'id' => 'modal-login-form',
+                                'enableAjaxValidation' => true,
+                                'method' => 'post',
+                                'action' => ['site/login'],
                         ]);
+
                         ?>
                         <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => Yii::t('yii2mod.user', 'Your email'), 'class' => 'form-control c-square c-theme input-lg']]); ?>
                         <?php echo $form->field($model, 'password', ['inputOptions' => ['placeholder' => Yii::t('yii2mod.user', 'Your password'), 'class' => 'form-control c-square c-theme input-lg']])->passwordInput(); ?>

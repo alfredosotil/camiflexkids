@@ -7,6 +7,7 @@ use yii\db\Migration;
  */
 class m171110_153805_add_detailorderuniqueid_column_to_detailorder_table extends Migration
 {
+
     /**
      * @inheritdoc
      */

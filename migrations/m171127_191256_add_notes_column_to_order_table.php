@@ -7,6 +7,7 @@ use yii\db\Migration;
  */
 class m171127_191256_add_notes_column_to_order_table extends Migration
 {
+
     /**
      * @inheritdoc
      */

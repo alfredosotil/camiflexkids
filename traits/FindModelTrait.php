@@ -1,5 +1,4 @@
 <?php
-
 namespace app\traits;
 
 use yii\db\ActiveRecord;
@@ -14,6 +13,7 @@ use yii\web\NotFoundHttpException;
  */
 trait FindModelTrait
 {
+
     /**
      * Finds model
      *

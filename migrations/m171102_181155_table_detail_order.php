@@ -2,20 +2,24 @@
 
 use yii\db\Migration;
 
-class m171102_181155_table_detail_order extends Migration {
+class m171102_181155_table_detail_order extends Migration
+{
 
-    public function safeUp() {
+    public function safeUp()
+    {
         
     }
 
-    public function safeDown() {
+    public function safeDown()
+    {
         echo "m171101_153241_table_detail_cart cannot be reverted.\n";
 
         return false;
     }
 
     // Use up()/down() to run migration code without a transaction.
-    public function up() {
+    public function up()
+    {
         $this->createTable('{{%DetailOrder}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
@@ -32,37 +36,38 @@ class m171102_181155_table_detail_order extends Migration {
         ]);
 
         $this->createIndex(
-                'idx-detailorder-order-id', '{{%DetailOrder}}', 'order_id'
+            'idx-detailorder-order-id', '{{%DetailOrder}}', 'order_id'
         );
 
         $this->addForeignKey(
-                'fk-detailorder-order-id', '{{%DetailOrder}}', 'order_id', '{{%Order}}', 'id', 'CASCADE'
+            'fk-detailorder-order-id', '{{%DetailOrder}}', 'order_id', '{{%Order}}', 'id', 'CASCADE'
         );
-        
+
         $this->createIndex(
-                'idx-detailorder-product-id', '{{%DetailOrder}}', 'product_id'
+            'idx-detailorder-product-id', '{{%DetailOrder}}', 'product_id'
         );
 
         $this->addForeignKey(
-                'fk-detailorder-product-id', '{{%DetailOrder}}', 'product_id', '{{%Product}}', 'id', 'CASCADE'
+            'fk-detailorder-product-id', '{{%DetailOrder}}', 'product_id', '{{%Product}}', 'id', 'CASCADE'
         );
     }
 
-    public function down() {
+    public function down()
+    {
         $this->dropForeignKey(
-                'fk-detailorder-order-id', '{{%DetailOrder}}'
+            'fk-detailorder-order-id', '{{%DetailOrder}}'
         );
 
         $this->dropIndex(
-                'idx-detailorder-order-id', '{{%DetailOrder}}'
+            'idx-detailorder-order-id', '{{%DetailOrder}}'
         );
-        
+
         $this->dropForeignKey(
-                'fk-detailorder-product-id', '{{%DetailOrder}}'
+            'fk-detailorder-product-id', '{{%DetailOrder}}'
         );
 
         $this->dropIndex(
-                'idx-detailorder-product-id', '{{%DetailOrder}}'
+            'idx-detailorder-product-id', '{{%DetailOrder}}'
         );
 
         $this->dropTable('{{%DetailOrder}}');
@@ -70,5 +75,4 @@ class m171102_181155_table_detail_order extends Migration {
 
         return false;
     }
-
 }

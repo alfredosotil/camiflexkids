@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 use Yii;
@@ -24,19 +23,22 @@ use Yii;
  * @property Order $order
  * @property Product $product
  */
-class Detailorder extends \yii\db\ActiveRecord implements \yii2mod\cart\models\CartItemInterface {
+class Detailorder extends \yii\db\ActiveRecord implements \yii2mod\cart\models\CartItemInterface
+{
 
     /**
      * @inheritdoc
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return 'detailorder';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             [['name', 'price_per_unit', 'price', 'tax', 'vat', 'product_id'], 'required'],
             [['price_per_unit', 'price', 'tax', 'vat'], 'number'],
@@ -47,7 +49,8 @@ class Detailorder extends \yii\db\ActiveRecord implements \yii2mod\cart\models\C
         ];
     }
 
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             \yii\behaviors\TimestampBehavior::class,
         ];
@@ -56,7 +59,8 @@ class Detailorder extends \yii\db\ActiveRecord implements \yii2mod\cart\models\C
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'id' => Yii::t('app', 'ID'),
             'detailorderuniqueid' => Yii::t('app', 'Detail Order Unique Id'),
@@ -77,31 +81,36 @@ class Detailorder extends \yii\db\ActiveRecord implements \yii2mod\cart\models\C
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOrder() {
+    public function getOrder()
+    {
         return $this->hasOne(Order::className(), ['id' => 'order_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProduct() {
+    public function getProduct()
+    {
         return $this->hasOne(Product::className(), ['id' => 'product_id']);
     }
 
-    public function getQty() {
+    public function getQty()
+    {
         return $this->qty;
     }
-    
-    public function getPrice() {
+
+    public function getPrice()
+    {
         return $this->price;
     }
 
-    public function getLabel() {
+    public function getLabel()
+    {
         return $this->name;
     }
 
-    public function getUniqueId() {
+    public function getUniqueId()
+    {
         return $this->detailorderuniqueid;
     }
-
 }

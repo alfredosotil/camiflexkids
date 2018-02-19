@@ -12,6 +12,7 @@ use yii\bootstrap\ActiveForm;
 
 //$this->title = Yii::t('yii2mod.user', 'Recover Password');
 //$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <!-- BEGIN: CONTENT/USER/FORGET-PASSWORD-FORM -->
 <div class="modal fade c-content-login-form" id="forget-password-form" role="dialog">
@@ -27,11 +28,12 @@ use yii\bootstrap\ActiveForm;
                         <p><?php echo Yii::t('yii2mod.user', 'Please fill out your email. A link to reset password will be sent there.'); ?></p>
                         <?php
                         $form = ActiveForm::begin([
-                                    'id' => 'modal-request-password-reset-form',
-                                    'enableAjaxValidation' => true,
-                                    'method' => 'post',
-                                    'action' => ['site/requestpasswordreset'],
+                                'id' => 'modal-request-password-reset-form',
+                                'enableAjaxValidation' => true,
+                                'method' => 'post',
+                                'action' => ['site/requestpasswordreset'],
                         ]);
+
                         ?>
                         <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => Yii::t('yii2mod.user', 'Your email'), 'class' => 'form-control c-square c-theme input-lg']]); ?>
                         <div class="form-group">

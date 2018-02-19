@@ -7,6 +7,7 @@ use yii\widgets\DetailView;
 /* @var $resetPasswordForm \app\models\forms\ResetPasswordForm */
 
 $this->title = Yii::t('app', 'My Account');
+
 ?>
 <div class="row-correction"></div>
 <div class="container">
@@ -35,14 +36,17 @@ $this->title = Yii::t('app', 'My Account');
                     <?php echo Yii::t('app', 'Personal Information'); ?>
                 </div>
                 <div class="table-responsive">
-                    <?php echo DetailView::widget([
+                    <?php
+                    echo DetailView::widget([
                         'model' => Yii::$app->user->identity,
                         'attributes' => [
                             'username',
                             'email',
                             'last_login:date',
                         ],
-                    ]); ?>
+                    ]);
+
+                    ?>
                 </div>
             </div>
         </div>

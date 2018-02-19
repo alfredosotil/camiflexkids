@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,15 +10,15 @@
  *
  * @author asotilp
  */
-
 namespace app\widgets;
 
 use Yii;
 use yii\base\Widget;
 
-class ViewAlertWidget extends \yii2mod\alert\Alert {
+class ViewAlertWidget extends \yii2mod\alert\Alert
+{
 
-     /**
+    /**
      * Initializes the widget
      */
     public function init()
@@ -31,7 +30,7 @@ class ViewAlertWidget extends \yii2mod\alert\Alert {
             $flashes = $session->getAllFlashes();
 
             foreach ($flashes as $type => $data) {
-                $data = (array) $data;                
+                $data = (array) $data;
                 foreach ($data as $message) {
                     $values = explode('|', $message);
                     $this->options['type'] = $type;
@@ -61,5 +60,4 @@ class ViewAlertWidget extends \yii2mod\alert\Alert {
 //            $view->registerJs($js);
 ////        }
 //    }
-
 }

@@ -5,18 +5,52 @@
  */
 
 var ORDER = null;
-Culqi.publicKey = 'pk_test_O7LKYtalUAXdbvwo';
+//Culqi.publicKey = 'pk_test_O7LKYtalUAXdbvwo';
 //Culqi.init();
 //Culqi.codigoComercio = 'sk_test_5dBvsJJspPxmwzMF';
 function configurarCulqi(amount, order) {
     ORDER = order;
-    Culqi.settings({
-        title: 'CAMIFLEXKIDS',
-        currency: 'PEN',
-        description: 'Pago de orden Camiflexkids',
-        amount: parseInt(amount),
-    });
+    try {
+        Culqi.publicKey = 'pk_test_O7LKYtalUAXdbvwo';
+        Culqi.init();
+        Culqi.createToken();
+    }catch(ex){
+        console.log(ex);
+    }
+//    Culqi.settings({
+//        title: 'CAMIFLEXKIDS',
+//        currency: 'PEN',
+//        description: 'Pago de orden Camiflexkids',
+//        amount: parseInt(amount),
+//    });
 //    console.log(ORDER);
+}
+
+window.culqi = function() {
+    try {
+        if (Culqi.token) {
+            let token = Culqi.token;
+            setProcessPayment(token, null);
+        } else {
+            console.log(Culqi.error.user_message);
+        }
+    }catch(ex){
+        console.log(ex);
+    }
+};
+
+function setProcessPayment(token, card) {
+    let data = {
+        token: token,
+        card: card,
+    };
+    $.post('acceptcreditcard', data).done(function (res) {
+        if(res.status){
+            window.location.href = res.data;
+        }else{
+            console.log(res.message);
+        }
+    });
 }
 
 //$("#modal-3").on("hidden.bs.modal", function () {
@@ -24,80 +58,80 @@ function configurarCulqi(amount, order) {
 //    Ladda.stopAll();
 //});
 
-function culqi() {
-    if (Culqi.token) { // ¡Token creado exitosamente!
-        // Get the token ID:
-        var token = Culqi.token.id;
-//        alert('Se ha creado un token:'.token);
-//        console.log('Se ha creado un token:'.token);
-        run_waitMe();
-        $.ajax({
-            type: 'POST',
-            url: 'acceptcreditcard',
-            data: {token: token, order: ORDER, amount: $("#order-amount").val().replace(".", ""), email: $("#order-email").val()},
-            datatype: 'json',
-            beforeSend: function(){
-//                console.log(ORDER);
-            },
-            success: function (data) {
-                $('body').waitMe('hide');
-                var charge = data.charge;
-                Ladda.stopAll();
-                var result = "";
-                if (charge.constructor == String) {
-                    result = JSON.parse(charge);
-                }
-                if (charge.constructor == Object) {
-                    result = JSON.parse(JSON.stringify(charge));
-                }
-                if (result.object === 'charge') {
-//                    console.log(result.outcome.user_message);
-                    swal({
-                        title: 'Bien!!',
-                        text: result.outcome.user_message,
-                        type: 'success',
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Continua comprando',
-                        allowOutsideClick: true,
-                    }, (result) => {
-                        if (result) {
-                            window.location.href = data.redirect;
-                        }
-                    });
-                }
-                if (result.object === 'error') {
-//                    console.log(result.user_message);
-                    swal({
-                        title: 'Error',
-                        text: result.user_message,
-                        type: 'error',
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Continuar',
-                        allowOutsideClick: true,
-                    }, (result) => {
-                        if (result) {
-                            window.location.reload();
-                        }
-                    });
-                }
-//                console.log(data);
-            },
-            error: function (error) {
-//                resultdiv(error)
-//                console.log(error);
-            }
-        });
-
-    } else { // ¡Hubo algún problema!
-        // Mostramos JSON de objeto error en consola
-//        console.log(Culqi.error);
-        alert(Culqi.error.mensaje);
-    }
-}
-function test() {
-    run_waitMe();
+//function culqi() {
+//    if (Culqi.token) { // ¡Token creado exitosamente!
+//        // Get the token ID:
+//        var token = Culqi.token.id;
+////        alert('Se ha creado un token:'.token);
+////        console.log('Se ha creado un token:'.token);
+//        run_waitMe();
+//        $.ajax({
+//            type: 'POST',
+//            url: 'acceptcreditcard',
+//            data: {token: token, order: ORDER, amount: $("#order-amount").val().replace(".", ""), email: $("#order-email").val()},
+//            datatype: 'json',
+//            beforeSend: function(){
+////                console.log(ORDER);
+//            },
+//            success: function (data) {
+//                $('body').waitMe('hide');
+//                var charge = data.charge;
+//                Ladda.stopAll();
+//                var result = "";
+//                if (charge.constructor == String) {
+//                    result = JSON.parse(charge);
+//                }
+//                if (charge.constructor == Object) {
+//                    result = JSON.parse(JSON.stringify(charge));
+//                }
+//                if (result.object === 'charge') {
+////                    console.log(result.outcome.user_message);
+//                    swal({
+//                        title: 'Bien!!',
+//                        text: result.outcome.user_message,
+//                        type: 'success',
+//                        confirmButtonColor: '#3085d6',
+//                        cancelButtonColor: '#d33',
+//                        confirmButtonText: 'Continua comprando',
+//                        allowOutsideClick: true,
+//                    }, (result) => {
+//                        if (result) {
+//                            window.location.href = data.redirect;
+//                        }
+//                    });
+//                }
+//                if (result.object === 'error') {
+////                    console.log(result.user_message);
+//                    swal({
+//                        title: 'Error',
+//                        text: result.user_message,
+//                        type: 'error',
+//                        confirmButtonColor: '#3085d6',
+//                        cancelButtonColor: '#d33',
+//                        confirmButtonText: 'Continuar',
+//                        allowOutsideClick: true,
+//                    }, (result) => {
+//                        if (result) {
+//                            window.location.reload();
+//                        }
+//                    });
+//                }
+////                console.log(data);
+//            },
+//            error: function (error) {
+////                resultdiv(error)
+////                console.log(error);
+//            }
+//        });
+//
+//    } else { // ¡Hubo algún problema!
+//        // Mostramos JSON de objeto error en consola
+////        console.log(Culqi.error);
+//        alert(Culqi.error.mensaje);
+//    }
+//}
+//function test() {
+//    run_waitMe();
 //    $.ajax({
 //        type: 'POST',
 //        url: 'acceptcreditcard',
@@ -126,20 +160,20 @@ function test() {
 ////            console.log(error);
 //        }
 //    });
-}
+//}
 
-function run_waitMe() {
-    $('body').waitMe({
-//        effect: 'orbit',
-        effect: 'win8_linear',
-        text: 'Procesando pago...',
-        bg: 'rgba(255,255,255,0.7)',
-        color: '#28d2c8'
-    });
-}
+//function run_waitMe() {
+//    $('body').waitMe({
+////        effect: 'orbit',
+//        effect: 'win8_linear',
+//        text: 'Procesando pago...',
+//        bg: 'rgba(255,255,255,0.7)',
+//        color: '#28d2c8'
+//    });
+//}
 
-function resultdiv(message) {
-    $('#response-panel').show();
-    $('#response').html(message);
-    $('body').waitMe('hide');
-}
+//function resultdiv(message) {
+//    $('#response-panel').show();
+//    $('#response').html(message);
+//    $('body').waitMe('hide');
+//}

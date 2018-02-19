@@ -6,14 +6,18 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\OrderSearch */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="order-search">
 
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-    ]); ?>
+    <?php
+    $form = ActiveForm::begin([
+            'action' => ['index'],
+            'method' => 'get',
+    ]);
+
+    ?>
 
     <?php echo $form->field($model, 'id') ?>
 
@@ -53,7 +57,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'typepayment') ?>
 
-    <?php // echo $form->field($model, 'notes') ?>
+    <?php // echo $form->field($model, 'notes')  ?>
 
     <?php // echo $form->field($model, 'active') ?>
 

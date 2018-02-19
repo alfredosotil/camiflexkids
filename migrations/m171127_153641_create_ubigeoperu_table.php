@@ -5,18 +5,20 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `ubigeoperu`.
  */
-class m171127_153641_create_ubigeoperu_table extends Migration {
+class m171127_153641_create_ubigeoperu_table extends Migration
+{
 
     /**
      * @inheritdoc
      */
-    public function up() {
+    public function up()
+    {
         $this->createTable('{{%ubigeoperu}}', [
             'id' => $this->primaryKey(),
             'departamento' => $this->string(32)->notNull(),
             'provincia' => $this->string(32)->notNull(),
             'distrito' => $this->string(32)->notNull(),
-            'nombre' => $this->string(32)->notNull(),
+            'nombre' => $this->string(50)->notNull(),
         ]);
 
         $path = Yii::getAlias('@app/data/ubigeo-peru.json');
@@ -35,8 +37,8 @@ class m171127_153641_create_ubigeoperu_table extends Migration {
     /**
      * @inheritdoc
      */
-    public function down() {
+    public function down()
+    {
         $this->dropTable('ubigeoperu');
     }
-
 }

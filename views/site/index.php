@@ -1,6 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 $this->title = 'Inicio';
+
 ?>
 <!-- BEGIN: PAGE CONTENT -->
 <!-- BEGIN: LAYOUT/SLIDERS/REVO-SLIDER-3 -->
@@ -20,41 +21,41 @@ $this->title = 'Inicio';
 <?= $this->render('services-template'); ?>
 
 <!-- BEGIN: CONTENT/ISOTOPE/GALLERY-4 -->
-<?php if(true): ?>
-<div class="c-content-box c-size-md c-bg-grey-1" id="team">
-    <div class="container">
-        <div class="c-content-person-1-slider" data-slider="owl">
-            <div class="c-content-title-1 wow animated fadeIn">
-                <h3 class="c-center c-font-uppercase c-font-bold">10 Razones para tener pisos de EVA</h3>
-                <div class="c-line-center c-theme-bg"></div>
-            </div>
+<?php if (true): ?>
+    <div class="c-content-box c-size-md c-bg-grey-1" id="team">
+        <div class="container">
+            <div class="c-content-person-1-slider" data-slider="owl">
+                <div class="c-content-title-1 wow animated fadeIn">
+                    <h3 class="c-center c-font-uppercase c-font-bold">10 Razones para tener pisos de EVA</h3>
+                    <div class="c-line-center c-theme-bg"></div>
+                </div>
 
-            <div class="owl-carousel owl-theme c-theme c-owl-nav-center wow animated fadeInUp" data-items="3" data-slide-speed="8000" data-rtl="false"> 
-                 <?= $reasons ?> 
-            </div>       
+                <div class="owl-carousel owl-theme c-theme c-owl-nav-center wow animated fadeInUp" data-items="3" data-slide-speed="8000" data-rtl="false"> 
+                    <?= $reasons ?> 
+                </div>       
+            </div>
         </div>
     </div>
-</div>
 <?php endif; ?>
-<?php if(true): ?>
-<div id="c-isotope-anchor-1" class="c-content-box c-size-md c-bg-img-center" style="background-image: url(<?= Yii::$app->request->baseUrl; ?>/img/content/backgrounds/bg-84.jpg)">
-    <div class="container">
-        <div class="c-content-title-1">
-            <h3 class="c-center c-font-uppercase c-font-bold c-font-white">Mira Nuestra Galer&iacute;a</h3>
-            <div class="c-line-center c-theme-bg"></div>
-        </div>
-        <div class="c-content-isotope-filter-1 c-center">
-            <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom c-active" data-filter="*">Mostrar Todo</button>
-            <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-nido">Nidos</button>
-            <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-casa">Casas</button>
-            <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-clinica">Cl&iacute;nicas</button>
-            <!--<button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-photo">Photo</button>-->
-        </div>
-        <div class="c-content-isotope-gallery c-opt-4">
-            <?= $gallery ?>
-        </div>
-    </div> 
-</div>
+<?php if (true): ?>
+    <div id="c-isotope-anchor-1" class="c-content-box c-size-md c-bg-img-center" style="background-image: url(<?= Yii::$app->request->baseUrl; ?>/img/content/backgrounds/bg-84.jpg)">
+        <div class="container">
+            <div class="c-content-title-1">
+                <h3 class="c-center c-font-uppercase c-font-bold c-font-white">Mira Nuestra Galer&iacute;a</h3>
+                <div class="c-line-center c-theme-bg"></div>
+            </div>
+            <div class="c-content-isotope-filter-1 c-center">
+                <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom c-active" data-filter="*">Mostrar Todo</button>
+                <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-nido">Nidos</button>
+                <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-casa">Casas</button>
+                <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-clinica">Cl&iacute;nicas</button>
+                <!--<button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-photo">Photo</button>-->
+            </div>
+            <div class="c-content-isotope-gallery c-opt-4">
+                <?= $gallery ?>
+            </div>
+        </div> 
+    </div>
 <?php endif; ?>
 <!-- END: CONTENT/ISOTOPE/GALLERY-4 -->
 

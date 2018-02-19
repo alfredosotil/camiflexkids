@@ -12,6 +12,7 @@ use yii\bootstrap\ActiveForm;
 
 //$this->title = Yii::t('yii2mod.user', 'Login');
 //$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <!-- BEGIN: CONTENT/USER/SIGNUP-FORM -->
@@ -28,11 +29,12 @@ use yii\bootstrap\ActiveForm;
                         <p><?php echo Yii::t('yii2mod.user', 'Please fill in below form to create an account with us'); ?></p>
                         <?php
                         $form = ActiveForm::begin([
-                                    'id' => 'modal-signup-form',
-                                    'enableAjaxValidation' => true,
-                                    'method' => 'post',
-                                    'action' => ['site/signup'],
+                                'id' => 'modal-signup-form',
+                                'enableAjaxValidation' => true,
+                                'method' => 'post',
+                                'action' => ['site/signup'],
                         ]);
+
                         ?>
                         <?php echo $form->field($model, 'username', ['inputOptions' => ['placeholder' => Yii::t('yii2mod.user', 'Your username'), 'class' => 'form-control c-square c-theme input-lg']]) ?>
                         <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => Yii::t('yii2mod.user', 'Your email'), 'class' => 'form-control c-square c-theme input-lg']]) ?>

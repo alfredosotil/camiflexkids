@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models\forms;
 
 use Yii;
@@ -8,7 +7,8 @@ use yii\base\Model;
 /**
  * ContactForm is the model behind the contact form.
  */
-class CulqiForm extends Model {
+class CulqiForm extends Model
+{
 
     public $cardnumber;
     public $email;
@@ -19,10 +19,14 @@ class CulqiForm extends Model {
     /**
      * @return array the validation rules
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             // name, email, subject and body are required
             [['cardnumber', 'email', 'expirationmonth', 'expirationyear', 'cvv'], 'required'],
+            [['cardnumber'], 'string', 'max' => 16],
+            [['expirationmonth', 'expirationyear'], 'number'],
+            [['email'], 'string', 'max' => 100],
             // email has to be a valid email address
             ['email', 'email'],
 //            ['cardnumber', 'validateCardnumber'],
@@ -31,12 +35,13 @@ class CulqiForm extends Model {
             ['expirationyear', 'match', 'pattern' => '/^\d{4}$/g', 'message' => 'Año incorrecto'],
             ['cvv', 'match', 'pattern' => '/^\d{3}$/g', 'message' => 'Numero cvv incorrecto'],
         ];
-    }   
+    }
 
     /**
      * @return array customized attribute labels
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'cardnumber' => Yii::t('app', 'Numero de Tarjeta'),
             'email' => Yii::t('app', 'Email'),
@@ -45,7 +50,6 @@ class CulqiForm extends Model {
             'cvv' => Yii::t('contact', 'CVV'),
         ];
     }
-
     /**
      * Sends an email to the specified email address using the information collected by this model.
      *
@@ -67,5 +71,4 @@ class CulqiForm extends Model {
 //
 //        return false;
 //    }
-
 }

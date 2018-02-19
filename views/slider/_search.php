@@ -6,14 +6,18 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\SliderSearch */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="slider-search">
 
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-    ]); ?>
+    <?php
+    $form = ActiveForm::begin([
+            'action' => ['index'],
+            'method' => 'get',
+    ]);
+
+    ?>
 
     <?php echo $form->field($model, 'id') ?>
 
@@ -25,7 +29,7 @@ use yii\widgets\ActiveForm;
 
     <?php echo $form->field($model, 'created_at') ?>
 
-    <?php // echo $form->field($model, 'updated_at') ?>
+    <?php // echo $form->field($model, 'updated_at')  ?>
 
     <?php // echo $form->field($model, 'active') ?>
 

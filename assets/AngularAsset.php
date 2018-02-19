@@ -1,11 +1,9 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 namespace app\assets;
 
 /**
@@ -16,7 +14,8 @@ namespace app\assets;
 use yii\web\AssetBundle;
 use yii\web\View;
 
-class AngularAsset extends AssetBundle {
+class AngularAsset extends AssetBundle
+{
 
     public $basePath = '@webroot';
     public $baseUrl = '@web';

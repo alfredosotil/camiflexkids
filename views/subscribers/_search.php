@@ -6,14 +6,18 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\SubscribersSearch */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="subscribers-search">
 
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-    ]); ?>
+    <?php
+    $form = ActiveForm::begin([
+            'action' => ['index'],
+            'method' => 'get',
+    ]);
+
+    ?>
 
     <?php echo $form->field($model, 'id') ?>
 

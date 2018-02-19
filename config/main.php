@@ -1,5 +1,4 @@
 <?php
-
 $config = [
     'id' => 'main',
     'defaultRoute' => 'site/index',

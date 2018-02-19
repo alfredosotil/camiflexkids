@@ -32,7 +32,7 @@ return [
         '.hgignore',
         '.hgkeep',
         '/messages',
-        '/BaseYii.php',        
+        '/BaseYii.php',
         '.hg',
         '.hgignore',
         '.hgkeep',

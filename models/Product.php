@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 use Yii;
@@ -28,19 +27,22 @@ use Yii;
  * @property Category $category
  * @property Productoption[] $productoptions
  */
-class Product extends \yii\db\ActiveRecord {
+class Product extends \yii\db\ActiveRecord
+{
 
     /**
      * @inheritdoc
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return 'product';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             [['name', 'sku', 'price', 'color', 'cart_desc', 'long_desc', 'thumb', 'image', 'category_id', 'created_at', 'updated_at', 'stock'], 'required'],
             [['price', 'weight', 'stock'], 'number'],
@@ -57,7 +59,8 @@ class Product extends \yii\db\ActiveRecord {
         ];
     }
 
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             \yii\behaviors\TimestampBehavior::class,
             'galleryBehavior' => [
@@ -71,8 +74,8 @@ class Product extends \yii\db\ActiveRecord {
                     'small' => function ($img) {
                         /** @var \Imagine\Image\ImageInterface $img */
                         return $img
-                                        ->copy()
-                                        ->thumbnail(new \Imagine\Image\Box(200, 200));
+                                ->copy()
+                                ->thumbnail(new \Imagine\Image\Box(200, 200));
                     },
                     'medium' => function ($img) {
                         /** @var Imagine\Image\ImageInterface $img */
@@ -82,8 +85,8 @@ class Product extends \yii\db\ActiveRecord {
                             $dstSize = $dstSize->widen($maxWidth);
                         }
                         return $img
-                                        ->copy()
-                                        ->resize($dstSize);
+                                ->copy()
+                                ->resize($dstSize);
                     },
                 ]
             ]
@@ -93,7 +96,8 @@ class Product extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
@@ -117,26 +121,29 @@ class Product extends \yii\db\ActiveRecord {
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDetailorders() {
+    public function getDetailorders()
+    {
         return $this->hasMany(Detailorder::className(), ['product_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCategory() {
+    public function getCategory()
+    {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProductoptions() {
+    public function getProductoptions()
+    {
         return $this->hasMany(Productoption::className(), ['product_id' => 'id']);
     }
 
-    public function getFirstimage($size = 'medium') {
-        return (count($this->getBehavior('galleryBehavior')->getImages()) > 0) ? $this->getBehavior('galleryBehavior')->getImages()[0]->getUrl($size) : '';
+    public function getFirstimage($size = 'medium')
+    {
+        return (count($this->getBehavior('galleryBehavior')->getImages()) > 0) ? $this->getBehavior('galleryBehavior')->getImages()[0]->getUrl($size) : null;
     }
-
 }

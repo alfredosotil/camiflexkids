@@ -12,6 +12,7 @@ use yii2mod\user\models\enums\UserStatus;
 
 $this->title = Yii::t('app', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="user-index">
 
@@ -21,7 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php echo Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?php Pjax::begin(['timeout' => 10000]); ?>
-    <?php echo GridView::widget([
+    <?php
+    echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -77,6 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]);
+
     ?>
     <?php Pjax::end(); ?>
 

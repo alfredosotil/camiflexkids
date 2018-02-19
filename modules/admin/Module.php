@@ -1,5 +1,4 @@
 <?php
-
 namespace app\modules\admin;
 
 use yii2mod\rbac\filters\AccessControl;
@@ -11,6 +10,7 @@ use yii2mod\rbac\filters\AccessControl;
  */
 class Module extends \yii\base\Module
 {
+
     /**
      * @var string the default route of this module. Defaults to 'default'
      */

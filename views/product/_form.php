@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model app\models\Product */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="product-form">
@@ -39,6 +40,7 @@ use yii\helpers\ArrayHelper;
     echo $form->field($model, 'color')->widget(kartik\color\ColorInput::classname(), [
         'options' => ['placeholder' => 'Select color ...'],
     ]);
+
     ?>
 
     <?php echo $form->field($model, 'cart_desc')->textInput(['maxlength' => 32]) ?>
@@ -55,13 +57,14 @@ use yii\helpers\ArrayHelper;
             echo '<h2><span class="label label-warning">Can not upload images for new record</span></h2>';
         } else {
             echo zxbodya\yii2\galleryManager\GalleryManager::widget(
-                    [
-                        'model' => $model,
-                        'behaviorName' => 'galleryBehavior',
-                        'apiRoute' => 'product/galleryApi'
-                    ]
+                [
+                    'model' => $model,
+                    'behaviorName' => 'galleryBehavior',
+                    'apiRoute' => 'product/galleryApi'
+                ]
             );
         }
+
         ?>
     </div>
 

@@ -1,6 +1,4 @@
-<?php 
-
-?>
+<?php ?>
 <!-- BEGIN: CONTENT/MISC/SERVICES-1-1 -->
 <div class="c-content-box c-size-md c-bg-grey-1  ">
     <div class="container">

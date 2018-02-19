@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models\forms;
 
 use app\models\UserModel;
@@ -12,7 +11,8 @@ use yii\web\IdentityInterface;
  *
  * @package app\models\forms
  */
-class ResetPasswordForm extends Model {
+class ResetPasswordForm extends Model
+{
 
     /**
      * @var string password
@@ -35,7 +35,8 @@ class ResetPasswordForm extends Model {
      * @param IdentityInterface $user
      * @param array $config
      */
-    public function __construct(IdentityInterface $user, $config = []) {
+    public function __construct(IdentityInterface $user, $config = [])
+    {
         $this->_user = $user;
 
         parent::__construct($config);
@@ -44,7 +45,8 @@ class ResetPasswordForm extends Model {
     /**
      * {@inheritdoc}
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             [['password', 'confirmPassword'], 'trim'],
             ['password', 'required'],
@@ -57,7 +59,8 @@ class ResetPasswordForm extends Model {
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'password' => Yii::t('app', 'New Password'),
             'confirmPassword' => Yii::t('app', 'Confirm New Password'),
@@ -69,7 +72,8 @@ class ResetPasswordForm extends Model {
      *
      * @return bool if password was reset
      */
-    public function resetPassword() {
+    public function resetPassword()
+    {
         if ($this->validate()) {
             $this->_user->setPassword($this->password);
 
@@ -78,5 +82,4 @@ class ResetPasswordForm extends Model {
 
         return false;
     }
-
 }

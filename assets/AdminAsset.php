@@ -5,7 +5,6 @@
  * @copyright Copyright (c) 2008 Yii Software LLC
  * @license   http://www.yiiframework.com/license/
  */
-
 namespace app\assets;
 
 use yii\web\AssetBundle;
@@ -17,10 +16,12 @@ use yii\web\AssetBundle;
  */
 class AdminAsset extends AssetBundle
 {
+
     /**
      * @var string
      */
     public $basePath = '@webroot';
+
     /**
      * @var string
      */
@@ -40,4 +41,5 @@ class AdminAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+
 }

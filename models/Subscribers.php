@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 use Yii;
@@ -14,7 +13,8 @@ use Yii;
  * @property integer $updated_at
  * @property integer $active
  */
-class Subscribers extends \yii\db\ActiveRecord {
+class Subscribers extends \yii\db\ActiveRecord
+{
 
     const SCENARIO_SIMULATOR = 'simulator';
     const SCENARIO_MAIN = 'main';
@@ -26,27 +26,31 @@ class Subscribers extends \yii\db\ActiveRecord {
         $scenarios[self::SCENARIO_MAIN] = ['email'];
         return $scenarios;
     }
+
     /**
      * @inheritdoc
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return 'subscribers';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             [['email'], 'required'],
             [['email'], 'email'],
             [['created_at', 'updated_at', 'active'], 'integer'],
             [['email', 'phone'], 'string', 'max' => 255],
-            [['email'], 'unique' , 'on' => self::SCENARIO_MAIN],
+            [['email'], 'unique', 'on' => self::SCENARIO_MAIN],
         ];
     }
 
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             \yii\behaviors\TimestampBehavior::class,
         ];
@@ -55,7 +59,8 @@ class Subscribers extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'id' => Yii::t('app', 'ID'),
             'email' => Yii::t('app', 'Email'),
@@ -65,5 +70,4 @@ class Subscribers extends \yii\db\ActiveRecord {
             'active' => Yii::t('app', 'Active'),
         ];
     }
-
 }

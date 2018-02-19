@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Url;
+
 ?>
 <li data-transition="fade" data-slotamount="1" data-masterspeed="700" data-delay="6000" data-thumb="">
     <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->

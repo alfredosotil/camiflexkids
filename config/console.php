@@ -1,5 +1,4 @@
 <?php
-
 $config = [
     'id' => 'console',
     'controllerNamespace' => 'app\commands',

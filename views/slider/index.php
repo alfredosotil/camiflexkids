@@ -9,19 +9,24 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('app', 'Sliders');
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="slider-index">
 
     <h1><?php echo Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
     <p>
-        <?php echo Html::a(Yii::t('app', 'Create {modelClass}', [
-    'modelClass' => 'Slider',
-]), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php
+        echo Html::a(Yii::t('app', 'Create {modelClass}', [
+                'modelClass' => 'Slider',
+            ]), ['create'], ['class' => 'btn btn-success'])
+
+        ?>
     </p>
-    <?php \yii\widgets\Pjax::begin(['enablePushState' => false,'timeout' => 3000]); ?>
-    <?php echo GridView::widget([
+    <?php \yii\widgets\Pjax::begin(['enablePushState' => false, 'timeout' => 3000]); ?>
+    <?php
+    echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -39,6 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]);
+
     ?>
     <?php \yii\widgets\Pjax::end(); ?>
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 use Yii;
@@ -12,6 +11,7 @@ use app\models\Order;
  */
 class OrderSearch extends Order
 {
+
     /**
      * @inheritdoc
      */

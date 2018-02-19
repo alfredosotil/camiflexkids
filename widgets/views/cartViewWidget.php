@@ -11,6 +11,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $items = Yii::$app->cart->getItems();
+
 ?>
 
 <!-- BEGIN: CART MENU -->

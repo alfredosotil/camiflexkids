@@ -1,5 +1,4 @@
 <?php
-
 namespace app\controllers;
 
 use Yii;
@@ -14,11 +13,13 @@ use yii\filters\VerbFilter;
  */
 class SubscribersController extends Controller
 {
+
     public $layout = '@app/modules/admin/views/layouts/column2';
-   /**
-    * Behaviors
-    * @return array
-    */
+
+    /**
+     * Behaviors
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -41,8 +42,8 @@ class SubscribersController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -61,9 +62,8 @@ class SubscribersController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
+                'model' => $model,
         ]);
-
     }
 
     /**
@@ -82,9 +82,8 @@ class SubscribersController extends Controller
         }
 
         return $this->render('update', [
-            'model' => $model,
+                'model' => $model,
         ]);
-
     }
 
     /**

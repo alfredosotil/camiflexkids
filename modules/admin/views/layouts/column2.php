@@ -12,6 +12,7 @@ use yii2mod\notify\BootstrapNotify;
 /* @var $content string */
 
 AdminAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -37,6 +38,7 @@ AdminAsset::register($this);
                 ]
             ]
         ]);
+
         ?>
         <div class="wrap">
             <?php
@@ -154,12 +156,14 @@ AdminAsset::register($this);
                 'encodeLabels' => false,
             ]);
             NavBar::end();
+
             ?>
             <div class="container">
                 <?php
                 echo Breadcrumbs::widget([
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ])
+
                 ?>
                 <div class="row">
                     <?php if (isset($this->params['sidebar'])): ?>
@@ -172,6 +176,7 @@ AdminAsset::register($this);
                                     'class' => 'nav nav-pills nav-stacked admin-side-nav',
                                 ],
                             ]);
+
                             ?>
                         </div>
                     <?php endif; ?>

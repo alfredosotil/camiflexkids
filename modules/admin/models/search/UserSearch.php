@@ -1,5 +1,4 @@
 <?php
-
 namespace app\modules\admin\models\search;
 
 use app\models\UserModel;
@@ -12,6 +11,7 @@ use yii\data\ActiveDataProvider;
  */
 class UserSearch extends UserModel
 {
+
     /**
      * {@inheritdoc}
      */

@@ -1,5 +1,4 @@
 <?php
-
 namespace app\controllers;
 
 use app\models\forms\ContactForm;
@@ -23,7 +22,8 @@ use Culqi\Culqi;
  *
  * @package app\controllers
  */
-class SiteController extends Controller {
+class SiteController extends Controller
+{
 
     use EventTrait;
 
@@ -32,7 +32,8 @@ class SiteController extends Controller {
     /**
      * @inheritdoc
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'access' => [
                 'class' => AccessControl::class,
@@ -81,7 +82,8 @@ class SiteController extends Controller {
     /**
      * @inheritdoc
      */
-    public function actions() {
+    public function actions()
+    {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -121,7 +123,8 @@ class SiteController extends Controller {
         ];
     }
 
-    public function actionLogin() {
+    public function actionLogin()
+    {
         if (Yii::$app->request->isAjax) {
             $model = new LoginForm();
             if ($model->load(Yii::$app->request->post())) {
@@ -138,7 +141,8 @@ class SiteController extends Controller {
         }
     }
 
-    public function actionRequestpasswordreset() {
+    public function actionRequestpasswordreset()
+    {
         if (Yii::$app->request->isAjax) {
             $model = new PasswordResetRequestForm();
             $event = $this->getFormEvent($model);
@@ -160,27 +164,32 @@ class SiteController extends Controller {
         }
     }
 
-    public function actionViewcart() {
+    public function actionViewcart()
+    {
         return $this->render('viewcart', [
         ]);
     }
 
-    public function actionUpdateprovince() {
+    public function actionUpdateprovince()
+    {
         $states = Ubigeoperu::find()->where(['departamento' => $_POST['value'], 'distrito' => '00'])->orderBy('nombre')->all();
         foreach ($states as $value) {
             echo \yii\helpers\Html::tag('option', $value->nombre, ['value' => $value->provincia]);
         }
     }
 
-    public function actionUpdatedistrict() {
+    public function actionUpdatedistrict()
+    {
         $zip = Ubigeoperu::find()->where(['departamento' => $_POST['valuedepartamento'], 'provincia' => $_POST['valueprovincia']])->orderBy('nombre')->all();
         foreach ($zip as $value) {
             echo \yii\helpers\Html::tag('option', $value->nombre, ['value' => $value->provincia]);
         }
     }
 
-    public function actionCheckout() {
+    public function actionCheckout()
+    {
         Yii::$app->assetsAutoCompress->jsFileCompile = false; //se desactiva compresion js tema tecnico con angular
+        $culqimodel = new \app\models\forms\CulqiForm();
         $model = new \app\models\Order();
         $model->country = 'PERU';
         $model->departament = '15';
@@ -200,11 +209,18 @@ class SiteController extends Controller {
         }
 
         return $this->render('checkout', [
-                    'model' => $model,
+                'model' => $model,
+                'culqimodel' => $culqimodel,
         ]);
     }
 
-    public function actionSignup() {
+    public function actionCheckoutcomplete()
+    {
+        return $this->render('checkoutcomplete', []);
+    }
+
+    public function actionSignup()
+    {
         if (Yii::$app->request->isAjax) {
             $model = new SignupForm();
             $event = $this->getFormEvent($model);
@@ -229,20 +245,22 @@ class SiteController extends Controller {
      *
      * @return string
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
 //        Yii::$app->session->setFlash('success', 'Excelente | esto es una prueba | Continuar');
         return $this->render('index', [
-                    'slides' => $this->getIndexMainSlides(),
-                    'reasons' => $this->getReasons(),
-                    'gallery' => $this->getIndexGallery(),
+                'slides' => $this->getIndexMainSlides(),
+                'reasons' => $this->getReasons(),
+                'gallery' => $this->getIndexGallery(),
         ]);
     }
 
-    public function actionAbout() {
+    public function actionAbout()
+    {
         return $this->render('about', [
-                    'slides' => $this->getAboutMainSlides(),
-                    'team' => $this->getAboutTeam(),
-                    'clients' => $this->getAboutClients()]);
+                'slides' => $this->getAboutMainSlides(),
+                'team' => $this->getAboutTeam(),
+                'clients' => $this->getAboutClients()]);
     }
 
     /**
@@ -250,7 +268,8 @@ class SiteController extends Controller {
      *
      * @return string|\yii\web\Response
      */
-    public function actionContact() {
+    public function actionContact()
+    {
         $model = new ContactForm();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -264,7 +283,7 @@ class SiteController extends Controller {
         }
 
         return $this->render('contact', [
-                    'model' => $model,
+                'model' => $model,
         ]);
     }
 
@@ -273,7 +292,8 @@ class SiteController extends Controller {
      *
      * @return string|\yii\web\Response
      */
-    public function actionAccount() {
+    public function actionAccount()
+    {
         $this->layout = '@app/modules/admin/views/layouts/column2';
         $resetPasswordForm = new ResetPasswordForm(Yii::$app->user->identity);
 
@@ -284,7 +304,7 @@ class SiteController extends Controller {
         }
 
         return $this->render('account', [
-                    'resetPasswordForm' => $resetPasswordForm,
+                'resetPasswordForm' => $resetPasswordForm,
         ]);
     }
 
@@ -293,11 +313,13 @@ class SiteController extends Controller {
      *
      * @return string
      */
-    public function actionProducts() {
+    public function actionProducts()
+    {
         return $this->render('products');
     }
 
-    public function actionAddtocart($id = null) {
+    public function actionAddtocart($id = null)
+    {
         $model = null;
         $qty = 0;
         if (is_null($id)) {
@@ -320,7 +342,8 @@ class SiteController extends Controller {
         }
     }
 
-    public function addtocart($product, $qty) {
+    public function addtocart($product, $qty)
+    {
         $items = Yii::$app->cart->getItems();
         $temp_detail = null;
         $result = false;
@@ -358,7 +381,8 @@ class SiteController extends Controller {
         return $result;
     }
 
-    public function actionDeletedetailorder($id) {
+    public function actionDeletedetailorder($id)
+    {
         Yii::$app->cart->remove($id);
         Yii::$app->getSession()->setFlash('success', Yii::t('yii2mod.user', 'Hecho | El producto fue eliminado del carrito de compras. | Continuar'));
         return $this->redirect(Url::to(['viewcart']));
@@ -369,13 +393,15 @@ class SiteController extends Controller {
      *
      * @return string
      */
-    public function actionSimulator() {
+    public function actionSimulator()
+    {
         Yii::$app->assetsAutoCompress->jsFileCompile = false; //se desactiva compresion js tema tecnico con angular
         return $this->render('simulator', [
         ]);
     }
 
-    public function actionSubscriber() {
+    public function actionSubscriber()
+    {
         if (Yii::$app->request->isPost) {
             if (Yii::$app->request->isAjax) {
                 $model = new Subscribers(['scenario' => Subscribers::SCENARIO_MAIN]);
@@ -392,7 +418,8 @@ class SiteController extends Controller {
         }
     }
 
-    public function actionSubscribersimulator() {
+    public function actionSubscribersimulator()
+    {
         if (Yii::$app->request->isPost) {
             if (Yii::$app->request->isAjax) {
                 $model = new Subscribers(['scenario' => Subscribers::SCENARIO_SIMULATOR]);
@@ -412,7 +439,8 @@ class SiteController extends Controller {
         }
     }
 
-    public function actionMakeorder() {
+    public function actionMakeorder()
+    {
         if (Yii::$app->request->isPost && Yii::$app->request->isAjax) {
             $model = new Order();
             $model->tax = 0;
@@ -426,7 +454,8 @@ class SiteController extends Controller {
         }
     }
 
-    public function actionAcceptcreditcard() {
+    public function actionAcceptcreditcard()
+    {
         if (Yii::$app->request->isPost && Yii::$app->request->isAjax) {
             $culqi = new Culqi(['api_key' => $this->SECRET_API_KEY]);
             // Entorno: Integración (pruebas)
@@ -439,16 +468,16 @@ class SiteController extends Controller {
             $order->attributes = Yii::$app->request->post('order');
             try {
                 $charge = $culqi->Charges->create(
-                        array(
-                            'amount' => Yii::$app->request->post('amount'),
-                            'capture' => true,
-                            'currency_code' => 'PEN',
-                            'description' => 'Pago de orden Camiflexkids',
-                            'installments' => 0,
-                            'email' => Yii::$app->request->post('email'),
-                            'metadata' => array('test' => 'test'),
-                            'source_id' => Yii::$app->request->post('token')
-                        )
+                    array(
+                        'amount' => Yii::$app->request->post('amount'),
+                        'capture' => true,
+                        'currency_code' => 'PEN',
+                        'description' => 'Pago de orden Camiflexkids',
+                        'installments' => 0,
+                        'email' => Yii::$app->request->post('email'),
+                        'metadata' => array('test' => 'test'),
+                        'source_id' => Yii::$app->request->post('token')
+                    )
                 );
                 if (strcmp($charge->object, 'charge') === 0) {
                     $order->ispaid = 1;
@@ -466,7 +495,8 @@ class SiteController extends Controller {
         }
     }
 
-    public function actionAddarraytocart() {
+    public function actionAddarraytocart()
+    {
         if (Yii::$app->request->isPost) {
             if (Yii::$app->request->isAjax) {
                 $data = json_decode(Yii::$app->request->getRawBody());
@@ -484,7 +514,8 @@ class SiteController extends Controller {
         }
     }
 
-    public function actionProductdetail($id) {
+    public function actionProductdetail($id)
+    {
         $model = \app\models\Product::findOne($id);
         if (isset($model)) {
             return $this->render('productdetail', ['model' => $model]);
@@ -493,7 +524,8 @@ class SiteController extends Controller {
         }
     }
 
-    private function getIndexMainSlides() {
+    private function getIndexMainSlides()
+    {
         $slides = json_decode(Yii::$app->params['mainSlider']);
         $htmlSlides = "";
         foreach ($slides as $value) {
@@ -502,7 +534,8 @@ class SiteController extends Controller {
         return $htmlSlides;
     }
 
-    private function getAboutMainSlides() {
+    private function getAboutMainSlides()
+    {
         $slides = json_decode(Yii::$app->params['latestProjectSlider']);
         $htmlSlides = "";
         foreach ($slides as $value) {
@@ -511,7 +544,8 @@ class SiteController extends Controller {
         return $htmlSlides;
     }
 
-    private function getAboutTeam() {
+    private function getAboutTeam()
+    {
         $slides = json_decode(Yii::$app->params['team']);
         $htmlTeam = "";
         foreach ($slides as $value) {
@@ -520,7 +554,8 @@ class SiteController extends Controller {
         return $htmlTeam;
     }
 
-    private function getReasons() {
+    private function getReasons()
+    {
         $slides = json_decode(Yii::$app->params['reasons']);
         $htmlTeam = "";
         foreach ($slides as $value) {
@@ -529,7 +564,8 @@ class SiteController extends Controller {
         return $htmlTeam;
     }
 
-    private function getAboutClients() {
+    private function getAboutClients()
+    {
         $slides = json_decode(Yii::$app->params['clients']);
         $htmlClients = "";
         foreach ($slides as $value) {
@@ -538,7 +574,8 @@ class SiteController extends Controller {
         return $htmlClients;
     }
 
-    private function getIndexGallery() {
+    private function getIndexGallery()
+    {
         $slides = json_decode(Yii::$app->params['gallery']);
         $htmlClients = "";
         foreach ($slides as $value) {
@@ -546,5 +583,4 @@ class SiteController extends Controller {
         }
         return $htmlClients;
     }
-
 }

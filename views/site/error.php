@@ -8,6 +8,7 @@ use yii\helpers\Html;
 /* @var $exception Exception */
 
 $this->title = $name;
+
 ?>
 <div class="row-correction"></div>
 <div class="row-correction"></div>

@@ -1,5 +1,4 @@
 <?php
-
 namespace app\commands;
 
 use Yii;
@@ -16,6 +15,7 @@ use yii\helpers\Console;
  */
 class BaseController extends Controller
 {
+
     /**
      * @var array list of disabled actions
      */

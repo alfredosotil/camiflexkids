@@ -18,6 +18,7 @@ foreach ($groups as $group) {
     }
     $colors[] = $temp;
 }
+
 ?>
 
 <div class="subscribers-form container">
@@ -63,6 +64,7 @@ foreach ($groups as $group) {
                             'palette' => $colors
                         ]
                     ]);
+
                     ?>
                 </div>
             </div>

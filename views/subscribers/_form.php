@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Subscribers */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="subscribers-form">

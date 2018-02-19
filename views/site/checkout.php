@@ -7,6 +7,7 @@ use yii\widgets\ActiveForm;
 $this->title = 'Checkout';
 //app\assets\AngularAsset::register($this);
 app\assets\CulqiAsset::register($this);
+
 ?>
 <div class="row-correction"></div>
 <div class="c-content-box c-size-lg">
@@ -21,14 +22,15 @@ app\assets\CulqiAsset::register($this);
 
                         <?php
                         $form = ActiveForm::begin([
-                                    'id' => 'order-form-checkout',
-                                    'enableAjaxValidation' => false,
-                                    'enableClientValidation' => true,
+                                'id' => 'order-form-checkout',
+                                'enableAjaxValidation' => false,
+                                'enableClientValidation' => true,
 //                        'method' => 'post',
 //                        'action' => '',
-                                    'options' => ['onsubmit' => 'return false;']
+                                'options' => ['onsubmit' => 'return false;']
 //                        'validateOnSubmit' => false,
                         ]);
+
                         ?>
 
                         <?php echo $form->field($model, 'amount')->hiddenInput()->label(false) ?>
@@ -42,11 +44,13 @@ app\assets\CulqiAsset::register($this);
                         <?php
                         echo $form->field($model, 'departament')->dropDownList(yii\helpers\ArrayHelper::map(app\models\Ubigeoperu::find()->where(['provincia' => '00', 'distrito' => '00'])->orderBy('nombre')->all(), 'departamento', 'nombre'), ['class' => 'form-control c-square c-theme',
                             'onchange' => '$.post( "' . Yii::$app->urlManager->createUrl(["site/updateprovince"]) . '",{value:this.value},function(data){$("#order-province").html( data );$("#order-district").html("");})'])->label('Departamento:')
+
                         ?>
 
                         <?php
                         echo $form->field($model, 'province')->dropDownList(yii\helpers\ArrayHelper::map(app\models\Ubigeoperu::find()->where(['departamento' => '15', 'distrito' => '00'])->orderBy('nombre')->all(), 'provincia', 'nombre'), ['class' => 'form-control c-square c-theme',
                             'onchange' => '$.post( "' . Yii::$app->urlManager->createUrl(["site/updatedistrict"]) . '",{valueprovincia:this.value, valuedepartamento:$("#order-departament").val()},function(data){$("#order-district").html( data );})'])->label('Provincia:')
+
                         ?>
 
                         <?php echo $form->field($model, 'district')->dropDownList(yii\helpers\ArrayHelper::map(app\models\Ubigeoperu::find()->where(['departamento' => '15', 'provincia' => '01'])->orderBy('nombre')->all(), 'distrito', 'nombre'), ['class' => 'form-control c-square c-theme'])->label('Distrito:') ?>
@@ -69,12 +73,12 @@ app\assets\CulqiAsset::register($this);
 
                         <?php // echo $form->field($model, 'tracking_number')->textInput(['maxlength' => 255])    ?>
 
-                        <?php // echo $form->field($model, 'shipped')->textInput()    ?>
+                        <?php // echo $form->field($model, 'shipped')->textInput()     ?>
 
-                        <?php // echo $form->field($model, 'active')->textInput()     ?>
+                        <?php // echo $form->field($model, 'active')->textInput()      ?>
 
                         <!--                        <div class="form-group">
-                        <?php // echo Html::submitButton($model->isNewRecord ? Yii::t('product', 'Create') : Yii::t('product', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])  ?>
+                        <?php // echo Html::submitButton($model->isNewRecord ? Yii::t('product', 'Create') : Yii::t('product', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])   ?>
                                                 </div>-->
 
                         <?php ActiveForm::end(); ?>
@@ -94,6 +98,7 @@ app\assets\CulqiAsset::register($this);
                             <li class="row c-border-bottom"></li>
                             <?php
                             $items = Yii::$app->cart->getItems();
+
                             ?>
                             <?php foreach ($items as $value): ?>
                                 <li class="row c-margin-b-15 c-margin-t-15">
@@ -102,13 +107,7 @@ app\assets\CulqiAsset::register($this);
                                         <p class="">S/.<?php echo $value->price ?></p>
                                     </div>
                                 </li>
-                            <?php endforeach; ?>                            
-                            <!--                            <li class="row c-margin-b-15 c-margin-t-15">
-                                                            <div class="col-md-6 c-font-20">Subtotal</div>
-                                                            <div class="col-md-6 c-font-20">
-                                                                <p class="">S/.<span class="c-subtotal"><?php echo $model->amount ?></span></p>
-                                                            </div>
-                                                        </li>-->
+                            <?php endforeach; ?>                              
                             <li class="row c-border-top c-margin-b-15"></li>
                             <li class="row c-margin-t-15">
                                 <div class="form-group col-md-12">
@@ -125,6 +124,69 @@ app\assets\CulqiAsset::register($this);
                                 </div>
                             </li>
                             <li class="row c-margin-b-15 c-margin-t-15">
+                                <div class="col-md-6 col-md-offset-6">
+                                    <p class="c-font-30">Datos de Tarjeta</p>
+                                </div>      
+                                <div class="col-md-12 c-font-20">
+                                    <?php
+                                    $form2 = ActiveForm::begin([
+                                            'id' => 'culqi-form-checkout',
+                                            'enableAjaxValidation' => false,
+                                            'enableClientValidation' => true,
+//                        'method' => 'post',
+//                        'action' => '',
+                                            'options' => ['onsubmit' => 'return false;']
+//                        'validateOnSubmit' => false,
+                                    ]);
+
+                                    ?>
+
+                                    <?php echo $form2->field($culqimodel, 'cardnumber')->textInput() ?>
+
+                                    <?php
+                                    echo $form->field($culqimodel, 'expirationmonth')->widget(\yii\widgets\MaskedInput::className(), [
+                                        'mask' => 'm',
+                                        'options' => ['class' => 'form-control c-square c-theme'],
+                                        'definitions' => ['m' => [
+                                                'validator' => '^(0?[1-9]|1[012])$',
+                                                'cardinality' => 2,
+                                                'prevalidator' => [
+                                                    ['validator' => '[01]', 'cardinality' => 1],
+                                                ]
+                                            ]]
+                                    ]);
+
+                                    ?>
+
+                                    <?php
+                                    echo $form->field($culqimodel, 'expirationyear')->widget(\yii\widgets\MaskedInput::className(), [
+                                        'mask' => 'j',
+                                        'options' => ['class' => 'form-control c-square c-theme'],
+                                        'definitions' => ['j' => [
+                                                'validator' => '^\d{4}$',
+                                                'cardinality' => 4,
+                                                'prevalidator' => [
+                                                    ['validator' => '[12]', 'cardinality' => 1],
+                                                    ['validator' => '(19|20)', 'cardinality' => 2],
+                                                    ['validator' => '(19|20)\\d', 'cardinality' => 3],
+                                                ]
+                                            ]]
+                                    ]);
+
+                                    ?>
+
+                                    <?php
+                                    echo $form->field($culqimodel, 'cvv')->widget(\yii\widgets\MaskedInput::className(), [
+                                        'mask' => '999',
+                                        'options' => ['class' => 'form-control c-square c-theme'],
+                                    ]);
+
+                                    ?>
+
+                                    <?php ActiveForm::end(); ?>
+                                </div>
+                            </li>
+                            <li class="row c-margin-b-15 c-margin-t-15">
                                 <div class="col-md-6 c-font-20">
                                     <p class="c-font-30">Total a pagar</p>
                                 </div>
@@ -132,41 +194,6 @@ app\assets\CulqiAsset::register($this);
                                     <p class="c-font-bold c-font-30">S/.<span class="c-shipping-total"><?php echo $model->amount ?></span></p>
                                 </div>
                             </li>
-                            <!--                            <li class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="c-radio-list">
-                                                                    <div class="c-radio">
-                                                                        <input type="radio" id="radio1" class="c-radio" name="payment" value="TRANSFER" onclick="$('#cardpayment').toggle(false);">
-                                                                        <label for="radio1" class="c-font-bold c-font-20">
-                                                                            <span class="inc"></span>
-                                                                            <span class="check"></span>
-                                                                            <span class="box"></span>
-                                                                            Transferencia Bancaria
-                                                                        </label>
-                                                                        <p class="help-block">Has tu pago directamente al banco. Por favor usa el numero de orden como referencia de pago. Tu orden no sera enviada hasta revisar el pago en la cuenta del negocio.</p>
-                                                                    </div>
-                                                                                                            <div class="c-radio">
-                                                                                                                <input type="radio" id="radio2" class="c-radio" name="payment">
-                                                                                                                <label for="radio2" class="c-font-bold c-font-20">
-                                                                                                                    <span class="inc"></span>
-                                                                                                                    <span class="check"></span>
-                                                                                                                    <span class="box"></span>
-                                                                                                                    Cheque Payment
-                                                                                                                </label>
-                                                                                                            </div>
-                                                                    <div class="c-radio">
-                                                                        <input type="radio" id="radio3" class="c-radio" name="payment" value="CULQI" checked="" onclick="$('#cardpayment').toggle(true);">
-                                                                        <label for="radio3" class="c-font-bold c-font-20">
-                                                                            <span class="inc"></span>
-                                                                            <span class="check"></span>
-                                                                            <span class="box"></span>
-                                                                            Culqi
-                                                                        </label>
-                                                                        <img class="img-responsive" width="250" src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>-->
                             <li class="row">
                                 <div class="form-group col-md-12" role="group">
                                     <div class="">
@@ -198,9 +225,10 @@ app\assets\CulqiAsset::register($this);
                                                         }
                                                 '),
                                             ],
-                                            'options' => ['style' => 'width:100%', 'data-style' => 'contract', 'class' => 'invoque-culqi ladda-button btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold'],
+                                            'options' => ['style' => 'width:100%', 'data-spinner-color' => 'red', 'data-style' => 'zoom-in', 'class' => 'invoque-culqi ladda-button btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold'],
                                         ]);
                                         \demogorgorn\ajax\AjaxSubmitButton::end();
+
                                         ?>
                                         <!--<button onclick="test();">test</button>-->
                                     </div>

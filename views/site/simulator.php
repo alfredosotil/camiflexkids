@@ -5,6 +5,7 @@ use app\assets\AngularAsset;
 
 $this->title = 'Simulador';
 AngularAsset::register($this);
+
 ?>
 <div class="row-correction"></div>
 
@@ -68,5 +69,6 @@ AngularAsset::register($this);
         'complete_content' => $this->render('step4'), // Optional final screen
         'start_step' => 1, // Optional, start with a specific step
     ]);
+
     ?>      
 </div>

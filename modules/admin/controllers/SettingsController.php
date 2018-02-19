@@ -1,5 +1,4 @@
 <?php
-
 namespace app\modules\admin\controllers;
 
 use yii\web\Controller;
@@ -11,6 +10,7 @@ use yii\web\Controller;
  */
 class SettingsController extends Controller
 {
+
     /**
      * @return array
      */

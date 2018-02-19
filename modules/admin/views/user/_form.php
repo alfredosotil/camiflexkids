@@ -7,6 +7,7 @@ use yii2mod\user\models\enums\UserStatus;
 /* @var $this yii\web\View */
 /* @var $model app\models\UserModel */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="user-form">
