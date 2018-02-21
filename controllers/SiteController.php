@@ -5,6 +5,7 @@ use app\models\forms\ContactForm;
 use app\models\forms\ResetPasswordForm;
 use app\models\Subscribers;
 use app\models\Order;
+use app\models\forms\CulqiForm;
 use app\models\Ubigeoperu;
 use Yii;
 use yii\filters\VerbFilter;
@@ -27,7 +28,10 @@ class SiteController extends Controller
 
     use EventTrait;
 
-    public $SECRET_API_KEY = 'sk_test_5dBvsJJspPxmwzMF';
+    private $PUBLIC_API_KEY;
+    private $API_KEY;
+    private $culqi_token;
+    private $culqi;
 
     /**
      * @inheritdoc
@@ -189,8 +193,12 @@ class SiteController extends Controller
     public function actionCheckout()
     {
         Yii::$app->assetsAutoCompress->jsFileCompile = false; //se desactiva compresion js tema tecnico con angular
-        $culqimodel = new \app\models\forms\CulqiForm();
-        $model = new \app\models\Order();
+        $culqimodel = new CulqiForm();
+        $culqimodel->cardnumber = '4111111111111111';
+        $culqimodel->expirationmonth = '09';
+        $culqimodel->expirationyear = '2020';
+        $culqimodel->cvv = '123';
+        $model = new Order();
         $model->country = 'PERU';
         $model->departament = '15';
         $model->province = '00';
@@ -457,26 +465,42 @@ class SiteController extends Controller
     public function actionAcceptcreditcard()
     {
         if (Yii::$app->request->isPost && Yii::$app->request->isAjax) {
-            $culqi = new Culqi(['api_key' => $this->SECRET_API_KEY]);
-            // Entorno: Integración (pruebas)
-//            $culqi->setEnv("INTEG");
-            // Generamos un Código de pedido único (ejemplo)
-//            parse_str(Yii::$app->request->post('form_order'), $order);
-//            $data = json_decode(Yii::$app->request->getRawBody());
             $order = new Order();
-//            $order->load(Yii::$app->request->post('order'));
+            $card = new CulqiForm();
             $order->attributes = Yii::$app->request->post('order');
+            $card->attributes = Yii::$app->request->post('card')['CulqiForm'];
             try {
-                $charge = $culqi->Charges->create(
+                $this->PUBLIC_API_KEY = 'pk_test_O7LKYtalUAXdbvwo'; //getenv("PUBLIC_API_KEY");
+                $this->API_KEY = 'sk_test_5dBvsJJspPxmwzMF'; //getenv("API_KEY");
+                $this->culqi_token = new Culqi(array("api_key" => $this->PUBLIC_API_KEY));
+                $this->culqi = new Culqi(array("api_key" => $this->API_KEY));
+//                return $this->asJson(['data' => $card]);
+                $token = $this->culqi_token->Tokens->create(
+//                    array(
+//                        "card_number" => $card->cardnumber,
+//                        "cvv" => $card->cvv,
+//                        "email" => "wmuro" . uniqid() . "@me.com",
+//                        "expiration_month" => $card->expirationmonth,
+//                        "expiration_year" => $card->expirationyear,
+//                    )
                     array(
-                        'amount' => Yii::$app->request->post('amount'),
+                        "card_number" => "4111111111111111",
+                        "cvv" => "123",
+                        "email" => "wmuro" . uniqid() . "@me.com", //email must not repeated
+                        "expiration_month" => 9,
+                        "expiration_year" => 2020,
+                        "fingerprint" => uniqid()
+                    )
+                );
+                $charge = $this->culqi->Charges->create(
+                    array(
+                        'amount' => $order->amount,
                         'capture' => true,
                         'currency_code' => 'PEN',
                         'description' => 'Pago de orden Camiflexkids',
                         'installments' => 0,
-                        'email' => Yii::$app->request->post('email'),
                         'metadata' => array('test' => 'test'),
-                        'source_id' => Yii::$app->request->post('token')
+                        'source_id' => $token->id
                     )
                 );
                 if (strcmp($charge->object, 'charge') === 0) {
@@ -488,7 +512,7 @@ class SiteController extends Controller
                     return $this->asJson(['successAjax' => true, 'hasError' => true, 'charge' => $charge]);
                 }
             } catch (Exception $e) {
-                // ERROR: El cargo tuvo algún error o fue rechazado
+// ERROR: El cargo tuvo algún error o fue rechazado
 //                echo $e->getMessage();
                 return $this->asJson(['successAjax' => true, 'hasError' => true, 'error_message' => $e->getMessage()]);
             }

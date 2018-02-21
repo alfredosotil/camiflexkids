@@ -23,6 +23,7 @@ class CulqiAsset extends AssetBundle
         'https://checkout.culqi.com/plugins/v2/',
         'js/waitMe.min.js',
         'js/Culqi.js',
+        'js/jquery.serializejson.min.js',
     ];
     public $css = [
         'css/waitMe.min.css',

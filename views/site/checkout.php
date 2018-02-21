@@ -142,47 +142,51 @@ app\assets\CulqiAsset::register($this);
                                     ?>
 
                                     <?php echo $form2->field($culqimodel, 'cardnumber')->textInput() ?>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <?php
+                                            echo $form->field($culqimodel, 'expirationmonth')->widget(\yii\widgets\MaskedInput::className(), [
+                                                'mask' => 'm',
+                                                'options' => ['class' => 'form-control c-square c-theme'],
+                                                'definitions' => ['m' => [
+                                                        'validator' => '^(0?[1-9]|1[012])$',
+                                                        'cardinality' => 2,
+                                                        'prevalidator' => [
+                                                            ['validator' => '[01]', 'cardinality' => 1],
+                                                        ]
+                                                    ]]
+                                            ]);
 
-                                    <?php
-                                    echo $form->field($culqimodel, 'expirationmonth')->widget(\yii\widgets\MaskedInput::className(), [
-                                        'mask' => 'm',
-                                        'options' => ['class' => 'form-control c-square c-theme'],
-                                        'definitions' => ['m' => [
-                                                'validator' => '^(0?[1-9]|1[012])$',
-                                                'cardinality' => 2,
-                                                'prevalidator' => [
-                                                    ['validator' => '[01]', 'cardinality' => 1],
-                                                ]
-                                            ]]
-                                    ]);
+                                            ?>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <?php
+                                            echo $form->field($culqimodel, 'expirationyear')->widget(\yii\widgets\MaskedInput::className(), [
+                                                'mask' => 'j',
+                                                'options' => ['class' => 'form-control c-square c-theme'],
+                                                'definitions' => ['j' => [
+                                                        'validator' => '^\d{4}$',
+                                                        'cardinality' => 4,
+                                                        'prevalidator' => [
+                                                            ['validator' => '[2]', 'cardinality' => 1],
+                                                            ['validator' => '(20)', 'cardinality' => 2],
+                                                            ['validator' => '(20[1-9])', 'cardinality' => 3],
+                                                        ]
+                                                    ]]
+                                            ]);
 
-                                    ?>
+                                            ?>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <?php
+                                            echo $form->field($culqimodel, 'cvv')->widget(\yii\widgets\MaskedInput::className(), [
+                                                'mask' => '999',
+                                                'options' => ['class' => 'form-control c-square c-theme'],
+                                            ]);
 
-                                    <?php
-                                    echo $form->field($culqimodel, 'expirationyear')->widget(\yii\widgets\MaskedInput::className(), [
-                                        'mask' => 'j',
-                                        'options' => ['class' => 'form-control c-square c-theme'],
-                                        'definitions' => ['j' => [
-                                                'validator' => '^\d{4}$',
-                                                'cardinality' => 4,
-                                                'prevalidator' => [
-                                                    ['validator' => '[12]', 'cardinality' => 1],
-                                                    ['validator' => '(19|20)', 'cardinality' => 2],
-                                                    ['validator' => '(19|20)\\d', 'cardinality' => 3],
-                                                ]
-                                            ]]
-                                    ]);
-
-                                    ?>
-
-                                    <?php
-                                    echo $form->field($culqimodel, 'cvv')->widget(\yii\widgets\MaskedInput::className(), [
-                                        'mask' => '999',
-                                        'options' => ['class' => 'form-control c-square c-theme'],
-                                    ]);
-
-                                    ?>
-
+                                            ?>
+                                        </div>                                        
+                                    </div>
                                     <?php ActiveForm::end(); ?>
                                 </div>
                             </li>
@@ -210,17 +214,20 @@ app\assets\CulqiAsset::register($this);
                                                         function(xhr){
                                                             $("#order-form-checkout").data("yiiActiveForm").submitting = true;
                                                             $("#order-form-checkout").yiiActiveForm("validate");
+                                                            $("#culqi-form-checkout").data("yiiActiveForm").submitting = true;
+                                                            $("#culqi-form-checkout").yiiActiveForm("validate");
                                                             var l = Ladda.create(document.querySelector(".invoque-culqi"));         
                                                             l.start();                                                            
                                                         }'),
                                                 'success' => new \yii\web\JsExpression('
                                                         function(data){                                                                
-                                                                if($("#order-form-checkout").find(".has-error").length){
+                                                                if($("#order-form-checkout").find(".has-error").length || 
+                                                                    $("#culqi-form-checkout").find(".has-error").length
+                                                                    ){
                                                                     Ladda.stopAll();
                                                                     return false;
                                                                 }else{
-                                                                    configurarCulqi($("#order-amount").val().replace(".",""), data.order);
-                                                                    Culqi.open();
+                                                                    configurarCulqi(data.order, $("#culqi-form-checkout").serializeJSON());
                                                                 }
                                                         }
                                                 '),

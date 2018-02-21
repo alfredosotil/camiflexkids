@@ -25,7 +25,9 @@ class CulqiForm extends Model
             // name, email, subject and body are required
             [['cardnumber', 'email', 'expirationmonth', 'expirationyear', 'cvv'], 'required'],
             [['cardnumber'], 'string', 'max' => 16],
-            [['expirationmonth', 'expirationyear'], 'number'],
+            [['expirationmonth'], 'number', 'min' => 2],
+            [['expirationyear'], 'number', 'min' => 4],
+            [['cvv'], 'number', 'min' => 3],
             [['email'], 'string', 'max' => 100],
             // email has to be a valid email address
             ['email', 'email'],
@@ -50,25 +52,5 @@ class CulqiForm extends Model
             'cvv' => Yii::t('contact', 'CVV'),
         ];
     }
-    /**
-     * Sends an email to the specified email address using the information collected by this model.
-     *
-     * @param string $email the target email address
-     *
-     * @return bool whether the model passes validation
-     */
-//    public function contact($email) {
-//        if ($this->validate()) {
-//            Yii::$app->mailer->compose()
-//                    ->setTo($email)
-//                    ->setFrom([$this->email => $this->name])
-//                    ->setSubject($this->subject)
-//                    ->setTextBody($this->body)
-//                    ->send();
-//
-//            return true;
-//        }
-//
-//        return false;
-//    }
+    
 }

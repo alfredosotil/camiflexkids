@@ -8,47 +8,95 @@ var ORDER = null;
 //Culqi.publicKey = 'pk_test_O7LKYtalUAXdbvwo';
 //Culqi.init();
 //Culqi.codigoComercio = 'sk_test_5dBvsJJspPxmwzMF';
-function configurarCulqi(amount, order) {
+Culqi.publicKey = 'pk_test_O7LKYtalUAXdbvwo';
+function configurarCulqi(order, card) {
+    order.amount = parseInt($("#order-amount").val().replace(".", ""));
     ORDER = order;
     try {
-        Culqi.publicKey = 'pk_test_O7LKYtalUAXdbvwo';
-        Culqi.init();
-        Culqi.createToken();
-    }catch(ex){
+        setProcessPayment(ORDER, card);
+    } catch (ex) {
+        console.log('ERROR \/');
         console.log(ex);
     }
-//    Culqi.settings({
-//        title: 'CAMIFLEXKIDS',
-//        currency: 'PEN',
-//        description: 'Pago de orden Camiflexkids',
-//        amount: parseInt(amount),
-//    });
-//    console.log(ORDER);
 }
+//
+//window.culqi = function () {
+//    try {
+//        if (Culqi.token) {
+//            console.log('TOKEN \/');
+//            console.log(Culqi.token);
+//            let token = Culqi.token;
+//            setProcessPayment(token, ORDER);
+//        } else {
+//            console.log(Culqi.error.user_message);
+//        }
+//    } catch (ex) {
+//        console.log(ex);
+//    }
+//};
 
-window.culqi = function() {
-    try {
-        if (Culqi.token) {
-            let token = Culqi.token;
-            setProcessPayment(token, null);
-        } else {
-            console.log(Culqi.error.user_message);
-        }
-    }catch(ex){
-        console.log(ex);
-    }
-};
-
-function setProcessPayment(token, card) {
-    let data = {
-        token: token,
-        card: card,
-    };
-    $.post('acceptcreditcard', data).done(function (res) {
-        if(res.status){
-            window.location.href = res.data;
-        }else{
-            console.log(res.message);
+function setProcessPayment(orden, card) {    
+    $.ajax({
+        type: 'POST',
+        url: 'acceptcreditcard',
+        data: {order: orden, card: card},
+//         data: {order: orden, card_number: card_number, expiration_month: expiration_month, expiration_year: expiration_year, cvv: cvv},
+        datatype: 'json',
+        beforeSend: function () {
+            console.log('ORDER \/');
+            console.log(orden);
+            console.log('CARD \/');
+            console.log(card);
+        },
+        success: function (data) {
+//            $('body').waitMe('hide');
+            console.log(data);
+            var charge = data.charge;
+            Ladda.stopAll();
+            var result = "";
+            if (charge.constructor == String) {
+                result = JSON.parse(charge);
+            }
+            if (charge.constructor == Object) {
+                result = JSON.parse(JSON.stringify(charge));
+            }
+            if (result.object === 'charge') {
+//                    console.log(result.outcome.user_message);
+                swal({
+                    title: 'Bien!!',
+                    text: result.outcome.user_message,
+                    type: 'success',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Continua comprando',
+                    allowOutsideClick: true,
+                }, (result) => {
+                    if (result) {
+                        window.location.href = data.redirect;
+                    }
+                });
+            }
+            if (result.object === 'error') {
+//                    console.log(result.user_message);
+                swal({
+                    title: 'Error',
+                    text: result.user_message,
+                    type: 'error',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Continuar',
+                    allowOutsideClick: true,
+                }, (result) => {
+                    if (result) {
+                        window.location.reload();
+                    }
+                });
+            }
+//                console.log(data);
+        },
+        error: function (error) {
+//                resultdiv(error)
+//                console.log(error);
         }
     });
 }
