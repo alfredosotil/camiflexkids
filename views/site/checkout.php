@@ -130,7 +130,7 @@ app\assets\CulqiAsset::register($this);
                                 <div class="col-md-12 c-font-20">
                                     <?php
                                     $form2 = ActiveForm::begin([
-                                            'id' => 'culqi-form-checkout',
+                                            'id' => 'culqi-card-form',
                                             'enableAjaxValidation' => false,
                                             'enableClientValidation' => true,
 //                        'method' => 'post',
@@ -141,13 +141,14 @@ app\assets\CulqiAsset::register($this);
 
                                     ?>
 
-                                    <?php echo $form2->field($culqimodel, 'cardnumber')->textInput() ?>
+                                    <?php echo $form2->field($culqimodel, 'number')->textInput(['data-culqi' => 'card[number]', 'id' => 'card[number]']) ?>
+                                    <?php echo $form2->field($culqimodel, 'email')->textInput(['data-culqi' => 'card[email]', 'id' => 'card[email]']) ?>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <?php
-                                            echo $form->field($culqimodel, 'expirationmonth')->widget(\yii\widgets\MaskedInput::className(), [
+                                            echo $form->field($culqimodel, 'exp_month')->widget(\yii\widgets\MaskedInput::className(), [
                                                 'mask' => 'm',
-                                                'options' => ['class' => 'form-control c-square c-theme'],
+                                                'options' => ['class' => 'form-control c-square c-theme', 'data-culqi' => 'card[exp_month]', 'id' => 'card[exp_month]'],
                                                 'definitions' => ['m' => [
                                                         'validator' => '^(0?[1-9]|1[012])$',
                                                         'cardinality' => 2,
@@ -161,9 +162,9 @@ app\assets\CulqiAsset::register($this);
                                         </div>
                                         <div class="col-md-4">
                                             <?php
-                                            echo $form->field($culqimodel, 'expirationyear')->widget(\yii\widgets\MaskedInput::className(), [
+                                            echo $form->field($culqimodel, 'exp_year')->widget(\yii\widgets\MaskedInput::className(), [
                                                 'mask' => 'j',
-                                                'options' => ['class' => 'form-control c-square c-theme'],
+                                                'options' => ['class' => 'form-control c-square c-theme', 'data-culqi' => 'card[exp_year]', 'id' => 'card[exp_year]'],
                                                 'definitions' => ['j' => [
                                                         'validator' => '^\d{4}$',
                                                         'cardinality' => 4,
@@ -179,9 +180,9 @@ app\assets\CulqiAsset::register($this);
                                         </div>
                                         <div class="col-md-4">
                                             <?php
-                                            echo $form->field($culqimodel, 'cvv')->widget(\yii\widgets\MaskedInput::className(), [
+                                            echo $form->field($culqimodel, 'cvc')->widget(\yii\widgets\MaskedInput::className(), [
                                                 'mask' => '999',
-                                                'options' => ['class' => 'form-control c-square c-theme'],
+                                                'options' => ['class' => 'form-control c-square c-theme', 'data-culqi' => 'card[cvc]', 'id' => 'card[cvc]'],
                                             ]);
 
                                             ?>
@@ -212,10 +213,10 @@ app\assets\CulqiAsset::register($this);
                                                 'data' => new \yii\web\JsExpression('$("#order-form-checkout").serialize()'),
                                                 'beforeSend' => new \yii\web\JsExpression('
                                                         function(xhr){
-                                                            $("#order-form-checkout").data("yiiActiveForm").submitting = true;
-                                                            $("#order-form-checkout").yiiActiveForm("validate");
-                                                            $("#culqi-form-checkout").data("yiiActiveForm").submitting = true;
-                                                            $("#culqi-form-checkout").yiiActiveForm("validate");
+//                                                            $("#order-form-checkout").data("yiiActiveForm").submitting = true;
+//                                                            $("#order-form-checkout").yiiActiveForm("validate");
+//                                                            $("#culqi-form-checkout").data("yiiActiveForm").submitting = true;
+//                                                            $("#culqi-form-checkout").yiiActiveForm("validate");
                                                             var l = Ladda.create(document.querySelector(".invoque-culqi"));         
                                                             l.start();                                                            
                                                         }'),
@@ -227,6 +228,7 @@ app\assets\CulqiAsset::register($this);
                                                                     Ladda.stopAll();
                                                                     return false;
                                                                 }else{
+                                                                    Culqi.createToken();
                                                                     configurarCulqi(data.order, $("#culqi-form-checkout").serializeJSON());
                                                                 }
                                                         }

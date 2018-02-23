@@ -7,9 +7,10 @@
 var ORDER = null;
 //Culqi.publicKey = 'pk_test_O7LKYtalUAXdbvwo';
 //Culqi.init();
-//Culqi.codigoComercio = 'sk_test_5dBvsJJspPxmwzMF';
 Culqi.publicKey = 'pk_test_O7LKYtalUAXdbvwo';
+//Culqi.codigoComercio = 'sk_test_5dBvsJJspPxmwzMF';
 function configurarCulqi(order, card) {
+    Culqi.init();
     order.amount = parseInt($("#order-amount").val().replace(".", ""));
     ORDER = order;
     try {
@@ -35,70 +36,73 @@ function configurarCulqi(order, card) {
 //    }
 //};
 
-function setProcessPayment(orden, card) {    
-    $.ajax({
-        type: 'POST',
-        url: 'acceptcreditcard',
-        data: {order: orden, card: card},
+function setProcessPayment(orden, card) {
+    if (Culqi.token) {
+        $.ajax({
+            type: 'POST',
+            url: 'acceptcreditcard',
+            data: {order: orden, card: card, token: Culqi.token},
 //         data: {order: orden, card_number: card_number, expiration_month: expiration_month, expiration_year: expiration_year, cvv: cvv},
-        datatype: 'json',
-        beforeSend: function () {
-            console.log('ORDER \/');
-            console.log(orden);
-            console.log('CARD \/');
-            console.log(card);
-        },
-        success: function (data) {
+            datatype: 'json',
+            beforeSend: function () {
+                console.log('ORDER \/');
+                console.log(orden);
+                console.log('CARD \/');
+                console.log(card);
+            },
+            success: function (data) {
 //            $('body').waitMe('hide');
-            console.log(data);
-            var charge = data.charge;
-            Ladda.stopAll();
-            var result = "";
-            if (charge.constructor == String) {
-                result = JSON.parse(charge);
-            }
-            if (charge.constructor == Object) {
-                result = JSON.parse(JSON.stringify(charge));
-            }
-            if (result.object === 'charge') {
+                console.log(data);
+                var charge = data.charge;
+                Ladda.stopAll();
+                var result = "";
+                if (charge.constructor == String) {
+                    result = JSON.parse(charge);
+                }
+                if (charge.constructor == Object) {
+                    result = JSON.parse(JSON.stringify(charge));
+                }
+                if (result.object === 'charge') {
 //                    console.log(result.outcome.user_message);
-                swal({
-                    title: 'Bien!!',
-                    text: result.outcome.user_message,
-                    type: 'success',
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Continua comprando',
-                    allowOutsideClick: true,
-                }, (result) => {
-                    if (result) {
-                        window.location.href = data.redirect;
-                    }
-                });
-            }
-            if (result.object === 'error') {
+                    swal({
+                        title: 'Bien!!',
+                        text: result.outcome.user_message,
+                        type: 'success',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Continua comprando',
+                        allowOutsideClick: true,
+                    }, (result) => {
+                        if (result) {
+                            window.location.href = data.redirect;
+                        }
+                    });
+                }
+                if (result.object === 'error') {
 //                    console.log(result.user_message);
-                swal({
-                    title: 'Error',
-                    text: result.user_message,
-                    type: 'error',
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Continuar',
-                    allowOutsideClick: true,
-                }, (result) => {
-                    if (result) {
-                        window.location.reload();
-                    }
-                });
-            }
+                    swal({
+                        title: 'Error',
+                        text: result.user_message,
+                        type: 'error',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Continuar',
+                        allowOutsideClick: true,
+                    }, (result) => {
+                        if (result) {
+                            window.location.reload();
+                        }
+                    });
+                }
 //                console.log(data);
-        },
-        error: function (error) {
+            },
+            error: function (error) {
 //                resultdiv(error)
 //                console.log(error);
-        }
-    });
+            }
+        });
+    }
+
 }
 
 //$("#modal-3").on("hidden.bs.modal", function () {

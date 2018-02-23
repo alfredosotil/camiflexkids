@@ -5,7 +5,7 @@ use app\models\forms\ContactForm;
 use app\models\forms\ResetPasswordForm;
 use app\models\Subscribers;
 use app\models\Order;
-use app\models\forms\CulqiForm;
+use app\models\forms\card;
 use app\models\Ubigeoperu;
 use Yii;
 use yii\filters\VerbFilter;
@@ -193,11 +193,12 @@ class SiteController extends Controller
     public function actionCheckout()
     {
         Yii::$app->assetsAutoCompress->jsFileCompile = false; //se desactiva compresion js tema tecnico con angular
-        $culqimodel = new CulqiForm();
-        $culqimodel->cardnumber = '4111111111111111';
-        $culqimodel->expirationmonth = '09';
-        $culqimodel->expirationyear = '2020';
-        $culqimodel->cvv = '123';
+        $culqimodel = new card();
+        $culqimodel->number = '4111111111111111';
+        $culqimodel->email = 'alfredosotil@gmail.com';
+        $culqimodel->exp_month = '09';
+        $culqimodel->exp_year = '2020';
+        $culqimodel->cvc = '123';
         $model = new Order();
         $model->country = 'PERU';
         $model->departament = '15';
@@ -470,28 +471,29 @@ class SiteController extends Controller
             $order->attributes = Yii::$app->request->post('order');
             $card->attributes = Yii::$app->request->post('card')['CulqiForm'];
             try {
-                $this->PUBLIC_API_KEY = 'pk_test_O7LKYtalUAXdbvwo'; //getenv("PUBLIC_API_KEY");
+//                https://www.culqi.com/docs/#/pagos/inicio
+//                $this->PUBLIC_API_KEY = 'pk_test_O7LKYtalUAXdbvwo'; //getenv("PUBLIC_API_KEY");
                 $this->API_KEY = 'sk_test_5dBvsJJspPxmwzMF'; //getenv("API_KEY");
-                $this->culqi_token = new Culqi(array("api_key" => $this->PUBLIC_API_KEY));
+//                $this->culqi_token = new Culqi(array("api_key" => $this->PUBLIC_API_KEY));
                 $this->culqi = new Culqi(array("api_key" => $this->API_KEY));
 //                return $this->asJson(['data' => $card]);
-                $token = $this->culqi_token->Tokens->create(
+//                $token = $this->culqi_token->Tokens->create(
+////                    array(
+////                        "card_number" => $card->cardnumber,
+////                        "cvv" => $card->cvv,
+////                        "email" => "wmuro" . uniqid() . "@me.com",
+////                        "expiration_month" => $card->expirationmonth,
+////                        "expiration_year" => $card->expirationyear,
+////                    )
 //                    array(
-//                        "card_number" => $card->cardnumber,
-//                        "cvv" => $card->cvv,
-//                        "email" => "wmuro" . uniqid() . "@me.com",
-//                        "expiration_month" => $card->expirationmonth,
-//                        "expiration_year" => $card->expirationyear,
+//                        "card_number" => "4111111111111111",
+//                        "cvv" => "123",
+//                        "email" => "wmuro" . uniqid() . "@me.com", //email must not repeated
+//                        "expiration_month" => 9,
+//                        "expiration_year" => 2020,
+//                        "fingerprint" => uniqid()
 //                    )
-                    array(
-                        "card_number" => "4111111111111111",
-                        "cvv" => "123",
-                        "email" => "wmuro" . uniqid() . "@me.com", //email must not repeated
-                        "expiration_month" => 9,
-                        "expiration_year" => 2020,
-                        "fingerprint" => uniqid()
-                    )
-                );
+//                );
                 $charge = $this->culqi->Charges->create(
                     array(
                         'amount' => $order->amount,
@@ -500,7 +502,7 @@ class SiteController extends Controller
                         'description' => 'Pago de orden Camiflexkids',
                         'installments' => 0,
                         'metadata' => array('test' => 'test'),
-                        'source_id' => $token->id
+                        'source_id' => Yii::$app->request->post('token')
                     )
                 );
                 if (strcmp($charge->object, 'charge') === 0) {
