@@ -6,8 +6,7 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Checkout';
 //app\assets\AngularAsset::register($this);
-app\assets\CulqiAsset::register($this);
-
+//app\assets\CulqiAsset::register($this);
 ?>
 <div class="row-correction"></div>
 <div class="c-content-box c-size-lg">
@@ -22,15 +21,14 @@ app\assets\CulqiAsset::register($this);
 
                         <?php
                         $form = ActiveForm::begin([
-                                'id' => 'order-form-checkout',
-                                'enableAjaxValidation' => false,
-                                'enableClientValidation' => true,
+                                    'id' => 'order-form-checkout',
+                                    'enableAjaxValidation' => false,
+                                    'enableClientValidation' => true,
 //                        'method' => 'post',
 //                        'action' => '',
-                                'options' => ['onsubmit' => 'return false;']
+                                    'options' => ['onsubmit' => 'return false;']
 //                        'validateOnSubmit' => false,
                         ]);
-
                         ?>
 
                         <?php echo $form->field($model, 'amount')->hiddenInput()->label(false) ?>
@@ -44,13 +42,11 @@ app\assets\CulqiAsset::register($this);
                         <?php
                         echo $form->field($model, 'departament')->dropDownList(yii\helpers\ArrayHelper::map(app\models\Ubigeoperu::find()->where(['provincia' => '00', 'distrito' => '00'])->orderBy('nombre')->all(), 'departamento', 'nombre'), ['class' => 'form-control c-square c-theme',
                             'onchange' => '$.post( "' . Yii::$app->urlManager->createUrl(["site/updateprovince"]) . '",{value:this.value},function(data){$("#order-province").html( data );$("#order-district").html("");})'])->label('Departamento:')
-
                         ?>
 
                         <?php
                         echo $form->field($model, 'province')->dropDownList(yii\helpers\ArrayHelper::map(app\models\Ubigeoperu::find()->where(['departamento' => '15', 'distrito' => '00'])->orderBy('nombre')->all(), 'provincia', 'nombre'), ['class' => 'form-control c-square c-theme',
                             'onchange' => '$.post( "' . Yii::$app->urlManager->createUrl(["site/updatedistrict"]) . '",{valueprovincia:this.value, valuedepartamento:$("#order-departament").val()},function(data){$("#order-district").html( data );})'])->label('Provincia:')
-
                         ?>
 
                         <?php echo $form->field($model, 'district')->dropDownList(yii\helpers\ArrayHelper::map(app\models\Ubigeoperu::find()->where(['departamento' => '15', 'provincia' => '01'])->orderBy('nombre')->all(), 'distrito', 'nombre'), ['class' => 'form-control c-square c-theme'])->label('Distrito:') ?>
@@ -78,7 +74,7 @@ app\assets\CulqiAsset::register($this);
                         <?php // echo $form->field($model, 'active')->textInput()      ?>
 
                         <!--                        <div class="form-group">
-                        <?php // echo Html::submitButton($model->isNewRecord ? Yii::t('product', 'Create') : Yii::t('product', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])   ?>
+                        <?php // echo Html::submitButton($model->isNewRecord ? Yii::t('product', 'Create') : Yii::t('product', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])    ?>
                                                 </div>-->
 
                         <?php ActiveForm::end(); ?>
@@ -98,7 +94,6 @@ app\assets\CulqiAsset::register($this);
                             <li class="row c-border-bottom"></li>
                             <?php
                             $items = Yii::$app->cart->getItems();
-
                             ?>
                             <?php foreach ($items as $value): ?>
                                 <li class="row c-margin-b-15 c-margin-t-15">
@@ -107,7 +102,15 @@ app\assets\CulqiAsset::register($this);
                                         <p class="">S/.<?php echo $value->price ?></p>
                                     </div>
                                 </li>
-                            <?php endforeach; ?>                              
+                            <?php endforeach; ?>   
+                            <li class="row c-margin-b-15 c-margin-t-15 c-border-top">
+                                <div class="col-md-6 c-font-20">
+                                    <p class="c-font-30">Total a pagar</p>
+                                </div>
+                                <div class="col-md-6 c-font-20">
+                                    <p class="c-font-bold c-font-30">S/.<span class="c-shipping-total"><?php echo $model->amount ?></span></p>
+                                </div>
+                            </li>
                             <li class="row c-border-top c-margin-b-15"></li>
                             <li class="row c-margin-t-15">
                                 <div class="form-group col-md-12">
@@ -128,119 +131,13 @@ app\assets\CulqiAsset::register($this);
                                     <p class="c-font-30">Datos de Tarjeta</p>
                                 </div>      
                                 <div class="col-md-12 c-font-20">
-                                    <?php
-                                    $form2 = ActiveForm::begin([
-                                            'id' => 'culqi-card-form',
-                                            'enableAjaxValidation' => false,
-                                            'enableClientValidation' => true,
-//                        'method' => 'post',
-//                        'action' => '',
-                                            'options' => ['onsubmit' => 'return false;']
-//                        'validateOnSubmit' => false,
-                                    ]);
-
-                                    ?>
-
-                                    <?php echo $form2->field($culqimodel, 'number')->textInput(['data-culqi' => 'card[number]', 'id' => 'card[number]']) ?>
-                                    <?php echo $form2->field($culqimodel, 'email')->textInput(['data-culqi' => 'card[email]', 'id' => 'card[email]']) ?>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <?php
-                                            echo $form->field($culqimodel, 'exp_month')->widget(\yii\widgets\MaskedInput::className(), [
-                                                'mask' => 'm',
-                                                'options' => ['class' => 'form-control c-square c-theme', 'data-culqi' => 'card[exp_month]', 'id' => 'card[exp_month]'],
-                                                'definitions' => ['m' => [
-                                                        'validator' => '^(0?[1-9]|1[012])$',
-                                                        'cardinality' => 2,
-                                                        'prevalidator' => [
-                                                            ['validator' => '[01]', 'cardinality' => 1],
-                                                        ]
-                                                    ]]
-                                            ]);
-
-                                            ?>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <?php
-                                            echo $form->field($culqimodel, 'exp_year')->widget(\yii\widgets\MaskedInput::className(), [
-                                                'mask' => 'j',
-                                                'options' => ['class' => 'form-control c-square c-theme', 'data-culqi' => 'card[exp_year]', 'id' => 'card[exp_year]'],
-                                                'definitions' => ['j' => [
-                                                        'validator' => '^\d{4}$',
-                                                        'cardinality' => 4,
-                                                        'prevalidator' => [
-                                                            ['validator' => '[2]', 'cardinality' => 1],
-                                                            ['validator' => '(20)', 'cardinality' => 2],
-                                                            ['validator' => '(20[1-9])', 'cardinality' => 3],
-                                                        ]
-                                                    ]]
-                                            ]);
-
-                                            ?>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <?php
-                                            echo $form->field($culqimodel, 'cvc')->widget(\yii\widgets\MaskedInput::className(), [
-                                                'mask' => '999',
-                                                'options' => ['class' => 'form-control c-square c-theme', 'data-culqi' => 'card[cvc]', 'id' => 'card[cvc]'],
-                                            ]);
-
-                                            ?>
-                                        </div>                                        
-                                    </div>
-                                    <?php ActiveForm::end(); ?>
+                                    <?= app\widgets\CulqiFormWidget::widget(['model' => $culqimodel]); ?>                                   
                                 </div>
                             </li>
-                            <li class="row c-margin-b-15 c-margin-t-15">
-                                <div class="col-md-6 c-font-20">
-                                    <p class="c-font-30">Total a pagar</p>
-                                </div>
-                                <div class="col-md-6 c-font-20">
-                                    <p class="c-font-bold c-font-30">S/.<span class="c-shipping-total"><?php echo $model->amount ?></span></p>
-                                </div>
-                            </li>
+
                             <li class="row">
                                 <div class="form-group col-md-12" role="group">
-                                    <div class="">
-                                        <?php
-                                        \demogorgorn\ajax\AjaxSubmitButton::begin([
-                                            'encodeLabel' => false,
-                                            'tagName' => 'a',
-                                            'label' => '<span class="ladda-label">Realizar pago  <i class="fa fa-check"></span></i>',
-                                            'ajaxOptions' => [
-                                                'type' => 'POST',
-                                                'url' => 'makeorder',
-                                                'data' => new \yii\web\JsExpression('$("#order-form-checkout").serialize()'),
-                                                'beforeSend' => new \yii\web\JsExpression('
-                                                        function(xhr){
-//                                                            $("#order-form-checkout").data("yiiActiveForm").submitting = true;
-//                                                            $("#order-form-checkout").yiiActiveForm("validate");
-//                                                            $("#culqi-form-checkout").data("yiiActiveForm").submitting = true;
-//                                                            $("#culqi-form-checkout").yiiActiveForm("validate");
-                                                            var l = Ladda.create(document.querySelector(".invoque-culqi"));         
-                                                            l.start();                                                            
-                                                        }'),
-                                                'success' => new \yii\web\JsExpression('
-                                                        function(data){                                                                
-                                                                if($("#order-form-checkout").find(".has-error").length || 
-                                                                    $("#culqi-form-checkout").find(".has-error").length
-                                                                    ){
-                                                                    Ladda.stopAll();
-                                                                    return false;
-                                                                }else{
-                                                                    Culqi.createToken();
-                                                                    configurarCulqi(data.order, $("#culqi-form-checkout").serializeJSON());
-                                                                }
-                                                        }
-                                                '),
-                                            ],
-                                            'options' => ['style' => 'width:100%', 'data-spinner-color' => 'red', 'data-style' => 'zoom-in', 'class' => 'invoque-culqi ladda-button btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold'],
-                                        ]);
-                                        \demogorgorn\ajax\AjaxSubmitButton::end();
-
-                                        ?>
-                                        <!--<button onclick="test();">test</button>-->
-                                    </div>
+                                    
                                     <!--                                    <div class="panel panel-default" id="response-panel" style="display: none;">
                                                                             <div class="panel-heading">Response</div>
                                                                             <div class="panel-body" id="response">

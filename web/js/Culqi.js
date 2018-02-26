@@ -5,53 +5,33 @@
  */
 
 var ORDER = null;
-//Culqi.publicKey = 'pk_test_O7LKYtalUAXdbvwo';
-//Culqi.init();
+var FORM = null;
 Culqi.publicKey = 'pk_test_O7LKYtalUAXdbvwo';
-//Culqi.codigoComercio = 'sk_test_5dBvsJJspPxmwzMF';
-function configurarCulqi(order, card) {
-    Culqi.init();
+Culqi.init();
+function configurarCulqi(order, form) {
     order.amount = parseInt($("#order-amount").val().replace(".", ""));
     ORDER = order;
-    try {
-        setProcessPayment(ORDER, card);
-    } catch (ex) {
-        console.log('ERROR \/');
-        console.log(ex);
-    }
+    FORM = form;
+    Culqi.createToken();
 }
-//
-//window.culqi = function () {
-//    try {
-//        if (Culqi.token) {
-//            console.log('TOKEN \/');
-//            console.log(Culqi.token);
-//            let token = Culqi.token;
-//            setProcessPayment(token, ORDER);
-//        } else {
-//            console.log(Culqi.error.user_message);
-//        }
-//    } catch (ex) {
-//        console.log(ex);
-//    }
-//};
+function culqi() {
 
-function setProcessPayment(orden, card) {
     if (Culqi.token) {
+        // Get the token ID:
+        var token = Culqi.token.id;
         $.ajax({
             type: 'POST',
             url: 'acceptcreditcard',
-            data: {order: orden, card: card, token: Culqi.token},
-//         data: {order: orden, card_number: card_number, expiration_month: expiration_month, expiration_year: expiration_year, cvv: cvv},
+            data: {order: ORDER, form: FORM, token: token},
             datatype: 'json',
             beforeSend: function () {
                 console.log('ORDER \/');
-                console.log(orden);
+                console.log(ORDER);
                 console.log('CARD \/');
-                console.log(card);
+                console.log(FORM);
             },
             success: function (data) {
-//            $('body').waitMe('hide');
+                $('body').waitMe('hide');
                 console.log(data);
                 var charge = data.charge;
                 Ladda.stopAll();
@@ -64,6 +44,7 @@ function setProcessPayment(orden, card) {
                 }
                 if (result.object === 'charge') {
 //                    console.log(result.outcome.user_message);
+                    hide_waitMe();
                     swal({
                         title: 'Bien!!',
                         text: result.outcome.user_message,
@@ -101,131 +82,148 @@ function setProcessPayment(orden, card) {
 //                console.log(error);
             }
         });
-    }
 
+    } else { // ¡Hubo algún problema!
+        // Mostramos JSON de objeto error en consola
+        console.log(Culqi.error);
+        alert(Culqi.error.mensaje);
+    }
+}
+;
+
+
+function run_waitMe() {
+    $('body').waitMe({
+//        effect: 'orbit',
+        effect: 'win8_linear',
+        text: 'Procesando pago...',
+        bg: 'rgba(255,255,255,0.7)',
+        color: '#28d2c8'
+    });
 }
 
-//$("#modal-3").on("hidden.bs.modal", function () {
-//    // put your default event here
-//    Ladda.stopAll();
-//});
+function hide_waitMe() {
+    $('body').waitMe('hide');
+}
 
-//function culqi() {
-//    if (Culqi.token) { // ¡Token creado exitosamente!
-//        // Get the token ID:
-//        var token = Culqi.token.id;
-////        alert('Se ha creado un token:'.token);
-////        console.log('Se ha creado un token:'.token);
-//        run_waitMe();
-//        $.ajax({
-//            type: 'POST',
-//            url: 'acceptcreditcard',
-//            data: {token: token, order: ORDER, amount: $("#order-amount").val().replace(".", ""), email: $("#order-email").val()},
-//            datatype: 'json',
-//            beforeSend: function(){
-////                console.log(ORDER);
-//            },
-//            success: function (data) {
-//                $('body').waitMe('hide');
-//                var charge = data.charge;
-//                Ladda.stopAll();
-//                var result = "";
-//                if (charge.constructor == String) {
-//                    result = JSON.parse(charge);
-//                }
-//                if (charge.constructor == Object) {
-//                    result = JSON.parse(JSON.stringify(charge));
-//                }
-//                if (result.object === 'charge') {
-////                    console.log(result.outcome.user_message);
-//                    swal({
-//                        title: 'Bien!!',
-//                        text: result.outcome.user_message,
-//                        type: 'success',
-//                        confirmButtonColor: '#3085d6',
-//                        cancelButtonColor: '#d33',
-//                        confirmButtonText: 'Continua comprando',
-//                        allowOutsideClick: true,
-//                    }, (result) => {
-//                        if (result) {
-//                            window.location.href = data.redirect;
-//                        }
-//                    });
-//                }
-//                if (result.object === 'error') {
-////                    console.log(result.user_message);
-//                    swal({
-//                        title: 'Error',
-//                        text: result.user_message,
-//                        type: 'error',
-//                        confirmButtonColor: '#3085d6',
-//                        cancelButtonColor: '#d33',
-//                        confirmButtonText: 'Continuar',
-//                        allowOutsideClick: true,
-//                    }, (result) => {
-//                        if (result) {
-//                            window.location.reload();
-//                        }
-//                    });
-//                }
-////                console.log(data);
-//            },
-//            error: function (error) {
-////                resultdiv(error)
-////                console.log(error);
-//            }
-//        });
+$('#culqi-card-form').validate({
+    errorElement: 'span',
+    errorClass: 'error',
+    rules: {
+        'card[email]': {
+            required: true,
+            email: true
+        },
+        'card[number]': {
+            required: true,
+            pattern: /(^3[47][0-9]{13}$|^3(?:0[0-5]|[68][0-9])[0-9]{11}$|^6(?:011|5[0-9]{2})[0-9]{12}$|^5[1-5][0-9]{14}$|^3[47][0-9]{13}$|^5[1-5][0-9]{14}$|^(?:4\d([\- ])?\d{6}\1\d{5}|(?:4\d{3}|5[1-5]\d{2}|6011)([\- ])?\d{4}\2\d{4}\2\d{4})$)/g,
+            maxlength: 50
+        },
+        'card[exp_month]': {
+            required: true,
+            pattern: /^(0?[1-9]|1[012])$/g,
+            maxlength: 2
+        },
+        'card[exp_year]': {
+            required: true,
+            pattern: /^\d{4}$/g,
+            maxlength: 4
+        },
+        'card[cvv]': {
+            required: true,
+            maxlength: 4,
+            pattern: /^\d{3}$/g
+        }
+    },
+    messages: {
+        'card[email]': {
+            required: 'correo requerido',
+            email: 'debe ser un correo valido'
+        },
+        'card[number]': {
+            required: 'numero de tarjeta requerido',
+            pattern: 'debe ser un numero de tarjeta correcto',
+            maxlength: 'maximo 50 caracteres'
+        },
+        'card[exp_month]': {
+            required: 'mes requerido',
+            pattern: 'debe ser un numero de dos digitos del 1 al 12',
+            maxlength: 'maximo 2 caracteres'
+        },
+        'card[exp_year]': {
+            required: 'año requerido',
+            pattern: 'debe ser un numero de cuatro digitos empezando por 20',
+            maxlength: 'maximo 4 caracteres'
+        },
+        'card[cvv]': {
+            required: 'cvv requerido',
+            pattern: 'debe ser un numero de 4 digitos',
+            maxlength: 'maximo 4 caracteres'
+        }
+    },
+    errorPlacement: function (error, placement) {
+        let place = $(placement).parent();
+        error.insertAfter(place);
+    },
+    submitHandler: function (form) {
+        var $form = $(form);
+        $.ajax($form.attr('action'), {
+            type: 'POST',
+            data: $("#order-form-checkout").serialize(),
+            beforeSend: function (xhr) {
+                $("#order-form-checkout").data("yiiActiveForm").submitting = true;
+                $("#order-form-checkout").yiiActiveForm("validate");
+                var l = Ladda.create(document.querySelector(".invoque-culqi"));
+                l.start();
+            },
+            success: function (data) {
+                if ($("#order-form-checkout").find(".has-error").length) {
+                    Ladda.stopAll();
+                    return false;
+                } else {
+                    run_waitMe();
+                    configurarCulqi(data.order, $("#culqi-card-form").serializeJSON());
+                }
+            }
+        });
+        //        $('#newsfeed-form-body').hide();
+//        $('#newsfeed-form-message').show();
+//        var $form = $(form);
+//        $.post($form.attr('action'), $form.serialize()).done(function (res) {
+//            if (res.status == true) {
+//                try {
+//                    const employee = $('#search_newsfeed').val();
+//                    const reason = $('select[name="select_newsfeed"]').find('option:selected').text();
+//                    const message = $('#message_newsfeed').val();
 //
-//    } else { // ¡Hubo algún problema!
-//        // Mostramos JSON de objeto error en consola
-////        console.log(Culqi.error);
-//        alert(Culqi.error.mensaje);
-//    }
-//}
-//function test() {
-//    run_waitMe();
-//    $.ajax({
-//        type: 'POST',
-//        url: 'acceptcreditcard',
-////        data: {token: Culqi.token.id, installments: Culqi.token.metadata.installments},
-//        data: {token: '12345678', installments: '123456789', form_order: $("#order-form-checkout").serialize()},
-//        datatype: 'json',
-//        success: function (data) {
-//            $('body').waitMe('hide');
-//            var result = '';
-////                if (data.constructor == String) {
-////                    result = JSON.parse(data);
-////                }
-////                if (data.constructor == Object) {
-////                    result = JSON.parse(JSON.stringify(data));
-////                }
-////                if (result.object === 'charge') {
-////                    resultdiv(result.outcome.user_message);
-////                }
-////                if (result.object === 'error') {
-////                    resultdiv(result.user_message);
-////                }
-////            console.log(data);
+//                    window.trackRewardEmployee_Employee(employee, reason, message);
+//                } catch (e) {
+//                }
+//
+//                $form[0].reset();
+//                showModalSuccess(res.message);
+//                $('.newsfeed-2').css('display', 'none');
+//                $('.newsfeed-1').css('display', 'block');
+//                $('#newsfeed-form-message').hide();
+//                $('#newsfeed-form-body').show();
+//
+//            } else {
+//                showModalError(res.message);
+//            }
+//            $('#overlay-mambo').hide();
+//        }).fail(function (res) {
+//            showModalError(res.responseJSON.message);
+//            $('#overlay-mambo').hide();
+//        });
+    }
+});
+
+
+//$.validator.addMethod(
+//        "regex",
+//        function(value, element, regexp) {
+//            var re = new RegExp(regexp);
+//            return this.optional(element) || re.test(value);
 //        },
-//        error: function (error) {
-////                resultdiv(error)  
-////            console.log(error);
-//        }
-//    });
-//}
-
-//function run_waitMe() {
-//    $('body').waitMe({
-////        effect: 'orbit',
-//        effect: 'win8_linear',
-//        text: 'Procesando pago...',
-//        bg: 'rgba(255,255,255,0.7)',
-//        color: '#28d2c8'
-//    });
-//}
-
-//function resultdiv(message) {
-//    $('#response-panel').show();
-//    $('#response').html(message);
-//    $('body').waitMe('hide');
-//}
+//        "Please check your input."
+//);

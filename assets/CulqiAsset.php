@@ -30,6 +30,7 @@ class CulqiAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
+        AppAsset::class,
     ];
 
 }
