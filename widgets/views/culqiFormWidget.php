@@ -9,6 +9,16 @@ and open the template in the editor.
 use yii\helpers\Html;
 
 app\assets\CulqiAsset::register($this);
+
+$script = <<< JS
+    payform.cardNumberInput(document.getElementById('card[number]'));
+//    payform.expiryInput(document.getElementById('expiry'));
+    payform.cvcInput(document.getElementById('card[cvv]'));
+    payform.numericInput(document.getElementById('card[exp_year]'));
+    payform.numericInput(document.getElementById('card[exp_month]'));
+JS;
+$this->registerJs($script);
+
 ?>
 <!-- BEGIN: CONTENT/USER/LOGIN-FORM -->
 

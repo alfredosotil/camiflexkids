@@ -106,9 +106,11 @@ function hide_waitMe() {
     $('body').waitMe('hide');
 }
 
+
+
 $('#culqi-card-form').validate({
-    errorElement: 'span',
-    errorClass: 'error',
+    errorElement: 'div',
+    errorClass: 'help-block',
     rules: {
         'card[email]': {
             required: true,
@@ -116,23 +118,25 @@ $('#culqi-card-form').validate({
         },
         'card[number]': {
             required: true,
-            pattern: /(^3[47][0-9]{13}$|^3(?:0[0-5]|[68][0-9])[0-9]{11}$|^6(?:011|5[0-9]{2})[0-9]{12}$|^5[1-5][0-9]{14}$|^3[47][0-9]{13}$|^5[1-5][0-9]{14}$|^(?:4\d([\- ])?\d{6}\1\d{5}|(?:4\d{3}|5[1-5]\d{2}|6011)([\- ])?\d{4}\2\d{4}\2\d{4})$)/g,
+            creditcard: true,
+//            pattern: /(^3[47][0-9]{13}$|^3(?:0[0-5]|[68][0-9])[0-9]{11}$|^6(?:011|5[0-9]{2})[0-9]{12}$|^5[1-5][0-9]{14}$|^3[47][0-9]{13}$|^5[1-5][0-9]{14}$|^(?:4\d([\- ])?\d{6}\1\d{5}|(?:4\d{3}|5[1-5]\d{2}|6011)([\- ])?\d{4}\2\d{4}\2\d{4})$)/g,
             maxlength: 50
         },
+        
         'card[exp_month]': {
             required: true,
-            pattern: /^(0?[1-9]|1[012])$/g,
+//            pattern: /^(0?[1-9]|1[012])$/g,
             maxlength: 2
         },
         'card[exp_year]': {
             required: true,
-            pattern: /^\d{4}$/g,
+//            pattern: /^\d{4}$/g,
             maxlength: 4
         },
         'card[cvv]': {
             required: true,
             maxlength: 4,
-            pattern: /^\d{3}$/g
+//            pattern: /^\d{3}$/g
         }
     },
     messages: {
@@ -142,33 +146,33 @@ $('#culqi-card-form').validate({
         },
         'card[number]': {
             required: 'numero de tarjeta requerido',
-            pattern: 'debe ser un numero de tarjeta correcto',
+//            pattern: 'debe ser un numero de tarjeta correcto',
             maxlength: 'maximo 50 caracteres'
         },
         'card[exp_month]': {
             required: 'mes requerido',
-            pattern: 'debe ser un numero de dos digitos del 1 al 12',
+//            pattern: 'debe ser un numero de dos digitos del 1 al 12',
             maxlength: 'maximo 2 caracteres'
         },
         'card[exp_year]': {
             required: 'año requerido',
-            pattern: 'debe ser un numero de cuatro digitos empezando por 20',
+//            pattern: 'debe ser un numero de cuatro digitos empezando por 20',
             maxlength: 'maximo 4 caracteres'
         },
         'card[cvv]': {
             required: 'cvv requerido',
-            pattern: 'debe ser un numero de 4 digitos',
+//            pattern: 'debe ser un numero de 4 digitos',
             maxlength: 'maximo 4 caracteres'
         }
     },
     errorPlacement: function (error, placement) {
-        let place = $(placement).parent();
-        error.insertAfter(place);
+        $(placement).parent().addClass('has-error');
+        error.insertAfter($(placement));
     },
     submitHandler: function (form) {
         var $form = $(form);
         $.ajax($form.attr('action'), {
-            type: 'POST',
+            type: $form.attr('method'),
             data: $("#order-form-checkout").serialize(),
             beforeSend: function (xhr) {
                 $("#order-form-checkout").data("yiiActiveForm").submitting = true;
@@ -185,36 +189,7 @@ $('#culqi-card-form').validate({
                     configurarCulqi(data.order, $("#culqi-card-form").serializeJSON());
                 }
             }
-        });
-        //        $('#newsfeed-form-body').hide();
-//        $('#newsfeed-form-message').show();
-//        var $form = $(form);
-//        $.post($form.attr('action'), $form.serialize()).done(function (res) {
-//            if (res.status == true) {
-//                try {
-//                    const employee = $('#search_newsfeed').val();
-//                    const reason = $('select[name="select_newsfeed"]').find('option:selected').text();
-//                    const message = $('#message_newsfeed').val();
-//
-//                    window.trackRewardEmployee_Employee(employee, reason, message);
-//                } catch (e) {
-//                }
-//
-//                $form[0].reset();
-//                showModalSuccess(res.message);
-//                $('.newsfeed-2').css('display', 'none');
-//                $('.newsfeed-1').css('display', 'block');
-//                $('#newsfeed-form-message').hide();
-//                $('#newsfeed-form-body').show();
-//
-//            } else {
-//                showModalError(res.message);
-//            }
-//            $('#overlay-mambo').hide();
-//        }).fail(function (res) {
-//            showModalError(res.responseJSON.message);
-//            $('#overlay-mambo').hide();
-//        });
+        });        
     }
 });
 

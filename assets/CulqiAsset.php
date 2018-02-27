@@ -24,6 +24,7 @@ class CulqiAsset extends AssetBundle
         'js/waitMe.min.js',
         'js/Culqi.js',
         'js/jquery.serializejson.min.js',
+        'js/payform.min.js',
     ];
     public $css = [
         'css/waitMe.min.css',

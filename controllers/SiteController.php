@@ -465,6 +465,7 @@ class SiteController extends Controller {
                 );
                 if (strcmp($charge->object, 'charge') === 0) {
                     $order->ispaid = 1;
+                    $order->amount = substr_replace($order->amount, '.', -2, -1);
                     $order->save();
                     \Yii::$app->cart->clear();
                     return $this->asJson(['successAjax' => true, 'hasError' => false, 'order' => $order, 'charge' => $charge, 'redirect' => Url::to(['products'])]);
