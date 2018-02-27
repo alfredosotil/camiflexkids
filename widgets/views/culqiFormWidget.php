@@ -10,30 +10,37 @@ use yii\helpers\Html;
 
 app\assets\CulqiAsset::register($this);
 
-$script = <<< JS
-    payform.cardNumberInput(document.getElementById('card[number]'));
-//    payform.expiryInput(document.getElementById('expiry'));
-    payform.cvcInput(document.getElementById('card[cvv]'));
-    payform.numericInput(document.getElementById('card[exp_year]'));
-    payform.numericInput(document.getElementById('card[exp_month]'));
-JS;
-$this->registerJs($script);
+//$script = <<< JS   
+//   
+//JS;
+//$this->registerJs($script);
 
 ?>
 <!-- BEGIN: CONTENT/USER/LOGIN-FORM -->
-
+<style type="text/css">
+.cardnumber {
+  background-image: url(<?= Yii::$app->request->baseUrl; ?>/img/cards.png);
+  background-position: 3px 3px;
+  background-size: 40px 252px; /* 89 x 560 */
+  background-repeat: no-repeat;
+  padding-left: 48px;
+}
+</style>
 <form action="makeorder" method="POST" id="culqi-card-form">
     <div class="form-group">
         <label class="control-label">
             <span>Correo Electrónico</span>
         </label>
         <input class="form-control c-square c-theme" type="text" size="50" data-culqi="card[email]" id="card[email]" name="card[email]" value="<?= $model->email ?>">
+        <i class="icon-ok"></i>
+            <!-- <i class="icon-ok"></i> -->
+            <!-- <span class="icon-ok"></span> -->
     </div>
     <div class="form-group">
         <label class="control-label">
             <span>Número de tarjeta</span>
         </label>
-        <input class="form-control c-square c-theme" type="text" size="20" data-culqi="card[number]" id="card[number]" name="card[number]" value="<?= $model->number ?>">
+        <input class="form-control c-square c-theme cardnumber" type="text" maxlength="20" size="20" data-stripe="number" data-culqi="card[number]" id="card[number]" name="card[number]" placeholder="1234 5678 9012 3456" value="<?= $model->number ?>">
     </div>
     <div class="row">
         <div class="col-md-4">

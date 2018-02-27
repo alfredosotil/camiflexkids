@@ -22,9 +22,10 @@ class CulqiAsset extends AssetBundle
     public $js = [
         'https://checkout.culqi.com/v2',
         'js/waitMe.min.js',
-        'js/Culqi.js',
-        'js/jquery.serializejson.min.js',
+        'js/jquery.creditCardValidator.js',
         'js/payform.min.js',
+        'js/jquery.serializejson.min.js',
+        'js/Culqi.js',
     ];
     public $css = [
         'css/waitMe.min.css',

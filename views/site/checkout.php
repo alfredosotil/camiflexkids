@@ -136,13 +136,7 @@ $this->title = 'Checkout';
                             </li>
 
                             <li class="row">
-                                <div class="form-group col-md-12" role="group">
-                                    
-                                    <!--                                    <div class="panel panel-default" id="response-panel" style="display: none;">
-                                                                            <div class="panel-heading">Response</div>
-                                                                            <div class="panel-body" id="response">
-                                                                            </div>
-                                                                        </div>-->
+                                <div class="form-group col-md-12" role="group">                                                                        
                                 </div>
                             </li>
                         </ul>

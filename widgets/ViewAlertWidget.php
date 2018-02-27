@@ -38,6 +38,7 @@ class ViewAlertWidget extends \yii2mod\alert\Alert
                     $this->options['text'] = $values[1];
                     $this->options['confirmButtonText'] = $values[2];
                     $this->options['timer'] = 2500;
+                    $this->options['allowOutsideClick'] = false;
                 }
                 $session->removeFlash($type);
             }

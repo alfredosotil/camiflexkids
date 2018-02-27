@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Checkout';
 //app\assets\AngularAsset::register($this);
-app\assets\CulqiAsset::register($this);
+//app\assets\CulqiAsset::register($this);
 
 ?>
 <div class="row-correction"></div>

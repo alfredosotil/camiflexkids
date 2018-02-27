@@ -45,7 +45,7 @@ angular.module('camiflexkids-app.controllers', [])
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
                                 confirmButtonText: 'Continuar',
-                                allowOutsideClick: true,
+                                allowOutsideClick: false,
                             }, (result) => {
                                 if (result) {
                                     window.location.href = response.data.redirect;
@@ -59,7 +59,7 @@ angular.module('camiflexkids-app.controllers', [])
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
                                 confirmButtonText: 'Continuar',
-                                allowOutsideClick: true,
+                                allowOutsideClick: false,
                             });
                         }
                     }, function errorCallback(response) {

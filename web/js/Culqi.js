@@ -4,10 +4,82 @@
  * and open the template in the editor.
  */
 
+//    console.log($("#card[number]").credit({ auto_select: false }));
+validateCard($(".cardnumber"));
+payform.cardNumberInput(document.getElementById('card[number]'));
+//    payform.expiryInput(document.getElementById('expiry'));
+payform.cvcInput(document.getElementById('card[cvv]'));
+payform.numericInput(document.getElementById('card[exp_year]'));
+payform.numericInput(document.getElementById('card[exp_month]'));
+
+
 var ORDER = null;
 var FORM = null;
 Culqi.publicKey = 'pk_test_O7LKYtalUAXdbvwo';
 Culqi.init();
+
+function validateCard($creditCard) {
+    console.log('ingreso');
+    $creditCard.validateCreditCard(function (result)
+    {
+        console.log('result');
+        console.log(result);
+        if (result.card_type != null)
+        {
+            switch (result.card_type.name)
+            {
+                case "visa":
+                    $creditCard.css('background-position', '3px -34px');
+                    $creditCard.addClass('card_visa');
+                    break;
+
+                case "visa_electron":
+                    $creditCard.css('background-position', '3px -72px');
+                    $creditCard.addClass('card_visa_electron');
+                    break;
+
+                case "mastercard":
+                    $creditCard.css('background-position', '3px -110px');
+                    $creditCard.addClass('card_mastercard');
+                    break;
+
+                case "maestro":
+                    $creditCard.css('background-position', '3px -148px');
+                    $creditCard.addClass('card_maestro');
+                    break;
+
+                case "discover":
+                    $creditCard.css('background-position', '3px -186px');
+                    $creditCard.addClass('card_discover');
+                    break;
+
+                case "amex":
+                    $creditCard.css('background-position', '3px -223px');
+                    $creditCard.addClass('card_amex');
+                    break;
+
+                default:
+                    $creditCard.css('background-position', '3px 3px');
+                    break;
+            }
+        } else {
+            $creditCard.css('background-position', '3px 3px');
+        }
+
+        // Check for valid card numbere - only show validation checks for invalid Luhn when length is correct so as not to confuse user as they type.
+        if (result.length_valid || $creditCard.val().length > 16)
+        {
+            if (result.luhn_valid) {
+                $creditCard.parent().removeClass('has-error').addClass('has-success');
+            } else {
+                $creditCard.parent().removeClass('has-success').addClass('has-error');
+            }
+        } else {
+            $creditCard.parent().removeClass('has-success').removeClass('has-error');
+        }
+    });
+}
+
 function configurarCulqi(order, form) {
     order.amount = parseInt($("#order-amount").val().replace(".", ""));
     ORDER = order;
@@ -43,7 +115,7 @@ function culqi() {
                     result = JSON.parse(JSON.stringify(charge));
                 }
                 if (result.object === 'charge') {
-//                    console.log(result.outcome.user_message);
+                    console.log(result.outcome.user_message);
                     hide_waitMe();
                     swal({
                         title: 'Bien!!',
@@ -52,50 +124,56 @@ function culqi() {
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Continua comprando',
-                        allowOutsideClick: true,
+                        allowOutsideClick: false,
                     }, (result) => {
                         if (result) {
                             window.location.href = data.redirect;
                         }
                     });
                 }
-                if (result.object === 'error') {
-//                    console.log(result.user_message);
-                    swal({
-                        title: 'Error',
-                        text: result.user_message,
-                        type: 'error',
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Continuar',
-                        allowOutsideClick: true,
-                    }, (result) => {
-                        if (result) {
-                            window.location.reload();
-                        }
-                    });
-                }
-//                console.log(data);
             },
             error: function (error) {
-//                resultdiv(error)
-//                console.log(error);
+                hide_waitMe();
+                var data = JSON.parse(error.responseJSON.message)
+                swal({
+                    title: 'Error',
+                    text: data.user_message,
+                    type: 'error',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Continuar',
+                    allowOutsideClick: false,
+                }, (result) => {
+                    if (result) {
+                        Ladda.stopAll();
+                    }
+                });
             }
         });
 
     } else { // ¡Hubo algún problema!
         // Mostramos JSON de objeto error en consola
-        console.log(Culqi.error);
-        alert(Culqi.error.mensaje);
+        hide_waitMe();
+        swal({
+            title: 'Error',
+            text: Culqi.error.user_message,
+            type: 'error',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Continuar',
+            allowOutsideClick: false,
+        }, (result) => {
+            if (result) {
+                Ladda.stopAll();
+            }
+        });
     }
 }
-;
-
 
 function run_waitMe() {
     $('body').waitMe({
-//        effect: 'orbit',
-        effect: 'win8_linear',
+        effect: 'orbit',
+//        effect: 'win8_linear',
         text: 'Procesando pago...',
         bg: 'rgba(255,255,255,0.7)',
         color: '#28d2c8'
@@ -118,11 +196,11 @@ $('#culqi-card-form').validate({
         },
         'card[number]': {
             required: true,
-            creditcard: true,
+//                creditcard: true,
 //            pattern: /(^3[47][0-9]{13}$|^3(?:0[0-5]|[68][0-9])[0-9]{11}$|^6(?:011|5[0-9]{2})[0-9]{12}$|^5[1-5][0-9]{14}$|^3[47][0-9]{13}$|^5[1-5][0-9]{14}$|^(?:4\d([\- ])?\d{6}\1\d{5}|(?:4\d{3}|5[1-5]\d{2}|6011)([\- ])?\d{4}\2\d{4}\2\d{4})$)/g,
             maxlength: 50
         },
-        
+
         'card[exp_month]': {
             required: true,
 //            pattern: /^(0?[1-9]|1[012])$/g,
@@ -171,12 +249,13 @@ $('#culqi-card-form').validate({
     },
     submitHandler: function (form) {
         var $form = $(form);
+        $("#order-form-checkout").data("yiiActiveForm").submitting = true;
+        $("#order-form-checkout").yiiActiveForm("validate");
         $.ajax($form.attr('action'), {
             type: $form.attr('method'),
             data: $("#order-form-checkout").serialize(),
             beforeSend: function (xhr) {
-                $("#order-form-checkout").data("yiiActiveForm").submitting = true;
-                $("#order-form-checkout").yiiActiveForm("validate");
+
                 var l = Ladda.create(document.querySelector(".invoque-culqi"));
                 l.start();
             },
@@ -189,16 +268,7 @@ $('#culqi-card-form').validate({
                     configurarCulqi(data.order, $("#culqi-card-form").serializeJSON());
                 }
             }
-        });        
+        });
     }
 });
 
-
-//$.validator.addMethod(
-//        "regex",
-//        function(value, element, regexp) {
-//            var re = new RegExp(regexp);
-//            return this.optional(element) || re.test(value);
-//        },
-//        "Please check your input."
-//);

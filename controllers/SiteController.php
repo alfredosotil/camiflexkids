@@ -442,6 +442,7 @@ class SiteController extends Controller {
     }
 
     public function actionAcceptcreditcard() {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         if (Yii::$app->request->isPost && Yii::$app->request->isAjax) {
             $order = new Order();
             $card = new card();
@@ -463,14 +464,15 @@ class SiteController extends Controller {
                             'source_id' => Yii::$app->request->post('token')
                         )
                 );
+                if (strcmp($charge->object, 'error') === 0) {
+                    return $this->asJson(['successAjax' => true, 'hasError' => true, 'charge' => $charge]);
+                } 
                 if (strcmp($charge->object, 'charge') === 0) {
                     $order->ispaid = 1;
                     $order->amount = substr_replace($order->amount, '.', -2, -1);
                     $order->save();
                     \Yii::$app->cart->clear();
-                    return $this->asJson(['successAjax' => true, 'hasError' => false, 'order' => $order, 'charge' => $charge, 'redirect' => Url::to(['products'])]);
-                } else {
-                    return $this->asJson(['successAjax' => true, 'hasError' => true, 'charge' => $charge]);
+                    return $this->asJson(['successAjax' => true, 'hasError' => false, 'order' => $order, 'charge' => $charge, 'redirect' => Url::to(['checkoutcomplete'])]);
                 }
             } catch (Exception $e) {
             // ERROR: El cargo tuvo algún error o fue rechazado
