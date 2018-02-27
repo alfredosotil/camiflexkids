@@ -32,9 +32,6 @@ app\assets\CulqiAsset::register($this);
             <span>Correo Electrónico</span>
         </label>
         <input class="form-control c-square c-theme" type="text" size="50" data-culqi="card[email]" id="card[email]" name="card[email]" value="<?= $model->email ?>">
-        <i class="icon-ok"></i>
-            <!-- <i class="icon-ok"></i> -->
-            <!-- <span class="icon-ok"></span> -->
     </div>
     <div class="form-group">
         <label class="control-label">
