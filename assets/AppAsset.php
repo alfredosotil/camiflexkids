@@ -33,12 +33,10 @@ class AppAsset extends AssetBundle
     public $css = [
         'plugins/socicon/socicon.css',
         'plugins/bootstrap-social/bootstrap-social.css',
-        'plugins/select2/css/select2.min.css',
-        'plugins/select2/css/select2-bootstrap.min.css',
         'plugins/font-awesome/css/font-awesome.min.css',
         'plugins/simple-line-icons/simple-line-icons.min.css',
         'plugins/animate/animate.min.css',
-//        'plugins/bootstrap/css/bootstrap.min.css',
+        'plugins/bootstrap/css/bootstrap.min.css',
         'plugins/revo-slider/css/settings.css',
         'plugins/revo-slider/css/layers.css',
         'plugins/revo-slider/css/navigation.css',
@@ -47,13 +45,15 @@ class AppAsset extends AssetBundle
         'plugins/fancybox/jquery.fancybox.css',
         'plugins/slider-for-bootstrap/css/slider.css',
         'plugins/ilightbox/css/ilightbox.css',
-        'plugins/ilightbox/dark-skin/skin.css',
         'css/plugins.css',
+        'css/components.css',
+        'css/default.css',
+        'css/custom.css',
+        'plugins/select2/css/select2.min.css',
+        'plugins/select2/css/select2-bootstrap.min.css',
+//        'plugins/ilightbox/dark-skin/skin.css',
         'css/ladda-themeless.min.css',
 //        'css/ladda.min.css',
-        'css/components.css',
-        'css/custom.css',
-        'css/default.css',
         'css/site.css',
     ];
 
@@ -62,13 +62,9 @@ class AppAsset extends AssetBundle
      */
     public $js = [
 //        'plugins/jquery.min.js',
-//        'plugins/bootstrap/js/bootstrap.min.js',
         'plugins/jquery-migrate.min.js',
+        'plugins/bootstrap/js/bootstrap.min.js',
         'plugins/jquery.easing.min.js',
-        'plugins/select2/js/select2.full.min.js',
-        'plugins/jquery-validation/js/jquery.validate.min.js',
-        'plugins/jquery-validation/js/additional-methods.min.js',
-        'plugins/zoom-master/jquery.zoom.min.js',
         'plugins/reveal-animate/wow.js',
         'plugins/reveal-animate/reveal-animate.js',
         'plugins/revo-slider/js/jquery.themepunch.tools.min.js',
@@ -98,6 +94,10 @@ class AppAsset extends AssetBundle
         'plugins/ilightbox/js/jquery.mousewheel.js',
         'plugins/ilightbox/js/ilightbox.packed.js',
         'plugins/isotope/isotope-gallery.js',
+        'plugins/select2/js/select2.full.min.js',
+        'plugins/jquery-validation/js/jquery.validate.min.js',
+        'plugins/jquery-validation/js/additional-methods.min.js',
+        'plugins/zoom-master/jquery.zoom.min.js',
         'plugins/isotope/isotope-grid.js',
         'js/spin.min.js',
         'js/ladda.min.js',
@@ -109,7 +109,7 @@ class AppAsset extends AssetBundle
      */
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapPluginAsset',
+//        'yii\bootstrap\BootstrapPluginAsset',
         'yii2mod\alert\AlertAsset',
 //        'yii\bootstrap\BootstrapAsset',
     ];

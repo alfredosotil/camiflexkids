@@ -20,7 +20,6 @@ $this->title = 'Inicio';
 
 <?= $this->render('services-template'); ?>
 
-<!-- BEGIN: CONTENT/ISOTOPE/GALLERY-4 -->
 <?php if (true): ?>
     <div class="c-content-box c-size-md c-bg-grey-1" id="team">
         <div class="container">
@@ -37,8 +36,9 @@ $this->title = 'Inicio';
         </div>
     </div>
 <?php endif; ?>
+<!-- BEGIN: CONTENT/ISOTOPE/GALLERY-4 -->
 <?php if (true): ?>
-    <div id="c-isotope-anchor-1" class="c-content-box c-size-md c-bg-img-center" style="background-image: url(<?= Yii::$app->request->baseUrl; ?>/img/content/backgrounds/bg-84.jpg)">
+    <div id="c-isotope-anchor-2" class="c-content-box c-size-md c-bg-img-center" style="background-image: url(<?= Yii::$app->request->baseUrl; ?>/img/content/backgrounds/bg-84.jpg)">
         <div class="container">
             <div class="c-content-title-1">
                 <h3 class="c-center c-font-uppercase c-font-bold c-font-white">Mira Nuestra Galer&iacute;a</h3>
