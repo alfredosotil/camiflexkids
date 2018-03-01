@@ -33,10 +33,10 @@ class AppAsset extends AssetBundle
     public $css = [
         'plugins/socicon/socicon.css',
         'plugins/bootstrap-social/bootstrap-social.css',
+        'plugins/simple-line-icons/simple-line-icons.min.css',
+        'plugins/font-awesome/css/font-awesome.min.css',
         'plugins/select2/css/select2.min.css',
         'plugins/select2/css/select2-bootstrap.min.css',
-        'plugins/font-awesome/css/font-awesome.min.css',
-        'plugins/simple-line-icons/simple-line-icons.min.css',
         'plugins/animate/animate.min.css',
 //        'plugins/bootstrap/css/bootstrap.min.css',
         'plugins/revo-slider/css/settings.css',
@@ -54,7 +54,7 @@ class AppAsset extends AssetBundle
         'css/components.css',
         'css/custom.css',
         'css/default.css',
-        'css/site.css',
+//        'css/site.css',
     ];
 
     /**
@@ -111,7 +111,7 @@ class AppAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapPluginAsset',
         'yii2mod\alert\AlertAsset',
-//        'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapAsset',
     ];
 
     public static function custom_echo($x, $length)
