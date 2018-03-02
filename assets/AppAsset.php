@@ -47,14 +47,15 @@ class AppAsset extends AssetBundle
         'plugins/fancybox/jquery.fancybox.css',
         'plugins/slider-for-bootstrap/css/slider.css',
         'plugins/ilightbox/css/ilightbox.css',
-        'plugins/ilightbox/dark-skin/skin.css',
+//        'plugins/ilightbox/dark-skin/skin.css',
+        'plugins/ilightbox01/css/jquery.lightbox.css',
         'css/plugins.css',
         'css/ladda-themeless.min.css',
 //        'css/ladda.min.css',
         'css/components.css',
         'css/custom.css',
         'css/default.css',
-//        'css/site.css',
+        'css/site.css',
     ];
 
     /**
@@ -62,8 +63,8 @@ class AppAsset extends AssetBundle
      */
     public $js = [
 //        'plugins/jquery.min.js',
-//        'plugins/bootstrap/js/bootstrap.min.js',
         'plugins/jquery-migrate.min.js',
+//        'plugins/bootstrap/js/bootstrap.min.js',
         'plugins/jquery.easing.min.js',
         'plugins/select2/js/select2.full.min.js',
         'plugins/jquery-validation/js/jquery.validate.min.js',
@@ -87,21 +88,25 @@ class AppAsset extends AssetBundle
         'plugins/typed/typed.min.js',
         'plugins/slider-for-bootstrap/js/bootstrap-slider.js',
         'plugins/js-cookie/js.cookie.js',
+        
         'js/components.js',
         'js/components-shop.js',
         'js/app.js',
+        'js/main.js',
+        
         'plugins/revo-slider/slider-3.js',
         'plugins/isotope/isotope.pkgd.min.js',
         'plugins/isotope/imagesloaded.pkgd.min.js',
         'plugins/isotope/packery-mode.pkgd.min.js',
-        'plugins/ilightbox/js/jquery.requestAnimationFrame.js',
-        'plugins/ilightbox/js/jquery.mousewheel.js',
-        'plugins/ilightbox/js/ilightbox.packed.js',
+//        'plugins/ilightbox/js/jquery.requestAnimationFrame.js',
+//        'plugins/ilightbox/js/jquery.mousewheel.js',
+//        'plugins/ilightbox/js/ilightbox.packed.js',
+        'plugins/ilightbox01/js/jquery.lightbox.min.js',
         'plugins/isotope/isotope-gallery.js',
-        'plugins/isotope/isotope-grid.js',
+        'plugins/revo-slider/js/extensions/revolution.extension.parallax.min.js',
+//        'plugins/isotope/isotope-grid.js',
         'js/spin.min.js',
         'js/ladda.min.js',
-        'js/main.js',
     ];
 
     /**

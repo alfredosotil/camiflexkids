@@ -95,67 +95,77 @@ a.desc:after {
     list-style: none;
     float:right;
 
-/* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
-    padding: 15px;
-    border: none;
-}
-
-@media(max-width:767px) {
+    /* align the logout "link" (button in form) of the navbar */
     .nav li > form > button.logout {
-        display:block;
-        text-align: left;
-        width: 100%;
-        padding: 10px 15px;
+        padding: 15px;
+        border: none;
     }
-.footer ul li a {
-    text-decoration: none;
-    color: #333;
-}
-.footer ul li a:hover {
-    color: #505050;
-}
-.bs-callout+.bs-callout {
-    margin-top: -5px;
-}
-.bs-callout-info {
-    border-left-color: #5bc0de;
-}
-.bs-callout {
-    padding: 20px;
-    margin: 20px 0;
-    border: 1px solid #eee;
-    border-left-width: 5px;
-    border-radius: 3px;
-}
-/* align the logout "link" (button in form) of the navbar */
-.nav > li > form {
-    padding: 8px;
+
+    @media(max-width:767px) {
+        .nav li > form > button.logout {
+            display:block;
+            text-align: left;
+            width: 100%;
+            padding: 10px 15px;
+        }
+        .footer ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+        .footer ul li a:hover {
+            color: #505050;
+        }
+        .bs-callout+.bs-callout {
+            margin-top: -5px;
+        }
+        .bs-callout-info {
+            border-left-color: #5bc0de;
+        }
+        .bs-callout {
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #eee;
+            border-left-width: 5px;
+            border-radius: 3px;
+        }
+        /* align the logout "link" (button in form) of the navbar */
+        .nav > li > form {
+            padding: 8px;
+        }
+
+        .nav > li > form > button.logout:focus,
+            .nav > li > form > button.logout:hover {
+            text-decoration: none;
+        }
+
+        .nav > li > form > button.logout:focus {
+            outline: none;
+        }
+
+
+        ul.nav li.dropdown:hover > ul.dropdown-menu {
+            display: block;    
+        }
+        @media (min-width: 979px) {
+            ul.nav li.dropdown:hover > ul.dropdown-menu {
+                display: block;
+            }
+        }
+
+        .navbar-collapse.in {
+            overflow-y: visible!important;
+        }
+        /*li.active > a.c-link{
+            color: red !important;
+        }*/
+    }
 }
 
-.nav > li > form > button.logout:focus,
-.nav > li > form > button.logout:hover {
-    text-decoration: none;
+.image-ilightbox{
+    position:relative;
+    height:600px;
+    top: 50%;
+    margin-top: -300px; /* minus half the height */
+    border:1px solid grey;
 }
-
-.nav > li > form > button.logout:focus {
-    outline: none;
-}
-
-
-ul.nav li.dropdown:hover > ul.dropdown-menu {
-display: block;    
-}
-@media (min-width: 979px) {
-  ul.nav li.dropdown:hover > ul.dropdown-menu {
-    display: block;
-  }
-}
-
-.navbar-collapse.in {
-    overflow-y: visible!important;
-}
-/*li.active > a.c-link{
-    color: red !important;
-}*/
 

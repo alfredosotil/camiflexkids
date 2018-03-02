@@ -49,7 +49,6 @@ $this->title = 'Inicio';
                 <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-nido">Nidos</button>
                 <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-casa">Casas</button>
                 <button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-clinica">Cl&iacute;nicas</button>
-                <!--<button class="c-isotope-filter-btn c-font-white c-theme-border-bottom" data-filter=".c-isotope-photo">Photo</button>-->
             </div>
             <div class="c-content-isotope-gallery c-opt-4">
                 <?= $gallery ?>
