@@ -1,4 +1,5 @@
 <?php
+
 namespace app\models;
 
 use Yii;
@@ -6,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "order".
  *
- * @property integer $id
+ * @property int $id
  * @property double $amount
  * @property string $ship_name
  * @property string $ship_address
@@ -19,20 +20,21 @@ use Yii;
  * @property string $email
  * @property double $shipping
  * @property double $tax
- * @property integer $created_at
- * @property integer $updated_at
- * @property integer $shipped
+ * @property int $created_at
+ * @property int $updated_at
+ * @property int $shipped
  * @property string $tracking_number
- * @property integer $ispaid
+ * @property int $ispaid
  * @property string $typepayment
  * @property string $notes
- * @property integer $active
+ * @property int $active
+ * @property int $user_id
  *
  * @property Detailorder[] $detailorders
+ * @property User $user
  */
 class Order extends \yii\db\ActiveRecord
 {
-
     /**
      * @inheritdoc
      */
@@ -47,15 +49,13 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['amount', 'ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'email', 'shipping', 'tax', 'tracking_number'], 'required'],
+            [['amount', 'ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'email', 'shipping', 'tax', 'tracking_number', 'user_id'], 'required'],
             [['amount', 'shipping', 'tax'], 'number'],
-            [['created_at', 'updated_at', 'shipped', 'ispaid', 'active'], 'integer'],
+            [['created_at', 'updated_at', 'shipped', 'ispaid', 'active', 'user_id'], 'integer'],
             [['ship_name', 'ship_address', 'departament', 'province', 'district', 'country', 'phone', 'fax', 'email', 'tracking_number'], 'string', 'max' => 255],
             [['typepayment'], 'string', 'max' => 20],
             [['notes'], 'string', 'max' => 500],
-            ['email', 'email'],
-//            ['phone', 'match', 'pattern' => '/^\d{3}\d{3}\d{3}$/gm', 'message' => 'El telefono debe ser numero de 9 digitos'],
-//            ['fax', 'match', 'pattern' => '/^\d{3}\d{3}\d{3}$/gm', 'message' => 'El telefono debe ser numero de 9 digitos']
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -93,6 +93,7 @@ class Order extends \yii\db\ActiveRecord
             'typepayment' => Yii::t('app', 'Typepayment'),
             'notes' => Yii::t('app', 'Notes'),
             'active' => Yii::t('app', 'Active'),
+            'user_id' => Yii::t('app', 'User ID'),
         ];
     }
 
@@ -102,5 +103,13 @@ class Order extends \yii\db\ActiveRecord
     public function getDetailorders()
     {
         return $this->hasMany(Detailorder::className(), ['order_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

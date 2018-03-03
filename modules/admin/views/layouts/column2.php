@@ -147,8 +147,9 @@ AdminAsset::register($this);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-                    ['label' => '<i class="glyphicon glyphicon-globe"></i> Public Area', 'url' => ['/']],
-                    ['label' => '<i class="glyphicon glyphicon-off"></i> Logout (' . Yii::$app->user->identity->username . ')',
+                    ['label' => '<i class="glyphicon glyphicon-globe"></i> Ir al sitio', 'url' => ['/']],
+                    ['label' => '<i class="glyphicon glyphicon-user"></i> Cuenta', 'url' => ['/site/account']],
+                    ['label' => '<i class="glyphicon glyphicon-off"></i> Salir (' . Yii::$app->user->identity->username . ')',
                         'url' => ['/site/logout'],
                         'linkOptions' => ['data-method' => 'post'],
                     ],

@@ -35,13 +35,13 @@ AngularAsset::register($this);
                     'prev' => [
                         'title' => '<i class="fa fa-angle-left"></i>  Volver',
                         'options' => [
-                            'class' => 'btn btn-outline green button-prev'
+                            'class' => 'btn btn-outline green button-prev scroll-top'
                         ],
                     ],
                     'next' => [
                         'title' => 'Continuar  <i class="fa fa-angle-right"></i>',
                         'options' => [
-                            'class' => 'btn btn-outline green button-next',
+                            'class' => 'btn btn-outline green button-next scroll-top',
                         ],
                     ],
                 ],
@@ -54,13 +54,13 @@ AngularAsset::register($this);
                     'prev' => [
                         'title' => '<i class="fa fa-angle-left"></i>  Volver',
                         'options' => [
-                            'class' => 'btn btn-outline green button-prev'
+                            'class' => 'btn btn-outline green button-prev scroll-top'
                         ],
                     ],
                     'save' => [
                         'title' => 'Continuar  <i class="fa fa-angle-right"></i>',
                         'options' => [
-                            'class' => 'btn btn-outline green button-next',
+                            'class' => 'btn btn-outline green button-next scroll-top',
                         ],
                     ],
                 ],

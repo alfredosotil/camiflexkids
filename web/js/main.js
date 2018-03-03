@@ -5,5 +5,9 @@
  */
 
 $(document).ready(function () {
-    App.init(); // init core    
+    App.init(); // init core 
+    $('.scroll-top').on('click', function(){
+        console.log('scroll-top')
+        $('html, body').animate({scrollTop : 0},800);
+    });
 });

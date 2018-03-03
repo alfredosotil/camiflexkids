@@ -215,7 +215,10 @@ class SiteController extends Controller {
         ]);
     }
 
-    public function actionCheckoutcomplete() {
+    public function actionCheckoutcomplete($id) {
+
+        $order = Order::find($id);
+
         return $this->render('checkoutcomplete', []);
     }
 
@@ -433,6 +436,8 @@ class SiteController extends Controller {
             $model->tax = 0;
             $model->shipping = 0;
             $model->tracking_number = strval(strtotime("now"));
+            $model->user_id = (int) Yii::$app->user->id;
+
 //            $model->load(Yii::$app->request->post());
 //                return $this->asJson(['post' => Yii::$app->request->post()]);
             if ($model->load(Yii::$app->request->post())) {
@@ -466,17 +471,21 @@ class SiteController extends Controller {
                 );
                 if (strcmp($charge->object, 'error') === 0) {
                     return $this->asJson(['successAjax' => true, 'hasError' => true, 'charge' => $charge]);
-                } 
+                }
                 if (strcmp($charge->object, 'charge') === 0) {
                     $order->ispaid = 1;
-                    $order->amount = substr_replace($order->amount, '.', -2, -1);
-                    $order->save();
-                    \Yii::$app->cart->clear();
-                    return $this->asJson(['successAjax' => true, 'hasError' => false, 'order' => $order, 'charge' => $charge, 'redirect' => Url::to(['checkoutcomplete'])]);
+                    $order->amount = (double)substr_replace($order->amount, '.', -2, -1);
+                    if ($order->validate()) {
+                        $order->save();
+                        \Yii::$app->cart->clear();
+                        return $this->asJson(['successAjax' => true, 'hasError' => false, 'order' => $order, 'charge' => $charge, 'redirect' => Url::toRoute(['site/checkoutcomplete', 'id' => $order->getPrimaryKey()])]);
+                    }else{
+                        return $this->asJson(['successAjax' => true, 'hasError' => true, 'error_message' => $order->errors]);
+                    }
                 }
             } catch (Exception $e) {
-            // ERROR: El cargo tuvo algún error o fue rechazado
-            //                echo $e->getMessage(); 
+                // ERROR: El cargo tuvo algún error o fue rechazado
+                //                echo $e->getMessage(); 
                 return $this->asJson(['successAjax' => true, 'hasError' => true, 'error_message' => $e->getMessage()]);
             }
         }

@@ -58,7 +58,7 @@ $form = ActiveForm::begin([
                                             text: "Ya estas subscrito!",
                                             type: "success",
                                             confirmButtonText: "Continuar",
-                                            allowOutsideClick: true,
+                                            allowOutsideClick: false,
                                         });
                                     }else{
                                         swal({
@@ -66,7 +66,7 @@ $form = ActiveForm::begin([
                                             text: data.errors.email,
                                             type: "error",
                                             confirmButtonText: "Continuar",
-                                            allowOutsideClick: true,
+                                            allowOutsideClick: false,
                                         });
                                     }
                                 return false;

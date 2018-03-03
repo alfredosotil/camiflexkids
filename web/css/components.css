@@ -13913,11 +13913,16 @@ h1 {
 .c-content-isotope-grid .c-content-isotope-item > .c-content-isotope-image-container .c-content-isotope-image {
     width: 100%;
     height: auto;
-    webkit-transition: all 0.3s ease-in-out;
+/*    webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out; }
+    transition: all 0.3s ease-in-out; */
+    -webkit-transition: top 300ms;
+    -moz-transition: top 300ms;
+    -o-transition: top 300ms;
+    transition: top 300ms;
+}
 .c-content-isotope-grid .c-content-isotope-item > .c-content-isotope-image-container > .c-content-isotope-overlay {
     position: absolute;
     width: 100%;

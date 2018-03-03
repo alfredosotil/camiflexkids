@@ -70,7 +70,7 @@ use yii\bootstrap\ActiveForm;
                             }
                     '),
                             ],
-                            'options' => ['class' => 'btn btn-block btn-outline green button-next'],
+                            'options' => ['class' => 'btn btn-block btn-outline green button-next scroll-top'],
                         ]);
                         \demogorgorn\ajax\AjaxSubmitButton::end();
 
