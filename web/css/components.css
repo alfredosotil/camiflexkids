@@ -3894,7 +3894,7 @@ h1 {
     display: inline-block; }
 .c-layout-header .c-cart-menu .c-cart-menu-items {
     padding: 0;
-    max-height: 500px;
+    max-height: 400px;
     overflow-y: auto;
     width: 100%; }
 .c-layout-header .c-cart-menu .c-cart-menu-items > li {
@@ -3932,7 +3932,9 @@ h1 {
     text-align: center; }
 
 .c-layout-header .container-fluid .c-cart-menu {
-    right: 20px; }
+    right: 20px; 
+    max-height: 550px;
+}
 
 @media (max-width: 991px) {
     /* 991px */

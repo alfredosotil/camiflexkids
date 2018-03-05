@@ -6,6 +6,7 @@ use app\models\forms\ContactForm;
 use app\models\forms\ResetPasswordForm;
 use app\models\Subscribers;
 use app\models\Order;
+use app\models\Detailorder;
 use app\models\forms\card;
 use app\models\Ubigeoperu;
 use Yii;
@@ -217,9 +218,13 @@ class SiteController extends Controller {
 
     public function actionCheckoutcomplete($id) {
 
-        $order = Order::find($id);
+        $order = Order::findOne($id);
+        $detailOrders = $order->detailorders;
 
-        return $this->render('checkoutcomplete', []);
+        return $this->render('checkoutcomplete', [
+                    'order' => $order,
+                    'detailorders' => $detailOrders
+        ]);
     }
 
     public function actionSignup() {
@@ -474,12 +479,22 @@ class SiteController extends Controller {
                 }
                 if (strcmp($charge->object, 'charge') === 0) {
                     $order->ispaid = 1;
-                    $order->amount = (double)substr_replace($order->amount, '.', -2, -1);
+                    $order->amount = (double) substr_replace($order->amount, '.', -2, -1);
                     if ($order->validate()) {
                         $order->save();
+                        $items = Yii::$app->cart->getItems();
+                        $order_id = $order->getPrimaryKey();
+                        foreach ($items as $value) {
+                            $value->order_id = $order_id;
+                            if ($value->validate()) {
+                                $value->save();
+                            } else {
+                                Yii::info($value->errors, 'detailordererror');
+                            }
+                        }
                         \Yii::$app->cart->clear();
-                        return $this->asJson(['successAjax' => true, 'hasError' => false, 'order' => $order, 'charge' => $charge, 'redirect' => Url::toRoute(['site/checkoutcomplete', 'id' => $order->getPrimaryKey()])]);
-                    }else{
+                        return $this->asJson(['successAjax' => true, 'hasError' => false, 'order' => $order, 'charge' => $charge, 'redirect' => Url::toRoute(['site/checkoutcomplete', 'id' => $order_id])]);
+                    } else {
                         return $this->asJson(['successAjax' => true, 'hasError' => true, 'error_message' => $order->errors]);
                     }
                 }
