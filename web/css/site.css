@@ -1,4 +1,8 @@
 .wizard {
-    margin: -40px auto;
+    margin: 40px auto;
     background: #fff;
+}
+
+#iLightbox {
+    z-index: 9987;
 }

@@ -1,10 +1,12 @@
 <?php
+
 /**
  * @see      http://www.yiiframework.com/
  *
  * @copyright Copyright (c) 2008 Yii Software LLC
  * @license   http://www.yiiframework.com/license/
  */
+
 namespace app\assets;
 
 use yii\web\AssetBundle;
@@ -14,8 +16,7 @@ use yii\web\AssetBundle;
  *
  * @since  2.0
  */
-class AppAsset extends AssetBundle
-{
+class AppAsset extends AssetBundle {
 
     /**
      * @var string
@@ -58,6 +59,7 @@ class AppAsset extends AssetBundle
 //        'plugins/ilightbox/dark-skin/skin.css',
         'css/ladda-themeless.min.css',
 //        'css/ladda.min.css',
+        'css/waitMe.min.css',
         'css/site.css',
     ];
 
@@ -89,12 +91,11 @@ class AppAsset extends AssetBundle
         'plugins/typed/typed.min.js',
         'plugins/slider-for-bootstrap/js/bootstrap-slider.js',
         'plugins/js-cookie/js.cookie.js',
-        
+        'js/waitMe.min.js',
         'js/components.js',
         'js/components-shop.js',
         'js/app.js',
         'js/main.js',
-        
         'plugins/revo-slider/slider-3.js',
         'plugins/isotope/isotope.pkgd.min.js',
         'plugins/isotope/imagesloaded.pkgd.min.js',
@@ -120,8 +121,7 @@ class AppAsset extends AssetBundle
         'yii\bootstrap\BootstrapAsset',
     ];
 
-    public static function custom_echo($x, $length)
-    {
+    public static function custom_echo($x, $length) {
         if (strlen($x) <= $length) {
             echo $x;
         } else {
@@ -129,4 +129,5 @@ class AppAsset extends AssetBundle
             echo $y;
         }
     }
+
 }

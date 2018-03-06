@@ -172,11 +172,19 @@ function culqi() {
 
 function run_waitMe() {
     $('body').waitMe({
-        effect: 'orbit',
+        effect : 'bounce',
+//        effect: 'orbit',
 //        effect: 'win8_linear',
         text: 'Procesando pago...',
         bg: 'rgba(255,255,255,0.7)',
-        color: '#28d2c8'
+        color: '#28d2c8',
+        maxSize: '50',
+        waitTime: -1,
+//        textPos: 'vertical',
+        textPos: 'horizontal',
+        fontSize: '50',
+        source: '',
+        onClose: function () {}
     });
 }
 

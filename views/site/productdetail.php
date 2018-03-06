@@ -6,7 +6,6 @@ use yii\helpers\Html;
 
 $images = $model->getBehavior('galleryBehavior')->getImages();
 $this->title = 'Detalles del Productos Camiflex Kids';
-
 ?>
 <div class="row-correction"></div>
 <div class="c-content-box c-size-lg c-overflow-hide c-bg-white">
@@ -24,7 +23,6 @@ $this->title = 'Detalles del Productos Camiflex Kids';
                         foreach ($images as $image) {
                             echo Html::tag('div', Html::img($image->getUrl('original')), ['class' => 'c-zoom']);
                         }
-
                         ?>
                     </div>
                     <div class="col-md-6 c-product-gallery-thumbnail">
@@ -37,7 +35,6 @@ $this->title = 'Detalles del Productos Camiflex Kids';
                             echo Html::tag('div', $html, ['class' => 'row c-bs-grid-reset-space']);
                             $html = '';
                         }
-
                         ?>                        
                     </div>
                 </div>
@@ -53,38 +50,38 @@ $this->title = 'Detalles del Productos Camiflex Kids';
                         <div class="c-product-price c-theme-font">S/. <?= $model->price ?></div>
                     </div>
                 </div>
-                <div class="row">
-                    <?= Html::beginForm(['site/addtocart'], 'post');
-
-                    ?>
-                    <div class="col-sm-3 col-xs-4 ">
-                        <?php
-                        echo Html::hiddenInput('product_id', $model->id);
-                        echo \kartik\touchspin\TouchSpin::widget([
-                            'name' => 'qty',
-                            'readonly' => true,
-                            'pluginOptions' => [
-                                'buttonup_class' => 'btn btn-primary',
-                                'buttondown_class' => 'btn btn-info',
-                                'buttonup_txt' => '<i class="glyphicon glyphicon-plus-sign"></i>',
-                                'buttondown_txt' => '<i class="glyphicon glyphicon-minus-sign"></i>',
-                                'initval' => 1,
-                                'min' => 1,
-                                'max' => $model->stock,
-                            ],
-                            'options' => [
-                                'class' => 'input-lg',
-                                'placeholder' => 'Elije la cantidad'
-                            ],
-                        ]);
-
+                <?php if ($model->stock > 0): ?>
+                    <div class="row c-theme-borde">
+                        <?= Html::beginForm(['site/addtocart'], 'post');
                         ?>
+                        <div class="col-sm-3 col-xs-4 ">
+                            <?php
+                            echo Html::hiddenInput('product_id', $model->id);
+                            echo \kartik\touchspin\TouchSpin::widget([
+                                'name' => 'qty',
+                                'readonly' => true,
+                                'pluginOptions' => [
+                                    'buttonup_class' => 'btn btn-primary',
+                                    'buttondown_class' => 'btn btn-info',
+                                    'buttonup_txt' => '<i class="glyphicon glyphicon-plus-sign"></i>',
+                                    'buttondown_txt' => '<i class="glyphicon glyphicon-minus-sign"></i>',
+                                    'initval' => 1,
+                                    'min' => 1,
+                                    'max' => $model->stock,
+                                ],
+                                'options' => [
+                                    'class' => 'input-lg',
+                                    'placeholder' => 'Elije la cantidad'
+                                ],
+                            ]);
+                            ?>
+                        </div>
+                        <div class="col-sm-2 col-sm-offset-1 col-xs-12 pull-right">
+                            <?= Html::submitButton('Agregar al carrito de compras', ['class' => 'btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase c-add-cart']) ?>
+                        </div>
+                        <?= Html::endForm(); ?>
                     </div>
-                    <div class="col-sm-2 col-sm-offset-1 col-xs-12 pull-right">
-                        <?= Html::submitButton('Agregar al carrito de compras', ['class' => 'btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase c-add-cart']) ?>
-                    </div>
-                    <?= Html::endForm(); ?>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -127,7 +124,6 @@ $this->title = 'Detalles del Productos Camiflex Kids';
                             'type' => 'code11', /* supported types  ean8, ean13, upc, std25, int25, code11, code39, code93, code128, codabar, msi, datamatrix */
                         );
                         echo barcode\barcode\BarcodeGenerator::widget($optionsArray);
-
                         ?>
                         <p class="c-product-tab-meta"><strong>SKU:</strong> <?= $model->sku ?></p>
                         <p class="c-product-tab-meta"><strong>Categorias:</strong> <?= $model->category->name ?></p>

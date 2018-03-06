@@ -488,6 +488,8 @@ class SiteController extends Controller {
                             $value->order_id = $order_id;
                             if ($value->validate()) {
                                 $value->save();
+                                $value->product->stock -= $value->qty;
+                                $value->product->save();
                             } else {
                                 Yii::info($value->errors, 'detailordererror');
                             }
