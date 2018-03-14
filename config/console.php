@@ -1,4 +1,5 @@
 <?php
+
 $config = [
     'id' => 'console',
     'controllerNamespace' => 'app\commands',
@@ -20,9 +21,6 @@ $config = [
         'fixture' => [
             'class' => 'yii\console\controllers\FixtureController',
             'namespace' => 'app\tests\fixtures',
-        ],
-        'geonames-integration' => [
-            'class' => 'amstr1k\geography\commands\GeoNamesController'
         ],
     ],
     'components' => [
@@ -46,9 +44,6 @@ $config = [
         ],
         'user' => [
             'class' => 'yii2mod\user\ConsoleModule',
-        ],
-        'geography' => [
-            'class' => 'amstr1k\geography\Module'
         ],
     ]
 ];

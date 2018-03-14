@@ -1,4 +1,5 @@
 <?php
+
 Yii::setAlias('@tests', dirname(__DIR__) . '/tests');
 
 $params = require(__DIR__ . '/params.php');
@@ -7,37 +8,50 @@ $config = [
     'name' => 'camiflex kids',
     'language' => 'es',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'assetsAutoCompress'],
+    'bootstrap' => ['log', 'assetsAutoCompress', 'maintenanceMode'],
     'components' => [
+        'maintenanceMode' => [
+            'class' => 'brussens\maintenance\MaintenanceMode',
+            // Page title
+            'title' => 'Custom title',
+            // Mode status
+//            'enabled' => false,
+            // Route to action
+            'route' => 'maintenance/index',
+            // Show title
+            'title' => 'Camikids.pe',
+            // Show message
+            'message' => 'Estamos preparandonos para el lanzamiento!!! muy pronto',
+        ],
         'assetsAutoCompress' => (YII_ENV === 'dev') ?
         [
-        'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
-        'webroot' => '/home/qlnvdczv/public_html',
-        'enabled' => true,
-        'readFileTimeout' => 3, //Time in seconds for reading each asset file
-        'jsCompress' => false, //Enable minification js in html code
-        'jsCompressFlaggedComments' => true, //Cut comments during processing js
-        'cssCompress' => true, //Enable minification css in html code
-        'cssFileCompile' => true, //Turning association css files
-        'cssFileRemouteCompile' => false, //Trying to get css files to which the specified path as the remote file, skchat him to her.
-        'cssFileCompress' => true, //Enable compression and processing before being stored in the css file
-        'cssFileBottom' => false, //Moving down the page css files
-        'cssFileBottomLoadOnJs' => false, //Transfer css file down the page and uploading them using js
-        'jsFileCompile' => false, //Turning association js files
-        'jsFileRemouteCompile' => false, //Trying to get a js files to which the specified path as the remote file, skchat him to her.
-        'jsFileCompress' => true, //Enable compression and processing js before saving a file
-        'jsFileCompressFlaggedComments' => true, //Cut comments during processing js
-        'htmlCompress' => true, //Enable compression html
-        'noIncludeJsFilesOnPjax' => true, //Do not connect the js files when all pjax requests
-        'htmlCompressOptions' => //options for compressing output result
-        [
-            'extra' => false, //use more compact algorithm
-            'no-comments' => true   //cut all the html comments
-        ],
+    'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
+    'webroot' => '/home/qlnvdczv/public_html',
+    'enabled' => true,
+    'readFileTimeout' => 3, //Time in seconds for reading each asset file
+    'jsCompress' => false, //Enable minification js in html code
+    'jsCompressFlaggedComments' => true, //Cut comments during processing js
+    'cssCompress' => false, //Enable minification css in html code
+    'cssFileCompile' => false, //Turning association css files
+    'cssFileRemouteCompile' => false, //Trying to get css files to which the specified path as the remote file, skchat him to her.
+    'cssFileCompress' => false, //Enable compression and processing before being stored in the css file
+    'cssFileBottom' => false, //Moving down the page css files
+    'cssFileBottomLoadOnJs' => false, //Transfer css file down the page and uploading them using js
+    'jsFileCompile' => false, //Turning association js files
+    'jsFileRemouteCompile' => false, //Trying to get a js files to which the specified path as the remote file, skchat him to her.
+    'jsFileCompress' => true, //Enable compression and processing js before saving a file
+    'jsFileCompressFlaggedComments' => true, //Cut comments during processing js
+    'htmlCompress' => true, //Enable compression html
+    'noIncludeJsFilesOnPjax' => true, //Do not connect the js files when all pjax requests
+    'htmlCompressOptions' => //options for compressing output result
+    [
+        'extra' => false, //use more compact algorithm
+        'no-comments' => true   //cut all the html comments
+    ],
         ] :
         [
-        'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
-        'enabled' => false
+    'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
+    'enabled' => false
         ],
 //        'assetsAutoCompress' =>
 //        [

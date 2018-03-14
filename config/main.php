@@ -28,8 +28,10 @@ $config = [
         'gridview' => [
             'class' => '\kartik\grid\Module'
         ],
-        'geography' => [
-            'class' => 'amstr1k\geography\Module'
+        'webshell' => [
+            'class' => 'samdark\webshell\Module',
+             'yiiScript' => (YII_ENV === 'dev') ? '@app/yii' : '@app/yii_test', // adjust path to point to your ./yii script
+            'allowedIPs' => [@$_SERVER['REMOTE_ADDR'], '127.0.0.1', '::1'],
         ],
     ],
     'components' => [
@@ -64,7 +66,7 @@ $config = [
         ],
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
-//            'baseUrl' => 'camiflexkids/web',
+//            'baseUrl' => '/',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => false,

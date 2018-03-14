@@ -58,7 +58,12 @@
         "vilochane/yii2-barcode-generator": "dev-master",
         "yii2mod/yii2-google-maps-markers": "*",
         "mdmsoft/yii2-captcha": "~1.0",
-        "developit/yii2-captcha": "*"
+        "developit/yii2-captcha": "*",
+        "samdark/yii2-webshell": "~2.0",
+        "brussens/yii2-maintenance-mode": "*",
+        "mootensai/yii2-enhanced-gii": "*",
+        "kartik-v/yii2-mpdf": "*",
+        "kartik-v/yii2-tree-manager": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

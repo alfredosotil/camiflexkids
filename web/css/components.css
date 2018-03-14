@@ -4397,7 +4397,7 @@ h1 {
     .c-layout-header.c-layout-header-5 .c-navbar .container-fluid {
         padding: 0 20px; }
     .c-layout-header.c-layout-header-5 .c-navbar .c-brand {
-        margin: 0; }
+        margin: 3px 0px 2px 9px; }
     .c-layout-header.c-layout-header-5 .c-navbar .c-navbar-wrapper {
         background: #2f353b; }
     .c-layout-header.c-layout-header-5 .c-navbar .c-mega-menu > .nav.navbar-nav > li {
@@ -4437,7 +4437,7 @@ h1 {
     .c-layout-header.c-layout-header-5 .container-fluid {
         padding: 0; }
     .c-layout-header.c-layout-header-5 .c-navbar .c-brand {
-        margin: 0 0 0 0; }
+        margin: 1px 0px 0px 6px; }
     .c-layout-header.c-layout-header-5 .c-navbar .c-brand > .c-hor-nav-toggler {
         margin-top: 14px;
         margin-right: 15px; }

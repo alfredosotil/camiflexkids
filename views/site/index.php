@@ -24,12 +24,12 @@ $this->title = 'Inicio';
     <div class="c-content-box c-size-md c-bg-grey-1" id="team">
         <div class="container">
             <div class="c-content-person-1-slider" data-slider="owl">
-                <div class="c-content-title-1 wow animated fadeIn">
+                <div class="c-content-title-1">
                     <h3 class="c-center c-font-uppercase c-font-bold">10 Razones para tener pisos de EVA</h3>
                     <div class="c-line-center c-theme-bg"></div>
                 </div>
 
-                <div class="owl-carousel owl-theme c-theme c-owl-nav-center wow animated fadeInUp" data-items="3" data-slide-speed="8000" data-rtl="false"> 
+                <div class="owl-carousel owl-theme c-theme c-owl-nav-center" data-items="3" data-slide-speed="8000" data-rtl="false"> 
                     <?= $reasons ?> 
                 </div>       
             </div>
