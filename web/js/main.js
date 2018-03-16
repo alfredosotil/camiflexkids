@@ -10,4 +10,13 @@ $(document).ready(function () {
         console.log('scroll-top')
         $('html, body').animate({scrollTop : 0},800);
     });
+    
+    $('.validation-signin-action').on('click', function(e){
+        var exist = $('#login-form').length;
+        if(exist){
+            e.preventDefault();
+            $('#signin-form-button').click();
+        }
+        
+    });
 });

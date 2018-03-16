@@ -24,8 +24,8 @@ use yii\bootstrap\ActiveForm;
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1><?php echo Html::encode(Yii::t('yii2mod.user', 'Password Recovery')); ?></h1>
-                        <p><?php echo Yii::t('yii2mod.user', 'Please fill out your email. A link to reset password will be sent there.'); ?></p>
+                        <h1><?php echo Html::encode(Yii::t('yii2mod.user', 'Recupera tu contraseña')); ?></h1>
+                        <p><?php echo Yii::t('yii2mod.user', 'Por favor coloca tu correo electrónico. Se te enviará un enlace para cambiar tu contraseña.'); ?></p>
                         <?php
                         $form = ActiveForm::begin([
                                 'id' => 'modal-request-password-reset-form',
@@ -35,18 +35,18 @@ use yii\bootstrap\ActiveForm;
                         ]);
 
                         ?>
-                        <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => Yii::t('yii2mod.user', 'Your email'), 'class' => 'form-control c-square c-theme input-lg']]); ?>
+                        <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => Yii::t('yii2mod.user', 'Tu correo'), 'class' => 'form-control c-square c-theme input-lg']])->label('Correo'); ?>
                         <div class="form-group">
-                            <?php echo Html::submitButton(Yii::t('yii2mod.user', 'Send'), ['class' => 'btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login', 'name' => 'login-button']); ?>
-                            <a href="#" class="c-btn-forgot" data-toggle="modal" data-target="#login-form" data-dismiss="modal"><?php echo Yii::t('yii2mod.user', 'Back To Login'); ?></a>
+                            <?php echo Html::submitButton(Yii::t('yii2mod.user', 'Enviar'), ['class' => 'btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login', 'name' => 'login-button']); ?>
+                            <a href="#" class="c-btn-forgot" data-toggle="modal" data-target="#login-form" data-dismiss="modal"><?php echo Yii::t('yii2mod.user', 'Vuelve al inicio de sesión'); ?></a>
                         </div>
                         <?php ActiveForm::end(); ?>
                     </div>
                 </div>
             </div>
             <div class="modal-footer c-no-border">                
-                <span class="c-text-account">Don't Have An Account Yet ?</span>
-                <a href="#" data-toggle="modal" data-target="#signup-form" data-dismiss="modal" class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup">Signup!</a>
+                <span class="c-text-account">No tienes cuenta aún?</span>
+                <a href="#" data-toggle="modal" data-target="#signup-form" data-dismiss="modal" class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup">Registrate!</a>
             </div>
         </div>
     </div>

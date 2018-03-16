@@ -106,43 +106,44 @@ AppAsset::register($this);
                                 [
                                     'label' => 'Inicio<span class="c-arrow c-toggler"></span>',
                                     'url' => ['/site/index'],
-                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/index') ? 'color: red;' : null],
+                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/index') ? 'color: #2f353b;' : null],
 //                                    'active' => $this->context->route == 'site/index',
                                 ],
                                 [
                                     'label' => 'Nosotros<span class="c-arrow c-toggler"></span>',
                                     'url' => ['/site/about'],
-                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/about') ? 'color: red;' : null],
+                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/about') ? 'color: #2f353b;' : null],
 //                                    'active' => $this->context->route == 'site/about',
                                 ],
                                 [
                                     'label' => 'Productos<span class="c-arrow c-toggler"></span>',
                                     'url' => ['/site/products'],
-                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/products') ? 'color: red;' : null],
+                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/products') ? 'color: #2f353b;' : null],
 //                                    'active' => $this->context->route == 'site/products',
                                 ],
                                 [
                                     'label' => 'Simulador<span class="c-arrow c-toggler"></span>',
                                     'url' => ['/site/simulator'],
-                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/simulator') ? 'color: red;' : null],
+                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/simulator') ? 'color: #2f353b;' : null],
 //                                    'active' => $this->context->route == 'site/simulator',
                                 ],
                                 [
                                     'label' => 'Contacto<span class="c-arrow c-toggler"></span>',
                                     'url' => ['/site/contact'],
-                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/contact') ? 'color: red;' : null],
+                                    'linkOptions' => ['class' => 'c-link', 'style' => ($this->context->route == 'site/contact') ? 'color: #2f353b;' : null],
 //                                    'active' => $this->context->route == 'site/contact',
                                 ],
                                 [
-                                    'label' => '<i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">' . count(Yii::$app->cart->getItems()) . '</span>',
+                                    'label' => '<i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg" style="background-color: #2f353b !important;">' . count(Yii::$app->cart->getItems()) . '</span>',
                                     'url' => '#',
                                     'linkOptions' => ['class' => 'c-btn-icon c-cart-toggler'],
                                     'options' => ['class' => 'c-cart-toggler-wrapper']
                                 ],
                                 [
-                                    'label' => '<i class="icon-user"></i>' . Yii::t('yii2mod.user', 'Sign In'),
+                                    'label' => '<i class="icon-user"></i>' . Yii::t('yii2mod.user', 'Iniciar Sesión'),
                                     'url' => '#',
                                     'linkOptions' => [
+                                        'id' => 'signin-form-button',
                                         'class' => 'c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold',
                                         'data' => [
                                             'toggle' => 'modal',
@@ -152,19 +153,19 @@ AppAsset::register($this);
                                     'visible' => Yii::$app->user->isGuest
                                 ],
                                 [
-                                    'label' => Yii::t('app', 'User Opt'),
+                                    'label' => Yii::t('app', 'Opciones'),
                                     'linkOptions' => ['class' => 'c-link'],
                                     'options' => ['class' => 'c-menu-type-classic'],
                                     'dropDownOptions' => ['class' => 'c-menu-type-classic c-pull-left', 'style' => 'min-width: auto;'],
                                     'items' => [
                                         [
-                                            'label' => Yii::t('yii2mod.user', 'Account'),
+                                            'label' => Yii::t('yii2mod.user', 'Mi cuenta'),
                                             'url' => ['site/account'],
 //                                            'linkOptions' => ['class' => 'c-menu-type-mega c-menu-type-fullwidth'],
 //                                            'options' => ['class' => 'c-menu-type-mega c-menu-type-fullwidth']
                                         ],
                                         [
-                                            'label' => Yii::t('yii2mod.user', 'Administration'),
+                                            'label' => Yii::t('yii2mod.user', 'Administración'),
                                             'url' => ['admin/'],
                                             'visible' => Yii::$app->getUser()->can('admin'),
 //                                            'linkOptions' => ['class' => 'c-menu-type-mega c-menu-type-fullwidth'],
@@ -174,7 +175,7 @@ AppAsset::register($this);
 //                                    'options' => ['class' => 'c-menu-type-mega c-menu-type-fullwidth'],
                                     'visible' => !Yii::$app->user->isGuest
                                 ],
-                                ['label' => Yii::t('yii2mod.user', 'Logout'), 'url' => ['site/logout'], 'linkOptions' => ['class' => 'c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold', 'data' => [
+                                ['label' => Yii::t('yii2mod.user', 'Salir'), 'url' => ['site/logout'], 'linkOptions' => ['class' => 'c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold', 'data' => [
                                             'confirm' => Yii::t('yii2mod.user', 'Are you sure you want to sign out?'),
                                             'method' => 'post',
                                         ]],

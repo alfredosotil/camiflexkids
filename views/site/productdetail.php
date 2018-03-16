@@ -77,7 +77,7 @@ $this->title = 'Detalles del Productos Camiflex Kids';
                             ?>
                         </div>
                         <div class="col-sm-2 col-sm-offset-1 col-xs-12 pull-right">
-                            <?= Html::submitButton('Agregar al carrito de compras', ['class' => 'btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase c-add-cart']) ?>
+                            <?= Html::submitButton('Agregar al carrito de compras', ['class' => 'btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase c-add-cart validation-signin-action']) ?>
                         </div>
                         <?= Html::endForm(); ?>
                     </div>

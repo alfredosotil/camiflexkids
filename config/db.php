@@ -1,8 +1,8 @@
 <?php
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=qlnvdczv_camiflexkids',
+    'dsn' => 'mysql:host=localhost;dbname=qlnvdczv_camikids',
     'username' => 'qlnvdczv_root',
-    'password' => 'kK547dY1az',
+    'password' => 'EZcCm%V%cH5z',
     'charset' => 'utf8',
 ];

@@ -187,22 +187,22 @@ class SiteController extends Controller {
     public function actionCheckout() {
         Yii::$app->assetsAutoCompress->jsFileCompile = false; //se desactiva compresion js tema tecnico con angular
         $culqimodel = new card();
-        $culqimodel->number = '4111111111111111';
-        $culqimodel->email = 'alfredosotil@gmail.com';
-        $culqimodel->exp_month = '09';
-        $culqimodel->exp_year = '2020';
-        $culqimodel->cvv = '123';
+//        $culqimodel->number = '4111111111111111';
+//        $culqimodel->email = 'alfredosotil@gmail.com';
+//        $culqimodel->exp_month = '09';
+//        $culqimodel->exp_year = '2020';
+//        $culqimodel->cvv = '123';
         $model = new Order();
         $model->country = 'PERU';
         $model->departament = '15';
         $model->province = '00';
         $model->district = '00';
 //        test
-        $model->ship_name = 'alfredo sotil';
-        $model->ship_address = 'avenida brigida silva';
-        $model->phone = '980727281';
-        $model->fax = '980727281';
-        $model->email = 'alfredosotil@gmail.com';
+//        $model->ship_name = 'alfredo sotil';
+//        $model->ship_address = 'avenida brigida silva';
+//        $model->phone = '980727281';
+//        $model->fax = '980727281';
+//        $model->email = 'alfredosotil@gmail.com';
 
         $model->amount = number_format(doubleval(Yii::$app->cart->getAttributeTotal('vat')), 2, '.', '');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

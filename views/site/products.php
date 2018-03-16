@@ -41,7 +41,7 @@ $this->title = 'Productos Camiflex Kids';
                             </div>
                             <div class="btn-group btn-group-justified" role="group">                            
                                 <div class="btn-group c-border-left c-border-top" role="group">
-                                    <a href="<?= Url::toRoute(['site/addtocart', 'id' => $value->id]) ?>" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Agregar al Carrito 3 x 3</a>
+                                    <a href="<?= Url::toRoute(['site/addtocart', 'id' => $value->id]) ?>" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product validation-signin-action">Agregar al Carrito 3 x 3</a>
                                 </div>
                             </div>
                         </div>
