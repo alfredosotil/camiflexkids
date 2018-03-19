@@ -24,24 +24,24 @@ AppAsset::register($this);
         $this->registerMetaTag(['http-equiv' => 'X-UA-Compatible', 'content' => 'IE=edge']);
         $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1']);
         $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, user-scalable=no']);
-        $this->registerMetaTag(['name' => 'title', 'content' => "CAMIFLEXKIDS | www.camiflexkids.com"]);
+        $this->registerMetaTag(['name' => 'title', 'content' => "CAMIKIDS | www.camikids.com"]);
         $this->registerMetaTag(['name' => 'description', 'content' => 'Empresa Peruana dedicada al rubro de la proteccion de los niños con productos antibacteriales e higienicos.']);
-        $this->registerMetaTag(['name' => 'author', 'content' => "http://www.camiflexkids.com/"]);
-        $this->registerMetaTag(['name' => 'DC.Title', 'content' => "CAMIFLEXKIDS | www.camiflexkids.com"]);
-        $this->registerMetaTag(['name' => 'DC.Contributor', 'content' => "http://www.camiflexkids.com/"]);
-        $this->registerMetaTag(['name' => 'DC.Creator', 'content' => "http://www.camiflexkids.com/"]);
+        $this->registerMetaTag(['name' => 'author', 'content' => "http://www.camikids.com/"]);
+        $this->registerMetaTag(['name' => 'DC.Title', 'content' => "CAMIKIDS | www.camikids.com"]);
+        $this->registerMetaTag(['name' => 'DC.Contributor', 'content' => "http://www.camikids.com/"]);
+        $this->registerMetaTag(['name' => 'DC.Creator', 'content' => "http://www.camikids.com/"]);
         $this->registerMetaTag(['name' => 'DC.Description', 'content' => 'Empresa Peruana dedicada al rubro de la proteccion de los niños con productos antibacteriales e higienicos.']);
         $this->registerMetaTag(['name' => 'DC.Language', 'content' => "es"]);
-        $this->registerMetaTag(['name' => 'DC.Publisher', 'content' => "http://www.camiflexkids.com/"]);
+        $this->registerMetaTag(['name' => 'DC.Publisher', 'content' => "http://www.camikids.com/"]);
         $this->registerMetaTag(['name' => 'geo.region', 'content' => 'PE-CAL']);
         $this->registerMetaTag(['name' => 'geo.placename', 'content' => 'Lima']);
         $this->registerMetaTag(['name' => 'geo.position', 'content' => '-12.046373;-77.042754']);
         $this->registerMetaTag(['name' => 'ICBM', 'content' => '-12.046373;-77.042754']);
-        $this->registerMetaTag(['name' => 'og:site_name', 'content' => "http://www.camiflexkids.com/"]);
+        $this->registerMetaTag(['name' => 'og:site_name', 'content' => "http://www.camikids.com/"]);
         $this->registerMetaTag(['name' => 'og:type', 'content' => "website"]);
-        $this->registerMetaTag(['name' => 'og:title', 'content' => 'CAMIFLEXKIDS | www.camiflexkids.com']);
+        $this->registerMetaTag(['name' => 'og:title', 'content' => 'CAMIKIDS | www.camikids.com']);
         $this->registerMetaTag(['name' => 'og:description', 'content' => 'Empresa Peruana dedicada al rubro de la proteccion de los niños con productos antibacteriales e higienicos.']);
-        $this->registerMetaTag(['name' => 'og:url', 'content' => "http://www.camiflexkids.com/"]);
+        $this->registerMetaTag(['name' => 'og:url', 'content' => "http://www.camikids.com/"]);
         $this->registerMetaTag(['name' => 'og:image', 'content' => yii\helpers\Url::base(true) . '/img/logo-transparente.png']);
         $this->registerMetaTag(['name' => 'og:image:type', 'content' => "image/png"]);
         $this->registerMetaTag(['name' => 'og:image:height', 'content' => "226"]);
@@ -70,9 +70,9 @@ AppAsset::register($this);
                     <div class="c-navbar-wrapper clearfix">
                         <div class="c-brand c-pull-left">
                             <a href="<?= Url::toRoute("site/index") ?>" class="c-logo">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/img/logo-transparente.png" alt="CAMIFLEXKIDS" class="c-desktop-logo">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/img/logo-transparente.png" alt="CAMIFLEXKIDS" class="c-desktop-logo-inverse">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/img/logo-transparente.png" alt="CAMIFLEXKIDS" class="c-mobile-logo">
+                                <img src="<?= Yii::$app->request->baseUrl; ?>/img/logo-transparente.png" alt="CAMIKIDS" class="c-desktop-logo">
+                                <img src="<?= Yii::$app->request->baseUrl; ?>/img/logo-transparente.png" alt="CAMIKIDS" class="c-desktop-logo-inverse">
+                                <img src="<?= Yii::$app->request->baseUrl; ?>/img/logo-transparente.png" alt="CAMIKIDS" class="c-mobile-logo">
                             </a>
                             <button class="c-hor-nav-toggler" type="button" data-target=".c-mega-menu">
                                 <span class="c-line"></span>
@@ -86,7 +86,7 @@ AppAsset::register($this);
                                                             <i class="fa fa-search"></i>
                                                         </button>-->
                             <button class="c-cart-toggler" type="button">
-                                <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg"><?= count(Yii::$app->cart->getItems()); ?></span>
+                                <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg" style="background-color: #2f353b !important"><?= count(Yii::$app->cart->getItems()); ?></span>
                             </button>
                         </div>
                         <!-- END: BRAND -->				
@@ -235,7 +235,7 @@ AppAsset::register($this);
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="c-content-title-1 c-title-md">
-                                    <h3 class="c-font-uppercase c-font-bold">Sobre <span class="c-theme-font">CAMIFLEXKIDS</span></h3>
+                                    <h3 class="c-font-uppercase c-font-bold">Sobre <span class="c-theme-font">CAMIKIDS</span></h3>
                                     <div class="c-line-left hide"></div>
                                 </div>
                                 <p class="c-text c-font-16 c-font-regular">Empresa Peruana dedicada al rubro de la proteccion de los niños con productos antibacteriales e higienicos.</p>

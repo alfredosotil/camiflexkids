@@ -86,6 +86,7 @@ class AppAsset extends AssetBundle {
         'plugins/counterup/jquery.counterup.min.js',
         'plugins/jquery-validation/js/jquery.validate.min.js',
         'plugins/jquery-validation/js/additional-methods.min.js',
+        'plugins/zoom-master/jquery.zoom.min.js',
         'plugins/fancybox/jquery.fancybox.pack.js',
         'plugins/smooth-scroll/jquery.smooth-scroll.js',
         'plugins/typed/typed.min.js',

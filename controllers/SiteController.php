@@ -467,7 +467,7 @@ class SiteController extends Controller {
                             'amount' => $order->amount,
                             'capture' => true,
                             'currency_code' => 'PEN',
-                            'description' => 'Pago de orden Camiflexkids',
+                            'description' => 'Pago de orden Camikids',
                             'email' => $card->email,
                             'installments' => 0,
                             'metadata' => array('test' => 'test'),
